@@ -14,4 +14,4 @@ self.FIREBASE_CONFIG = {
 };
 
 /* Web-Push-Schlüssel (Firebase → Projekteinstellungen → Cloud Messaging → Web-Push-Zertifikate) */
-self.FIREBASE_VAPID_KEY = "DEIN_VAPID_KEY";
+self.FIREBASE_VAPID_KEY = "BHZ9uWuY5QQ6eyA3Z-L4s5z_V8XpgRSfBvHGsU55CuVEln3jbXNRZZCCoP7p6AwCtz7mILpNxuWr3K-JIEAPtiA";
