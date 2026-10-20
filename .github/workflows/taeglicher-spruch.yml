@@ -19,7 +19,7 @@ jobs:
         working-directory: robbi-web/scripts
         run: npm install --no-audit --no-fund
       - name: Sprüche verschicken
-        working-directory: scripts
+        working-directory: robbi-web/scripts
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           APP_URL: ${{ vars.APP_URL }}
