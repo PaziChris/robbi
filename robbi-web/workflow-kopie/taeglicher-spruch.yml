@@ -1,0 +1,26 @@
+name: Täglicher Robbi-Spruch
+
+on:
+  schedule:
+    # Jeden Tag um 15:42 UTC = 17:42 Uhr Sommerzeit / 16:42 Uhr Winterzeit in Österreich.
+    # GitHub startet geplante Läufe manchmal ein paar Minuten später.
+    - cron: "42 15 * * *"
+  workflow_dispatch: {}   # erlaubt "Run workflow" zum Testen
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pakete installieren
+        working-directory: scripts
+        run: npm install --no-audit --no-fund
+      - name: Sprüche verschicken
+        working-directory: scripts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          APP_URL: ${{ vars.APP_URL }}
+        run: node send-push.mjs

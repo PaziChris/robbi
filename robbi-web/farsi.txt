@@ -1,0 +1,883 @@
+# Farsi – Vokabeln in UMGANGSSPRACHE (so wie man in Teheran spricht)
+#
+# Alles hier ist gesprochenes Farsi. Wo die Schrift-/Buchsprache anders ist,
+# steht sie als Notiz dabei ("Buch: ...").
+#
+# FORMAT:   persisch (lateinisch) ; deutsch ; optionale Notiz
+# Neue Kategorie einfach mit [Name] beginnen. Zeilen mit # werden ignoriert.
+#
+# AUSSPRACHE:
+#   ā  = langes, dunkles a (zwischen a und o, wie engl. "ball")
+#   a  = kurzes, helles a (fast wie ä)
+#   e  = kurzes e        o = kurzes o        u = langes u      i = langes i
+#   kh = wie "ch" in "Bach"      gh = Rachen-r (wie franz. r)
+#   sh = sch                      ch = tsch
+#   j  = dsch (wie "Job")         zh = wie "j" in "Journal"
+#   y  = j (wie "ja")             z  = weiches s (wie "Sonne")
+#   s  = scharfes s               '  = kurzer Stimmabsatz
+#   Bei Verben steht vorne: Infinitiv – ich-Form
+
+[Begrüßung]
+salām ; Hallo
+salām, khubi? ; Hallo, geht's dir gut?
+chetori? ; Wie geht's dir?
+haletun chetore? ; Wie geht es Ihnen? ; höflich
+khubam, merci. to chetori? ; Gut, danke. Und dir?
+merci, khubam ; Danke, mir geht's gut
+bad nistam ; Nicht schlecht
+ey, bad nist ; Geht so
+sobh bekheyr ; Guten Morgen
+asr bekheyr ; Guten Nachmittag
+shab bekheyr ; Gute Nacht
+shab khosh ; Gute Nacht / Schönen Abend ; locker
+khodāhāfez ; Auf Wiedersehen
+khodāfez ; Tschüss ; schnell gesprochen
+bāy ; Tschüss ; sehr locker, unter Jüngeren
+fe'lan ; Bis dann ; wörtlich: vorerst
+mibinamet ; Wir sehen uns ; wörtlich: ich sehe dich
+tā fardā ; Bis morgen
+khosh umadi ; Willkommen (zu einer Person) ; Buch: khosh āmadi
+khosh umadid ; Willkommen (höflich / mehrere)
+esmet chie? ; Wie heißt du?
+esmetun chie? ; Wie heißen Sie?
+esmam Lisāst ; Ich heiße Lisa ; nach Konsonant: esmam Mārk-e
+khoshbakhtam ; Freut mich
+manam khoshbakhtam ; Freut mich auch
+che khabar? ; Was gibt's Neues?
+salāmati ; Alles gut (Antwort auf che khabar) ; wörtlich: Gesundheit
+khabari nist ; Nichts Neues
+chand sālete? ; Wie alt bist du?
+bist o panj sālame ; Ich bin 25 Jahre alt
+ahl-e kojāyi? ; Woher kommst du?
+ahl-e otrisham ; Ich komme aus Österreich
+chikāre-i? ; Was machst du beruflich?
+khoshhālam ke mibinamet ; Schön, dich zu sehen
+kheyli vaghte nadidamet ; Lange nicht gesehen
+salām beresun ; Grüß schön von mir ; z.B. be māmānet salām beresun
+kojāyi? ; Wo bist du? ; am Telefon
+alo? ; Hallo? (am Telefon)
+
+[Höflichkeit]
+merci ; Danke
+mamnun ; Danke
+kheyli mamnun ; Vielen Dank
+dastet dard nakone ; Danke für deine Mühe ; wörtlich: deine Hand soll nicht schmerzen
+dast-e shomā dard nakone ; Danke für Ihre Mühe ; höflich
+lotfan ; Bitte (wenn man um etwas bittet)
+khāhesh mikonam ; Bitte, gern geschehen
+ghābel nadāre ; Keine Ursache ; typischer Taarof
+bebakhshid ; Entschuldigung
+bebakhshid, dir kardam ; Entschuldigung, ich bin zu spät
+ma'zerat mikhām ; Ich bitte um Entschuldigung
+eyb nadāre ; Macht nichts
+mohem nist ; Ist nicht wichtig / Egal
+befarmāyid ; Bitte sehr ; beim Anbieten oder Hereinbitten
+befarmā ; Bitte schön ; zu einer Person, locker
+nush-e jān ; Guten Appetit / Wohl bekomm's
+salāmati! ; Prost! ; wörtlich: auf die Gesundheit
+khaste nabāshi ; Danke für deine Arbeit ; wörtlich: sei nicht müde – Gruß an jemanden, der arbeitet
+salāmat bāshi ; Danke, du auch ; Antwort auf khaste nabāshi
+zahmat kashidi ; Du hast dir Mühe gemacht (danke)
+mozāhem nemisham ; Ich will nicht stören
+ejāze hast? ; Darf ich?
+āghā ; Herr ; Anrede
+khānum ; Frau ; Anrede ; Buch: khānom
+ghorbunet beram ; Danke, du Lieber ; sehr herzlich, wörtlich: ich opfere mich für dich
+fadāt sham ; Danke, mein Schatz ; herzlich, wörtlich: ich sei dein Opfer
+khodā hefzet kone ; Gott beschütze dich ; beim Abschied
+be salāmat ; Mach's gut / Gute Reise
+tavallodet mobārak ; Alles Gute zum Geburtstag
+eyd mobārak ; Frohes Fest
+nowruz mobārak ; Frohes Neujahr (Nowruz)
+mobārake ; Herzlichen Glückwunsch
+
+[Wichtige Wörter]
+bale ; Ja
+āre ; Ja ; locker
+na ; Nein
+nakheyr ; Nein ; höflich
+bāshe ; Okay
+shāyad ; Vielleicht
+hatman ; Bestimmt / Auf jeden Fall
+albatte ; Natürlich
+dorost-e ; Richtig / Stimmt
+āhān ; Ach so
+vāghe'an? ; Wirklich?
+jeddi? ; Echt? / Im Ernst? ; locker
+ākhey ; Ach wie süß / Oh je ; Mitgefühl oder Niedlichkeit
+vāy ; Oh! / Wow!
+khob ; Also / Gut
+dige ; schon / eben / doch ; Füllwort, extrem häufig
+inja ; hier
+unjā ; dort ; Buch: ānjā
+in ; das / dies
+un ; das / jenes ; Buch: ān
+alān ; jetzt
+ba'dan ; später
+hamishe ; immer
+hichvaght ; nie
+gāhi ; manchmal
+kheyli ; sehr / viel
+ye kam ; ein bisschen
+kam ; wenig
+hame ; alle
+hichi ; nichts ; Buch: hich chiz
+hame chi ; alles ; Buch: hame chiz
+ham ; auch
+faghat ; nur
+hanuz ; noch
+ammā ; aber
+vali ; aber ; locker
+o ; und ; Buch: va
+yā ; oder
+chon ; weil
+age ; wenn / falls ; Buch: agar
+bā ; mit
+bedune ; ohne ; Buch: bedun-e
+barā ; für ; Buch: barāye
+ghabl az ; vor (zeitlich)
+ba'd az ; nach (zeitlich)
+yani ; das heißt / also ; Buch: ya'ni
+
+[Fragen]
+chi? ; Was? ; Buch: che chiz
+ki? ; Wer?
+kojā? ; Wo? / Wohin?
+key? ; Wann?
+cherā? ; Warum?
+chetori? ; Wie?
+chand? ; Wie viel?
+chand tā? ; Wie viele (Stück)?
+kodum? ; Welche(r)? ; Buch: kodām
+az kojā? ; Woher?
+in chie? ; Was ist das?
+un chie? ; Was ist das dort?
+in chande? ; Wie viel kostet das?
+sā'at chande? ; Wie spät ist es?
+kojā miri? ; Wohin gehst du?
+chi kār mikoni? ; Was machst du (gerade)?
+chi shode? ; Was ist passiert?
+chi mikhāy? ; Was willst du?
+chi gofti? ; Was hast du gesagt?
+ki umad? ; Wer ist gekommen?
+key miāy? ; Wann kommst du?
+cherā nayumadi? ; Warum bist du nicht gekommen?
+mitunam ye soāl beporsam? ; Kann ich eine Frage stellen?
+farsi balādi? ; Kannst du Persisch?
+engelisi balādi? ; Kannst du Englisch?
+ālmāni balādi? ; Kannst du Deutsch?
+in be farsi chi mishe? ; Was heißt das auf Persisch?
+"..." yani chi? ; Was bedeutet "..."?
+mishe komakam koni? ; Kannst du mir helfen?
+dorost goftam? ; Habe ich das richtig gesagt?
+hāzeri? ; Bist du fertig / bereit?
+gorosnete? ; Hast du Hunger?
+khasteyi? ; Bist du müde?
+chi dust dāri? ; Was magst du?
+vaght dāri? ; Hast du Zeit?
+kojā zendegi mikoni? ; Wo wohnst du?
+halet khube? ; Geht's dir gut?
+motma'enni? ; Bist du sicher?
+
+[Verständigung]
+man farsi yād migiram ; Ich lerne Persisch
+ye kam farsi balādam ; Ich kann ein bisschen Persisch
+farsim khub nist ; Mein Persisch ist nicht gut
+motevajjeh nemisham ; Ich verstehe nicht
+motevajjeh shodam ; Ich habe verstanden
+nafahmidam ; Ich hab's nicht verstanden ; sehr gebräuchlich
+fahmidi? ; Hast du verstanden?
+yavāshtar harf bezan, lotfan ; Sprich bitte langsamer
+ye bār dige begu ; Sag es noch einmal
+dobāre begid, lotfan ; Sagen Sie es bitte noch einmal
+nemidunam ; Ich weiß nicht ; Buch: nemidānam
+yādam rafte ; Ich hab's vergessen
+yādam umad ; Jetzt fällt's mir ein
+chetori migan "..."? ; Wie sagt man "..."?
+mishe benevisi? ; Kannst du es aufschreiben?
+eshtebāh kardam ; Ich habe einen Fehler gemacht
+eshkāl nadāre ; Kein Problem
+mishe bā man farsi harf bezani? ; Kannst du mit mir Persisch sprechen?
+manzuret chie? ; Was meinst du?
+
+[Familie]
+khānevāde ; Familie
+mādar ; Mutter
+māmān ; Mama
+pedar ; Vater
+bābā ; Papa
+barādar ; Bruder ; locker: dādāsh
+khāhar ; Schwester ; locker: ābji
+pesar ; Sohn / Junge
+dokhtar ; Tochter / Mädchen
+bache ; Kind
+bachehā ; Kinder
+pedarbozorg ; Großvater
+mādarbozorg ; Großmutter
+amu ; Onkel (Bruder des Vaters)
+dāyi ; Onkel (Bruder der Mutter)
+amme ; Tante (Schwester des Vaters)
+khāle ; Tante (Schwester der Mutter)
+pesar khāle ; Cousin (Sohn der Tante mütterlicherseits)
+shohar ; Ehemann
+zan ; Ehefrau / Frau
+nāmzad ; Verlobte(r)
+dust-pesar ; Freund (Beziehung)
+dust-dokhtar ; Freundin (Beziehung)
+ezdevāj kardam ; Ich bin verheiratet ; wörtlich: ich habe geheiratet
+mojarradam ; Ich bin Single
+do tā barādar dāram ; Ich habe zwei Brüder
+ye khāhar dāram ; Ich habe eine Schwester
+bache dāri? ; Hast du Kinder?
+māmānam doktor-e ; Meine Mutter ist Ärztin
+fāmil ; Verwandtschaft
+
+[Personen]
+man ; ich
+to ; du
+u ; er / sie
+mā ; wir
+shomā ; ihr / Sie (höflich)
+unā ; sie (Mehrzahl) ; Buch: ānhā
+ādam ; Mensch
+mard ; Mann
+dust ; Freund(in)
+hamsāye ; Nachbar(in)
+hamkār ; Kollege / Kollegin
+mehmun ; Gast ; Buch: mehmān
+mo'allem ; Lehrer(in)
+doktor ; Arzt / Ärztin
+dāneshju ; Student(in)
+ādam-e khubi-e ; Er/Sie ist ein guter Mensch
+mardom ; Leute
+
+[Gefühle]
+khoshhālam ; Ich bin froh
+nārāhatam ; Ich bin traurig / bedrückt
+nārāhat nasho ; Sei nicht traurig
+negarān nabāsh ; Mach dir keine Sorgen
+negarānam ; Ich mache mir Sorgen
+khastam ; Ich bin müde ; Buch: khaste hastam
+asabāniam ; Ich bin wütend
+mitarsam ; Ich habe Angst
+hoselam sar rafte ; Mir ist langweilig ; wörtlich: meine Geduld ist übergelaufen
+delam gerefte ; Mir ist schwer ums Herz
+delam barāt tang shode ; Ich vermisse dich
+khosham miād ; Es gefällt mir
+khosham nemiād ; Es gefällt mir nicht
+āshegh-e inam ; Ich liebe das (total)
+hāl nadāram ; Ich habe keine Energie / keine Lust
+hoselasho nadāram ; Ich hab keinen Bock darauf
+dāram az khande mimiram ; Ich sterbe vor Lachen
+ārum bāsh ; Bleib ruhig
+kheyli hayajān dāram ; Ich bin sehr aufgeregt
+khejālat mikesham ; Mir ist das peinlich
+marizam ; Ich bin krank
+sardame ; Mir ist kalt
+garmame ; Mir ist warm / heiß
+gorosname ; Ich habe Hunger
+teshname ; Ich habe Durst
+sir shodam ; Ich bin satt
+khābam miād ; Ich bin schläfrig
+hosele nadāram ; Ich habe keine Geduld
+delam ... mikhād ; Ich hätte Lust auf ... ; z.B. delam pitzā mikhād
+
+[Zeit]
+emruz ; heute
+fardā ; morgen
+diruz ; gestern
+pasfardā ; übermorgen
+pariruz ; vorgestern
+sobh ; Morgen
+zohr ; Mittag
+ba'dazzohr ; Nachmittag
+shab ; Abend / Nacht
+emshab ; heute Abend
+dishab ; gestern Abend
+hafte ; Woche
+in hafte ; diese Woche
+hafte-ye ba'd ; nächste Woche
+ākhar-e hafte ; Wochenende
+māh ; Monat (auch: Mond)
+sāl ; Jahr
+pārsāl ; letztes Jahr
+emsāl ; dieses Jahr
+sā'at ; Stunde / Uhr
+daghighe ; Minute
+zud ; früh / schnell
+dir ; spät
+shanbe ; Samstag ; erster Tag der Woche im Iran
+yekshanbe ; Sonntag
+doshanbe ; Montag
+seshanbe ; Dienstag
+chahārshanbe ; Mittwoch
+panjshanbe ; Donnerstag
+jom'e ; Freitag ; Wochenende im Iran
+sā'at se-e ; Es ist drei Uhr
+sā'at do o nim-e ; Es ist halb drei
+ye rob' ; eine Viertelstunde
+dir shod ; Es ist spät geworden
+vaght nadāram ; Ich habe keine Zeit
+ajale dāram ; Ich habe es eilig
+bahār ; Frühling
+tābestun ; Sommer ; Buch: tābestān
+pāyiz ; Herbst
+zemestun ; Winter ; Buch: zemestān
+
+[Zahlen]
+yek ; eins
+do ; zwei
+se ; drei
+chahār ; vier
+panj ; fünf
+shish ; sechs ; Buch: shesh
+haft ; sieben
+hasht ; acht
+noh ; neun
+dah ; zehn
+yāzdah ; elf
+davāzdah ; zwölf
+sizdah ; dreizehn
+chahārdah ; vierzehn
+punzdah ; fünfzehn ; Buch: pānzdah
+shunzdah ; sechzehn ; Buch: shānzdah
+hivdah ; siebzehn ; Buch: hefdah
+hijdah ; achtzehn
+nuzdah ; neunzehn
+bist ; zwanzig
+bist o yek ; einundzwanzig
+si ; dreißig
+chehel ; vierzig
+panjāh ; fünfzig
+shast ; sechzig
+haftād ; siebzig
+hashtād ; achtzig
+navad ; neunzig
+sad ; hundert
+devist ; zweihundert
+hezār ; tausend
+milyun ; Million
+nesf ; Hälfte ; auch: nim
+avval ; erste(r)
+dovvom ; zweite(r)
+sevvom ; dritte(r)
+
+[Farben]
+rang ; Farbe
+ghermez ; rot
+ābi ; blau
+sabz ; grün
+zard ; gelb
+siyā ; schwarz ; Buch: siyāh
+sefid ; weiß
+nārenji ; orange
+banafsh ; lila
+surati ; rosa
+ghahve-i ; braun
+tusi ; grau ; auch: khākestari
+talāyi ; golden
+noghre-i ; silbern
+porrang ; dunkel (Farbe)
+kamrang ; hell (Farbe)
+rang-e mored-e alāghat chie? ; Was ist deine Lieblingsfarbe?
+
+[Essen]
+ghazā ; Essen
+sobhune ; Frühstück ; Buch: sobhāne
+nāhār ; Mittagessen
+shām ; Abendessen
+nun ; Brot
+berenj ; Reis (roh)
+polo ; Reis mit Zutaten ; z.B. sabzi polo
+chelo ; gedämpfter weißer Reis
+tahdig ; knusprige Reiskruste ; Lieblingsteil vieler Iraner
+khoresh ; Eintopf / Schmorgericht
+ghorme sabzi ; Kräutereintopf ; Nationalgericht
+fesenjun ; Walnuss-Granatapfel-Eintopf ; Buch: fesenjān
+kabāb ; Kebab
+juje kabāb ; Hühnerspieß
+āsh ; dicke Suppe
+sup ; Suppe
+gusht ; Fleisch
+morgh ; Huhn
+māhi ; Fisch
+tokhm-e morgh ; Ei
+panir ; Käse
+māst ; Joghurt
+dugh ; Joghurtgetränk
+shir ; Milch
+kare ; Butter
+asal ; Honig
+morabbā ; Marmelade
+sabzi ; Kräuter / Gemüse
+sālād ; Salat
+gojefarangi ; Tomate
+khiyār ; Gurke
+sibzamini ; Kartoffel
+piyāz ; Zwiebel
+sir ; Knoblauch
+mive ; Obst
+sib ; Apfel
+porteghāl ; Orange
+moz ; Banane
+angur ; Traube
+anār ; Granatapfel
+hendune ; Wassermelone ; Buch: hendevāne
+kharbuze ; Melone
+khormā ; Dattel
+gerdu ; Walnuss
+peste ; Pistazie
+namak ; Salz
+felfel ; Pfeffer
+shekar ; Zucker
+āb ; Wasser
+chāy ; Tee
+ghahve ; Kaffee
+āb-mive ; Saft
+nushābe ; Softdrink
+shirini ; Süßigkeit / Gebäck
+bastani ; Eis
+khoshmaze ; lecker
+bad maze ; schmeckt nicht
+tond ; scharf
+shirin ; süß
+shur ; salzig
+torsh ; sauer
+dāgh ; heiß
+kheyli khoshmaze! ; Sehr lecker!
+dastpokhtet harf nadāre ; Du kochst super ; wörtlich: dein Gekochtes ist unübertrefflich
+sir shodam, merci ; Ich bin satt, danke
+ye kam dige mikhāy? ; Willst du noch ein bisschen?
+na merci, dige nemitunam ; Nein danke, ich kann nicht mehr
+chāy mikhori? ; Trinkst du Tee? ; Tee "isst" man: khordan
+man gusht nemikhoram ; Ich esse kein Fleisch
+giyāhkhāram ; Ich bin Vegetarier(in)
+chi bepazim? ; Was kochen wir?
+shām chi dārim? ; Was gibt's zum Abendessen?
+
+[Restaurant]
+rasturān ; Restaurant
+kāfe ; Café
+meno, lotfan ; Die Karte, bitte
+ye miz barāye do nafar ; Einen Tisch für zwei Personen
+chi pishnahād mikonid? ; Was empfehlen Sie?
+man ... mikhām ; Ich möchte ...
+ye chāy, lotfan ; Einen Tee, bitte
+ye āb, lotfan ; Ein Wasser, bitte
+bedune gusht ; ohne Fleisch
+tond nabāshe ; Bitte nicht scharf
+hesāb, lotfan ; Die Rechnung, bitte
+chand mishe? ; Wie viel macht das?
+kārt mikeshid? ; Kann ich mit Karte zahlen? ; wörtlich: ziehen Sie Karte?
+in māl-e man nist ; Das ist nicht meins
+kheyli khoshmaze bud ; Es war sehr lecker
+gārson ; Kellner
+ghāshogh ; Löffel
+changāl ; Gabel
+kārd ; Messer
+boshghāb ; Teller
+livān ; Glas
+fenjun ; Tasse ; Buch: fenjān
+
+[Einkaufen]
+kharid ; Einkauf
+maghāze ; Geschäft
+supermārket ; Supermarkt
+bāzār ; Basar / Markt
+nunvāyi ; Bäckerei
+dārukhune ; Apotheke ; Buch: dārukhāne
+pul ; Geld
+tumān ; Toman (Währung im Alltag) ; 1 Toman = 10 Rial
+gerun ; teuer ; Buch: gerān
+arzun ; billig ; Buch: arzān
+takhfif ; Rabatt
+kheyli gerune! ; Das ist zu teuer!
+arzuntar nadārid? ; Haben Sie nichts Billigeres?
+takhfif midid? ; Geben Sie Rabatt?
+ākharesh chand? ; Was ist Ihr letzter Preis? ; beim Handeln
+faghat dāram negāh mikonam ; Ich schaue nur
+ino mikhām ; Ich möchte das hier ; ino = in rā
+ye dune ; ein Stück
+do kilo ; zwei Kilo
+sāyz-e bozorgtar dārid? ; Haben Sie eine größere Größe?
+mishe porov konam? ; Kann ich das anprobieren?
+kise ; Tüte
+bāz-e? ; Ist offen?
+baste-ast ; Es ist geschlossen ; gesprochen oft: bastas
+kharāb-e ; Es ist kaputt
+
+[Unterwegs]
+khiyābun ; Straße ; Buch: khiyābān
+kuche ; Gasse
+meydun ; Platz ; Buch: meydān
+chap ; links
+rāst ; rechts
+mostaghim ; geradeaus
+nazdik ; nah
+dur ; weit
+posht ; hinter
+jelo ; vor (räumlich)
+kenār ; neben
+bālā ; oben
+pāyin ; unten
+tu ; in / drin
+birun ; draußen
+māshin ; Auto
+otobus ; Bus
+metro ; U-Bahn
+tāksi ; Taxi
+ghatār ; Zug
+havāpeymā ; Flugzeug
+forudgāh ; Flughafen
+istgāh ; Haltestelle / Bahnhof
+belit ; Ticket
+hotel ; Hotel
+ādres ; Adresse
+naghshe ; Stadtplan / Karte
+... kojāst? ; Wo ist ...? ; gesprochen oft: kojās
+istgāh-e metro kojāst? ; Wo ist die U-Bahn-Station?
+chetori beram ...? ; Wie komme ich zu ...?
+dure? ; Ist es weit?
+piyāde mishe raft? ; Kann man zu Fuß gehen?
+mostaghim boro, ba'd dast-e chap ; Geh geradeaus, dann links
+inja negah dārid, lotfan ; Halten Sie hier, bitte
+gom shodam ; Ich habe mich verlaufen
+mano bebarid be ... ; Bringen Sie mich bitte zu ...
+che ghadr tul mikeshe? ; Wie lange dauert es?
+dāram miām ; Ich bin unterwegs / Ich komme gleich
+residam ; Ich bin angekommen
+ye belit barāye ... ; Ein Ticket nach ...
+
+[Zuhause]
+khune ; Haus / Wohnung / Zuhause ; Buch: khāne
+otāgh ; Zimmer
+āshpazkhune ; Küche
+dastshui ; Toilette
+hammum ; Bad / Dusche ; Buch: hammām
+otāgh-khāb ; Schlafzimmer
+dar ; Tür
+panjere ; Fenster
+miz ; Tisch
+sandali ; Stuhl
+takht ; Bett
+mobl ; Sofa
+yakhchāl ; Kühlschrank
+cherāgh ; Licht / Lampe
+kelid ; Schlüssel
+gushi ; Handy
+televizion ; Fernseher
+farsh ; Teppich
+befarmā tu ; Komm rein
+khunat kheyli ghashang-e ; Deine Wohnung ist sehr schön
+man tu Vin zendegi mikonam ; Ich wohne in Wien
+khunam nazdik-e ; Ich wohne in der Nähe
+cherāgho khāmush kon ; Mach das Licht aus
+dar o beband ; Mach die Tür zu
+panjere ro vā kon ; Mach das Fenster auf
+man khune-am ; Ich bin zu Hause
+dāram miām khune ; Ich komme nach Hause
+
+[Körper & Gesundheit]
+sar ; Kopf
+mu ; Haar
+surat ; Gesicht
+cheshm ; Auge
+gush ; Ohr
+damāgh ; Nase
+dahan ; Mund
+dandun ; Zahn ; Buch: dandān
+dast ; Hand / Arm
+pā ; Fuß / Bein
+del ; Bauch / Herz (Gefühl)
+shekam ; Bauch
+ghalb ; Herz (Organ)
+kamar ; Rücken
+gardan ; Hals
+saram dard mikone ; Ich habe Kopfschmerzen
+delam dard mikone ; Ich habe Bauchweh
+tab dāram ; Ich habe Fieber
+sarmā khordam ; Ich habe mich erkältet
+dāru ; Medikament
+doktor lāzem dāram ; Ich brauche einen Arzt
+bimārestān ; Krankenhaus
+komak! ; Hilfe!
+āmbulāns ; Krankenwagen
+hālam khub nist ; Mir geht es nicht gut
+behtar shodi? ; Geht es dir besser?
+bāyad esterāhat koni ; Du musst dich ausruhen
+zud khub sho ; Gute Besserung ; wörtlich: werd schnell gesund
+alerzhi dāram ; Ich habe eine Allergie
+
+[Wetter & Natur]
+havā ; Wetter / Luft
+havā chetore? ; Wie ist das Wetter?
+havā khube ; Das Wetter ist schön
+havā sarde ; Es ist kalt
+havā garme ; Es ist heiß
+bārun miād ; Es regnet ; Buch: bārān mibārad
+barf miād ; Es schneit
+āftābi-e ; Es ist sonnig
+abri-e ; Es ist bewölkt
+bād miād ; Es ist windig
+āftāb ; Sonne
+setāre ; Stern
+āsemun ; Himmel ; Buch: āsemān
+daryā ; Meer
+kuh ; Berg
+jangal ; Wald
+derakht ; Baum
+gol ; Blume
+rudkhune ; Fluss ; Buch: rudkhāne
+sāhel ; Strand / Küste
+biyābun ; Wüste ; Buch: biyābān
+heyvun ; Tier ; Buch: heyvān
+sag ; Hund
+gorbe ; Katze
+parande ; Vogel
+asb ; Pferd
+fok ; Robbe ; wie Robbi!
+
+[Arbeit & Schule]
+kār ; Arbeit
+kār mikonam ; Ich arbeite
+sar-e kāram ; Ich bin bei der Arbeit
+edāre ; Büro / Amt
+sherkat ; Firma
+ra'is ; Chef
+hughugh ; Gehalt
+madrese ; Schule
+dāneshgāh ; Universität
+kelās ; Klasse / Kurs
+dars ; Lektion / Unterricht
+dars mikhunam ; Ich lerne / studiere ; Buch: dars mikhānam
+emtehān ; Prüfung
+ketāb ; Buch
+daftar ; Heft
+khodkār ; Kugelschreiber
+kāmpyuter ; Computer
+jalase dāram ; Ich habe eine Besprechung
+ta'til-e ; Es ist frei / Feiertag
+morakhasi ; Urlaub (vom Job)
+mosāferat ; Reise
+
+[Verben]
+raftan – miram ; gehen – ich gehe ; miri (du), mire (er/sie) · raftam (ich ging)
+umadan – miām ; kommen – ich komme ; Buch: āmadan · miāy, miād · umadam
+khordan – mikhoram ; essen – ich esse ; auch für Tee/Getränke · khordam
+didan – mibinam ; sehen – ich sehe ; mibini · didam
+goftan – migam ; sagen – ich sage ; migi, mige · goftam ; Buch: miguyam
+harf zadan – harf mizanam ; sprechen – ich spreche ; harf zadam
+shenidan – mishnavam ; hören – ich höre ; shenidam
+dunestan – midunam ; wissen – ich weiß ; Buch: dānestan · nemidunam = ich weiß nicht
+tunestan – mitunam ; können – ich kann ; Buch: tavānestan · nemitunam
+khāstan – mikhām ; wollen – ich will ; mikhāy, mikhād ; Buch: mikhāham
+dāshtan – dāram ; haben – ich habe ; nadāram = ich habe nicht
+budan – -am / hastam ; sein – ich bin ; meist nur Endung: khubam = mir geht's gut
+shodan – misham ; werden – ich werde ; mishe = es geht / ist möglich
+kardan – mikonam ; machen – ich mache ; kardam
+dādan – midam ; geben – ich gebe ; Buch: midaham · dādam
+gereftan – migiram ; nehmen / bekommen – ich nehme ; gereftam
+ovordan – miyāram ; bringen – ich bringe ; Buch: āvardan · ovordam
+bordan – mibaram ; mitnehmen – ich nehme mit ; bordam
+neveshtan – minevisam ; schreiben – ich schreibe ; neveshtam
+khundan – mikhunam ; lesen / singen – ich lese ; Buch: khāndan
+fahmidan – mifahmam ; verstehen – ich verstehe ; fahmidam
+porsidan – miporsam ; fragen – ich frage ; porsidam
+javāb dādan – javāb midam ; antworten – ich antworte
+kharidan – mikharam ; kaufen – ich kaufe ; kharidam
+forukhtan – mifurusham ; verkaufen – ich verkaufe ; Buch: miforusham
+pokhtan – mipazam ; kochen – ich koche ; pokhtam
+khābidan – mikhābam ; schlafen – ich schlafe ; khābidam
+bidār shodan – bidār misham ; aufwachen – ich wache auf ; bidār shodam
+neshastan – mishinam ; sich setzen – ich setze mich ; Buch: mineshinam · beshin! = setz dich!
+vāysādan – vāmistam ; stehen bleiben / warten – ich bleibe stehen ; Buch: istādan · vāysā! = warte!
+bāz kardan – bāz mikonam ; öffnen – ich öffne ; locker: vā kardan
+bastan – mibandam ; schließen – ich schließe
+gashtan – migardam ; suchen – ich suche ; dombāl-e ... migardam = ich suche ...
+peydā kardan – peydā mikonam ; finden – ich finde ; peydā kardam
+fekr kardan – fekr mikonam ; denken – ich denke ; fekr konam = ich glaube
+dust dāshtan – dust dāram ; mögen / lieben – ich mag
+zendegi kardan – zendegi mikonam ; leben / wohnen – ich wohne
+yād gereftan – yād migiram ; lernen – ich lerne
+yād dādan – yād midam ; beibringen – ich bringe bei
+bāzi kardan – bāzi mikonam ; spielen – ich spiele
+dowidan – midowam ; rennen – ich renne ; Buch: midavam
+rāh raftan – rāh miram ; zu Fuß gehen – ich gehe zu Fuß
+negāh kardan – negāh mikonam ; anschauen – ich schaue an
+gush dādan – gush midam ; zuhören – ich höre zu
+komak kardan – komak mikonam ; helfen – ich helfe
+zang zadan – zang mizanam ; anrufen – ich rufe an
+ferestādan – miferestam ; schicken – ich schicke
+hesāb kardan – hesāb mikonam ; bezahlen – ich bezahle ; wörtlich: abrechnen
+shostan – mishuram ; waschen – ich wasche ; Buch: mishuyam
+pushidan – mipusham ; anziehen – ich ziehe an
+gerye kardan – gerye mikonam ; weinen – ich weine
+khandidan – mikhandam ; lachen – ich lache
+raghsidan – miraghsam ; tanzen – ich tanze
+shoru' kardan – shoru' mikonam ; anfangen – ich fange an
+tamum kardan – tamum mikonam ; beenden – ich beende ; Buch: tamām
+mundan – mimunam ; bleiben – ich bleibe ; Buch: māndan · mimānam
+residan – miresam ; ankommen – ich komme an
+bargashtan – barmigardam ; zurückkommen – ich komme zurück
+sabr kardan – sabr mikonam ; warten – ich warte ; ye lahze sabr kon = wart kurz
+yād raftan – yādam mire ; vergessen – ich vergesse ; yādam rafte = ich hab's vergessen
+
+[Befehle]
+boro ; Geh!
+biyā ; Komm!
+biyā inja ; Komm her
+beshin ; Setz dich
+vāysā ; Warte! / Bleib stehen
+sabr kon ; Warte kurz
+begu ; Sag!
+bekhor ; Iss!
+negāh kon ; Schau!
+gush kon ; Hör zu!
+bebin ; Schau mal
+bede ; Gib her ; Buch: bedeh
+biyā berim ; Lass uns gehen
+bezan berim ; Los geht's ; locker
+ajale kon ; Beeil dich
+yavāsh ; Langsam!
+movāzeb bāsh ; Pass auf!
+movāzeb-e khodet bāsh ; Pass auf dich auf
+bikhiyāl ; Vergiss es / Egal ; locker
+zang bezan ; Ruf an
+benevis ; Schreib!
+bekhāb ; Schlaf!
+bas kon ; Hör auf!
+komakam kon ; Hilf mir
+
+[Adjektive]
+khub ; gut
+bad ; schlecht
+bozorg ; groß
+kuchik ; klein ; Buch: kuchak
+ghashang ; schön
+zesht ; hässlich
+jadid ; neu
+ghadimi ; alt (Dinge)
+pir ; alt (Menschen)
+javun ; jung ; Buch: javān
+garm ; warm
+sard ; kalt
+āsun ; einfach ; Buch: āsān
+sakht ; schwer / schwierig
+sangin ; schwer (Gewicht)
+sabok ; leicht (Gewicht)
+tond ; schnell (auch: scharf)
+yavāsh ; langsam
+bāhush ; klug
+bāmaze ; witzig / süß
+mehrabun ; nett / freundlich ; Buch: mehrabān
+khoshgel ; hübsch / gutaussehend
+jāleb ; interessant
+khaste-konande ; langweilig / ermüdend
+por ; voll
+khāli ; leer
+tamiz ; sauber
+kasif ; schmutzig
+puldār ; reich
+faghir ; arm
+khoshbakht ; glücklich
+tanhā ; allein
+shulugh ; voll / laut (Ort)
+sāket ; still / ruhig
+bāhāl ; cool / lustig ; locker
+khafan ; krass / mega ; Jugendsprache
+dorost ; richtig
+ghalat ; falsch
+behtar ; besser
+bishtar ; mehr
+kamtar ; weniger
+behtarin ; der/die/das Beste
+
+[Alltag]
+sobh zud bidār shodam ; Ich bin früh aufgewacht
+dāram mikhābam ; Ich gehe gerade schlafen
+dāram kār mikonam ; Ich arbeite gerade
+dāram ghazā mikhoram ; Ich esse gerade
+alān nemitunam harf bezanam ; Ich kann gerade nicht reden
+ba'dan behet zang mizanam ; Ich ruf dich später an
+behem payām bede ; Schreib mir eine Nachricht
+emruz chi kār mikoni? ; Was machst du heute?
+fardā vaght dāri? ; Hast du morgen Zeit?
+biyā berim birun ; Lass uns rausgehen
+biyā ye chāy bokhorim ; Lass uns einen Tee trinken
+bā dustam miram sinamā ; Ich gehe mit meinem Freund ins Kino
+khastam, mikhām esterāhat konam ; Ich bin müde, ich will mich ausruhen
+emruz kheyli shulugh bud ; Heute war viel los
+dir mikonam ; Ich verspäte mich
+ye lahze ; Einen Moment
+ye daghighe sabr kon ; Warte eine Minute
+kelidamo gom kardam ; Ich habe meinen Schlüssel verloren
+gushim shārzh nadāre ; Mein Handy hat keinen Akku
+vāyfāy dārid? ; Habt ihr WLAN?
+ramz-e vāyfāy chie? ; Was ist das WLAN-Passwort?
+pul nadāram ; Ich habe kein Geld
+mikhām beram kharid ; Ich will einkaufen gehen
+havā khube, berim pārk ; Das Wetter ist schön, lass uns in den Park gehen
+āhang gush midam ; Ich höre Musik
+film negāh mikonam ; Ich schaue einen Film
+varzesh mikonam ; Ich mache Sport
+dush migiram ; Ich dusche
+lebāsāmo mishuram ; Ich wasche meine Kleidung
+ākhar-e hafte chi kār mikoni? ; Was machst du am Wochenende?
+khodam anjāmesh midam ; Ich mach's selbst
+mishe ye lahze biyāy? ; Kannst du kurz kommen?
+hamin alān ; Genau jetzt / Sofort
+inshāllā ; So Gott will / Hoffentlich ; sehr häufig
+khodā ro shokr ; Gott sei Dank
+key mirasi khune? ; Wann bist du zu Hause?
+
+[Liebe & Freundschaft]
+dustet dāram ; Ich hab dich lieb / Ich liebe dich
+kheyli dustet dāram ; Ich liebe dich sehr
+āsheghetam ; Ich bin verliebt in dich
+azizam ; mein Schatz / meine Liebe ; auch unter Freunden
+eshgham ; meine Liebe ; romantisch
+to behtarin dust-e mani ; Du bist mein bester Freund / meine beste Freundin
+kheyli khoshgeli ; Du bist sehr hübsch
+cheshmāt kheyli ghashange ; Deine Augen sind sehr schön
+mikhām bishtar bā to bāsham ; Ich will mehr Zeit mit dir verbringen
+hamishe be fekretam ; Ich denke immer an dich
+mikhāy bā ham berim birun? ; Willst du mit mir ausgehen?
+dust dāri ye ghahve bokhorim? ; Hast du Lust auf einen Kaffee?
+shomārato midi? ; Gibst du mir deine Nummer?
+ino barāt kharidam ; Das habe ich für dich gekauft
+kheyli mehrabuni ; Du bist sehr lieb
+bā to khoshhālam ; Mit dir bin ich glücklich
+rafigh ; Kumpel ; locker
+dādāsh ; Bruder / Alter ; unter Freunden
+jun-e del ; mein Herz ; sehr liebevoll
+jun ; Liebes ; nach dem Namen: Sārā jun
+
+[Redewendungen]
+cheshm ; Wird gemacht / Gerne ; wörtlich: Auge – Antwort auf eine Bitte
+ru-ye cheshmam ; Sehr gern ; wörtlich: auf meinem Auge
+ghadametun ru-ye cheshm ; Herzlich willkommen ; sehr höflich
+mokhlesam ; Ganz meinerseits ; höflicher Taarof
+bāshe bābā! ; Ja ja, schon gut! ; locker
+vāy khodā! ; Oh mein Gott!
+khodā be dād beres! ; Oh Gott, Hilfe! ; Ausruf
+che bāhāl! ; Wie cool! / Wie lustig!
+che ghashang! ; Wie schön!
+che bad! ; Wie blöd!
+heyf shod ; Schade
+chi begam? ; Was soll ich sagen?
+mage na? ; Oder? / Nicht wahr?
+ajab! ; Na sowas!
+māshāllā ; Toll! / Wahnsinn! ; Lob, auch gegen den bösen Blick
+cheshm nakhori ; Toi toi toi ; wörtlich: werde nicht vom bösen Blick getroffen
+balā be dur ; Gott bewahre
+sarkāram gozāshti? ; Willst du mich veräppeln?
+damet garm ; Danke dir! / Gut gemacht! ; locker, wörtlich: dein Atem sei warm
+gol kāshti ; Gut gemacht! ; wörtlich: du hast eine Blume gepflanzt
+harf nadāre ; Perfekt / Unschlagbar
+āberurizi shod ; Wie peinlich!
+to ro khodā ; Bitte, ich flehe dich an
+ma'lum-e ; Natürlich / Ist doch klar
+hālā harchi ; Wie auch immer
+dige bas-e ; Jetzt reicht's
+khodā bekheyr kone ; Gott steh uns bei
+kheyli bāhāli ; Du bist echt lustig

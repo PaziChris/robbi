@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robbi Sprachtrainer</title>
+<meta name="description" content="Farsi und Griechisch sprechen lernen mit Robbi der Robbe">
+<meta name="theme-color" content="#1A7A87">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Robbi">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="firebase-config.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <svg class="seal" id="seal" viewBox="0 0 120 92" aria-hidden="true">
+      <ellipse cx="60" cy="84" rx="54" ry="6" fill="var(--sea-soft)"/>
+      <path d="M10 74 L2 64 L14 66 Z M10 74 L4 84 L16 78 Z" fill="var(--seal-dark)"/>
+      <path d="M12 74 C14 54 40 44 62 46 C86 48 100 58 100 72 C100 81 90 84 76 84 L22 84 C15 84 11 80 12 74 Z" fill="var(--seal)"/>
+      <ellipse cx="58" cy="78" rx="12" ry="5" transform="rotate(-18 58 78)" fill="var(--seal-dark)"/>
+      <circle cx="80" cy="38" r="26" fill="var(--seal)"/>
+      <g class="open" fill="var(--ink)">
+        <circle cx="71" cy="33" r="3.6"/><circle cx="89" cy="33" r="3.6"/>
+        <circle cx="72.2" cy="31.8" r="1.1" fill="var(--surface)"/><circle cx="90.2" cy="31.8" r="1.1" fill="var(--surface)"/>
+      </g>
+      <g class="happy" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round">
+        <path d="M67 34 q4 -5 8 0"/><path d="M85 34 q4 -5 8 0"/>
+      </g>
+      <circle cx="66" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/><circle cx="94" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/>
+      <ellipse cx="80" cy="40" rx="3.6" ry="2.6" fill="var(--ink)"/>
+      <path d="M76 44 q2 3 4 0 q2 3 4 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
+      <g stroke="var(--seal-dark)" stroke-width="1.2" stroke-linecap="round">
+        <path d="M72 43 l-11 -2"/><path d="M72 45 l-11 2"/><path d="M88 43 l11 -2"/><path d="M88 45 l11 2"/>
+      </g>
+    </svg>
+    <div class="brand">
+      <h1>Robbi</h1>
+      <p class="bubble" id="bubble">Sag jedes Wort laut, dann umdrehen.</p>
+      <button class="sync" id="sync" type="button">Lade …</button>
+    </div>
+    <select class="lang-select" id="langSelect" aria-label="Sprache"></select>
+  </header>
+
+  <div class="install" id="installBar" hidden>
+    <span id="installText">Robbi als App auf den Startbildschirm legen?</span>
+    <button class="btn primary small" id="installBtn" type="button">Installieren</button>
+    <button class="btn quiet small" id="installClose" type="button" aria-label="Schließen">×</button>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tabLearn" aria-selected="true">Lernen</button>
+    <button role="tab" id="tabRepeat" aria-selected="false">Wiederholen<span class="badge" id="wrongBadge" hidden>0</span></button>
+    <button role="tab" id="tabBoard" aria-selected="false">Rangliste</button>
+    <button role="tab" id="tabWords" aria-selected="false">Wörter</button>
+  </div>
+
+  <!-- LERNEN -->
+  <section class="view" id="viewLearn">
+    <div>
+      <p class="label">Thema</p>
+      <div class="chips" id="catChips"></div>
+    </div>
+    <div>
+      <p class="label">Karten</p>
+      <div class="chips" id="modeChips"></div>
+    </div>
+    <div>
+      <p class="label">Richtung</p>
+      <div class="chips" id="dirChips"></div>
+    </div>
+
+    <div class="view" id="session">
+      <div class="progress"><span id="count">0 / 0</span><div class="bar"><i id="barFill"></i></div><span id="score" class="xp-pop"></span></div>
+      <div class="scene">
+        <button class="card" id="card" aria-label="Karte umdrehen">
+          <div class="face front">
+            <span class="cat" id="fCat"></span>
+            <span class="state" id="fState"></span>
+            <span class="lang" id="fLang"></span>
+            <span class="word" id="fWord">Lade Wörter …</span>
+            <span class="read" id="fRead"></span>
+          </div>
+          <div class="face back">
+            <span class="cat" id="bCat"></span>
+            <span class="lang" id="bLang"></span>
+            <span class="word" id="bWord"></span>
+            <span class="read" id="bRead"></span>
+            <span class="note" id="bNote"></span>
+          </div>
+        </button>
+      </div>
+      <div class="actions" id="flipActions">
+        <button class="btn primary wide" id="flipBtn">Umdrehen</button>
+      </div>
+      <div class="actions" id="rateActions" hidden>
+        <button class="btn again" id="againBtn">Nochmal</button>
+        <button class="btn primary" id="knewBtn">Gewusst</button>
+      </div>
+      <p class="hint">Tastatur: <kbd>Leertaste</kbd> umdrehen · <kbd>N</kbd> nochmal · <kbd>J</kbd> gewusst</p>
+      <details class="panel" id="keyPanel">
+        <summary>So sprichst du es aus</summary>
+        <p id="keyIntro"></p>
+        <div class="keytbl" id="keyTable"></div>
+      </details>
+    </div>
+
+    <div class="end" id="endView" hidden>
+      <span class="label">Beim ersten Versuch gewusst</span>
+      <span class="big" id="endPct">0%</span>
+      <span id="endText"></span>
+      <div class="actions">
+        <button class="btn quiet" id="restartBtn">Nochmal</button>
+        <button class="btn again" id="endWrongBtn">Falsche üben</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WIEDERHOLEN -->
+  <section class="view" id="viewRepeat" hidden>
+    <div class="panel">
+      <h2 id="repTitle">Dein Fortschritt</h2>
+      <div class="stack" id="repStack"></div>
+      <div class="legend" id="repLegend"></div>
+      <div class="actions">
+        <button class="btn again" id="repWrongBtn">Falsche üben</button>
+        <button class="btn good" id="repKnownBtn">Gekonnte wiederholen</button>
+      </div>
+      <p>Eine Karte gilt als gekonnt, wenn du sie beim ersten Versuch weißt. Weißt du eine gekonnte Karte nicht mehr, wandert sie zurück zu den falschen.</p>
+    </div>
+    <p class="label">Nach Thema</p>
+    <ul class="catrows" id="repRows"></ul>
+    <button class="btn quiet" id="resetBtn" type="button">Fortschritt zurücksetzen</button>
+  </section>
+
+  <!-- RANGLISTE & PROFIL -->
+  <section class="view" id="viewBoard" hidden>
+    <div class="panel" id="profilePanel">
+      <h2>Dein Profil</h2>
+
+      <div id="noCloud" hidden>
+        <p>Firebase ist noch nicht eingerichtet. Robbi speichert deshalb nur auf diesem Gerät. Wie du Anmeldung, Rangliste und Push einschaltest, steht in der ANLEITUNG.md.</p>
+      </div>
+
+      <form id="authForm" class="view" hidden>
+        <p>Melde dich an, damit dein Fortschritt sicher gespeichert ist – auf jedem Gerät – und du in die Rangliste kommst.</p>
+        <label class="field">E-Mail
+          <input id="authEmail" type="email" autocomplete="email" required>
+        </label>
+        <label class="field">Passwort <span class="hint" style="text-align:left">(mindestens 6 Zeichen)</span>
+          <input id="authPass" type="password" autocomplete="current-password" minlength="6" required>
+        </label>
+        <div class="actions">
+          <button class="btn primary" id="loginBtn" type="submit">Anmelden</button>
+          <button class="btn quiet" id="registerBtn" type="button">Neu registrieren</button>
+        </div>
+        <button class="linkbtn" id="resetPwBtn" type="button">Passwort vergessen?</button>
+        <span class="msg" id="authMsg" aria-live="polite"></span>
+      </form>
+
+      <div id="signedIn" class="view" hidden>
+        <div class="me">
+          <img class="avatar" src="icons/icon-192.png" alt="">
+          <div style="min-width:0;flex:1">
+            <b id="meName">Robbe</b>
+            <p id="meHint">Wähle einen Spitznamen für die Rangliste.</p>
+          </div>
+          <button class="btn quiet small" id="logoutBtn" type="button">Abmelden</button>
+        </div>
+        <form class="inline" id="nickForm">
+          <input id="nickInput" maxlength="24" autocomplete="off" placeholder="Spitzname, z. B. Robben-Ali" aria-label="Spitzname">
+          <button class="btn primary small" type="submit">Speichern</button>
+        </form>
+        <div class="legend" id="meStats"></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="label">Rangliste nach Punkten</p>
+      <ul class="board" id="board"><li class="empty">Melde dich an, um die Rangliste zu sehen.</li></ul>
+    </div>
+    <p class="hint">Punkte: +10 für gewusst, +3 wenn du es beim zweiten Anlauf weißt, +1 fürs Üben. Die Serie zählt die Tage hintereinander, an denen du gelernt hast.</p>
+
+    <div class="panel" id="pushPanel" hidden>
+      <h2>Täglicher Spruch aufs Handy</h2>
+      <p>Robbi schickt dir jeden Tag am frühen Abend einen frechen Motivationsspruch mit deutscher Übersetzung.</p>
+      <div class="inline">
+        <select id="pushMode" aria-label="Sprache des Spruchs">
+          <option value="abwechselnd">Abwechselnd Farsi und Griechisch</option>
+          <option value="farsi">Nur Farsi</option>
+          <option value="griechisch">Nur Griechisch</option>
+          <option value="aus">Aus</option>
+        </select>
+      </div>
+      <button class="btn primary" id="pushBtn" type="button">Benachrichtigungen einschalten</button>
+      <p id="pushHint"></p>
+      <span class="msg" id="pushMsg" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <!-- WÖRTER -->
+  <section class="view" id="viewWords" hidden>
+    <form class="panel" id="addForm">
+      <h2>Neues Wort</h2>
+      <div class="row2">
+        <label class="field">Thema
+          <select id="addCat"></select>
+        </label>
+        <label class="field" id="newCatWrap" hidden>Name des neuen Themas
+          <input id="addNewCat" autocomplete="off">
+        </label>
+      </div>
+      <div class="row2">
+        <label class="field"><span id="addFrontLabel">Farsi (lateinisch)</span>
+          <input id="addFront" required autocomplete="off">
+        </label>
+        <label class="field">Deutsch
+          <input id="addBack" required autocomplete="off">
+        </label>
+      </div>
+      <label class="field">Notiz (optional)
+        <input id="addNote" autocomplete="off" placeholder="z. B. Aussprache-Tipp">
+      </label>
+      <button class="btn primary" type="submit">Wort speichern</button>
+      <span class="msg" id="addMsg" aria-live="polite"></span>
+    </form>
+
+    <input class="search" id="search" type="search" placeholder="Wörter durchsuchen …" aria-label="Wörter durchsuchen">
+    <div id="wordList"></div>
+
+    <details class="panel">
+      <summary>Viele Wörter oder neue Sprache einfügen</summary>
+      <p>Füge Text im selben Format wie die .txt-Dateien ein. Eine Zeile pro Wort, Themen in eckigen Klammern. Gib einen neuen Sprachnamen ein, um eine Sprache anzulegen.</p>
+      <label class="field">Sprache
+        <input id="impLang" autocomplete="off">
+      </label>
+      <label class="field">Text
+        <textarea id="impText" placeholder="[Farben]&#10;sefid ; weiß&#10;siyā ; schwarz ; Buch: siyāh"></textarea>
+      </label>
+      <button class="btn primary" id="impBtn" type="button">Einfügen</button>
+      <span class="msg" id="impMsg" aria-live="polite"></span>
+    </details>
+
+    <details class="panel">
+      <summary>Meine Wörter exportieren</summary>
+      <p>Alle Wörter, die du hier hinzugefügt hast. Kopiere sie ans Ende der passenden .txt-Datei (auf GitHub), dann haben sie alle.</p>
+      <textarea id="expText" readonly></textarea>
+      <button class="btn quiet" id="copyBtn" type="button">Kopieren</button>
+      <span class="msg" id="copyMsg" aria-live="polite"></span>
+    </details>
+  </section>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

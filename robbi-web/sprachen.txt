@@ -1,0 +1,7 @@
+# Hier stehen alle Sprachen, die Robbi kennt.
+# Format:  Name ; Dateiname
+# Neue Sprache: Vokabeldatei anlegen (gleiches Format wie farsi.txt)
+# und hier eine Zeile ergänzen, z.B.:   Türkisch ; tuerkisch.txt
+
+Farsi ; farsi.txt
+Griechisch ; griechisch.txt

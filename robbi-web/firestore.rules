@@ -1,0 +1,24 @@
+rules_version = '2';
+
+// Sicherheitsregeln für Robbi.
+// Kopiere diesen Text in Firebase → Firestore Database → Regeln (siehe ANLEITUNG.md).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Eigene Daten (Fortschritt, eigene Wörter, Push-Einstellung): nur du selbst.
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+      match /prog/{lang} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // Rangliste: alle Angemeldeten dürfen lesen, jeder schreibt nur seinen eigenen Eintrag.
+    match /scores/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.nick is string && request.resource.data.nick.size() <= 24
+        && request.resource.data.xp is number && request.resource.data.xp >= 0;
+    }
+  }
+}

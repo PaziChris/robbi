@@ -1,0 +1,886 @@
+# Griechisch – Vokabeln in gesprochenem Neugriechisch (Alltagssprache)
+#
+# Lateinische Schrift, so geschrieben wie man es AUSSPRICHT.
+# FORMAT:   griechisch (lateinisch) ; deutsch ; optionale Notiz
+# Neue Kategorie einfach mit [Name] beginnen. Zeilen mit # werden ignoriert.
+#
+# AUSSPRACHE:
+#   á é í ó ú = diese Silbe BETONEN (sehr wichtig im Griechischen!)
+#   ch = wie "ch" in "Bach" (vor e/i wie in "ich")
+#   gh = weiches Rachen-g (wie ein gehauchtes r)
+#   j  = wie "j" in "ja"
+#   th = wie engl. "think"       dh = wie engl. "this"
+#   z  = weiches s (wie "Sonne") s  = scharfes s
+#   ts = wie dt. "z"             tz = wie "ds"
+#   u  = u      i = i      e = e      o = o
+#   Achtung: "ne" heißt JA, "óchi" heißt NEIN!
+#   (m) = zu einem Mann / männlich, Frauenform steht in der Notiz
+
+[Begrüßung]
+jia su ; Hallo / Tschüss (zu einer Person) ; wörtlich: deine Gesundheit
+jia sas ; Hallo / Tschüss (höflich oder mehrere)
+kaliméra ; Guten Morgen
+kalispéra ; Guten Abend ; ab dem Nachmittag
+kaliníchta ; Gute Nacht
+ti kánis? ; Wie geht's dir?
+ti kánete? ; Wie geht es Ihnen? / Wie geht's euch?
+kalá, esí? ; Gut, und du?
+kalá, efcharistó ; Gut, danke
+polí kalá ; Sehr gut
+étsi ki étsi ; So lala
+óla kalá? ; Alles gut?
+óla kalá ; Alles gut
+ti néa? ; Was gibt's Neues?
+típota idhjétero ; Nichts Besonderes
+pos se léne? ; Wie heißt du?
+pos sas léne? ; Wie heißen Sie?
+me léne Lisa ; Ich heiße Lisa
+chéro polí ; Freut mich sehr
+ki egó ; Mich auch
+apó pu íse? ; Woher kommst du?
+íme apó tin Afstría ; Ich komme aus Österreich
+póso chronón íse? ; Wie alt bist du?
+íme íkosi pénde chronón ; Ich bin 25 Jahre alt
+kalós írthes ; Willkommen (zu einer Person)
+kalós írthate ; Willkommen (höflich / mehrere)
+kalós se vríkame ; Schön, hier zu sein ; Antwort auf kalós írthes
+ta léme ; Bis bald ; wörtlich: wir sprechen uns
+ta léme ávrio ; Bis morgen
+tha ta póume ; Wir hören voneinander
+adío ; Tschüss / Leb wohl
+chárika pu se ídha ; Schön, dich gesehen zu haben
+kaló vrádhi ; Schönen Abend
+kalí evdomádha ; Schöne Woche
+kaló savatokíriako ; Schönes Wochenende
+kalí sinéchia ; Weiterhin alles Gute ; beim Abschied
+kaló taxídhi ; Gute Reise
+pu íse? ; Wo bist du? ; am Telefon
+embrós? ; Hallo? (am Telefon) ; auch: nai?
+éla! ; Hey! / Hallo! ; locker, auch am Telefon
+chrónia ke zamánia! ; Lange nicht gesehen!
+
+[Höflichkeit]
+efcharistó ; Danke
+efcharistó polí ; Vielen Dank
+parakaló ; Bitte / Gern geschehen
+típota ; Keine Ursache ; wörtlich: nichts
+signómi ; Entschuldigung
+me sinchoríte ; Verzeihen Sie
+dhen pirázi ; Macht nichts
+oríste ; Bitte schön (beim Geben) / Wie bitte?
+kalí órexi ; Guten Appetit
+jia mas! ; Prost! ; wörtlich: auf unsere Gesundheit
+stin ijiá mas ; Auf unsere Gesundheit
+me chará ; Gerne / Mit Freude
+ne, amé ; Ja, natürlich
+an thélis ; Wenn du willst
+brávo ; Bravo
+na íse kalá ; Danke dir ; wörtlich: mögest du gesund sein
+chrónia pollá! ; Alles Gute! ; Geburtstag, Namenstag, Feiertage
+kalí epitichía ; Viel Erfolg
+perastiká ; Gute Besserung
+sincharitíria ; Herzlichen Glückwunsch
+kalá Christújenna ; Frohe Weihnachten
+kaló Páscha ; Frohe Ostern
+kalí chroniá ; Frohes neues Jahr
+kírie ; Herr ; Anrede
+kiría ; Frau ; Anrede
+me sinchoríte, pu íne ...? ; Entschuldigung, wo ist ...?
+
+[Wichtige Wörter]
+ne ; Ja ; Achtung: klingt wie "nee"!
+óchi ; Nein
+málista ; Jawohl ; förmlich
+endáxi ; Okay ; sehr häufig
+ísos ; vielleicht
+sígura ; sicher
+fisiká ; natürlich
+sostá ; richtig
+láthos ; falsch / Fehler
+alíthia? ; Wirklich?
+sovará? ; Im Ernst?
+a, étsi ; Ach so
+polí ; sehr / viel
+lígo ; ein bisschen
+pára polí ; sehr viel / extrem
+tóso ; so (viel)
+óli ; alle
+óla ; alles
+típota ; nichts
+kápios ; jemand
+kápu ; irgendwo
+kápote ; irgendwann
+pánda ; immer
+poté ; nie
+merikés forés ; manchmal
+tóra ; jetzt
+metá ; danach / später
+amésos ; sofort
+edhó ; hier
+ekí ; dort
+aftó ; das (hier)
+ekíno ; das (dort)
+ke ; und
+i ; oder
+allá ; aber
+jiatí ; weil (auch: warum)
+an ; wenn / falls
+me ; mit
+chorís ; ohne
+jia ; für
+apó ; von / aus
+se ; in / nach / zu
+prin ; vor (zeitlich)
+epísis ; auch / ebenfalls
+móno ; nur
+akóma ; noch
+ídhi ; schon
+lipón ; also
+dhiladhí ; das heißt
+ópa! ; Hoppla! / Juhu! ; Ausruf
+re ; Mann / Alter ; Füllwort unter Freunden: éla re!
+
+[Fragen]
+ti? ; Was?
+pjos? ; Wer?
+pu? ; Wo? / Wohin?
+póte? ; Wann?
+jiatí? ; Warum?
+pos? ; Wie?
+póso? ; Wie viel?
+pósa? ; Wie viele?
+pjo? ; Welches?
+apó pu? ; Woher?
+ti íne aftó? ; Was ist das?
+póso káni? ; Wie viel kostet das?
+ti óra íne? ; Wie spät ist es?
+pu pas? ; Wohin gehst du?
+ti kánis tóra? ; Was machst du gerade?
+ti éjine? ; Was ist passiert?
+ti thélis? ; Was willst du?
+ti ípes? ; Was hast du gesagt?
+póte tha érthis? ; Wann kommst du?
+jiatí dhen írthes? ; Warum bist du nicht gekommen?
+boró na se rotíso káti? ; Kann ich dich etwas fragen?
+milás elliniká? ; Sprichst du Griechisch?
+milás angliká? ; Sprichst du Englisch?
+milás jermaniká? ; Sprichst du Deutsch?
+pos to léne aftó sta elliniká? ; Wie heißt das auf Griechisch?
+ti siméni "..."? ; Was bedeutet "..."?
+borís na me voithísis? ; Kannst du mir helfen?
+to ípa sostá? ; Habe ich es richtig gesagt?
+íse étimos? ; Bist du bereit? (m) ; zu einer Frau: étimi
+pinás? ; Hast du Hunger?
+dhipsás? ; Hast du Durst?
+íse kurazménos? ; Bist du müde? (m) ; zu einer Frau: kurazméni
+échis chróno? ; Hast du Zeit?
+ti su arési? ; Was gefällt dir?
+pu ménis? ; Wo wohnst du?
+ti dhuliá kánis? ; Was arbeitest du?
+íse kalá? ; Geht's dir gut? / Alles okay?
+síguro? ; Sicher?
+
+[Verständigung]
+mathéno elliniká ; Ich lerne Griechisch
+miláo lígo elliniká ; Ich spreche ein bisschen Griechisch
+ta elliniká mu dhen íne kalá ; Mein Griechisch ist nicht gut
+dhen katalavéno ; Ich verstehe nicht
+katálava ; Ich habe verstanden
+katálaves? ; Hast du verstanden?
+pjo sigá, parakaló ; Langsamer, bitte
+borís na to xanapís? ; Kannst du es nochmal sagen?
+xaná, parakaló ; Nochmal, bitte
+dhen xéro ; Ich weiß nicht
+to xéchasa ; Ich hab's vergessen
+to thimíthika ; Jetzt fällt's mir ein
+pos léme "..."? ; Wie sagt man "..."?
+borís na to ghrápsis? ; Kannst du es aufschreiben?
+ékana láthos ; Ich habe einen Fehler gemacht
+kanéna próvlima ; Kein Problem
+míla mu elliniká ; Sprich Griechisch mit mir
+ti ennoís? ; Was meinst du?
+
+[Familie]
+ikojénia ; Familie
+mitéra ; Mutter
+mamá ; Mama
+patéras ; Vater
+babás ; Papa
+adhelfós ; Bruder
+adhelfí ; Schwester
+jios ; Sohn
+kóri ; Tochter
+pedhí ; Kind
+pedhjá ; Kinder
+moró ; Baby
+papús ; Opa
+jiajiá ; Oma
+théios ; Onkel
+thía ; Tante
+xádherfos ; Cousin
+xadhérfi ; Cousine
+ándras ; Ehemann / Mann
+jinéka ; Ehefrau / Frau
+sízighos ; Ehepartner
+aghóri ; Junge
+korítsi ; Mädchen
+fílos ; Freund
+fíli ; Freundin
+íme pandreménos ; Ich bin verheiratet (m) ; Frau: pandreméni
+íme eléftheros ; Ich bin Single (m) ; Frau: eléftheri
+écho dhío adhelfús ; Ich habe zwei Brüder
+écho mía adhelfí ; Ich habe eine Schwester
+échis pedhjá? ; Hast du Kinder?
+i mitéra mu íne jiatrós ; Meine Mutter ist Ärztin
+singhenís ; Verwandte
+
+[Personen]
+egó ; ich
+esí ; du
+aftós ; er
+aftí ; sie (Einzahl)
+emís ; wir
+esís ; ihr / Sie (höflich)
+aftí / aftés ; sie (Mehrzahl)
+ánthropos ; Mensch
+jítonas ; Nachbar
+sinádhelfos ; Kollege
+kalesménos ; Gast
+dháskalos ; Lehrer
+jiatrós ; Arzt / Ärztin
+fititís ; Student
+fitítria ; Studentin
+kósmos ; Leute / Welt ; polís kósmos = viele Leute
+
+[Gefühle]
+íme charúmenos ; Ich bin froh (m) ; Frau: charúmeni
+íme lipiménos ; Ich bin traurig (m) ; Frau: lipiméni
+íme kurazménos ; Ich bin müde (m) ; Frau: kurazméni
+íme thimoménos ; Ich bin wütend (m) ; Frau: thimoméni
+fováme ; Ich habe Angst
+varjéme ; Ich langweile mich / Ich hab keine Lust ; sehr gebräuchlich
+mu lípis ; Ich vermisse dich ; wörtlich: du fehlst mir
+m'arési ; Es gefällt mir
+dhen m'arési ; Es gefällt mir nicht
+to latrévo ; Ich liebe es
+anisichó ; Ich mache mir Sorgen
+min anisichís ; Mach dir keine Sorgen
+írema ; Ruhig! / Bleib ruhig
+íme árrostos ; Ich bin krank (m) ; Frau: árrosti
+krióno ; Mir ist kalt
+zesténome ; Mir ist warm
+pináo ; Ich habe Hunger
+dhipsáo ; Ich habe Durst
+nistázo ; Ich bin schläfrig
+chórtasa ; Ich bin satt
+écho ánchos ; Ich bin gestresst
+drépome ; Ich schäme mich / Ich bin schüchtern
+pethéno sta jélia ; Ich sterbe vor Lachen
+écho kéfi ; Ich hab gute Laune
+dhen écho kéfi ; Ich hab keine Lust / schlechte Laune
+nevriázo ; Ich werde nervös / sauer
+
+[Zeit]
+símera ; heute
+ávrio ; morgen
+chthes ; gestern
+methávrio ; übermorgen
+proxthés ; vorgestern
+proí ; Morgen / morgens
+mesiméri ; Mittag
+apójevma ; Nachmittag
+vrádhi ; Abend
+níchta ; Nacht
+apópse ; heute Abend
+evdomádha ; Woche
+aftí tin evdomádha ; diese Woche
+tin epómeni evdomádha ; nächste Woche
+mínas ; Monat
+chrónos ; Jahr / Zeit
+fétos ; dieses Jahr
+pérsi ; letztes Jahr
+óra ; Stunde / Uhrzeit
+leptó ; Minute
+norís ; früh
+argá ; spät / langsam
+Kiriakí ; Sonntag
+Dheftéra ; Montag
+Tríti ; Dienstag
+Tetárti ; Mittwoch
+Pémpti ; Donnerstag
+Paraskeví ; Freitag
+Sávvato ; Samstag
+savatokíriako ; Wochenende
+íne tris i óra ; Es ist drei Uhr
+íne dhío ke misí ; Es ist halb drei
+ke tétarto ; Viertel nach
+pará tétarto ; Viertel vor
+árjise ; Es ist spät geworden
+dhen écho chróno ; Ich habe keine Zeit
+viázome ; Ich habe es eilig
+ánixi ; Frühling
+kalokéri ; Sommer
+fthinóporo ; Herbst
+chimónas ; Winter
+
+[Zahlen]
+éna ; eins ; weiblich: mía
+dhío ; zwei
+tría ; drei ; bei m/f: tris
+téssera ; vier ; bei m/f: tésseris
+pénde ; fünf
+éxi ; sechs
+eftá ; sieben
+ochtó ; acht
+ennéa ; neun
+dhéka ; zehn
+éndeka ; elf
+dhódheka ; zwölf
+dhekatría ; dreizehn
+dhekatéssera ; vierzehn
+dhekapénde ; fünfzehn
+dhekaéxi ; sechzehn
+dhekaeftá ; siebzehn
+dhekaochtó ; achtzehn
+dhekaennéa ; neunzehn
+íkosi ; zwanzig
+íkosi éna ; einundzwanzig
+triánda ; dreißig
+saránda ; vierzig
+penínda ; fünfzig
+exínda ; sechzig
+evdomínda ; siebzig
+oghdhónda ; achtzig
+enenínda ; neunzig
+ekató ; hundert
+dhiakósia ; zweihundert
+chília ; tausend
+ekatomírio ; Million
+misó ; halb
+prótos ; erste(r)
+dhéfteros ; zweite(r)
+trítos ; dritte(r)
+
+[Farben]
+chróma ; Farbe
+kókkino ; rot
+ble ; blau
+prásino ; grün
+kítrino ; gelb
+mávro ; schwarz
+áspro ; weiß
+portokalí ; orange
+mov ; lila
+roz ; rosa
+kafé ; braun
+gri ; grau
+chrisó ; golden
+asimí ; silbern
+skúro ; dunkel
+anichtó ; hell (Farbe)
+ti chróma su arési? ; Welche Farbe magst du?
+
+[Essen]
+fajitó ; Essen
+proinó ; Frühstück
+mesimerianó ; Mittagessen
+vradhinó ; Abendessen
+psomí ; Brot
+rízi ; Reis
+makarónia ; Nudeln
+kréas ; Fleisch
+kotópulo ; Huhn
+psári ; Fisch
+avgó ; Ei
+tirí ; Käse
+féta ; Feta
+jiaúrti ; Joghurt
+ghála ; Milch
+vútiro ; Butter
+méli ; Honig
+eliá ; Olive
+ládhi ; Öl (Olivenöl)
+saláta ; Salat
+choriátiki ; Bauernsalat
+domáta ; Tomate
+angúri ; Gurke
+patáta ; Kartoffel
+patátes tighanités ; Pommes
+kremídhi ; Zwiebel
+skórdho ; Knoblauch
+fakés ; Linsen(suppe)
+fasoládha ; Bohnensuppe
+musakás ; Moussaka
+jíros ; Gyros
+suvláki ; Fleischspieß
+tzatzíki ; Tsatsiki ; gesprochen: dsadsíki
+spanakópita ; Spinatpita
+tirópita ; Käsepita
+dolmadhákia ; gefüllte Weinblätter
+frúta ; Obst
+mílo ; Apfel
+portokáli ; Orange
+banána ; Banane
+stafíli ; Traube
+karpúzi ; Wassermelone
+pepóni ; Melone
+síko ; Feige
+aláti ; Salz
+pipéri ; Pfeffer
+záchari ; Zucker
+neró ; Wasser
+kafés ; Kaffee
+frapés ; Frappé (Eiskaffee)
+tsáj ; Tee
+chimós ; Saft
+krasí ; Wein
+bíra ; Bier
+ghlikó ; Süßes / Dessert
+paghotó ; Eis
+nóstimo ; lecker
+polí nóstimo! ; Sehr lecker!
+kafteró ; scharf
+ghlikó (Geschmack) ; süß
+almiró ; salzig
+xinó ; sauer
+zestó ; heiß / warm
+krío ; kalt
+chórtasa, efcharistó ; Ich bin satt, danke
+thélis lígo akóma? ; Willst du noch ein bisschen?
+óchi efcharistó, dhen boró állo ; Nein danke, ich kann nicht mehr
+dhen tróo kréas ; Ich esse kein Fleisch
+íme chortofághos ; Ich bin Vegetarier(in)
+majirévis polí oréa ; Du kochst sehr gut
+ti tha majirépsume? ; Was kochen wir?
+ti échume jia vradhinó? ; Was gibt's zum Abendessen?
+
+[Restaurant]
+estiatório ; Restaurant
+tavérna ; Taverne
+kafetéria ; Café
+ton katálogho, parakaló ; Die Karte, bitte
+éna trapézi jia dhío ; Einen Tisch für zwei
+ti protínete? ; Was empfehlen Sie?
+tha íthela ... ; Ich hätte gern ...
+éna neró, parakaló ; Ein Wasser, bitte
+énan kafé, parakaló ; Einen Kaffee, bitte
+éna potíri krasí ; Ein Glas Wein
+chorís kréas ; ohne Fleisch
+na min íne kafteró ; Bitte nicht scharf
+to loghariasmó, parakaló ; Die Rechnung, bitte
+póso kánun óla? ; Wie viel macht alles zusammen?
+boró na pliróso me kárta? ; Kann ich mit Karte zahlen?
+aftó dhen íne dhikó mu ; Das ist nicht meins
+ítan polí nóstimo ; Es war sehr lecker
+servitóros ; Kellner
+kutáli ; Löffel
+pirúni ; Gabel
+machéri ; Messer
+pjáto ; Teller
+potíri ; Glas
+flidzáni ; Tasse
+krátisi ; Reservierung
+écho káni krátisi ; Ich habe reserviert
+ke éna psomí, parakaló ; Und ein Brot, bitte
+to fajitó íne krío ; Das Essen ist kalt
+filodhórima ; Trinkgeld
+
+[Einkaufen]
+psónia ; Einkäufe
+páo na káno psónia ; Ich gehe einkaufen
+maghazí ; Geschäft
+súper market ; Supermarkt
+laikí ; Wochenmarkt
+fúrnos ; Bäckerei
+farmakío ; Apotheke
+leftá ; Geld
+evró ; Euro
+akrivó ; teuer
+ftinó ; billig
+ékptosi ; Rabatt
+íne polí akrivó! ; Das ist zu teuer!
+échete káti pjo ftinó? ; Haben Sie etwas Billigeres?
+káne mu mia kalí timí ; Mach mir einen guten Preis
+aplós kitázo ; Ich schaue nur
+thélo aftó ; Ich möchte das hier
+éna kiló ; ein Kilo
+misó kiló ; ein halbes Kilo
+échete meghalítero meghéthos? ; Haben Sie eine größere Größe?
+boró na to dhokimáso? ; Kann ich es anprobieren?
+sakúla ; Tüte
+íste aniktá? ; Haben Sie offen?
+anichtó ; offen
+klistó ; geschlossen
+íne chalasméno ; Es ist kaputt
+apódhixi ; Quittung / Kassenbon
+résta ; Wechselgeld
+
+[Unterwegs]
+dhrómos ; Straße
+odhós ; Straße (in Adressen)
+platía ; Platz
+aristerá ; links
+dhexiá ; rechts
+efthía ; geradeaus
+kondá ; nah
+makriá ; weit
+píso ; hinten / hinter
+brostá ; vorne / vor
+dhípla ; neben
+páno ; oben
+káto ; unten
+mésa ; drinnen
+éxo ; draußen
+aftokínito ; Auto
+amáxi ; Auto ; locker
+leoforío ; Bus
+metró ; U-Bahn
+taxí ; Taxi
+tréno ; Zug
+aeropláno ; Flugzeug
+aerodhrómio ; Flughafen
+stási ; Haltestelle
+stathmós ; Bahnhof
+isitírio ; Ticket
+karávi ; Schiff / Fähre
+limáni ; Hafen
+xenodhochío ; Hotel
+dhiéfthinsi ; Adresse
+chártis ; Stadtplan / Karte
+pu íne ...? ; Wo ist ...?
+pu íne o stathmós tu metró? ; Wo ist die U-Bahn-Station?
+pos páo sto ...? ; Wie komme ich zum ...?
+íne makriá? ; Ist es weit?
+boró na páo me ta pódhia? ; Kann ich zu Fuß gehen?
+páne efthía, metá aristerá ; Geh geradeaus, dann links
+stamatíste edhó, parakaló ; Halten Sie hier, bitte
+chátika ; Ich habe mich verlaufen
+páme ; Los geht's / Lass uns gehen
+póso kratái? ; Wie lange dauert es?
+érchome ; Ich komme / Ich bin unterwegs
+éftasa ; Ich bin angekommen
+éna isitírio jia ... ; Ein Ticket nach ...
+
+[Zuhause]
+spíti ; Haus / Zuhause
+dhiamérisma ; Wohnung
+dhomátio ; Zimmer
+kuzína ; Küche
+bánjo ; Bad
+tualéta ; Toilette
+krevatokámara ; Schlafzimmer
+salóni ; Wohnzimmer
+pórta ; Tür
+paráthiro ; Fenster
+trapézi ; Tisch
+karékla ; Stuhl
+kreváti ; Bett
+kanapés ; Sofa
+psijío ; Kühlschrank
+fos ; Licht
+klidhí ; Schlüssel
+kinitó ; Handy
+tileórasi ; Fernseher
+chalí ; Teppich
+péra mésa ; Komm rein
+to spíti su íne polí oréo ; Deine Wohnung ist sehr schön
+méno sti Viénni ; Ich wohne in Wien
+méno kondá ; Ich wohne in der Nähe
+klíse to fos ; Mach das Licht aus
+klíse tin pórta ; Mach die Tür zu
+ánixe to paráthiro ; Mach das Fenster auf
+íme spíti ; Ich bin zu Hause
+érchome spíti ; Ich komme nach Hause
+
+[Körper & Gesundheit]
+kefáli ; Kopf
+malliá ; Haare
+prósopo ; Gesicht
+máti ; Auge
+aftí (Körper) ; Ohr
+míti ; Nase
+stóma ; Mund
+dhóndi ; Zahn
+chéri ; Hand / Arm
+pódhi ; Fuß / Bein
+kiliá ; Bauch
+kardhiá ; Herz
+pláti ; Rücken
+lemós ; Hals
+ponái to kefáli mu ; Ich habe Kopfschmerzen
+ponái i kiliá mu ; Ich habe Bauchweh
+écho piretó ; Ich habe Fieber
+kríosa ; Ich habe mich erkältet
+fármako ; Medikament
+chriázome jiatró ; Ich brauche einen Arzt
+nosokomío ; Krankenhaus
+voíthia! ; Hilfe!
+asthenofóro ; Krankenwagen
+dhen íme kalá ; Mir geht's nicht gut
+íse kalítera? ; Geht es dir besser?
+prépi na xekurastís ; Du musst dich ausruhen
+íme allerjikós ; Ich bin allergisch (m) ; Frau: allerjikí
+
+[Wetter & Natur]
+kerós ; Wetter
+ti kéro káni? ; Wie ist das Wetter?
+o kerós íne oréos ; Das Wetter ist schön
+káni krío ; Es ist kalt
+káni zésti ; Es ist heiß
+vréchi ; Es regnet
+chionízi ; Es schneit
+échi ílio ; Es ist sonnig
+échi sinnefiá ; Es ist bewölkt
+fisái ; Es ist windig
+ílios ; Sonne
+fengári ; Mond
+astéri ; Stern
+uranós ; Himmel
+thálassa ; Meer
+vunó ; Berg
+dhásos ; Wald
+déndro ; Baum
+lulúdhi ; Blume
+potámi ; Fluss
+paralía ; Strand
+nisí ; Insel
+zóo ; Tier
+skílos ; Hund
+gháta ; Katze
+pulí ; Vogel
+álogho ; Pferd
+fóka ; Robbe ; wie Robbi!
+chtapódi ; Oktopus
+
+[Arbeit & Schule]
+dhuliá ; Arbeit
+dhulévo ; Ich arbeite
+íme sti dhuliá ; Ich bin bei der Arbeit
+ghrafío ; Büro
+etería ; Firma
+afentikó ; Chef
+misthós ; Gehalt
+scholío ; Schule
+panepistímio ; Universität
+táxi (Schule) ; Klasse
+máthima ; Unterricht / Lektion
+dhiavázo ; Ich lerne / Ich lese
+exetásis ; Prüfungen
+vivlío ; Buch
+tetrádhio ; Heft
+stiló ; Kugelschreiber
+ipolojistís ; Computer
+écho sinándisi ; Ich habe eine Besprechung
+íne arjía ; Es ist Feiertag
+dhiakopés ; Urlaub / Ferien
+taxídhi ; Reise
+
+[Verben]
+páo ; ich gehe ; pas (du) · píga (ich ging)
+érchome ; ich komme ; érchese (du) · írtha (ich kam)
+tróo ; ich esse ; tros · éfagha
+píno ; ich trinke ; pínis · ípia
+vlépo ; ich sehe ; vlépis · ídha
+léo ; ich sage ; les · ípa
+miláo ; ich spreche ; milás · mílisa
+akúo ; ich höre ; akús · ákusa
+xéro ; ich weiß ; xéris · íxera
+boró ; ich kann ; borís · borúsa
+thélo ; ich will ; thélis · íthela
+écho ; ich habe ; échis · ícha
+íme ; ich bin ; íse (du) · íne (er/sie) · ímun (ich war)
+jínome ; ich werde ; jínete = es geht / ist möglich · éjina
+káno ; ich mache ; kánis · ékana
+dhíno ; ich gebe ; dhínis · édhosa
+pérno ; ich nehme ; pérnis · píra
+férno ; ich bringe ; férnis · éfera
+ghráfo ; ich schreibe ; ghráfis · éghrapsa
+dhiavázo (Verb) ; ich lese ; dhiávasa
+katalavéno ; ich verstehe ; katálava
+rotáo ; ich frage ; rótisa
+apandáo ; ich antworte ; apándisa
+aghorázo ; ich kaufe ; aghórasa
+puláo ; ich verkaufe ; púlisa
+majirévo ; ich koche ; majírepsa
+kimáme ; ich schlafe ; kimíthika
+xipnáo ; ich wache auf ; xípnisa
+káthome ; ich sitze ; káthise! = setz dich!
+periméno ; ich warte ; perímene! = warte!
+anígo ; ich öffne ; ánixa
+klíno ; ich schließe ; éklisa
+psáchno ; ich suche ; épsaxa
+vrísko ; ich finde ; vríka
+nomízo ; ich glaube / denke ; nómisa
+skéftome ; ich denke nach ; skéftika
+aghapáo ; ich liebe ; aghápisa
+méno ; ich wohne / bleibe ; émina
+mathéno ; ich lerne ; ématha
+pézo ; ich spiele ; épexa
+trécho ; ich renne ; étrexa
+perpatáo ; ich gehe spazieren ; perpátisa
+kitázo ; ich schaue an ; kítaxa
+voitháo ; ich helfe ; voíthisa
+tilefonó ; ich rufe an ; tilefónisa
+stélno ; ich schicke ; éstila
+pliróno ; ich bezahle ; plírosa
+pléno ; ich wasche ; éplina
+foráo ; ich ziehe an / trage ; fóresa
+kléo ; ich weine ; éklapsa
+jeláo ; ich lache ; jélasa
+chorévo ; ich tanze ; chórepsa
+arxízo ; ich fange an ; árxisa
+telióno ; ich beende ; telíosa
+ftáno ; ich komme an ; éftasa
+jirízo ; ich kehre zurück ; jírisa
+kolimbáo ; ich schwimme ; kolímbisa
+odhigó ; ich fahre (Auto) ; odhíghisa
+xechnáo ; ich vergesse ; xéchasa
+thimáme ; ich erinnere mich ; thimíthika
+
+[Befehle]
+fíje ; Geh! / Geh weg!
+éla edhó ; Komm her
+káthise ; Setz dich
+perímene ; Warte!
+pes ; Sag!
+fáe ; Iss!
+kíta ; Schau!
+ákou ; Hör zu!
+dhos mu ; Gib mir
+ánde ; Los! / Komm schon! ; sehr häufig
+ghrígora ; Schnell!
+sigá sigá ; Immer mit der Ruhe ; typisch griechisch
+prósexe ; Pass auf!
+áse to ; Lass es / Vergiss es
+tilefónise mu ; Ruf mich an
+ghrápse ; Schreib!
+kimísu ; Schlaf!
+stamáta ; Hör auf!
+voíthise me ; Hilf mir
+éla tóra! ; Ach komm! / Jetzt komm schon!
+
+[Adjektive]
+kalós ; gut ; f: kalí · n: kaló
+kakós ; schlecht ; f: kakí · n: kakó
+meghálos ; groß
+mikrós ; klein
+ómorfos ; schön
+áschimos ; hässlich
+kenúrjios ; neu
+paliós ; alt (Dinge)
+jéros ; alt (Menschen)
+néos ; jung
+zestós ; warm
+kríos ; kalt
+éfkolos ; einfach
+dhískolos ; schwierig
+varís ; schwer (Gewicht)
+elafrís ; leicht (Gewicht)
+ghrígoros ; schnell
+arghós ; langsam
+éxipnos ; klug
+astíos ; witzig
+simbathitikós ; sympathisch / nett
+ghlikós ; süß / lieb ; auch für Menschen
+oréos ; schön / toll
+endhiaféron ; interessant
+varetós ; langweilig
+jemátos ; voll
+ádhios ; leer
+katharós ; sauber
+vrómikos ; schmutzig
+plúsios ; reich
+ftochós ; arm
+eftichizménos ; glücklich
+mónos ; allein
+ísichos ; ruhig
+thorivódhis ; laut
+téleios ; perfekt
+foverós ; toll / furchtbar ; locker: foveró! = Super!
+kalíteros ; besser
+pjo polí ; mehr
+pjo lígo ; weniger
+o kalíteros ; der Beste
+
+[Alltag]
+xípnisa norís ; Ich bin früh aufgewacht
+páo na kimithó ; Ich gehe schlafen
+dhulévo tóra ; Ich arbeite gerade
+tróo tóra ; Ich esse gerade
+dhen boró na milíso tóra ; Ich kann gerade nicht reden
+tha se páro tiléfono metá ; Ich ruf dich später an
+stíle mu míma ; Schick mir eine Nachricht
+ti tha kánis símera? ; Was machst du heute?
+échis chróno ávrio? ; Hast du morgen Zeit?
+páme éxo ; Lass uns ausgehen
+páme jia kafé ; Lass uns einen Kaffee trinken gehen
+páo sinemá me éna fílo ; Ich gehe mit einem Freund ins Kino
+íme kurazménos, thélo na xekurastó ; Ich bin müde, ich will mich ausruhen
+símera ítan polí kurastikí méra ; Heute war ein anstrengender Tag
+tha arjíso ; Ich verspäte mich
+éna leptó ; Einen Moment
+perímene éna leptó ; Warte eine Minute
+échasa ta klidhjá mu ; Ich habe meine Schlüssel verloren
+to kinitó mu dhen échi bataría ; Mein Handy hat keinen Akku
+échete wifi? ; Habt ihr WLAN? ; gesprochen: wai-fai
+pjos íne o kodhikós tu wifi? ; Was ist das WLAN-Passwort?
+dhen écho leftá ; Ich habe kein Geld
+o kerós íne oréos, páme sto párko ; Das Wetter ist schön, lass uns in den Park gehen
+akúo musikí ; Ich höre Musik
+vlépo tenía ; Ich schaue einen Film
+káno jimnastikí ; Ich mache Sport
+káno dus ; Ich dusche
+ti kánis to savatokíriako? ; Was machst du am Wochenende?
+tha to káno egó ; Ich mach's
+borís na érthis lígo? ; Kannst du kurz kommen?
+ma to Theó ; Ich schwöre bei Gott
+dhóxa to Theó ; Gott sei Dank
+páme jia bánjo ; Lass uns schwimmen gehen ; am Meer
+ti óra tha íse spíti? ; Wann bist du zu Hause?
+
+[Liebe & Freundschaft]
+s'aghapó ; Ich liebe dich
+s'aghapó polí ; Ich liebe dich sehr
+íme erotevménos mazí su ; Ich bin verliebt in dich (m) ; Frau: erotevméni
+aghápi mu ; mein Schatz / meine Liebe
+moró mu ; Baby / Schatz ; sehr häufig
+kardhiá mu ; mein Herz
+íse o kalíteros mu fílos ; Du bist mein bester Freund
+íse polí ómorfi ; Du bist sehr hübsch ; zu einer Frau
+íse polí ómorfos ; Du siehst sehr gut aus ; zu einem Mann
+échis oréa mátia ; Du hast schöne Augen
+thélo na íme mazí su ; Ich will mit dir zusammen sein
+se skéftome sinéchia ; Ich denke ständig an dich
+thélis na vjúme? ; Willst du mit mir ausgehen?
+páme jia éna potó? ; Gehen wir auf einen Drink?
+mu dhínis to tiléfonó su? ; Gibst du mir deine Nummer?
+aftó to píra jia séna ; Das habe ich für dich gekauft
+íse polí ghlikós ; Du bist sehr lieb (m) ; zu einer Frau: ghlikiá
+íme charúmenos mazí su ; Mit dir bin ich glücklich (m) ; Frau: charúmeni
+filaráki ; Kumpel ; locker
+kolitós ; bester Kumpel ; locker
+re fíle ; Alter / Mann ; unter Freunden
+filákia ; Küsschen ; am Ende von Nachrichten
+
+[Redewendungen]
+kaló! ; Gut! / Gute Idee!
+téleia! ; Perfekt!
+foveró! ; Super! / Genial!
+ti kríma ; Wie schade
+kríma ; Schade
+ti na kánume ; Was soll man machen
+étsi íne ; So ist es halt
+ma ti les! ; Was du nicht sagst!
+apístefto! ; Unglaublich!
+kalí tíchi ; Viel Glück
+kalá na páthis ; Selbst schuld ; wörtlich: gut, dass es dir passiert ist
+dhen variése ; Lass mal / Vergiss es ; sehr häufig
+sigá min ... ; Na klar doch ... ; ironisch
+óchi dha! ; Auf keinen Fall!
+kalí dhínami ; Viel Kraft ; wenn jemand eine schwere Zeit hat
+na ta ekató ; Bis 100! ; Geburtstagswunsch
+me jia ; Viel Freude damit ; zu etwas Neuem (Haarschnitt, Kleid ...)
+kalí dhuliá ; Gutes Arbeiten
+kaló mína ; Schönen neuen Monat ; am 1. des Monats üblich
+filótimo ; Ehrgefühl / Großzügigkeit ; typisch griechischer Wert
+meráki ; mit Liebe und Hingabe ; etwas mit meráki tun

@@ -1,0 +1,9 @@
+{
+  "name": "robbi-push",
+  "private": true,
+  "type": "module",
+  "description": "Schickt den täglichen Robbi-Spruch per Firebase Cloud Messaging",
+  "dependencies": {
+    "firebase-admin": "^12.1.0"
+  }
+}
