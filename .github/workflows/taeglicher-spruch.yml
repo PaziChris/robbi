@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20
       - name: Pakete installieren
-        working-directory: scripts
+        working-directory: robbi-web/scripts
         run: npm install --no-audit --no-fund
       - name: Sprüche verschicken
         working-directory: scripts
