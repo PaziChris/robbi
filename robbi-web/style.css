@@ -265,3 +265,4 @@ button.sync { border: 0; background: none; padding: 0; text-align: left; cursor:
 button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .btn { transition: transform .08s ease; }
 .btn:active:not(:disabled) { transform: scale(.97); }
+.pal .tag i { display: block; font-style: normal; font-size: 11px; color: var(--muted); }

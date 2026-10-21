@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Robbi Sprachtrainer</title>
-<meta name="description" content="Farsi und Griechisch sprechen lernen mit Robbi der Robbe">
+<meta name="description" content="Farsi und Griechisch sprechen lernen mit Arzi dem Affen und Robbie Robert Robertson der Robbe">
 <meta name="theme-color" content="#1A7A87">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -16,8 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=5">
-<script src="firebase-config.js?v=5"></script>
+<link rel="stylesheet" href="style.css?v=6">
+<script src="firebase-config.js?v=6"></script>
 </head>
 <body>
 <div class="app">
@@ -29,9 +29,9 @@
     <select class="lang-select" id="langSelect" aria-label="Sprache"></select>
   </header>
 
-  <!-- Die Lehrer: Pesteh (Farsi) und Robbi (Griechisch). Antippen wechselt die Sprache. -->
+  <!-- Die Lehrer: Arzi (Farsi) und Robbie Robert Robertson (Griechisch). Antippen wechselt die Sprache. -->
   <div class="stage" id="stage" data-active="none">
-    <button class="pal" id="monkeyBtn" type="button" aria-label="Pesteh – Farsi lernen">
+    <button class="pal" id="monkeyBtn" type="button" aria-label="Arzi – Farsi lernen">
       <svg class="monkey" id="monkey" viewBox="0 0 100 92" aria-hidden="true">
         <ellipse cx="50" cy="86" rx="36" ry="5" fill="var(--sea-soft)"/>
         <g class="m-tail"><path d="M64 78 C84 82 92 62 82 56 C75 52 70 60 76 63" fill="none" stroke="var(--monkey)" stroke-width="4.5" stroke-linecap="round"/></g>
@@ -73,12 +73,12 @@
           <circle cx="80" cy="51.5" r="3.2" fill="var(--monkey)"/>
         </g>
       </svg>
-      <span class="tag"><b>Pesteh</b>Farsi</span>
+      <span class="tag"><b>Arzi</b>Farsi</span>
     </button>
 
     <div class="bubble-box"><p class="bubble" id="bubble" aria-live="polite">Sag jedes Wort laut, dann umdrehen.</p></div>
 
-    <button class="pal" id="sealBtn" type="button" aria-label="Robbi – Griechisch lernen">
+    <button class="pal" id="sealBtn" type="button" aria-label="Robbie Robert Robertson – Griechisch lernen">
       <svg class="seal" id="seal" viewBox="0 0 120 92" aria-hidden="true">
         <ellipse cx="60" cy="84" rx="54" ry="6" fill="var(--sea-soft)"/>
         <g class="tail"><path d="M10 74 L2 64 L14 66 Z M10 74 L4 84 L16 78 Z" fill="var(--seal-dark)"/></g>
@@ -110,7 +110,7 @@
           <path d="M66 60 L60 70 L68 67Z" fill="var(--greek-blue)"/>
         </g>
       </svg>
-      <span class="tag"><b>Robbi</b>Griechisch</span>
+      <span class="tag"><b>Robbie</b><i>Robert Robertson</i>Griechisch</span>
     </button>
   </div>
 
@@ -255,7 +255,7 @@
 
     <div class="panel" id="pushPanel" hidden>
       <h2>Täglicher Spruch aufs Handy</h2>
-      <p>Robbi schickt dir jeden Tag am frühen Abend einen frechen Motivationsspruch mit deutscher Übersetzung.</p>
+      <p>Arzi und Robbie schicken dir jeden Tag am frühen Abend einen frechen Motivationsspruch mit deutscher Übersetzung.</p>
       <div class="inline">
         <select id="pushMode" aria-label="Sprache des Spruchs">
           <option value="abwechselnd">Abwechselnd Farsi und Griechisch</option>
@@ -322,6 +322,6 @@
     </details>
   </section>
 </div>
-<script type="module" src="app.js?v=5"></script>
+<script type="module" src="app.js?v=6"></script>
 </body>
 </html>

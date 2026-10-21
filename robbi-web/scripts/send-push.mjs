@@ -39,17 +39,18 @@ function pickPhrase(lang, uid) {
   const list = PHRASES[lang];
   return list[(DAY + hash(uid)) % list.length];               // jeden Tag ein anderer, pro Person verschieden
 }
-function streakLine(score) {
-  if (!score) return 'Robbi wartet auf dich – eine Runde?';
+function streakLine(score, name) {
+  if (!score) return `${name} wartet auf dich – eine Runde?`;
   const s = score.streak || 0;
   if (score.lastDay === TODAY) return s > 1 ? `Heute schon gelernt – ${s} Tage Serie!` : 'Heute schon gelernt – stark!';
   if (score.lastDay === YESTERDAY && s > 0) return `Halte deine Serie: ${s} ${s === 1 ? 'Tag' : 'Tage'}!`;
-  return 'Robbi vermisst dich – fünf Minuten?';
+  return `${name} vermisst dich – fünf Minuten?`;
 }
 export function buildMessage(setting, uid, score) {
   const lang = chooseLang(setting);
   const p = pickPhrase(lang, uid);
-  return { title: lang === 'farsi' ? 'Robbi · Farsi' : 'Robbi · Griechisch', body: `${p.say} (${p.de})\n${streakLine(score)}` };
+  const name = lang === 'farsi' ? 'Arzi' : 'Robbie';
+  return { title: lang === 'farsi' ? 'Arzi · Farsi' : 'Robbie Robert Robertson · Griechisch', body: `${p.say} (${p.de})\n${streakLine(score, name)}` };
 }
 
 /* ---- Versand ---- */

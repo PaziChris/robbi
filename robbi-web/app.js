@@ -74,12 +74,12 @@ const CHEERS = {
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-/* Die Lehrer: Pesteh der persische Affe (Farsi) und Robbi die griechische Robbe */
+/* Die Lehrer: Arzi der persische Affe (Farsi) und Robbie Robert Robertson die griechische Robbe */
 const ACTORS = {
-  Farsi: { el: $('monkey'), btn: $('monkeyBtn'), act: 'sip', actMs: 1600, praise: 'Āfarin! Pesteh ist stolz auf dich.',
-    pokes: ['Salām! Chāy mikhori?', 'Bezan berim!', 'Pesteh injāst!', 'Vāy, ghelghelakam nakon!', 'Damet garm!', 'Ye chāy-e dāgh, ye kam farsi?'] },
-  Griechisch: { el: $('seal'), btn: $('sealBtn'), act: 'wave', actMs: 900, praise: 'Brávo! Robbi ist stolz auf dich.',
-    pokes: ['Jia su! Ti kánis?', 'Ánde, páme!', 'Ópa!', 'Mi me gharghalás!', 'Brávo su!', 'Éla, mia jíra akóma!'] }
+  Farsi: { el: $('monkey'), btn: $('monkeyBtn'), act: 'sip', actMs: 1600, praise: 'Āfarin! Arzi ist stolz auf dich.',
+    pokes: ['Salām! Chāy mikhori?', 'Bezan berim!', 'Arzi injāst!', 'Esmam Arzi-e!', 'Vāy, ghelghelakam nakon!', 'Damet garm!', 'Ye chāy-e dāgh, ye kam farsi?'] },
+  Griechisch: { el: $('seal'), btn: $('sealBtn'), act: 'wave', actMs: 900, praise: 'Brávo! Robbie Robert Robertson ist stolz auf dich.',
+    pokes: ['Jia su! Ti kánis?', 'Ánde, páme!', 'Ópa!', 'Me léne Robbie Robert Robertson!', 'Mi me gharghalás!', 'Brávo su!', 'Éla, mia jíra akóma!'] }
 };
 const actor = () => ACTORS[lang] || ACTORS.Griechisch;
 let happyTimer = null;

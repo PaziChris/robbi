@@ -1,32 +1,32 @@
-# Tägliche Robbi-Sprüche auf Farsi (Teheraner Umgangssprache, lateinische Umschrift)
+# Tägliche Sprüche von Arzi auf Farsi (Teheraner Umgangssprache, lateinische Umschrift)
 # Format:  Spruch ; deutsche Übersetzung
 # Einfach neue Zeilen dazuschreiben – der Push nimmt jeden Tag einen anderen.
 
 Bezan berim! Vaght-e farsi-e! ; Los geht's! Zeit für Persisch!
-Robbi montazeret-e, dir nakon! ; Robbi wartet auf dich, sei nicht zu spät!
+Arzi montazeret-e, dir nakon! ; Arzi wartet auf dich, sei nicht zu spät!
 Tanbali bas-e, pāsho! ; Genug gefaulenzt, steh auf!
 Damet garm! Emruzam ye dor bezan! ; Respekt! Mach heute auch eine Runde!
 Ghorbunet beram, panj daghighe vaght dāri? ; Mein Lieber, hast du fünf Minuten?
 Khaste nabāshi! Hālā ye kam farsi? ; Gute Arbeit heute! Jetzt ein bisschen Persisch?
-Robbi mige: kalamehā dāran gerye mikonan! ; Robbi sagt: Die Wörter weinen schon!
+Arzi mige: kalamehā dāran gerye mikonan! ; Arzi sagt: Die Wörter weinen schon!
 Ye ruz bedun-e farsi, ye ruz-e hadar rafte! ; Ein Tag ohne Persisch ist ein verlorener Tag!
 Kheyli khubi, vali mitunim behtar ham beshim! ; Du bist sehr gut, aber wir können noch besser werden!
 Āfarin! Fardā ham hamin sā'at? ; Bravo! Morgen wieder um diese Zeit?
 Mage ghol nadādi? Biyā dige! ; Hast du's nicht versprochen? Komm schon!
-Robbi gorosnash-e – gorosne-ye kalame! ; Robbi hat Hunger – Hunger auf Wörter!
+Arzi gorosnash-e – gorosne-ye kalame! ; Arzi hat Hunger – Hunger auf Wörter!
 Harf bezan, natars! Eshtebāh ham ghashang-e ; Sprich, hab keine Angst! Auch Fehler sind schön.
 Ghadam be ghadam, kalame be kalame ; Schritt für Schritt, Wort für Wort.
 Bā sabr ghure halvā mishe ; Mit Geduld wird aus der sauren Traube Halva. (Sprichwort)
 Ghatre ghatre daryā mishe ; Tropfen für Tropfen wird ein Meer. (Sprichwort)
 Dige nagu "nemitunam"! ; Sag nie wieder "ich kann nicht"!
 Pāsho ye chāy bokhor, ba'd farsi! ; Steh auf, trink einen Tee, dann Persisch!
-Robbi delesh barāt tang shode ; Robbi vermisst dich.
+Arzi delesh barāt tang shode ; Arzi vermisst dich.
 Emruz ye kalame-ye jadid yād begir! ; Lern heute ein neues Wort!
 To ghahremān-e farsi hasti! ; Du bist ein Persisch-Held!
 Khodāyi, kheyli pishraft kardi! ; Ehrlich, du hast richtig Fortschritte gemacht!
 Bikhiyāl-e Netflix, biyā farsi! ; Vergiss Netflix, komm zu Persisch!
 Har ruz panj daghighe, ākharesh ostād mishi ; Jeden Tag fünf Minuten, am Ende wirst du Meister.
-Robbi az ru-ye yakh dād mizane: biyā! ; Robbi ruft vom Eis: Komm!
+Arzi az bālā-ye derakht dād mizane: biyā! ; Arzi ruft vom Baum: Komm!
 Ye dor-e sari'? Faghat dah tā kārt! ; Eine schnelle Runde? Nur zehn Karten!
 Ta'ārof nakon, shoru' kon! ; Kein Taarof, fang an!
 Farsi shekar-e! ; Persisch ist Zucker! (berühmter Spruch)
@@ -34,19 +34,19 @@ Bāzi bas-e, vaght-e dars-e! ; Genug gespielt, Zeit zum Lernen!
 Cheshmāto beband, ye kalame begu! ; Schließ die Augen und sag ein Wort!
 Hamin alān, na fardā! ; Genau jetzt, nicht morgen!
 Fardā dir-e, emruz biyā ; Morgen ist zu spät, komm heute.
-Robbi mige: kheyli bāhāli, ye dor-e dige? ; Robbi sagt: Du bist cool, noch eine Runde?
+Arzi mige: kheyli bāhāli, ye dor-e dige? ; Arzi sagt: Du bist cool, noch eine Runde?
 Natars, eshtebāh kon, yād begir ; Hab keine Angst, mach Fehler, lerne.
 Yavāsh yavāsh, vali har ruz ; Langsam, langsam – aber jeden Tag.
 To mituni! ; Du schaffst das!
 Diruz āli budi, emruzam hamintor! ; Gestern warst du super, heute auch!
-Ye fok-e zerang har ruz dars mikhune ; Eine schlaue Robbe lernt jeden Tag.
+Ye meymun-e zerang har ruz dars mikhune ; Ein schlauer Affe lernt jeden Tag.
 Kalamehā montazer-e toan ; Die Wörter warten auf dich.
 Pāsho, ghahremān! ; Steh auf, Held!
 Az hame zerangtari, sābet kon! ; Du bist schlauer als alle – beweis es!
 Mibinamet bālā-ye jadval! ; Wir sehen uns oben in der Rangliste!
 Vaght talā-st, ye dor farsi bezan ; Zeit ist Gold, mach eine Runde Persisch.
 Hey! Farsit yādet nare! ; Hey! Vergiss dein Persisch nicht!
-Robbi ghahr kard... faghat bā ye dor āshti mikone ; Robbi schmollt... nur eine Runde versöhnt ihn.
+Arzi ghahr kard... faghat bā ye dor āshti mikone ; Arzi schmollt... nur eine Runde versöhnt ihn.
 Khodeto dast-e kam nagir! ; Unterschätz dich nicht!
 Emruz ruz-e to-e! ; Heute ist dein Tag!
 Kam kam kheyli mishe ; Aus wenig wird viel.
@@ -55,7 +55,7 @@ Dahanto bāz kon, harf bezan! ; Mach den Mund auf und sprich!
 Khub gush kon: farsi dāre sedāt mikone! ; Hör gut zu: Persisch ruft dich!
 Age emruz bekhuni, fardā harf mizani ; Wenn du heute lernst, sprichst du morgen.
 Hālet chetore? Bā farsi behtar mishe! ; Wie geht's dir? Mit Persisch wird's besser!
-Ye lahze vaght dāri? Robbi ye soāl dāre ; Hast du kurz Zeit? Robbi hat eine Frage.
+Ye lahze vaght dāri? Arzi ye soāl dāre ; Hast du kurz Zeit? Arzi hat eine Frage.
 Āli-e! Edāme bede! ; Super! Mach weiter!
 Sabr kon, ākharesh mirasi ; Hab Geduld, am Ende kommst du an.
 Gushito bezār kenār... na, bāzesh kon, farsi! ; Leg dein Handy weg... nein, mach's auf – Persisch!

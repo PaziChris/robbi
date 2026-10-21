@@ -1,9 +1,9 @@
-# Tägliche Robbi-Sprüche auf Griechisch (gesprochenes Neugriechisch, lateinische Umschrift)
+# Tägliche Sprüche von Robbie Robert Robertson auf Griechisch (gesprochenes Neugriechisch, lateinische Umschrift)
 # Format:  Spruch ; deutsche Übersetzung
 # Einfach neue Zeilen dazuschreiben – der Push nimmt jeden Tag einen anderen.
 
 Ánde, páme! Óra jia elliniká! ; Los geht's! Zeit für Griechisch!
-O Robbi se periméni! ; Robbi wartet auf dich!
+O Robbie se periméni! ; Robbie wartet auf dich!
 Sigá sigá, allá káthe méra! ; Langsam, aber jeden Tag!
 Éla re, pénde leptá móno! ; Komm schon, nur fünf Minuten!
 Brávo! Ávrio páli? ; Bravo! Morgen wieder?
@@ -11,7 +11,7 @@ Mi fovásse ta láthi! ; Hab keine Angst vor Fehlern!
 Milá, mi drépese! ; Sprich, sei nicht schüchtern!
 Káthe léxi metráei! ; Jedes Wort zählt!
 Pu íse? I léxis se psáchnun! ; Wo bist du? Die Wörter suchen dich!
-O Robbi pinái... jia léxis! ; Robbi hat Hunger... auf Wörter!
+O Robbie pinái... jia léxis! ; Robbie hat Hunger... auf Wörter!
 Éla, mia ghríghori jíra! ; Komm, eine schnelle Runde!
 Íse astéri! Sinéchise étsi! ; Du bist ein Star! Mach so weiter!
 Óchi ávrio, tóra! ; Nicht morgen – jetzt!
@@ -20,7 +20,7 @@ Borís! Xéro óti borís! ; Du kannst es! Ich weiß, dass du es kannst!
 Áse to Netflix, éla sta elliniká! ; Lass Netflix, komm zu Griechisch!
 Ópa! Óra jia mia jíra! ; Opa! Zeit für eine Runde!
 Su lípun ta elliniká? Éla! ; Fehlt dir Griechisch? Komm!
-O Robbi íne lipiménos. Mia jíra ke jelái xaná! ; Robbi ist traurig. Eine Runde und er lacht wieder!
+O Robbie íne lipiménos. Mia jíra ke jelái xaná! ; Robbie ist traurig. Eine Runde und er lacht wieder!
 Pjos íne o kalíteros? Esí! ; Wer ist der Beste? Du!
 Dhéka kártes ke teliósses! ; Zehn Karten und du bist fertig!
 Kafés ke elliniká – téleios sindhiasmós! ; Kaffee und Griechisch – die perfekte Kombination!
@@ -42,13 +42,13 @@ Kalí órexi... jia léxis! ; Guten Appetit... auf Wörter!
 Símera íne i méra su! ; Heute ist dein Tag!
 Me meráki óla jínonte ; Mit Herz geht alles.
 Sigá ke statherá ; Langsam und stetig.
-O Robbi léi: Éla, mía akóma! ; Robbi sagt: Komm, noch eine!
+O Robbie léi: Éla, mía akóma! ; Robbie sagt: Komm, noch eine!
 Ópjos mathéni, kerdhízi! ; Wer lernt, gewinnt!
 Kalí epitichía símera! ; Viel Erfolg heute!
 Píso sti dhuliá, fóka! ; Zurück an die Arbeit, Robbe!
 Ta kataféres chthes, ta kataférnis ke símera! ; Gestern hast du's geschafft, heute schaffst du's auch!
 Kanéna láthos, móno máthima ; Kein Fehler, nur eine Lektion.
-O Robbi se thavmázi! ; Robbi bewundert dich!
+O Robbie se thavmázi! ; Robbie bewundert dich!
 Éla na to púme sta elliniká! ; Komm, sagen wir es auf Griechisch!
 Pes mu mia léxi, opjadhípote! ; Sag mir ein Wort, egal welches!
 Akóma mia méra, akóma mia níki! ; Noch ein Tag, noch ein Sieg!
@@ -60,5 +60,5 @@ Kanís dhen jenníthike mathiménos ; Niemand wurde als Meister geboren. (Sprich
 Páme jia rekór! ; Auf zum Rekord!
 Fíle mu, i fóka pistévi se séna! ; Mein Freund, die Robbe glaubt an dich!
 Ti kánis? Pes to sta elliniká! ; Wie geht's dir? Sag es auf Griechisch!
-Éna leptó jia ton Robbi? ; Eine Minute für Robbi?
+Éna leptó jia ton Robbie? ; Eine Minute für Robbie?
 Ópa ópa, ta elliniká se kalún! ; Opa opa, das Griechisch ruft dich!
