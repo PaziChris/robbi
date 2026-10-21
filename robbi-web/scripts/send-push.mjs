@@ -20,7 +20,7 @@ function loadPhrases(file) {
     .split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && l.includes(';'))
     .map(l => { const i = l.indexOf(';'); return { say: l.slice(0, i).trim(), de: l.slice(i + 1).trim() }; });
 }
-const PHRASES = { farsi: loadPhrases('farsi.txt'), griechisch: loadPhrases('griechisch.txt'), italienisch: loadPhrases('italienisch.txt') };
+const PHRASES = { farsi: loadPhrases('farsi.txt'), griechisch: loadPhrases('griechisch.txt'), italienisch: loadPhrases('italienisch.txt'), spanisch: loadPhrases('spanisch.txt') };
 
 /* ---- Datum in Österreich ---- */
 function viennaDate(offsetDays = 0) {
@@ -32,7 +32,7 @@ const DAY = Math.floor(Date.parse(TODAY + 'T12:00:00Z') / 86400000);
 
 function hash(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; }
 function chooseLang(setting) {
-  if (setting === 'farsi' || setting === 'griechisch' || setting === 'italienisch') return setting;
+  if (setting === 'farsi' || setting === 'griechisch' || setting === 'italienisch' || setting === 'spanisch') return setting;
   return DAY % 2 === 0 ? 'farsi' : 'griechisch';            // abwechselnd
 }
 function pickPhrase(lang, uid) {
@@ -49,8 +49,8 @@ function streakLine(score, name) {
 export function buildMessage(setting, uid, score) {
   const lang = chooseLang(setting);
   const p = pickPhrase(lang, uid);
-  const name = lang === 'farsi' ? 'Arzi' : lang === 'italienisch' ? 'Robbi' : 'Robbie';
-  return { title: lang === 'farsi' ? 'Arzi · Farsi' : lang === 'italienisch' ? 'Robbi · Italienisch' : 'Robbie Robert Robertson · Griechisch', body: `${p.say} (${p.de})\n${streakLine(score, name)}` };
+  const name = lang === 'farsi' ? 'Arzi' : (lang === 'italienisch' || lang === 'spanisch') ? 'Robbi' : 'Robbie';
+  return { title: lang === 'farsi' ? 'Arzi · Farsi' : lang === 'italienisch' ? 'Robbi · Italienisch' : lang === 'spanisch' ? 'Robbi · Spanisch' : 'Robbie Robert Robertson · Griechisch', body: `${p.say} (${p.de})\n${streakLine(score, name)}` };
 }
 
 /* ---- Versand ---- */

@@ -1,0 +1,938 @@
+# Spanisch – Vokabeln für den Alltag (so wie man wirklich spricht)
+#
+# FORMAT:   spanisch ; deutsch ; optionale Notiz
+# Neue Kategorie einfach mit [Name] beginnen. Zeilen mit # werden ignoriert.
+# Grundlage ist Spanisch aus Spanien; wo Lateinamerika anders sagt, steht es als Notiz.
+#
+# AUSSPRACHE (Spanisch spricht man fast so, wie man es schreibt):
+#   c vor e/i, z = in Spanien wie engl. "th" (gracias), in Lateinamerika wie s
+#   c sonst    = k (casa)            ch = tsch (chico = tschiko)
+#   j, g vor e/i = ch wie in "Bach" (jamón = chamón, gente = chente)
+#   gue/gui    = ge/gi, das u ist stumm (guitarra = gitarra)
+#   ll         = j wie in "ja" (calle = kaje)      ñ = nj (mañana = manjana)
+#   qu         = k (queso = keso)                   h = stumm (hola = ola)
+#   v          = fast wie b (vino = bino)           y = j (yo = jo), allein "y" = i
+#   r          = kurz gerollt, rr = lang gerollt (pero ≠ perro)
+#   Akzent (á é í ó ú) = diese Silbe betonen
+#   ¿...? und ¡...! stehen auch am Satzanfang
+#   Bei Verben steht vorne: Infinitiv – ich-Form
+
+[Begrüßung]
+hola ; Hallo
+buenos días ; Guten Morgen / Guten Tag ; bis etwa 14 Uhr
+buenas tardes ; Guten Tag / Guten Nachmittag
+buenas noches ; Guten Abend / Gute Nacht
+buenas ; Hallo ; locker, zu jeder Tageszeit
+adiós ; Tschüss / Auf Wiedersehen
+chao ; Tschüss ; locker
+hasta luego ; Bis später ; auch einfach als Tschüss
+hasta pronto ; Bis bald
+hasta mañana ; Bis morgen
+nos vemos ; Wir sehen uns
+hablamos ; Wir hören uns ; am Telefon oder per Nachricht
+¿qué tal? ; Wie geht's?
+¿cómo estás? ; Wie geht's dir?
+¿cómo está? ; Wie geht es Ihnen? ; höflich
+¿todo bien? ; Alles gut?
+bien, gracias. ¿Y tú? ; Gut, danke. Und du?
+muy bien ; Sehr gut
+no está mal ; Nicht schlecht
+más o menos ; So lala
+regular ; Geht so
+¿qué hay de nuevo? ; Was gibt's Neues?
+¿qué pasa? ; Was geht? ; locker
+nada nuevo ; Nichts Neues
+¿cómo te llamas? ; Wie heißt du?
+¿cómo se llama? ; Wie heißen Sie?
+me llamo Lisa ; Ich heiße Lisa
+mucho gusto ; Freut mich
+encantado ; Sehr erfreut ; Frau: encantada
+igualmente ; Ebenfalls
+¿de dónde eres? ; Woher kommst du?
+soy austriaco ; Ich bin Österreicher ; Frau: soy austriaca
+soy de Austria ; Ich komme aus Österreich
+¿cuántos años tienes? ; Wie alt bist du?
+tengo veinticinco años ; Ich bin 25 Jahre alt ; wörtlich: ich habe 25 Jahre
+¿a qué te dedicas? ; Was machst du beruflich?
+¡bienvenido! ; Willkommen! ; zu einer Frau: bienvenida, mehrere: bienvenidos
+¡cuánto tiempo! ; Lange nicht gesehen!
+¡qué alegría verte! ; Schön, dich zu sehen!
+saludos a tu familia ; Grüße an deine Familie
+¿diga? ; Hallo? ; am Telefon in Spanien – auch: ¿sí?
+¿dónde estás? ; Wo bist du? ; am Telefon
+
+[Höflichkeit]
+gracias ; Danke
+muchas gracias ; Vielen Dank
+mil gracias ; Tausend Dank
+de nada ; Gern geschehen / Keine Ursache
+por favor ; Bitte (wenn man um etwas bittet)
+no hay de qué ; Keine Ursache
+perdón ; Entschuldigung
+perdona ; Entschuldige ; zu einer Person, locker
+perdone ; Entschuldigen Sie ; höflich
+disculpa ; Entschuldige ; um jemanden anzusprechen
+lo siento ; Es tut mir leid
+no pasa nada ; Macht nichts ; sehr häufig
+no importa ; Ist egal / Macht nichts
+con permiso ; Mit Verlaub ; beim Vorbeigehen
+¿puedo? ; Darf ich?
+¡claro! ; Klar!
+¡por supuesto! ; Selbstverständlich!
+con mucho gusto ; Sehr gerne
+¡que aproveche! ; Guten Appetit! ; auch: ¡buen provecho!
+¡salud! ; Prost! / Gesundheit!
+buen viaje ; Gute Reise
+que tengas un buen día ; Schönen Tag noch
+buen fin de semana ; Schönes Wochenende
+¡suerte! ; Viel Glück!
+¡mucha suerte! ; Viel Glück!
+¡felicidades! ; Herzlichen Glückwunsch!
+¡feliz cumpleaños! ; Alles Gute zum Geburtstag!
+¡feliz Navidad! ; Frohe Weihnachten!
+¡felices Pascuas! ; Frohe Ostern!
+¡feliz año nuevo! ; Frohes neues Jahr!
+¡enhorabuena! ; Gratulation!
+señor ; Herr ; Anrede: señor López
+señora ; Frau ; Anrede
+señorita ; Fräulein ; eher altmodisch
+muy amable ; sehr freundlich ; Dank: gracias, muy amable
+que te mejores ; Gute Besserung
+cuídate ; Pass auf dich auf
+
+[Wichtige Wörter]
+sí ; Ja
+no ; Nein
+vale ; Okay ; in Spanien extrem häufig
+de acuerdo ; Einverstanden
+bueno ; Gut / Na ja ; Füllwort
+quizás ; Vielleicht ; auch: tal vez
+seguro ; Sicher
+exacto ; Genau
+claro ; Klar
+¿en serio? ; Im Ernst?
+¿de verdad? ; Wirklich?
+ah, vale ; Ach so
+pues ; Also / Na ja ; Füllwort, sehr häufig
+venga ; Los / Komm schon ; Spanien
+¡anda! ; Na sowas!
+ni idea ; Keine Ahnung
+ojalá ; Hoffentlich
+aquí ; hier
+allí ; dort
+ahí ; da
+esto ; das hier
+eso ; das da
+ahora ; jetzt
+ya ; schon / jetzt
+luego ; später / dann
+después ; danach
+antes ; vorher
+siempre ; immer
+nunca ; nie
+a veces ; manchmal
+a menudo ; oft
+muy ; sehr
+mucho ; viel
+poco ; wenig
+un poco ; ein bisschen
+demasiado ; zu viel
+todos ; alle
+todo ; alles
+nada ; nichts
+algo ; etwas
+alguien ; jemand
+también ; auch
+tampoco ; auch nicht
+solo ; nur
+todavía ; noch
+otra vez ; nochmal
+y ; und
+o ; oder
+pero ; aber
+porque ; weil
+si ; wenn / falls
+con ; mit
+sin ; ohne
+para ; für
+de ; von / aus
+en ; in
+a ; nach / zu
+
+[Fragen]
+¿qué? ; Was?
+¿quién? ; Wer?
+¿dónde? ; Wo?
+¿adónde? ; Wohin?
+¿cuándo? ; Wann?
+¿por qué? ; Warum?
+¿cómo? ; Wie?
+¿cuánto? ; Wie viel?
+¿cuántos? ; Wie viele?
+¿cuál? ; Welche(r)?
+¿de dónde? ; Woher?
+¿qué es esto? ; Was ist das?
+¿cuánto cuesta? ; Wie viel kostet das?
+¿qué hora es? ; Wie spät ist es?
+¿adónde vas? ; Wohin gehst du?
+¿qué haces? ; Was machst du (gerade)?
+¿qué ha pasado? ; Was ist passiert? ; Lateinamerika: ¿qué pasó?
+¿qué quieres? ; Was willst du?
+¿qué has dicho? ; Was hast du gesagt? ; Lateinamerika: ¿qué dijiste?
+¿quién es? ; Wer ist das?
+¿cuándo vienes? ; Wann kommst du?
+¿por qué no has venido? ; Warum bist du nicht gekommen?
+¿te puedo hacer una pregunta? ; Darf ich dir eine Frage stellen?
+¿hablas español? ; Sprichst du Spanisch?
+¿hablas inglés? ; Sprichst du Englisch?
+¿hablas alemán? ; Sprichst du Deutsch?
+¿cómo se dice en español? ; Wie sagt man das auf Spanisch?
+¿qué significa "..."? ; Was bedeutet "..."?
+¿me puedes ayudar? ; Kannst du mir helfen?
+¿lo he dicho bien? ; Habe ich das richtig gesagt?
+¿estás listo? ; Bist du bereit? ; zu einer Frau: ¿estás lista?
+¿tienes hambre? ; Hast du Hunger?
+¿tienes sed? ; Hast du Durst?
+¿estás cansado? ; Bist du müde? ; zu einer Frau: cansada
+¿tienes tiempo? ; Hast du Zeit?
+¿qué te gusta? ; Was magst du?
+¿dónde vives? ; Wo wohnst du?
+¿estás bien? ; Geht's dir gut?
+¿estás seguro? ; Bist du sicher? ; zu einer Frau: segura
+¿qué opinas? ; Was meinst du dazu?
+
+[Verständigung]
+estoy aprendiendo español ; Ich lerne Spanisch
+hablo un poco de español ; Ich spreche ein bisschen Spanisch
+mi español no es muy bueno ; Mein Spanisch ist nicht sehr gut
+no entiendo ; Ich verstehe nicht
+entiendo ; Ich verstehe
+¿entiendes? ; Verstehst du?
+más despacio, por favor ; Langsamer, bitte
+¿puedes repetir? ; Kannst du das wiederholen?
+¿cómo? ; Wie bitte?
+no lo sé ; Ich weiß es nicht
+no me acuerdo ; Ich erinnere mich nicht
+se me ha olvidado ; Ich hab's vergessen
+ah sí, ya me acuerdo ; Ah ja, jetzt fällt's mir ein
+¿cómo se dice "..."? ; Wie sagt man "..."?
+¿me lo escribes? ; Schreibst du es mir auf?
+me he equivocado ; Ich habe mich geirrt
+no hay problema ; Kein Problem
+háblame en español ; Sprich Spanisch mit mir
+¿qué quieres decir? ; Was meinst du?
+no lo he entendido bien ; Ich habe es nicht ganz verstanden
+
+[Familie]
+la familia ; die Familie
+la madre ; die Mutter
+la mamá ; die Mama
+el padre ; der Vater
+el papá ; der Papa
+el hermano ; der Bruder
+la hermana ; die Schwester
+el hijo ; der Sohn
+la hija ; die Tochter
+el niño ; das Kind (Junge) ; Mädchen: la niña
+los niños ; die Kinder
+el abuelo ; der Opa
+la abuela ; die Oma
+el tío ; der Onkel
+la tía ; die Tante
+el primo ; der Cousin ; Cousine: la prima
+el marido ; der Ehemann ; auch: el esposo
+la mujer ; die Ehefrau / die Frau ; auch: la esposa
+el novio ; der Freund (Beziehung) / Verlobte
+la novia ; die Freundin (Beziehung) / Verlobte
+estoy casado ; Ich bin verheiratet ; Frau: casada
+estoy soltero ; Ich bin Single ; Frau: soltera
+tengo dos hermanos ; Ich habe zwei Brüder ; auch: Geschwister
+tengo una hermana ; Ich habe eine Schwester
+¿tienes hijos? ; Hast du Kinder?
+mi madre es médica ; Meine Mutter ist Ärztin
+los parientes ; die Verwandten
+los padres ; die Eltern
+
+[Personen]
+yo ; ich
+tú ; du
+él ; er
+ella ; sie (Einzahl)
+usted ; Sie (höflich)
+nosotros ; wir ; Frauen: nosotras
+vosotros ; ihr ; nur Spanien – Lateinamerika: ustedes
+ellos ; sie (Mehrzahl) ; nur Frauen: ellas
+la persona ; die Person
+el hombre ; der Mann
+el amigo ; der Freund ; Freundin: la amiga
+el vecino ; der Nachbar ; Nachbarin: la vecina
+el compañero ; der Kollege ; Kollegin: la compañera
+el invitado ; der Gast
+el profesor ; der Lehrer ; Lehrerin: la profesora
+el médico ; der Arzt
+el estudiante ; der Student ; Studentin: la estudiante
+la gente ; die Leute
+es buena persona ; Er/Sie ist ein guter Mensch
+
+[Gefühle]
+estoy feliz ; Ich bin glücklich
+estoy contento ; Ich freue mich ; Frau: contenta
+estoy triste ; Ich bin traurig
+no estés triste ; Sei nicht traurig
+no te preocupes ; Mach dir keine Sorgen
+estoy preocupado ; Ich mache mir Sorgen ; Frau: preocupada
+estoy cansado ; Ich bin müde ; Frau: cansada
+estoy enfadado ; Ich bin wütend ; Frau: enfadada – Lateinamerika: enojado
+tengo miedo ; Ich habe Angst
+me aburro ; Mir ist langweilig
+te echo de menos ; Ich vermisse dich ; Lateinamerika: te extraño
+me gusta ; Es gefällt mir
+no me gusta ; Es gefällt mir nicht
+me encanta ; Ich liebe es
+no tengo ganas ; Ich habe keine Lust
+¡qué aburrido! ; Wie langweilig!
+me muero de risa ; Ich sterbe vor Lachen
+tranquilo ; Bleib ruhig ; zu einer Frau: tranquila
+estoy nervioso ; Ich bin aufgeregt ; Frau: nerviosa
+¡qué vergüenza! ; Wie peinlich!
+estoy enfermo ; Ich bin krank ; Frau: enferma
+tengo frío ; Mir ist kalt
+tengo calor ; Mir ist warm / heiß
+tengo hambre ; Ich habe Hunger
+tengo sed ; Ich habe Durst
+estoy lleno ; Ich bin satt ; Frau: llena
+tengo sueño ; Ich bin schläfrig
+estoy estresado ; Ich bin gestresst ; Frau: estresada
+tengo ganas de ... ; Ich hätte Lust auf ... ; z.B. tengo ganas de pizza
+estoy enamorado ; Ich bin verliebt ; Frau: enamorada
+
+[Zeit]
+hoy ; heute
+mañana ; morgen
+ayer ; gestern
+pasado mañana ; übermorgen
+anteayer ; vorgestern
+la mañana ; der Morgen / Vormittag
+el mediodía ; der Mittag
+la tarde ; der Nachmittag / frühe Abend
+la noche ; die Nacht / der Abend
+esta noche ; heute Abend
+anoche ; gestern Abend
+la semana ; die Woche
+esta semana ; diese Woche
+la semana que viene ; nächste Woche
+el fin de semana ; das Wochenende ; auch: el finde
+el mes ; der Monat
+el año ; das Jahr
+el año pasado ; letztes Jahr
+este año ; dieses Jahr
+la hora ; die Stunde / Uhrzeit
+el minuto ; die Minute
+temprano ; früh
+tarde ; spät
+lunes ; Montag
+martes ; Dienstag
+miércoles ; Mittwoch
+jueves ; Donnerstag
+viernes ; Freitag
+sábado ; Samstag
+domingo ; Sonntag
+son las tres ; Es ist drei Uhr
+son las dos y media ; Es ist halb drei
+es la una ; Es ist ein Uhr
+y cuarto ; Viertel nach
+menos cuarto ; Viertel vor
+se ha hecho tarde ; Es ist spät geworden
+no tengo tiempo ; Ich habe keine Zeit
+tengo prisa ; Ich habe es eilig ; Lateinamerika: estoy apurado
+la primavera ; der Frühling
+el verano ; der Sommer
+el otoño ; der Herbst
+el invierno ; der Winter
+
+[Zahlen]
+cero ; null
+uno ; eins ; vor Wörtern: un / una
+dos ; zwei
+tres ; drei
+cuatro ; vier
+cinco ; fünf
+seis ; sechs
+siete ; sieben
+ocho ; acht
+nueve ; neun
+diez ; zehn
+once ; elf
+doce ; zwölf
+trece ; dreizehn
+catorce ; vierzehn
+quince ; fünfzehn
+dieciséis ; sechzehn
+diecisiete ; siebzehn
+dieciocho ; achtzehn
+diecinueve ; neunzehn
+veinte ; zwanzig
+veintiuno ; einundzwanzig
+treinta ; dreißig
+cuarenta ; vierzig
+cincuenta ; fünfzig
+sesenta ; sechzig
+setenta ; siebzig
+ochenta ; achtzig
+noventa ; neunzig
+cien ; hundert
+doscientos ; zweihundert
+mil ; tausend
+dos mil ; zweitausend
+un millón ; eine Million
+medio ; halb
+primero ; erste(r)
+segundo ; zweite(r)
+tercero ; dritte(r)
+
+[Farben]
+el color ; die Farbe
+rojo ; rot
+azul ; blau
+celeste ; hellblau
+verde ; grün
+amarillo ; gelb
+negro ; schwarz
+blanco ; weiß
+naranja ; orange
+morado ; lila
+rosa ; rosa
+marrón ; braun ; Lateinamerika: café
+gris ; grau
+dorado ; golden
+plateado ; silbern
+oscuro ; dunkel
+claro ; hell
+¿cuál es tu color favorito? ; Was ist deine Lieblingsfarbe?
+
+[Essen]
+la comida ; das Essen / das Mittagessen
+el desayuno ; das Frühstück
+el almuerzo ; das Mittagessen ; in Spanien oft erst um 14 Uhr
+la cena ; das Abendessen ; in Spanien oft erst um 21 Uhr
+el pan ; das Brot
+la pasta ; die Nudeln
+el arroz ; der Reis
+la paella ; die Paella
+las tapas ; kleine Häppchen zum Getränk
+la tortilla ; das Kartoffelomelett ; in Mexiko: Maisfladen
+la carne ; das Fleisch
+el pollo ; das Huhn
+el pescado ; der Fisch (als Essen)
+el jamón ; der Schinken
+el huevo ; das Ei
+el queso ; der Käse
+el yogur ; der Joghurt
+la leche ; die Milch
+la mantequilla ; die Butter
+la miel ; der Honig
+la mermelada ; die Marmelade
+el aceite de oliva ; das Olivenöl
+la ensalada ; der Salat
+el tomate ; die Tomate
+el pepino ; die Gurke
+la patata ; die Kartoffel ; Lateinamerika: la papa
+la cebolla ; die Zwiebel
+el ajo ; der Knoblauch
+la verdura ; das Gemüse
+la fruta ; das Obst
+la manzana ; der Apfel
+la naranja ; die Orange
+el plátano ; die Banane ; Lateinamerika: la banana
+la uva ; die Traube
+la sandía ; die Wassermelone
+el limón ; die Zitrone
+la fresa ; die Erdbeere
+la sal ; das Salz
+la pimienta ; der Pfeffer
+el azúcar ; der Zucker
+el agua ; das Wasser
+agua sin gas ; stilles Wasser
+agua con gas ; Sprudelwasser
+el café ; der Kaffee
+café con leche ; Milchkaffee
+el té ; der Tee
+el zumo ; der Saft ; Lateinamerika: el jugo
+el vino ; der Wein
+la cerveza ; das Bier
+una caña ; ein kleines Bier vom Fass ; Spanien
+el postre ; die Nachspeise
+el helado ; das Eis
+la tarta ; der Kuchen ; Lateinamerika: el pastel
+los churros ; frittiertes Spritzgebäck ; mit Schokolade
+rico ; lecker
+¡qué rico! ; Wie lecker!
+picante ; scharf
+dulce ; süß
+salado ; salzig
+ácido ; sauer
+estoy lleno, gracias ; Ich bin satt, danke
+¿quieres un poco más? ; Willst du noch ein bisschen?
+no gracias, no puedo más ; Nein danke, ich kann nicht mehr
+no como carne ; Ich esse kein Fleisch
+soy vegetariano ; Ich bin Vegetarier ; Frau: vegetariana
+cocinas muy bien ; Du kochst sehr gut
+¿qué cocinamos? ; Was kochen wir?
+¿qué hay de cena? ; Was gibt's zum Abendessen?
+¿tomamos algo? ; Trinken wir etwas?
+
+[Restaurant]
+el restaurante ; das Restaurant
+el bar ; die Bar ; dort isst man Tapas
+la cafetería ; das Café
+la carta, por favor ; Die Karte, bitte
+una mesa para dos ; Einen Tisch für zwei
+¿qué me recomienda? ; Was empfehlen Sie mir?
+quisiera ... ; Ich hätte gern ...
+para mí ... ; Für mich ...
+un café, por favor ; Einen Kaffee, bitte
+un vaso de agua ; Ein Glas Wasser
+una copa de vino tinto ; Ein Glas Rotwein
+sin carne ; ohne Fleisch
+no muy picante ; nicht zu scharf
+la cuenta, por favor ; Die Rechnung, bitte
+¿cuánto es? ; Wie viel macht das?
+¿puedo pagar con tarjeta? ; Kann ich mit Karte zahlen?
+esto no es mío ; Das ist nicht meins
+estaba buenísimo ; Es war sehr lecker
+el camarero ; der Kellner ; Kellnerin: la camarera – Lateinamerika: el mesero
+la cuchara ; der Löffel
+el tenedor ; die Gabel
+el cuchillo ; das Messer
+el plato ; der Teller
+el vaso ; das Glas
+la taza ; die Tasse
+la reserva ; die Reservierung
+tengo una reserva ; Ich habe reserviert
+el menú del día ; das Tagesmenü ; günstig zu Mittag
+la propina ; das Trinkgeld
+
+[Einkaufen]
+hacer la compra ; einkaufen (Lebensmittel)
+ir de compras ; shoppen gehen
+la tienda ; das Geschäft
+el supermercado ; der Supermarkt
+el mercado ; der Markt
+la panadería ; die Bäckerei
+la farmacia ; die Apotheke
+el dinero ; das Geld ; Lateinamerika: la plata
+el euro ; der Euro
+caro ; teuer
+barato ; billig
+el descuento ; der Rabatt
+¡es muy caro! ; Das ist zu teuer!
+¿tiene algo más barato? ; Haben Sie etwas Billigeres?
+¿me hace un descuento? ; Geben Sie mir Rabatt?
+solo estoy mirando ; Ich schaue nur
+quiero esto ; Ich möchte das hier
+un kilo ; ein Kilo
+medio kilo ; ein halbes Kilo
+¿tiene una talla más grande? ; Haben Sie eine größere Größe?
+¿me lo puedo probar? ; Kann ich es anprobieren?
+la bolsa ; die Tüte
+¿está abierto? ; Ist offen?
+abierto ; offen
+cerrado ; geschlossen
+está roto ; Es ist kaputt
+el tique ; der Kassenbon ; auch: el recibo
+el cambio ; das Wechselgeld
+
+[Unterwegs]
+la calle ; die Straße
+la plaza ; der Platz
+a la izquierda ; links
+a la derecha ; rechts
+todo recto ; geradeaus ; Lateinamerika: derecho
+cerca ; nah
+lejos ; weit
+detrás ; hinter
+delante ; vor (räumlich)
+al lado ; neben
+arriba ; oben
+abajo ; unten
+dentro ; drinnen
+fuera ; draußen
+el coche ; das Auto ; Lateinamerika: el carro / el auto
+el autobús ; der Bus
+el metro ; die U-Bahn
+el taxi ; das Taxi
+el tren ; der Zug
+el avión ; das Flugzeug
+el aeropuerto ; der Flughafen
+la parada ; die Haltestelle
+la estación ; der Bahnhof
+el billete ; die Fahrkarte ; Lateinamerika: el boleto
+el barco ; das Schiff
+el puerto ; der Hafen
+el hotel ; das Hotel ; h stumm: otel
+la dirección ; die Adresse
+el mapa ; der Stadtplan
+¿dónde está ...? ; Wo ist ...?
+¿dónde está la estación? ; Wo ist der Bahnhof?
+¿dónde está el baño? ; Wo ist die Toilette?
+¿cómo llego a ...? ; Wie komme ich zu ...?
+¿está lejos? ; Ist es weit?
+¿se puede ir andando? ; Kann man zu Fuß gehen?
+sigue todo recto y luego a la izquierda ; Geh geradeaus und dann links
+pare aquí, por favor ; Halten Sie hier, bitte
+me he perdido ; Ich habe mich verlaufen
+¡vamos! ; Gehen wir! / Los!
+¿cuánto se tarda? ; Wie lange dauert es?
+ya voy ; Ich komme gleich
+ya he llegado ; Ich bin angekommen
+un billete para Madrid ; Eine Fahrkarte nach Madrid
+ida y vuelta ; Hin und zurück
+
+[Zuhause]
+la casa ; das Haus / Zuhause
+el piso ; die Wohnung ; Lateinamerika: el departamento
+la habitación ; das Zimmer
+la cocina ; die Küche
+el baño ; das Bad / die Toilette
+el dormitorio ; das Schlafzimmer
+el salón ; das Wohnzimmer
+la puerta ; die Tür
+la ventana ; das Fenster
+la mesa ; der Tisch
+la silla ; der Stuhl
+la cama ; das Bett
+el sofá ; das Sofa
+la nevera ; der Kühlschrank
+la luz ; das Licht
+la llave ; der Schlüssel
+el móvil ; das Handy ; Lateinamerika: el celular
+la tele ; der Fernseher
+la alfombra ; der Teppich
+¡pasa! ; Komm rein!
+tu casa es preciosa ; Deine Wohnung ist wunderschön
+vivo en Viena ; Ich wohne in Wien
+vivo aquí cerca ; Ich wohne hier in der Nähe
+apaga la luz ; Mach das Licht aus
+enciende la luz ; Mach das Licht an
+cierra la puerta ; Mach die Tür zu
+abre la ventana ; Mach das Fenster auf
+estoy en casa ; Ich bin zu Hause
+voy para casa ; Ich komme nach Hause
+
+[Körper & Gesundheit]
+la cabeza ; der Kopf
+el pelo ; die Haare
+la cara ; das Gesicht
+el ojo ; das Auge
+la oreja ; das Ohr
+la nariz ; die Nase
+la boca ; der Mund
+el diente ; der Zahn
+la mano ; die Hand
+el brazo ; der Arm
+la pierna ; das Bein
+el pie ; der Fuß
+la barriga ; der Bauch
+el corazón ; das Herz
+la espalda ; der Rücken
+el cuello ; der Hals
+me duele la cabeza ; Ich habe Kopfschmerzen
+me duele la barriga ; Ich habe Bauchweh
+tengo fiebre ; Ich habe Fieber
+estoy resfriado ; Ich bin erkältet ; Frau: resfriada
+el medicamento ; das Medikament
+necesito un médico ; Ich brauche einen Arzt
+el hospital ; das Krankenhaus ; h stumm: ospital
+¡socorro! ; Hilfe! ; auch: ¡ayuda!
+la ambulancia ; der Krankenwagen
+no me encuentro bien ; Mir geht es nicht gut
+¿estás mejor? ; Geht es dir besser?
+tienes que descansar ; Du musst dich ausruhen
+¡que te mejores! ; Gute Besserung!
+soy alérgico ; Ich bin allergisch ; Frau: alérgica
+
+[Wetter & Natur]
+el tiempo ; das Wetter / die Zeit
+¿qué tiempo hace? ; Wie ist das Wetter?
+hace buen tiempo ; Das Wetter ist schön
+hace frío ; Es ist kalt
+hace calor ; Es ist heiß
+llueve ; Es regnet
+nieva ; Es schneit
+hace sol ; Die Sonne scheint
+está nublado ; Es ist bewölkt
+hace viento ; Es ist windig
+el sol ; die Sonne
+la luna ; der Mond
+la estrella ; der Stern
+el cielo ; der Himmel
+el mar ; das Meer
+la montaña ; der Berg
+el bosque ; der Wald
+el árbol ; der Baum
+la flor ; die Blume
+el río ; der Fluss
+la playa ; der Strand
+el lago ; der See
+la isla ; die Insel
+el animal ; das Tier
+el perro ; der Hund
+el gato ; die Katze
+el pájaro ; der Vogel
+el caballo ; das Pferd
+la foca ; die Robbe ; wie Robbie!
+el mono ; der Affe ; wie Arzi!
+
+[Arbeit & Schule]
+el trabajo ; die Arbeit
+trabajo ; Ich arbeite
+estoy en el trabajo ; Ich bin bei der Arbeit
+la oficina ; das Büro
+la empresa ; die Firma
+el jefe ; der Chef
+el sueldo ; das Gehalt
+el colegio ; die Schule ; auch: la escuela
+la universidad ; die Universität
+la clase ; die Klasse / der Unterricht
+la lección ; die Lektion
+estudio ; Ich lerne / studiere
+el examen ; die Prüfung
+el libro ; das Buch
+el cuaderno ; das Heft
+el bolígrafo ; der Kugelschreiber ; kurz: el boli
+el ordenador ; der Computer ; Lateinamerika: la computadora
+tengo una reunión ; Ich habe eine Besprechung
+es festivo ; Es ist Feiertag
+las vacaciones ; der Urlaub / die Ferien
+el viaje ; die Reise
+
+[Verben]
+ir – voy ; gehen – ich gehe ; vas (du), va (er/sie) · fui (ich ging)
+venir – vengo ; kommen – ich komme ; vienes, viene · vine
+comer – como ; essen – ich esse ; comes, come · comí
+beber – bebo ; trinken – ich trinke ; bebes, bebe · Lateinamerika oft: tomar
+ver – veo ; sehen – ich sehe ; ves, ve · vi
+decir – digo ; sagen – ich sage ; dices, dice · dije
+hablar – hablo ; sprechen – ich spreche ; hablas, habla · hablé
+oír – oigo ; hören – ich höre ; oyes, oye
+saber – sé ; wissen – ich weiß ; sabes, sabe · no lo sé = ich weiß es nicht
+poder – puedo ; können – ich kann ; puedes, puede
+querer – quiero ; wollen / lieben – ich will ; quieres, quiere · te quiero = ich hab dich lieb
+tener – tengo ; haben – ich habe ; tienes, tiene · tuve
+ser – soy ; sein (dauerhaft) – ich bin ; eres, es · soy de Viena
+estar – estoy ; sein (Zustand, Ort) – ich bin ; estás, está · estoy cansado
+hacer – hago ; machen – ich mache ; haces, hace · hice
+dar – doy ; geben – ich gebe ; das, da · di
+tomar – tomo ; nehmen / trinken – ich nehme ; tomé
+traer – traigo ; bringen – ich bringe ; traje
+llevar – llevo ; mitnehmen / tragen – ich trage ; llevé
+escribir – escribo ; schreiben – ich schreibe ; escribí
+leer – leo ; lesen – ich lese ; leí
+entender – entiendo ; verstehen – ich verstehe ; entendí
+preguntar – pregunto ; fragen – ich frage ; pregunté
+contestar – contesto ; antworten – ich antworte ; contesté
+comprar – compro ; kaufen – ich kaufe ; compré
+vender – vendo ; verkaufen – ich verkaufe ; vendí
+cocinar – cocino ; kochen – ich koche ; cociné
+dormir – duermo ; schlafen – ich schlafe ; dormí
+despertarse – me despierto ; aufwachen – ich wache auf ; me desperté
+sentarse – me siento ; sich setzen – ich setze mich ; ¡siéntate! = setz dich!
+esperar – espero ; warten / hoffen – ich warte ; ¡espera! = warte!
+abrir – abro ; öffnen – ich öffne ; abrí
+cerrar – cierro ; schließen – ich schließe ; cerré
+buscar – busco ; suchen – ich suche ; busqué
+encontrar – encuentro ; finden – ich finde ; encontré
+pensar – pienso ; denken – ich denke ; creo que sí = ich glaube schon
+amar – amo ; lieben – ich liebe ; te amo = ich liebe dich
+gustar – me gusta ; gefallen – es gefällt mir ; me gustan = sie gefallen mir
+vivir – vivo ; wohnen / leben – ich wohne ; viví
+aprender – aprendo ; lernen – ich lerne ; aprendí
+enseñar – enseño ; beibringen / zeigen – ich bringe bei ; enseñé
+jugar – juego ; spielen – ich spiele ; jugué
+correr – corro ; rennen – ich renne ; corrí
+caminar – camino ; zu Fuß gehen – ich gehe ; caminé
+mirar – miro ; anschauen – ich schaue an ; miré
+escuchar – escucho ; zuhören – ich höre zu ; escuché
+ayudar – ayudo ; helfen – ich helfe ; ayudé
+llamar – llamo ; anrufen / rufen – ich rufe an ; llamé
+mandar – mando ; schicken – ich schicke ; mandé
+pagar – pago ; bezahlen – ich bezahle ; pagué
+lavar – lavo ; waschen – ich wasche ; lavé
+ponerse – me pongo ; anziehen – ich ziehe an ; me puse
+llorar – lloro ; weinen – ich weine ; lloré
+reír – me río ; lachen – ich lache ; me reí
+bailar – bailo ; tanzen – ich tanze ; bailé
+empezar – empiezo ; anfangen – ich fange an ; empecé
+terminar – termino ; beenden – ich beende ; terminé
+quedarse – me quedo ; bleiben – ich bleibe ; me quedé
+llegar – llego ; ankommen – ich komme an ; llegué
+volver – vuelvo ; zurückkommen – ich komme zurück ; volví
+salir – salgo ; ausgehen – ich gehe raus ; salí
+nadar – nado ; schwimmen – ich schwimme ; nadé
+conducir – conduzco ; fahren (Auto) – ich fahre ; Lateinamerika: manejar
+olvidar – olvido ; vergessen – ich vergesse ; olvidé
+recordar – recuerdo ; sich erinnern – ich erinnere mich ; recordé
+tener que – tengo que ; müssen – ich muss ; tengo que irme = ich muss los
+
+[Befehle]
+¡vete! ; Geh!
+¡ven! ; Komm!
+ven aquí ; Komm her
+siéntate ; Setz dich
+¡espera! ; Warte!
+dime ; Sag mal / Sag mir
+¡come! ; Iss!
+¡mira! ; Schau!
+¡oye! ; Hey! / Hör mal!
+escucha ; Hör zu
+dame ; Gib mir
+¡venga, vamos! ; Komm, gehen wir!
+¡date prisa! ; Beeil dich! ; Lateinamerika: ¡apúrate!
+poco a poco ; Schritt für Schritt
+¡cuidado! ; Vorsicht!
+ten cuidado ; Pass auf
+déjalo ; Lass es / Vergiss es
+llámame ; Ruf mich an
+escríbeme ; Schreib mir
+que duermas bien ; Schlaf gut
+¡basta! ; Genug!
+ayúdame ; Hilf mir
+¡para! ; Halt! / Hör auf!
+¡déjalo ya! ; Hör auf damit!
+¡tranquilo! ; Ruhig! / Keine Panik!
+
+[Adjektive]
+bueno ; gut
+malo ; schlecht
+grande ; groß
+pequeño ; klein
+bonito ; schön / hübsch
+feo ; hässlich
+nuevo ; neu
+viejo ; alt
+joven ; jung
+caliente ; heiß (Dinge)
+frío ; kalt
+fácil ; einfach
+difícil ; schwierig
+pesado ; schwer (Gewicht) / nervig
+ligero ; leicht (Gewicht)
+rápido ; schnell
+lento ; langsam
+listo ; klug / fertig ; ser listo = klug sein, estar listo = fertig sein
+divertido ; lustig
+simpático ; sympathisch / nett
+amable ; freundlich
+mono ; süß / niedlich ; Spanien – Lateinamerika: lindo
+interesante ; interessant
+aburrido ; langweilig
+lleno ; voll
+vacío ; leer
+limpio ; sauber
+sucio ; schmutzig
+rico ; reich / lecker
+pobre ; arm
+feliz ; glücklich
+solo ; allein
+tranquilo ; ruhig / entspannt
+ruidoso ; laut
+perfecto ; perfekt
+genial ; genial
+guay ; cool ; Spanien – Mexiko: padre, Argentinien: copado
+correcto ; richtig
+equivocado ; falsch
+mejor ; besser
+más ; mehr
+menos ; weniger
+el mejor ; der Beste
+
+[Alltag]
+me he despertado temprano ; Ich bin früh aufgewacht
+me voy a dormir ; Ich gehe schlafen
+estoy trabajando ; Ich arbeite gerade
+estoy comiendo ; Ich esse gerade
+ahora no puedo hablar ; Ich kann gerade nicht reden
+te llamo luego ; Ich ruf dich später an
+mándame un mensaje ; Schick mir eine Nachricht
+¿qué haces hoy? ; Was machst du heute?
+¿tienes tiempo mañana? ; Hast du morgen Zeit?
+¿salimos? ; Gehen wir aus?
+¿nos tomamos un café? ; Trinken wir einen Kaffee?
+voy al cine con un amigo ; Ich gehe mit einem Freund ins Kino
+estoy cansado, quiero descansar ; Ich bin müde, ich will mich ausruhen
+hoy ha sido un día largo ; Heute war ein langer Tag
+llego tarde ; Ich komme zu spät
+un momento ; Einen Moment
+espera un minuto ; Warte eine Minute
+he perdido las llaves ; Ich habe meine Schlüssel verloren
+me he quedado sin batería ; Mein Akku ist leer
+¿hay wifi? ; Gibt es WLAN?
+¿cuál es la contraseña del wifi? ; Was ist das WLAN-Passwort?
+no tengo dinero ; Ich habe kein Geld
+voy a hacer la compra ; Ich gehe einkaufen
+hace buen tiempo, vamos al parque ; Das Wetter ist schön, gehen wir in den Park
+escucho música ; Ich höre Musik
+veo una peli ; Ich schaue einen Film
+hago deporte ; Ich mache Sport
+me ducho ; Ich dusche
+¿qué haces el fin de semana? ; Was machst du am Wochenende?
+lo hago yo ; Ich mach das
+¿puedes venir un momento? ; Kannst du kurz kommen?
+¡ahora mismo! ; Sofort!
+menos mal ; Zum Glück
+¿a qué hora vuelves a casa? ; Wann kommst du nach Hause?
+vamos a hacerlo así ; Machen wir es so
+¡qué día tan bonito! ; Was für ein schöner Tag!
+vamos a la playa ; Gehen wir an den Strand
+
+[Liebe & Freundschaft]
+te quiero ; Ich hab dich lieb / Ich liebe dich ; sehr häufig
+te amo ; Ich liebe dich ; stärker, romantisch
+te quiero mucho ; Ich hab dich sehr lieb
+estoy enamorado de ti ; Ich bin in dich verliebt ; Frau: enamorada
+mi amor ; meine Liebe / mein Schatz
+cariño ; Schatz
+eres mi mejor amigo ; Du bist mein bester Freund ; Freundin: mi mejor amiga
+eres preciosa ; Du bist wunderschön ; zu einer Frau
+eres muy guapo ; Du siehst sehr gut aus ; zu einem Mann – Frau: guapa
+tienes unos ojos preciosos ; Du hast wunderschöne Augen
+quiero estar contigo ; Ich will mit dir zusammen sein
+pienso en ti todo el tiempo ; Ich denke ständig an dich
+¿quieres salir conmigo? ; Willst du mit mir ausgehen?
+¿me das tu número? ; Gibst du mir deine Nummer?
+esto lo he comprado para ti ; Das habe ich für dich gekauft
+eres un cielo ; Du bist ein Schatz ; wörtlich: du bist ein Himmel
+contigo soy feliz ; Mit dir bin ich glücklich
+amigo mío ; mein Freund
+tío ; Alter / Mann ; Spanien unter Freunden – Mexiko: güey
+un beso ; ein Küsschen ; am Ende von Nachrichten
+besos ; Küsse ; Abschiedsgruß unter Freunden
+un abrazo ; eine Umarmung ; Abschiedsgruß
+
+[Redewendungen]
+¡qué bien! ; Wie schön!
+¡qué pena! ; Wie schade!
+¡madre mía! ; Meine Güte!
+¡qué guay! ; Wie cool! ; Spanien
+¡no me digas! ; Was du nicht sagst!
+¡no me lo puedo creer! ; Ich glaub's nicht!
+¡anda ya! ; Ach komm! / Echt jetzt?
+¡qué va! ; Ach was! / Auf keinen Fall!
+¡ojalá! ; Schön wär's!
+paciencia ; Geduld
+así es la vida ; So ist das Leben
+poco a poco se va lejos ; Langsam kommt man auch ans Ziel ; Sprichwort
+no hay mal que por bien no venga ; Alles hat sein Gutes ; Sprichwort
+¡qué ganas! ; Ich kann's kaum erwarten!
+merece la pena ; Es lohnt sich
+yo qué sé ; Was weiß ich
+¡qué lío! ; Was für ein Chaos!
+me partes de risa ; Du bringst mich zum Lachen
+¡olé! ; Bravo! / Olé!
+¡ánimo! ; Kopf hoch! / Los!
+¡muy bien! ; Sehr gut!
+¡qué asco! ; Wie eklig!
+¡tú puedes! ; Du schaffst das!
+todo bien ; Alles gut
+estar en las nubes ; mit dem Kopf in den Wolken sein
+tomar el pelo ; jemanden veräppeln ; me estás tomando el pelo

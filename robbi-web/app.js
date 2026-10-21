@@ -58,6 +58,16 @@ const PRON = {
     key: [['c vor e/i', 'tsch – ciao = tschao, cena = tschena'], ['c sonst, ch', 'k – casa, che = ke'], ['g vor e/i', 'dsch – gelato = dschelato'], ['gh', 'g – spaghetti'],
       ['gn', 'nj – bagno = banjo'], ['gli', 'lj – famiglia = familja'], ['sc vor e/i', 'sch – pesce = pesche'], ['sch', 'sk – schiena'], ['z', 'ts oder ds – pizza, zero'],
       ['v', 'w – vino = wino'], ['h', 'stumm – ho = o'], ['qu', 'kw – quanto'], ['Doppelte', 'länger sprechen – pala ≠ palla'], ['à è ì ò ù', 'hier betonen – città, perché']]
+  },
+  Spanisch: {
+    intro: 'Spanisch spricht man fast so, wie man es schreibt. "Lies etwa" zeigt, wie du es als Deutschsprachige(r) lesen musst. In Spanien klingt "c" vor e/i und "z" wie engl. "th", in Lateinamerika wie "s".',
+    fn: s => s.toLowerCase().replace(/ch|ll|ñ|qu|gu(?=[eiéí])|gü|g(?=[eiéí])|c(?=[eiéí])|c|z|j|h|v|y/g, (m, i, str) => {
+      if (m === 'y') return /[aeiouáéíóú]/.test(str[i + 1] || '') ? 'j' : 'i';
+      return { ch: 'tsch', ll: 'j', 'ñ': 'nj', qu: 'k', gu: 'g', 'gü': 'gw', g: 'ch', c: m === 'c' && /[eiéí]/.test(str[i + 1] || '') ? 's' : 'k', z: 's', j: 'ch', h: '', v: 'b' }[m];
+    }),
+    key: [['c vor e/i, z', 'wie engl. "th" (Spanien) bzw. s (Lateinamerika) – gracias'], ['c sonst', 'k – casa'], ['ch', 'tsch – chico'], ['j, g vor e/i', 'ch wie in "Bach" – jamón, gente'],
+      ['gue / gui', 'ge / gi, das u ist stumm – guitarra'], ['ll', 'j wie in "ja" – calle = kaje'], ['ñ', 'nj – mañana = manjana'], ['qu', 'k – queso'], ['h', 'stumm – hola = ola'],
+      ['v', 'fast wie b – vino'], ['y', 'j – yo; allein "y" = i'], ['r / rr', 'kurz / lang gerollt – pero ≠ perro'], ['á é í ó ú', 'diese Silbe betonen']]
   }
 };
 function readAid(text, l) {
@@ -81,7 +91,8 @@ const DIRS = [['d', 'Deutsch → ?'], ['f', '? → Deutsch'], ['m', 'Gemischt']]
 const CHEERS = {
   Farsi: ['Āfarin! (Bravo!)', 'Kheyli khub! (Sehr gut!)', 'Āli-e! (Super!)', 'Damet garm!'],
   Griechisch: ['Brávo!', 'Polí kalá! (Sehr gut!)', 'Téleia! (Perfekt!)', 'Foveró! (Super!)'],
-  Italienisch: ['Bravo!', 'Benissimo! (Sehr gut!)', 'Perfetto! (Perfekt!)', 'Fantastico!']
+  Italienisch: ['Bravo!', 'Benissimo! (Sehr gut!)', 'Perfetto! (Perfekt!)', 'Fantastico!'],
+  Spanisch: ['¡Muy bien! (Sehr gut!)', '¡Perfecto!', '¡Genial!', '¡Olé!']
 };
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
@@ -197,7 +208,7 @@ function renderGoalPanel() {
   $('goalStats').innerHTML = `<span class="x"><b>${Math.floor(secsToday() / 60)}</b>min heute</span><span class="k"><b>${fmtDuration(weekSecs())}</b>diese Woche</span><span class="n"><b>${fmtDuration(totalSecs())}</b>insgesamt</span>`;
 }
 function celebrate() {
-  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce');
+  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce');
   if (reduceMotion) return;
   const colors = ['#1A7A87', '#D2563A', '#E0A526', '#2F8A5B', '#1D5FB4', '#159A93'];
   for (let i = 0; i < 40; i++) {
