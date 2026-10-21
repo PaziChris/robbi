@@ -37,6 +37,9 @@ img { max-width: 100%; }
   --navy: #1E3557;
   --brim: #0F1B2D;
   --greek-blue: #1D5FB4;
+  --beard: #4E4239;
+  --beard-dark: #2F2722;
+  --beard-light: #D9E1E5;
   --font-display: 'Baloo 2', 'Trebuchet MS', system-ui, sans-serif;
   --font-body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
 }

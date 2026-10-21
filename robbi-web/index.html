@@ -16,8 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=11">
-<script src="firebase-config.js?v=11"></script>
+<link rel="stylesheet" href="style.css?v=12">
+<script src="firebase-config.js?v=12"></script>
 </head>
 <body>
 <div class="app">
@@ -100,14 +100,20 @@
             <path d="M67 34 q4 -5 8 0"/><path d="M85 34 q4 -5 8 0"/>
           </g>
           <circle cx="66" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/><circle cx="94" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/>
+          <!-- Halstuch (liegt unter dem Bart) -->
+          <path d="M61 69 Q80 79 100 67" fill="none" stroke="var(--greek-blue)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M62 69.5 Q80 79 99 67.5" fill="none" stroke="var(--eye-shine)" stroke-width="6" stroke-dasharray="2.6 2.6"/>
+          <path d="M64 72 L58 81 L66 78Z" fill="var(--greek-blue)"/>
+          <!-- Vollbart -->
+          <path class="beard" d="M57 38 C55 52 60 64 69 70 C74 74 86 74 91 70 C100 64 105 52 103 38 C100 45 95 49 89 47 C85 50 75 50 71 47 C65 49 60 45 57 38 Z" fill="var(--beard)"/>
+          <path d="M64 52 q1.5 6 5 10 M71 55 q.5 6 3 11 M80 56 v12 M89 55 q-.5 6 -3 11 M96 52 q-1.5 6 -5 10" fill="none" stroke="var(--beard-dark)" stroke-width=".9" stroke-linecap="round" opacity=".7"/>
+          <!-- Schnurrbart, Nase, Mund -->
+          <path d="M80 43.5 C76 41.5 70 42.5 68 47.5 C72 46 76.5 46 80 45 C83.5 46 88 46 92 47.5 C90 42.5 84 41.5 80 43.5 Z" fill="var(--beard-dark)"/>
           <ellipse cx="80" cy="40" rx="3.6" ry="2.6" fill="var(--eye)"/>
-          <path d="M76 44 q2 3 4 0 q2 3 4 0" fill="none" stroke="var(--eye)" stroke-width="1.6" stroke-linecap="round"/>
-          <g class="whiskers" stroke="var(--seal-dark)" stroke-width="1.2" stroke-linecap="round">
-            <path d="M72 43 l-11 -2"/><path d="M72 45 l-11 2"/><path d="M88 43 l11 -2"/><path d="M88 45 l11 2"/>
+          <path d="M76.5 49 q3.5 3 7 0" fill="none" stroke="var(--cheek)" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="whiskers" stroke="var(--beard-light)" stroke-width="1.1" stroke-linecap="round">
+            <path d="M68 43 l-11 -2"/><path d="M68 45 l-11 2"/><path d="M92 43 l11 -2"/><path d="M92 45 l11 2"/>
           </g>
-          <path d="M62 57 Q80 67 99 55" fill="none" stroke="var(--greek-blue)" stroke-width="6" stroke-linecap="round"/>
-          <path d="M63 57.5 Q80 67 98 55.5" fill="none" stroke="var(--eye-shine)" stroke-width="6" stroke-dasharray="2.6 2.6"/>
-          <path d="M66 60 L60 70 L68 67Z" fill="var(--greek-blue)"/>
         </g>
       </svg>
       <span class="tag"><b>Robbie</b><i>Robert Robertson</i>Griechisch</span>
@@ -358,6 +364,6 @@
     </details>
   </section>
 </div>
-<script type="module" src="app.js?v=11"></script>
+<script type="module" src="app.js?v=12"></script>
 </body>
 </html>
