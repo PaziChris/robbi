@@ -1,6 +1,6 @@
 /* Robbi Service Worker: offline-fähig + Push-Nachrichten */
-const CACHE = 'robbi-v13';
-const SHELL = ['./', 'index.html', 'style.css?v=13', 'app.js?v=13', 'firebase-config.js?v=13', 'manifest.webmanifest',
+const CACHE = 'robbi-v14';
+const SHELL = ['./', 'index.html', 'style.css?v=14', 'app.js?v=14', 'firebase-config.js?v=14', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png',
   'sprachen.txt', 'farsi.txt', 'griechisch.txt', 'italienisch.txt', 'spanisch.txt'];
 

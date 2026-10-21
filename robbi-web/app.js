@@ -97,7 +97,7 @@ const CHEERS = {
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-/* Die Lehrer: Arzi der persische Affe (Farsi) und Robbie Robert Robertson die griechische Robbe */
+/* Die Lehrer: Arzi, die persische Äffin (Farsi), und Robbie Robert Robertson die griechische Robbe */
 const ACTORS = {
   Farsi: { el: $('monkey'), btn: $('monkeyBtn'), act: 'sip', actMs: 1600, praise: 'Āfarin! Arzi ist stolz auf dich.',
     pokes: ['Salām! Chāy mikhori?', 'Bezan berim!', 'Arzi injāst!', 'Esmam Arzi-e!', 'Vāy, ghelghelakam nakon!', 'Damet garm!', 'Ye chāy-e dāgh, ye kam farsi?'] },
