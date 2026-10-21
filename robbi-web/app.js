@@ -127,7 +127,7 @@ function lifeLoop(a) {
       const el = a.el;
       if (Math.random() < 0.14 && !el.classList.contains('is-happy')) pose(el, 'wink', 400);
       else { pose(el, 'blink', 140); if (Math.random() < 0.25) setTimeout(() => pose(el, 'blink', 140), 280); }
-      if (!reduceMotion && a === actor()) { const x = Math.random(); if (x < 0.15) pose(el, a.act, a.actMs); else if (x < 0.27) pose(el, 'look', 1600); }
+      if (!reduceMotion && a === actor()) { const x = Math.random(); if (x < 0.15) pose(el, a.act, a.actMs); else if (x < 0.27) pose(el, 'look', 1600); else if (x < 0.42) pose(el, 'wag', 2500); }
     }
     lifeLoop(a);
   }, 2200 + Math.random() * 3800);
@@ -175,7 +175,7 @@ function tick() {
     store.days[t] = (store.days[t] || 0) + 1; tickN++;
     if (store.days[t] >= store.goalMin * 60 && store.doneDay !== t) { store.doneDay = t; tickN = 0; persist(['user', 'score'], 0); celebrate(); }
     else if (tickN >= 30) { tickN = 0; persist(['user', 'score']); }
-    else saveLocalSoon();
+    else if (tickN % 10 === 0) saveLocalSoon();
   }
   renderGoal(running);
 }

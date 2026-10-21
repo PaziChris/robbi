@@ -74,10 +74,12 @@ button:disabled { cursor: default; opacity: .45; }
 /* Robbi lebt: atmen, nicken, Schwanz wackeln, blinzeln, zwinkern, winken */
 .seal-btn { flex: none; border: 0; background: none; padding: 0; border-radius: 16px; cursor: pointer; }
 .seal *, .monkey * { transform-box: view-box; }
-.seal .body { transform-origin: 56px 84px; animation: breathe 3.6s ease-in-out infinite; }
-.seal .head { transform-origin: 74px 62px; animation: bob 3.6s ease-in-out infinite; }
-.seal .tail { transform-origin: 12px 74px; animation: tail 3.4s ease-in-out infinite; }
-.seal .whiskers { transform-origin: 80px 44px; animation: whisk 4.6s ease-in-out infinite; }
+.seal .body { transform-origin: 56px 84px; }
+.seal .head { transform-origin: 74px 62px; }
+.seal .tail { transform-origin: 12px 74px; }
+.seal.wag .tail { animation: tail 1.2s ease-in-out; }
+.seal .whiskers { transform-origin: 80px 44px; }
+.seal.wag .whiskers { animation: whisk 1.2s ease-in-out; }
 .seal .flipper { transform-origin: 49px 77px; }
 .seal .eye, .monkey .eye { transition: transform .07s ease; }
 .seal .eye.l { transform-origin: 71px 33px; }
@@ -85,14 +87,16 @@ button:disabled { cursor: default; opacity: .45; }
 .seal.blink .eye, .seal.wink .eye.r, .monkey.blink .eye, .monkey.wink .eye.r { transform: scaleY(.12); }
 /* Pesteh: atmen, nicken, Schwanz, Tee-Dampf, ab und zu ein Schluck Tee */
 .monkey { width: 76px; height: 70px; }
-.monkey .m-body { transform-origin: 50px 86px; animation: breathe 3.4s ease-in-out infinite; }
-.monkey .m-head { transform-origin: 50px 57px; animation: bob 3.4s ease-in-out infinite; }
-.monkey .m-tail { transform-origin: 64px 78px; animation: mtail 3s ease-in-out infinite; }
+.monkey .m-body { transform-origin: 50px 86px; }
+.monkey .m-head { transform-origin: 50px 57px; }
+.monkey .m-tail { transform-origin: 64px 78px; }
+.monkey.wag .m-tail { animation: mtail 1.2s ease-in-out 2; }
 .monkey .m-arm { transform-origin: 66px 60px; }
 .monkey .eye.l { transform-origin: 44px 35px; }
 .monkey .eye.r { transform-origin: 56px 35px; }
-.monkey .steam path { animation: steam 2.4s ease-out infinite; }
-.monkey .steam path:nth-child(2) { animation-delay: 1.2s; }
+.monkey .steam path { opacity: 0; }
+.monkey.sip .steam path, .monkey.wag .steam path { animation: steam 1.4s ease-out; }
+.monkey .steam path:nth-child(2) { animation-delay: .5s; }
 .monkey.sip .m-arm { animation: sip 1.6s ease-in-out; }
 .monkey.look .m-head { animation: look 1.6s ease-in-out; }
 @keyframes mtail { 50% { transform: rotate(-9deg); } }
@@ -277,7 +281,7 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 .ring { width: 36px; height: 36px; flex: none; }
 .ring-bg { fill: none; stroke: var(--sea-soft); stroke-width: 4; }
 .ring-fg { fill: none; stroke: var(--sea); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 94.25; stroke-dashoffset: 94.25;
-  transform: rotate(-90deg); transform-origin: 18px 18px; transition: stroke-dashoffset .4s ease; }
+  transform: rotate(-90deg); transform-origin: 18px 18px; }
 .gb.done { background: var(--good-soft); border-color: var(--good); }
 .gb.done .ring-fg { stroke: var(--good); }
 .gb.done b { color: var(--good); font-size: 16px; }
@@ -289,3 +293,16 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 .confetti { position: fixed; top: -14px; width: 8px; height: 13px; border-radius: 2px; z-index: 50; pointer-events: none; animation: fall 2.6s cubic-bezier(.3,.6,.6,1) forwards; }
 @keyframes fall { to { transform: translate(var(--dx), 108vh) rotate(760deg); } }
 @media (prefers-reduced-motion: reduce) { .gb.urgent .days { animation: none; } .ring-fg { transition: none; } }
+
+/* Ruhiges Atmen: bewegt die ganze Figur als ein Bild (das kann das iPhone ohne Neuzeichnen) */
+.pal svg { transform-origin: 50% 100%; will-change: transform; animation: idle 4s ease-in-out infinite; }
+.pal:not(.on) svg { animation: none; }
+@keyframes idle { 50% { transform: translateY(-1.5px) scale(1.012, 1.025); } }
+/* Karte: eigene Ebene für die Drehung, damit das Umdrehen auf dem iPhone flüssig bleibt */
+.card { will-change: transform; -webkit-transform-style: preserve-3d; }
+.face { box-shadow: none; }
+.front { box-shadow: 0 8px 24px -12px #0d2b3540; }
+@media (prefers-reduced-motion: reduce) { .pal svg { animation: none; } }
+/* Timer-Sekunden und Sprechblase nur in ihrem eigenen Kästchen neu berechnen */
+.gb, .bubble-box { contain: layout paint; }
+.gb b { min-width: 4.2ch; }
