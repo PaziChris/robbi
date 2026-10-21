@@ -13,7 +13,9 @@ const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, str
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
-function saveLocal() { lsSet(KEY, store); }
+function saveLocal() { clearTimeout(localTimer); lsSet(KEY, store); }
+let localTimer = null;
+function saveLocalSoon() { clearTimeout(localTimer); localTimer = setTimeout(saveLocal, 600); }
 
 function parse(text, lang) {
   const out = []; let cat = 'Allgemein';
@@ -71,11 +73,50 @@ const CHEERS = {
 };
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
-function setMood(text, happy, anim) {
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Die Lehrer: Pesteh der persische Affe (Farsi) und Robbi die griechische Robbe */
+const ACTORS = {
+  Farsi: { el: $('monkey'), btn: $('monkeyBtn'), act: 'sip', actMs: 1600, praise: 'Āfarin! Pesteh ist stolz auf dich.',
+    pokes: ['Salām! Chāy mikhori?', 'Bezan berim!', 'Pesteh injāst!', 'Vāy, ghelghelakam nakon!', 'Damet garm!', 'Ye chāy-e dāgh, ye kam farsi?'] },
+  Griechisch: { el: $('seal'), btn: $('sealBtn'), act: 'wave', actMs: 900, praise: 'Brávo! Robbi ist stolz auf dich.',
+    pokes: ['Jia su! Ti kánis?', 'Ánde, páme!', 'Ópa!', 'Mi me gharghalás!', 'Brávo su!', 'Éla, mia jíra akóma!'] }
+};
+const actor = () => ACTORS[lang] || ACTORS.Griechisch;
+let happyTimer = null;
+function anim(el, kind) {
+  if (reduceMotion || !el.animate) return;
+  if (kind === 'bounce') el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-10px)', offset: .3 }, { transform: 'translateY(0)', offset: .6 }, { transform: 'translateY(-3px)', offset: .8 }, { transform: 'translateY(0)' }], { duration: 500, easing: 'ease-out' });
+  if (kind === 'shake') el.animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-6deg)', offset: .25 }, { transform: 'rotate(6deg)', offset: .75 }, { transform: 'rotate(0)' }], { duration: 450, easing: 'ease-in-out' });
+}
+function setMood(text, happy, kind) {
+  const el = actor().el;
   bubble.textContent = text;
-  seal.classList.toggle('is-happy', !!happy);
-  seal.classList.remove('bounce', 'shake'); void seal.getBoundingClientRect();
-  if (anim) seal.classList.add(anim);
+  Object.values(ACTORS).forEach(x => x.el.classList.remove('is-happy'));
+  clearTimeout(happyTimer);
+  if (happy) { el.classList.add('is-happy'); happyTimer = setTimeout(() => el.classList.remove('is-happy'), 1800); }
+  if (kind) anim(el, kind);
+}
+function pose(el, c, ms) { el.classList.add(c); setTimeout(() => el.classList.remove(c), ms); }
+/* Beide leben: blinzeln, zwinkern; wer dran ist, winkt bzw. trinkt Tee oder schaut sich um */
+function lifeLoop(a) {
+  setTimeout(() => {
+    if (!document.hidden) {
+      const el = a.el;
+      if (Math.random() < 0.14 && !el.classList.contains('is-happy')) pose(el, 'wink', 400);
+      else { pose(el, 'blink', 140); if (Math.random() < 0.25) setTimeout(() => pose(el, 'blink', 140), 280); }
+      if (!reduceMotion && a === actor()) { const x = Math.random(); if (x < 0.15) pose(el, a.act, a.actMs); else if (x < 0.27) pose(el, 'look', 1600); }
+    }
+    lifeLoop(a);
+  }, 2200 + Math.random() * 3800);
+}
+function renderStage() {
+  $('stage').dataset.active = lang === 'Farsi' ? 'fa' : lang === 'Griechisch' ? 'gr' : 'none';
+  for (const l in ACTORS) { const on = l === lang; ACTORS[l].btn.classList.toggle('on', on); ACTORS[l].btn.setAttribute('aria-pressed', on); }
+}
+function poke(a) {
+  a.el.classList.remove('is-happy'); clearTimeout(happyTimer);
+  pose(a.el, 'wink', 450); pose(a.el, a.act, a.actMs); anim(a.el, 'bounce');
+  bubble.textContent = a.pokes[Math.floor(Math.random() * a.pokes.length)];
 }
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 
@@ -126,7 +167,7 @@ function writeDoc(path, body, delay) {
   }, delay == null ? 1200 : delay);
 }
 function persist(what, delay) {
-  saveLocal();
+  saveLocalSoon();
   if (!cloud.ok) return;
   const u = 'users/' + cloud.uid;
   if (what.includes('user')) writeDoc(u, userBody, delay);
@@ -139,9 +180,9 @@ async function initFirebase() {
   try {
     const [appM, authM, fsM] = await Promise.all([import(FB + 'firebase-app.js'), import(FB + 'firebase-auth.js'), import(FB + 'firebase-firestore.js')]);
     const app = appM.initializeApp(CFG);
-    let db;
-    try { db = fsM.initializeFirestore(app, { localCache: fsM.persistentLocalCache({ tabManager: fsM.persistentMultipleTabManager() }) }); }
-    catch (e) { db = fsM.getFirestore(app); }
+    // Kein IndexedDB-Cache: Robbi speichert ohnehin selbst lokal und gleicht beim Start ab.
+    // Das hält die App auf dem Handy flüssig.
+    const db = fsM.getFirestore(app);
     const auth = authM.getAuth(app);
     cloud.fb = { app, db, auth, A: authM, F: fsM };
     authM.onAuthStateChanged(auth, onAuth);
@@ -222,7 +263,7 @@ function startBoard() {
   if (boardUnsub || !cloud.fb || !cloud.uid) return;
   const { F, db } = cloud.fb;
   boardUnsub = F.onSnapshot(F.query(F.collection(db, 'scores'), F.orderBy('xp', 'desc'), F.limit(50)),
-    snap => { board = snap.docs.map(d => Object.assign({ id: d.id }, d.data())); renderBoard(); },
+    snap => { board = snap.docs.map(d => Object.assign({ id: d.id }, d.data())); if (!$('viewBoard').hidden) renderBoard(); },
     () => { $('board').innerHTML = '<li class="empty">Die Rangliste ist gerade nicht erreichbar.</li>'; });
 }
 function stopBoard() { if (boardUnsub) boardUnsub(); boardUnsub = null; board = []; }
@@ -386,7 +427,7 @@ function renderKey() {
   p.key.forEach(([a, b]) => { const x = document.createElement('b'); x.textContent = a; const y = document.createElement('span'); y.textContent = b; t.append(x, y); });
 }
 function refresh() {
-  renderLangSelect(); renderChips(); renderKey();
+  renderLangSelect(); renderChips(); renderKey(); renderStage();
   if (!$('viewRepeat').hidden) renderRepeat();
   if (!$('viewWords').hidden) renderWords();
   if (!$('viewBoard').hidden) { renderProfile(); renderBoard(); }
@@ -401,9 +442,13 @@ function startSession() {
   $('session').hidden = false; $('endView').hidden = true;
   showCard();
 }
-function showCard() {
+let lockUntil = 0;
+function showCard(animate) {
   const card = $('card');
+  card.classList.add('instant');                  // ohne Rück-Drehung auf die neue Karte
   card.classList.remove('flipped'); flipped = false;
+  requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('instant')));
+  if (animate && !reduceMotion && $('scene').animate) $('scene').animate([{ transform: 'translateX(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 200, easing: 'ease-out' });
   $('flipActions').hidden = false; $('rateActions').hidden = true;
   $('count').textContent = `${done} / ${total}`;
   $('barFill').style.width = total ? (done / total * 100) + '%' : '0';
@@ -411,13 +456,10 @@ function showCard() {
   if (!queue.length) { total ? endSession() : emptyState(); return; }
   const { c, rev } = queue[0];
   const q = rev ? c.back : c.front, a = rev ? c.front : c.back;
-  // Rückseite erst nach der Drehung tauschen, damit man die Antwort nicht kurz sieht
-  setTimeout(() => {
-    $('bCat').textContent = c.cat; $('bLang').textContent = rev ? lang : 'Deutsch';
-    $('bWord').textContent = a; $('bWord').classList.toggle('long', a.length > 26);
-    const ra = rev ? readAid(a, lang) : ''; $('bRead').textContent = ra ? 'Lies etwa: ' + ra : '';
-    $('bNote').textContent = c.note ? 'Tipp: ' + c.note : '';
-  }, 260);
+  $('bCat').textContent = c.cat; $('bLang').textContent = rev ? lang : 'Deutsch';
+  $('bWord').textContent = a; $('bWord').classList.toggle('long', a.length > 26);
+  const ra = rev ? readAid(a, lang) : ''; $('bRead').textContent = ra ? 'Lies etwa: ' + ra : '';
+  $('bNote').textContent = c.note ? 'Tipp: ' + c.note : '';
   $('fCat').textContent = c.cat; $('fLang').textContent = rev ? 'Deutsch' : lang;
   $('fWord').textContent = q; $('fWord').classList.toggle('long', q.length > 26);
   const rq = rev ? '' : readAid(q, lang); $('fRead').textContent = rq ? 'Lies etwa: ' + rq : '';
@@ -433,7 +475,7 @@ function emptyState() {
   $('flipActions').hidden = true;
 }
 function flip() {
-  if (!queue.length) return;
+  if (!queue.length || performance.now() < lockUntil) return;   // Doppeltipp nach "Gewusst" ignorieren
   flipped = !flipped;
   $('card').classList.toggle('flipped', flipped);
   if (flipped) { $('flipActions').hidden = true; $('rateActions').hidden = false; }
@@ -456,7 +498,8 @@ function answer(ok) {
     setMood('Kein Problem, die kommt gleich nochmal.', false, 'shake');
   }
   updateBadge();
-  showCard();
+  lockUntil = performance.now() + 350;
+  showCard(true);
 }
 function endSession() {
   $('session').hidden = true; $('endView').hidden = false;
@@ -466,7 +509,7 @@ function endSession() {
   const w = countMode('f');
   $('endWrongBtn').disabled = !w; $('endWrongBtn').textContent = w ? `Falsche üben (${w})` : 'Keine Fehler offen';
   renderChips();
-  setMood(pct >= 80 ? 'Wow! Du bist eine Sprach-Robbe.' : 'Wiederholen macht den Meister!', true, 'bounce');
+  setMood(pct >= 80 ? actor().praise : 'Wiederholen macht den Meister!', true, 'bounce');
 }
 function practice(m, ct) { mode = m; cat = ct || '*'; showTab('learn'); renderChips(); startSession(); }
 
@@ -655,8 +698,16 @@ window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); instal
 $('installBtn').onclick = async () => { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('installBar').hidden = true; };
 $('installClose').onclick = () => { lsSet('robbi.installDismissed', true); $('installBar').hidden = true; };
 window.addEventListener('pagehide', saveLocal);
+document.addEventListener('visibilitychange', () => { if (document.hidden) saveLocal(); });
+for (const l in ACTORS) ACTORS[l].btn.onclick = () => {
+  if (lang === l) return poke(ACTORS[l]);                 // angetippt: zwinkern, winken/Tee, Spruch
+  if (!allLangs().includes(l)) return;
+  $('impLang').value = l;
+  loadLang(l).then(() => poke(ACTORS[l]));               // den anderen antippen: Sprache wechseln
+};
 window.addEventListener('online', () => { if (cloud.ok) setSync('ok'); });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 showInstall();
+Object.values(ACTORS).forEach(lifeLoop);
 init();

@@ -22,33 +22,97 @@
 <body>
 <div class="app">
   <header class="top">
-    <svg class="seal" id="seal" viewBox="0 0 120 92" aria-hidden="true">
-      <ellipse cx="60" cy="84" rx="54" ry="6" fill="var(--sea-soft)"/>
-      <path d="M10 74 L2 64 L14 66 Z M10 74 L4 84 L16 78 Z" fill="var(--seal-dark)"/>
-      <path d="M12 74 C14 54 40 44 62 46 C86 48 100 58 100 72 C100 81 90 84 76 84 L22 84 C15 84 11 80 12 74 Z" fill="var(--seal)"/>
-      <ellipse cx="58" cy="78" rx="12" ry="5" transform="rotate(-18 58 78)" fill="var(--seal-dark)"/>
-      <circle cx="80" cy="38" r="26" fill="var(--seal)"/>
-      <g class="open" fill="var(--ink)">
-        <circle cx="71" cy="33" r="3.6"/><circle cx="89" cy="33" r="3.6"/>
-        <circle cx="72.2" cy="31.8" r="1.1" fill="var(--surface)"/><circle cx="90.2" cy="31.8" r="1.1" fill="var(--surface)"/>
-      </g>
-      <g class="happy" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round">
-        <path d="M67 34 q4 -5 8 0"/><path d="M85 34 q4 -5 8 0"/>
-      </g>
-      <circle cx="66" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/><circle cx="94" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/>
-      <ellipse cx="80" cy="40" rx="3.6" ry="2.6" fill="var(--ink)"/>
-      <path d="M76 44 q2 3 4 0 q2 3 4 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/>
-      <g stroke="var(--seal-dark)" stroke-width="1.2" stroke-linecap="round">
-        <path d="M72 43 l-11 -2"/><path d="M72 45 l-11 2"/><path d="M88 43 l11 -2"/><path d="M88 45 l11 2"/>
-      </g>
-    </svg>
     <div class="brand">
       <h1>Robbi</h1>
-      <p class="bubble" id="bubble">Sag jedes Wort laut, dann umdrehen.</p>
       <button class="sync" id="sync" type="button">Lade …</button>
     </div>
     <select class="lang-select" id="langSelect" aria-label="Sprache"></select>
   </header>
+
+  <!-- Die Lehrer: Pesteh (Farsi) und Robbi (Griechisch). Antippen wechselt die Sprache. -->
+  <div class="stage" id="stage" data-active="none">
+    <button class="pal" id="monkeyBtn" type="button" aria-label="Pesteh – Farsi lernen">
+      <svg class="monkey" id="monkey" viewBox="0 0 100 92" aria-hidden="true">
+        <ellipse cx="50" cy="86" rx="36" ry="5" fill="var(--sea-soft)"/>
+        <g class="m-tail"><path d="M64 78 C84 82 92 62 82 56 C75 52 70 60 76 63" fill="none" stroke="var(--monkey)" stroke-width="4.5" stroke-linecap="round"/></g>
+        <g class="m-body">
+          <ellipse cx="50" cy="68" rx="20" ry="18" fill="var(--monkey)"/>
+          <ellipse cx="50" cy="71" rx="11" ry="12" fill="var(--monkey-face)"/>
+          <path d="M31 62 Q33 52 45 51 L48 70 L41 85 Q30 79 31 62Z" fill="var(--turq)"/>
+          <path d="M69 62 Q67 52 55 51 L52 70 L59 85 Q70 79 69 62Z" fill="var(--turq)"/>
+          <path d="M45 51 L48 70 L41 85 M55 51 L52 70 L59 85" fill="none" stroke="var(--boteh)" stroke-width="1"/>
+          <path d="M38 70 c-3.2 0 -4.6 -4.2 -1.4 -6.4 c2.2 -1.4 4.6 .6 3.4 3 c-.6 1.2 -1.6 1.6 -.6 3.4z" fill="var(--boteh)"/>
+          <path d="M63.5 76 c-2.6 0 -3.7 -3.4 -1.1 -5.2 c1.8 -1.1 3.7 .5 2.7 2.4 c-.5 1 -1.3 1.3 -.5 2.8z" fill="var(--boteh)"/>
+          <path d="M33 58 Q28 68 35 77" fill="none" stroke="var(--monkey)" stroke-width="6" stroke-linecap="round"/>
+          <ellipse cx="41" cy="85" rx="7" ry="3.5" fill="var(--monkey-dark)"/>
+          <ellipse cx="59" cy="85" rx="7" ry="3.5" fill="var(--monkey-dark)"/>
+        </g>
+        <g class="m-head">
+          <circle cx="31" cy="36" r="8" fill="var(--monkey)"/><circle cx="31" cy="36" r="4.5" fill="var(--monkey-face)"/>
+          <circle cx="69" cy="36" r="8" fill="var(--monkey)"/><circle cx="69" cy="36" r="4.5" fill="var(--monkey-face)"/>
+          <circle cx="50" cy="37" r="20" fill="var(--monkey)"/>
+          <path d="M50 30 C46 24 35 25 35 35 C35 46 42 52 50 52 C58 52 65 46 65 35 C65 25 54 24 50 30Z" fill="var(--monkey-face)"/>
+          <g class="open">
+            <g class="eye l"><circle cx="44" cy="35" r="3" fill="var(--eye)"/><circle cx="45" cy="34" r=".9" fill="var(--eye-shine)"/></g>
+            <g class="eye r"><circle cx="56" cy="35" r="3" fill="var(--eye)"/><circle cx="57" cy="34" r=".9" fill="var(--eye-shine)"/></g>
+          </g>
+          <g class="happy" fill="none" stroke="var(--eye)" stroke-width="2" stroke-linecap="round"><path d="M41 36 q3 -4 6 0"/><path d="M53 36 q3 -4 6 0"/></g>
+          <circle cx="40" cy="43" r="2.6" fill="var(--cheek)" opacity=".8"/><circle cx="60" cy="43" r="2.6" fill="var(--cheek)" opacity=".8"/>
+          <circle cx="48.4" cy="42" r=".9" fill="var(--eye)"/><circle cx="51.6" cy="42" r=".9" fill="var(--eye)"/>
+          <path d="M45 46 q5 4 10 0" fill="none" stroke="var(--eye)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M33 25 Q34 9 50 8 Q66 9 67 25 Q50 21 33 25Z" fill="var(--felt)"/>
+          <path d="M33.5 24.5 Q50 20.5 66.5 24.5" fill="none" stroke="var(--felt-dark)" stroke-width="1.8"/>
+          <path d="M50 9.5 L50 21.5 M42 11.5 Q40 16 40.5 22 M58 11.5 Q60 16 59.5 22" fill="none" stroke="var(--felt-dark)" stroke-width=".7" stroke-dasharray="1.4 1.4"/>
+        </g>
+        <g class="m-arm">
+          <path d="M66 60 Q76 58 80 52" fill="none" stroke="var(--monkey)" stroke-width="6" stroke-linecap="round"/>
+          <g class="steam" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round"><path d="M78.5 34 q-2 -3 0 -6"/><path d="M82.5 34 q2 -3 0 -6"/></g>
+          <path d="M76 36 L85 36 Q84.5 41 83 43 Q84 45 83 48 L78 48 Q77 45 78 43 Q76.5 41 76 36Z" fill="var(--glass)" stroke="var(--glass-edge)" stroke-width=".8"/>
+          <path d="M77.1 39 L83.9 39 Q83.5 41.5 82.5 43 Q83.3 45 82.5 47 L78.5 47 Q77.7 45 78.5 43 Q77.5 41.5 77.1 39Z" fill="var(--tea)"/>
+          <ellipse cx="80.5" cy="49" rx="6.5" ry="1.6" fill="var(--glass-edge)"/>
+          <circle cx="80" cy="51.5" r="3.2" fill="var(--monkey)"/>
+        </g>
+      </svg>
+      <span class="tag"><b>Pesteh</b>Farsi</span>
+    </button>
+
+    <div class="bubble-box"><p class="bubble" id="bubble" aria-live="polite">Sag jedes Wort laut, dann umdrehen.</p></div>
+
+    <button class="pal" id="sealBtn" type="button" aria-label="Robbi – Griechisch lernen">
+      <svg class="seal" id="seal" viewBox="0 0 120 92" aria-hidden="true">
+        <ellipse cx="60" cy="84" rx="54" ry="6" fill="var(--sea-soft)"/>
+        <g class="tail"><path d="M10 74 L2 64 L14 66 Z M10 74 L4 84 L16 78 Z" fill="var(--seal-dark)"/></g>
+        <g class="body">
+          <path d="M12 74 C14 54 40 44 62 46 C86 48 100 58 100 72 C100 81 90 84 76 84 L22 84 C15 84 11 80 12 74 Z" fill="var(--seal)"/>
+          <g class="flipper"><ellipse cx="58" cy="78" rx="12" ry="5" transform="rotate(-18 58 78)" fill="var(--seal-dark)"/></g>
+        </g>
+        <g class="head">
+          <circle cx="80" cy="38" r="26" fill="var(--seal)"/>
+          <path d="M58 22 Q60 6 82 6 Q104 7 104 21 Q82 17 58 22Z" fill="var(--navy)"/>
+          <path d="M56 24 Q81 17 106 23 L106 25.5 Q81 20 56 27Z" fill="var(--brim)"/>
+          <path d="M59 21.5 Q81 15.5 103 20.5" fill="none" stroke="var(--boteh)" stroke-width="1.1"/>
+          <path d="M81 10 l0 5 M78.6 12.4 l4.8 0 M78.5 14.2 q2.5 2.6 5 0" fill="none" stroke="var(--boteh)" stroke-width=".9" stroke-linecap="round"/>
+          <g class="open">
+            <g class="eye l"><circle cx="71" cy="33" r="3.6" fill="var(--eye)"/><circle cx="72.2" cy="31.8" r="1.1" fill="var(--eye-shine)"/></g>
+            <g class="eye r"><circle cx="89" cy="33" r="3.6" fill="var(--eye)"/><circle cx="90.2" cy="31.8" r="1.1" fill="var(--eye-shine)"/></g>
+          </g>
+          <g class="happy" fill="none" stroke="var(--eye)" stroke-width="2.4" stroke-linecap="round">
+            <path d="M67 34 q4 -5 8 0"/><path d="M85 34 q4 -5 8 0"/>
+          </g>
+          <circle cx="66" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/><circle cx="94" cy="42" r="3.4" fill="var(--cheek)" opacity=".7"/>
+          <ellipse cx="80" cy="40" rx="3.6" ry="2.6" fill="var(--eye)"/>
+          <path d="M76 44 q2 3 4 0 q2 3 4 0" fill="none" stroke="var(--eye)" stroke-width="1.6" stroke-linecap="round"/>
+          <g class="whiskers" stroke="var(--seal-dark)" stroke-width="1.2" stroke-linecap="round">
+            <path d="M72 43 l-11 -2"/><path d="M72 45 l-11 2"/><path d="M88 43 l11 -2"/><path d="M88 45 l11 2"/>
+          </g>
+          <path d="M62 57 Q80 67 99 55" fill="none" stroke="var(--greek-blue)" stroke-width="6" stroke-linecap="round"/>
+          <path d="M63 57.5 Q80 67 98 55.5" fill="none" stroke="var(--eye-shine)" stroke-width="6" stroke-dasharray="2.6 2.6"/>
+          <path d="M66 60 L60 70 L68 67Z" fill="var(--greek-blue)"/>
+        </g>
+      </svg>
+      <span class="tag"><b>Robbi</b>Griechisch</span>
+    </button>
+  </div>
 
   <div class="install" id="installBar" hidden>
     <span id="installText">Robbi als App auf den Startbildschirm legen?</span>
@@ -80,7 +144,7 @@
 
     <div class="view" id="session">
       <div class="progress"><span id="count">0 / 0</span><div class="bar"><i id="barFill"></i></div><span id="score" class="xp-pop"></span></div>
-      <div class="scene">
+      <div class="scene" id="scene">
         <button class="card" id="card" aria-label="Karte umdrehen">
           <div class="face front">
             <span class="cat" id="fCat"></span>
