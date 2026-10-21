@@ -2,9 +2,12 @@ name: Täglicher Robbi-Spruch
 
 on:
   schedule:
-    # Jeden Tag um 15:42 UTC = 17:42 Uhr Sommerzeit / 16:42 Uhr Winterzeit in Österreich.
-    # GitHub startet geplante Läufe manchmal ein paar Minuten später.
-    - cron: "42 15 * * *"
+    # Ziel: jeden Tag um 16 Uhr in Österreich.
+    # Zwei Startzeiten (14:07 und 15:07 UTC), damit es im Sommer UND im Winter passt.
+    # Das Skript schickt erst ab 16 Uhr Wiener Zeit und nur einmal pro Tag.
+    # GitHub startet geplante Läufe bei viel Betrieb manchmal verspätet.
+    - cron: "7 14 * * *"
+    - cron: "7 15 * * *"
   workflow_dispatch: {}   # erlaubt "Run workflow" zum Testen
 
 jobs:
@@ -23,4 +26,5 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           APP_URL: ${{ vars.APP_URL }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}   # "Run workflow" schickt sofort
         run: node send-push.mjs

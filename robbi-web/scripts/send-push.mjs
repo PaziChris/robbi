@@ -12,6 +12,8 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const DRY = process.env.DRY_RUN === '1';
+const FORCE = process.env.FORCE === '1';
+const SEND_HOUR = 16;                                    // Versand ab 16 Uhr Wiener Zeit
 const APP_URL = (process.env.APP_URL || '').replace(/\/?$/, '/');
 
 /* ---- Sprüche laden:  Spruch ; deutsche Übersetzung ---- */
@@ -67,6 +69,15 @@ async function main() {
   initializeApp({ credential: cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)) });
   const db = getFirestore(), messaging = getMessaging();
 
+  // Nur einmal pro Tag und erst ab 16 Uhr in Wien (Sommer- und Winterzeit automatisch)
+  const hour = +new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Vienna', hour: '2-digit', hour12: false }).format(new Date());
+  const metaRef = db.collection('meta').doc('push');
+  if (!FORCE) {
+    if (hour < SEND_HOUR) { console.log(`Noch zu früh (${hour} Uhr in Wien) – verschickt wird ab ${SEND_HOUR} Uhr.`); return; }
+    const meta = await metaRef.get();
+    if (meta.exists && meta.data().lastDay === TODAY) { console.log('Heute wurde schon verschickt.'); return; }
+  }
+
   const users = await db.collection('users').get();
   let sent = 0, skipped = 0, removed = 0;
   for (const doc of users.docs) {
@@ -92,6 +103,7 @@ async function main() {
     });
     if (dead.length) { await doc.ref.update({ fcmTokens: FieldValue.arrayRemove(...dead) }); removed += dead.length; }
   }
+  if (!DRY) await metaRef.set({ lastDay: TODAY, sentAt: new Date().toISOString() }, { merge: true });
   console.log(`Fertig: ${sent} Nachrichten verschickt, ${skipped} Nutzer ohne Push, ${removed} alte Geräte entfernt.`);
 }
 

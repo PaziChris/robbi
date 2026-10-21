@@ -94,7 +94,7 @@ Damit GitHub die Sprüche verschicken darf, braucht es einen geheimen Schlüssel
 
 **Testen:** Reiter **Actions** → falls gefragt, Workflows aktivieren → links **Täglicher Robbi-Spruch** → **Run workflow**. Nach etwa einer Minute erscheint ein grüner Haken. (Ein Spruch kommt natürlich erst an, wenn du auf dem Handy die Benachrichtigungen eingeschaltet hast – siehe unten.)
 
-Ab jetzt läuft das automatisch jeden Tag um **17:42 Uhr** (im Winter 16:42 Uhr).
+Ab jetzt läuft das automatisch jeden Tag um **16 Uhr** (Sommer- und Winterzeit stellt das Skript selbst um).
 
 ---
 
@@ -123,7 +123,7 @@ Freunde machen dasselbe mit deinem Link – sie registrieren sich selbst und lan
 | Neue Wörter für alle | Auf GitHub `farsi.txt` oder `griechisch.txt` öffnen → Stift → Zeilen ergänzen → Commit. Die App lädt sie beim nächsten Öffnen. |
 | Neue Sprache | Neue Datei, z. B. `tuerkisch.txt`, hochladen und in `sprachen.txt` die Zeile `Türkisch ; tuerkisch.txt` ergänzen. |
 | Mehr Sprüche | `sprueche/farsi.txt` oder `sprueche/griechisch.txt` ergänzen (Format: `Spruch ; Übersetzung`). |
-| Uhrzeit des Spruchs | In `.github/workflows/taeglicher-spruch.yml` die Zeile `cron: "42 15 * * *"` ändern. Die Zeit ist in UTC: Sommer = österreichische Zeit minus 2 Stunden, Winter minus 1 Stunde. |
+| Uhrzeit des Spruchs | In `robbi-web/scripts/send-push.mjs` den Wert `SEND_HOUR` ändern (Wiener Zeit) und in `.github/workflows/taeglicher-spruch.yml` die beiden `cron`-Zeilen auf diese Stunde minus 2 und minus 1 (UTC) setzen. |
 | PC-Programm | Liegt im Ordner `pc-programm` (für Visual Studio, speichert nur auf dem PC). |
 
 ## Wenn etwas nicht klappt
