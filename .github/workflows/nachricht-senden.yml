@@ -1,0 +1,39 @@
+name: Nachricht an jemanden senden
+
+# Nur von Hand: GitHub → Actions → "Nachricht an jemanden senden" → Run workflow
+on:
+  workflow_dispatch:
+    inputs:
+      spitzname:
+        description: "Spitzname aus der Rangliste"
+        required: true
+        default: "Berry"
+      nachricht:
+        description: "Text der Nachricht"
+        required: true
+        default: "Hallo Koukla ich hab neue Update"
+      titel:
+        description: "Überschrift (optional)"
+        required: false
+        default: "Robbi"
+
+jobs:
+  senden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pakete installieren
+        working-directory: robbi-web/scripts
+        run: npm install --no-audit --no-fund
+      - name: Nachricht verschicken
+        working-directory: robbi-web/scripts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          APP_URL: ${{ vars.APP_URL }}
+          NICK: ${{ inputs.spitzname }}
+          MESSAGE: ${{ inputs.nachricht }}
+          TITLE: ${{ inputs.titel }}
+        run: node send-one.mjs
