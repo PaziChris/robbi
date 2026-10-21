@@ -16,8 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=6">
-<script src="firebase-config.js?v=6"></script>
+<link rel="stylesheet" href="style.css?v=7">
+<script src="firebase-config.js?v=7"></script>
 </head>
 <body>
 <div class="app">
@@ -111,6 +111,18 @@
         </g>
       </svg>
       <span class="tag"><b>Robbie</b><i>Robert Robertson</i>Griechisch</span>
+    </button>
+  </div>
+
+  <!-- Tagesziel-Timer und Countdown bis zum Ziel-Datum -->
+  <div class="goalbar">
+    <button class="gb" id="gbTimer" type="button" aria-label="Tagesziel-Timer, zu den Einstellungen">
+      <svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" class="ring-bg"/><circle cx="18" cy="18" r="15" class="ring-fg" id="gbRing"/></svg>
+      <span class="gbtxt"><b id="gbTime">30:00</b><small id="gbTimeSub">Tagesziel</small></span>
+    </button>
+    <button class="gb" id="gbCount" type="button" aria-label="Countdown bis zum Ziel-Datum, zu den Einstellungen">
+      <span class="days" id="gbDays">–</span>
+      <span class="gbtxt"><b class="lbl" id="gbDaysLabel">Tage</b><small id="gbDaysSub"></small></span>
     </button>
   </div>
 
@@ -253,6 +265,28 @@
     </div>
     <p class="hint">Punkte: +10 für gewusst, +3 wenn du es beim zweiten Anlauf weißt, +1 fürs Üben. Die Serie zählt die Tage hintereinander, an denen du gelernt hast.</p>
 
+    <div class="panel" id="goalPanel">
+      <h2>Dein Ziel</h2>
+      <div class="row2">
+        <label class="field">Minuten pro Tag
+          <select id="goalMin">
+            <option value="10">10 Minuten</option>
+            <option value="15">15 Minuten</option>
+            <option value="20">20 Minuten</option>
+            <option value="30">30 Minuten</option>
+            <option value="45">45 Minuten</option>
+            <option value="60">60 Minuten</option>
+          </select>
+        </label>
+        <label class="field">Ziel-Datum
+          <input id="goalDate" type="date">
+        </label>
+      </div>
+      <p id="goalPlan"></p>
+      <div class="legend" id="goalStats"></div>
+      <p class="hint" style="text-align:left">Der Timer läuft, solange du im Tab „Lernen“ bist und Karten machst. Machst du über eine Minute nichts, pausiert er. Alles über dem Tagesziel zählt als Extra-Zeit.</p>
+    </div>
+
     <div class="panel" id="pushPanel" hidden>
       <h2>Täglicher Spruch aufs Handy</h2>
       <p>Arzi und Robbie schicken dir jeden Tag am frühen Abend einen frechen Motivationsspruch mit deutscher Übersetzung.</p>
@@ -322,6 +356,6 @@
     </details>
   </section>
 </div>
-<script type="module" src="app.js?v=6"></script>
+<script type="module" src="app.js?v=7"></script>
 </body>
 </html>

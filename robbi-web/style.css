@@ -266,3 +266,26 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 .btn { transition: transform .08s ease; }
 .btn:active:not(:disabled) { transform: scale(.97); }
 .pal .tag i { display: block; font-style: normal; font-size: 11px; color: var(--muted); }
+
+/* Tagesziel-Timer und Countdown */
+.goalbar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.gb { display: flex; align-items: center; gap: 10px; min-width: 0; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px; }
+.gbtxt { min-width: 0; }
+.gb b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.gb b.lbl { font-size: 14px; font-weight: 700; white-space: nowrap; }
+.gb small { display: block; font-size: 12px; line-height: 1.25; color: var(--muted); }
+.ring { width: 36px; height: 36px; flex: none; }
+.ring-bg { fill: none; stroke: var(--sea-soft); stroke-width: 4; }
+.ring-fg { fill: none; stroke: var(--sea); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 94.25; stroke-dashoffset: 94.25;
+  transform: rotate(-90deg); transform-origin: 18px 18px; transition: stroke-dashoffset .4s ease; }
+.gb.done { background: var(--good-soft); border-color: var(--good); }
+.gb.done .ring-fg { stroke: var(--good); }
+.gb.done b { color: var(--good); font-size: 16px; }
+.gb.running .ring-fg { stroke: var(--coral); }
+.gb.running small { color: var(--coral); }
+.gb .days { flex: none; font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1; color: var(--coral); font-variant-numeric: tabular-nums; }
+.gb.urgent .days { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.12); } }
+.confetti { position: fixed; top: -14px; width: 8px; height: 13px; border-radius: 2px; z-index: 50; pointer-events: none; animation: fall 2.6s cubic-bezier(.3,.6,.6,1) forwards; }
+@keyframes fall { to { transform: translate(var(--dx), 108vh) rotate(760deg); } }
+@media (prefers-reduced-motion: reduce) { .gb.urgent .days { animation: none; } .ring-fg { transition: none; } }

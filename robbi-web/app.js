@@ -9,7 +9,8 @@ const HAS_FIREBASE = !!(CFG && CFG.apiKey && !String(CFG.apiKey).startsWith('DEI
 
 /* ---------- Lokaler Speicher ---------- */
 const KEY = 'robbi.v3';
-const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, streak: 0, lastDay: '', pushLang: 'abwechselnd' };
+const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, streak: 0, lastDay: '', pushLang: 'abwechselnd',
+  days: {}, goalMin: 30, goalDate: '2026-12-31', doneDay: '', newDay: { d: '', n: 0 } };
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
@@ -133,6 +134,73 @@ function touchStreak() {
 }
 function knownTotal() { let n = 0; for (const k in store.prog) if (store.prog[k] === 'k') n++; return n; }
 
+/* ---------- Lernzeit ---------- */
+let lastAct = Date.now(), tickN = 0;
+const secsToday = () => store.days[today()] || 0;
+function trimDays(d) { const o = {}; Object.keys(d).sort().slice(-120).forEach(k => { o[k] = d[k]; }); return o; }
+function totalSecs() { let s = 0; for (const k in store.days) s += store.days[k] || 0; return s; }
+function weekSecs() { let s = 0; const d = new Date(); for (let i = 0; i < 7; i++) { s += store.days[fmt(d)] || 0; d.setDate(d.getDate() - 1); } return s; }
+function fmtClock(s) { s = Math.max(0, Math.round(s)); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), r = s % 60; return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(r).padStart(2, '0'); }
+function fmtDate(iso, withYear) { const [y, m, d] = iso.split('-'); return `${+d}.${+m}.${withYear ? y : ''}`; }
+// Kalendertage bis zum Ziel-Datum (heute nicht mitgezählt); gelernt wird an dl + 1 Tagen inklusive heute
+function daysLeft() { const t = new Date(store.goalDate + 'T00:00:00'); return isNaN(t) ? null : Math.round((t - new Date(today() + 'T00:00:00')) / 86400000); }
+function fmtDuration(s) { const m = Math.round(s / 60); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')} min`; }
+function isLearning() { return !document.hidden && !$('viewLearn').hidden && Date.now() - lastAct < 60000; }
+function tick() {
+  const running = isLearning();
+  if (running) {
+    const t = today();
+    store.days[t] = (store.days[t] || 0) + 1; tickN++;
+    if (store.days[t] >= store.goalMin * 60 && store.doneDay !== t) { store.doneDay = t; tickN = 0; persist(['user', 'score'], 0); celebrate(); }
+    else if (tickN >= 30) { tickN = 0; persist(['user', 'score']); }
+    else saveLocalSoon();
+  }
+  renderGoal(running);
+}
+function renderGoal(running) {
+  const s = secsToday(), goal = store.goalMin * 60, done = s >= goal;
+  const box = $('gbTimer');
+  box.classList.toggle('done', done); box.classList.toggle('running', running && !done);
+  $('gbRing').style.strokeDashoffset = (94.25 * (1 - Math.min(1, s / goal))).toFixed(2);
+  $('gbTime').textContent = done ? 'Heute perfekt!' : fmtClock(goal - s);
+  $('gbTimeSub').textContent = done ? (s - goal >= 1 ? `+${fmtClock(s - goal)} extra` : 'Ziel erreicht') : running ? 'läuft …' : `von ${store.goalMin} min · Pause`;
+  const dl = daysLeft(), cnt = $('gbCount');
+  if (dl === null) { $('gbDays').textContent = '–'; $('gbDaysLabel').textContent = 'Kein Ziel-Datum'; $('gbDaysSub').textContent = 'Tippen zum Einstellen'; return; }
+  if (dl < 0) { $('gbDays').textContent = '✓'; $('gbDaysLabel').textContent = 'Ziel-Datum vorbei'; $('gbDaysSub').textContent = 'Neues Datum setzen'; cnt.classList.remove('urgent'); return; }
+  const nw = countMode('new'), per = Math.ceil(nw / (dl + 1)), todayNew = store.newDay.d === today() ? store.newDay.n : 0;
+  $('gbDays').textContent = dl;
+  $('gbDaysLabel').textContent = dl === 0 ? 'Heute ist der Tag!' : `${dl === 1 ? 'Tag' : 'Tage'} bis ${fmtDate(store.goalDate)}`;
+  $('gbDaysSub').textContent = nw ? `Ziel: ${per} neue/Tag · heute ${todayNew}` : 'Alle Karten gelernt!';
+  cnt.classList.toggle('urgent', dl <= 14);
+}
+function renderGoalPanel() {
+  $('goalMin').value = String(store.goalMin);
+  $('goalDate').value = store.goalDate;
+  const dl = daysLeft(), nw = countMode('new');
+  if (dl === null || dl < 0) $('goalPlan').textContent = 'Wähle ein Ziel-Datum in der Zukunft.';
+  else {
+    const hours = Math.round((dl + 1) * store.goalMin / 60);
+    $('goalPlan').textContent = `Bis ${fmtDate(store.goalDate, true)} sind es noch ${dl} ${dl === 1 ? 'Tag' : 'Tage'}. Mit ${store.goalMin} Minuten am Tag kommst du auf rund ${hours} Stunden ${lang}. `
+      + (nw ? `Für alle ${nw} neuen Karten brauchst du etwa ${Math.ceil(nw / (dl + 1))} neue pro Tag – dazu Wiederholen.` : 'Alle Karten sind schon gelernt – jetzt heißt es wiederholen und sprechen!');
+  }
+  $('goalStats').innerHTML = `<span class="x"><b>${Math.floor(secsToday() / 60)}</b>min heute</span><span class="k"><b>${fmtDuration(weekSecs())}</b>diese Woche</span><span class="n"><b>${fmtDuration(totalSecs())}</b>insgesamt</span>`;
+}
+function celebrate() {
+  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce');
+  if (reduceMotion) return;
+  const colors = ['#1A7A87', '#D2563A', '#E0A526', '#2F8A5B', '#1D5FB4', '#159A93'];
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('i');
+    c.className = 'confetti';
+    c.style.left = (Math.random() * 100) + 'vw';
+    c.style.background = colors[i % colors.length];
+    c.style.animationDelay = (Math.random() * .5).toFixed(2) + 's';
+    c.style.setProperty('--dx', (Math.random() * 140 - 70).toFixed(0) + 'px');
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3400);
+  }
+}
+
 /* ---------- Firebase ---------- */
 const cloud = { fb: null, uid: null, email: '', ok: false };
 const timers = {}, chains = {};
@@ -151,8 +219,10 @@ function progBody(l) {
   for (const k in store.prog) if (k.startsWith(pre)) out[k.slice(pre.length)] = store.prog[k];
   return { lang: l, json: JSON.stringify(out) };
 }
-const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.lang, dir: store.dir, nick: store.nick, pushLang: store.pushLang });
-const scoreBody = () => ({ nick: store.nick || '', xp: store.xp || 0, streak: store.streak || 0, lastDay: store.lastDay || '', known: knownTotal(), lang: store.lang || '' });
+const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.lang, dir: store.dir, nick: store.nick, pushLang: store.pushLang,
+  daysJson: JSON.stringify(trimDays(store.days)), goalMin: store.goalMin, goalDate: store.goalDate, doneDay: store.doneDay, newDayJson: JSON.stringify(store.newDay) });
+const scoreBody = () => ({ nick: store.nick || '', xp: store.xp || 0, streak: store.streak || 0, lastDay: store.lastDay || '', known: knownTotal(), lang: store.lang || '',
+  todaySec: secsToday(), day: today(), totalSec: totalSecs() });
 
 function writeDoc(path, body, delay) {
   if (!cloud.ok) return;
@@ -216,6 +286,12 @@ async function onAuth(user) {
       if (d.nick) store.nick = d.nick;
       if (d.lang) store.lang = d.lang;
       if (d.pushLang) store.pushLang = d.pushLang;
+      let cd = {}; try { cd = JSON.parse(d.daysJson || '{}'); } catch (e) {}
+      for (const k in cd) store.days[k] = Math.max(store.days[k] || 0, cd[k] || 0);   // Lernzeit: pro Tag das Maximum
+      if (d.goalMin) store.goalMin = d.goalMin;
+      if (d.goalDate) store.goalDate = d.goalDate;
+      if ((d.doneDay || '') > (store.doneDay || '')) store.doneDay = d.doneDay;
+      try { const nd = JSON.parse(d.newDayJson || 'null'); if (nd && nd.d === today() && (store.newDay.d !== nd.d || nd.n > store.newDay.n)) store.newDay = nd; } catch (e) {}
     }
     if (sc.exists()) {
       const d = sc.data();
@@ -281,7 +357,7 @@ function renderBoard() {
     const av = document.createElement('span'); av.className = 'avatar sm initial'; av.textContent = (r.nick || '?').trim().charAt(0).toUpperCase() || '?';
     const who = document.createElement('div'); who.className = 'who';
     const nm = document.createElement('b'); nm.textContent = (r.nick || 'Robbe ohne Namen') + (r.id === cloud.uid ? ' (du)' : '');
-    const sub = document.createElement('span'); sub.textContent = `${liveStreak(r.streak, r.lastDay)} Tage Serie · ${r.known || 0} gekonnt${r.lang ? ' · ' + r.lang : ''}`;
+    const sub = document.createElement('span'); sub.textContent = `${liveStreak(r.streak, r.lastDay)} Tage Serie · ${r.day === today() ? Math.floor((r.todaySec || 0) / 60) : 0} min heute · ${r.known || 0} gekonnt${r.lang ? ' · ' + r.lang : ''}`;
     who.append(nm, sub);
     const pts = document.createElement('div'); pts.className = 'pts'; pts.innerHTML = `${r.xp || 0}<small>Punkte</small>`;
     li.append(rank, av, who, pts); ul.appendChild(li);
@@ -427,7 +503,8 @@ function renderKey() {
   p.key.forEach(([a, b]) => { const x = document.createElement('b'); x.textContent = a; const y = document.createElement('span'); y.textContent = b; t.append(x, y); });
 }
 function refresh() {
-  renderLangSelect(); renderChips(); renderKey(); renderStage();
+  renderLangSelect(); renderChips(); renderKey(); renderStage(); renderGoal(false);
+  if (!$('viewBoard').hidden) renderGoalPanel();
   if (!$('viewRepeat').hidden) renderRepeat();
   if (!$('viewWords').hidden) renderWords();
   if (!$('viewBoard').hidden) { renderProfile(); renderBoard(); }
@@ -486,6 +563,7 @@ function answer(ok) {
   const first = !item.seen;
   if (first) {
     item.seen = true; firstSeen++; if (ok) firstRight++;
+    if (stateOf(item.c) === 'n') { if (store.newDay.d !== today()) store.newDay = { d: today(), n: 0 }; store.newDay.n++; }
     store.prog[keyOf(item.c)] = ok ? 'k' : 'f';
   }
   const gain = ok ? (first ? 10 : 3) : 1;
@@ -592,8 +670,8 @@ function showTab(t) {
   });
   if (t === 'repeat') renderRepeat();
   if (t === 'words') renderWords();
-  if (t === 'board') { renderProfile(); renderBoard(); }
-  if (t === 'learn') renderChips();
+  if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); }
+  if (t === 'learn') { renderChips(); lastAct = Date.now(); }
 }
 $('tabLearn').onclick = () => showTab('learn');
 $('tabRepeat').onclick = () => showTab('repeat');
@@ -710,4 +788,12 @@ window.addEventListener('online', () => { if (cloud.ok) setSync('ok'); });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 showInstall();
 Object.values(ACTORS).forEach(lifeLoop);
+
+/* ---------- Tagesziel-Timer & Countdown ---------- */
+['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, () => { lastAct = Date.now(); }, { passive: true }));
+const toGoal = () => { showTab('board'); setTimeout(() => $('goalPanel').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }), 50); };
+$('gbTimer').onclick = toGoal; $('gbCount').onclick = toGoal;
+$('goalMin').onchange = () => { store.goalMin = +$('goalMin').value || 30; persist(['user'], 0); renderGoal(false); renderGoalPanel(); };
+$('goalDate').onchange = () => { if ($('goalDate').value) { store.goalDate = $('goalDate').value; persist(['user'], 0); renderGoal(false); renderGoalPanel(); } };
+setInterval(tick, 1000);
 init();
