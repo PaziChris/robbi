@@ -39,6 +39,12 @@ img { max-width: 100%; }
   --greek-blue: #1D5FB4;
   --beard: #4E4239;
   --hair: #2A1C16;
+  --amber: #C2611B;
+  --amber-light: #F2A35A;
+  --amber-dark: #6E300C;
+  --silver: #D3D8DC;
+  --silver-dark: #78828A;
+  --ruby: #B3261E;
   --flower: #F48FB1;
   --lips: #C2185B;
   --hair-shine: #4A3428;
@@ -314,3 +320,8 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 /* Timer-Sekunden und Sprechblase nur in ihrem eigenen Kästchen neu berechnen */
 .gb, .bubble-box { contain: layout paint; }
 .gb b { min-width: 4.2ch; }
+
+/* Robbies Komboloi schwingt ab und zu */
+.seal .komboloi { transform-origin: 50px 59.5px; }
+.seal.wag .komboloi, .seal.wave .komboloi { animation: swing 1.3s ease-in-out; }
+@keyframes swing { 25% { transform: rotate(14deg); } 55% { transform: rotate(-10deg); } 80% { transform: rotate(5deg); } }
