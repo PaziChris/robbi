@@ -179,20 +179,27 @@ function tick() {
   }
   renderGoal(running);
 }
+let progVer = 0, newCache = { key: '', n: 0 };
+function newCount() {                                 // neue Karten zählen – nur wenn sich etwas geändert hat
+  const key = lang + '|' + cards.length + '|' + progVer;
+  if (newCache.key !== key) newCache = { key, n: countMode('new') };
+  return newCache.n;
+}
+const setText = (el, t) => { if (el.textContent !== t) el.textContent = t; };
 function renderGoal(running) {
   const s = secsToday(), goal = store.goalMin * 60, done = s >= goal;
   const box = $('gbTimer');
   box.classList.toggle('done', done); box.classList.toggle('running', running && !done);
   $('gbRing').style.strokeDashoffset = (94.25 * (1 - Math.min(1, s / goal))).toFixed(2);
-  $('gbTime').textContent = done ? 'Heute perfekt!' : fmtClock(goal - s);
-  $('gbTimeSub').textContent = done ? (s - goal >= 1 ? `+${fmtClock(s - goal)} extra` : 'Ziel erreicht') : running ? 'läuft …' : `von ${store.goalMin} min · Pause`;
+  setText($('gbTime'), done ? 'Heute perfekt!' : fmtClock(goal - s));
+  setText($('gbTimeSub'), done ? (s - goal >= 1 ? `+${fmtClock(s - goal)} extra` : 'Ziel erreicht') : running ? 'läuft …' : `von ${store.goalMin} min · Pause`);
   const dl = daysLeft(), cnt = $('gbCount');
-  if (dl === null) { $('gbDays').textContent = '–'; $('gbDaysLabel').textContent = 'Kein Ziel-Datum'; $('gbDaysSub').textContent = 'Tippen zum Einstellen'; return; }
-  if (dl < 0) { $('gbDays').textContent = '✓'; $('gbDaysLabel').textContent = 'Ziel-Datum vorbei'; $('gbDaysSub').textContent = 'Neues Datum setzen'; cnt.classList.remove('urgent'); return; }
-  const nw = countMode('new'), per = Math.ceil(nw / (dl + 1)), todayNew = store.newDay.d === today() ? store.newDay.n : 0;
-  $('gbDays').textContent = dl;
-  $('gbDaysLabel').textContent = dl === 0 ? 'Heute ist der Tag!' : `${dl === 1 ? 'Tag' : 'Tage'} bis ${fmtDate(store.goalDate)}`;
-  $('gbDaysSub').textContent = nw ? `Ziel: ${per} neue/Tag · heute ${todayNew}` : 'Alle Karten gelernt!';
+  if (dl === null) { setText($('gbDays'), '–'); setText($('gbDaysLabel'), 'Kein Ziel-Datum'); setText($('gbDaysSub'), 'Tippen zum Einstellen'); return; }
+  if (dl < 0) { setText($('gbDays'), '✓'); setText($('gbDaysLabel'), 'Ziel-Datum vorbei'); setText($('gbDaysSub'), 'Neues Datum setzen'); cnt.classList.remove('urgent'); return; }
+  const nw = newCount(), per = Math.ceil(nw / (dl + 1)), todayNew = store.newDay.d === today() ? store.newDay.n : 0;
+  setText($('gbDays'), String(dl));
+  setText($('gbDaysLabel'), dl === 0 ? 'Heute ist der Tag!' : `${dl === 1 ? 'Tag' : 'Tage'} bis ${fmtDate(store.goalDate)}`);
+  setText($('gbDaysSub'), nw ? `Ziel: ${per} neue/Tag · heute ${todayNew}` : 'Alle Karten gelernt!');
   cnt.classList.toggle('urgent', dl <= 14);
 }
 function renderGoalPanel() {
@@ -225,7 +232,6 @@ function celebrate() {
 
 /* ---------- Firebase ---------- */
 const cloud = { fb: null, uid: null, email: '', ok: false };
-const timers = {}, chains = {};
 const lk = l => (l.replace(/[^A-Za-z0-9_-]/g, '_') || 'x');
 
 function setSync(kind) {
@@ -246,17 +252,41 @@ const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.la
 const scoreBody = () => ({ nick: store.nick || '', xp: store.xp || 0, streak: store.streak || 0, lastDay: store.lastDay || '', known: knownTotal(), lang: store.lang || '',
   todaySec: secsToday(), day: today(), totalSec: totalSecs() });
 
+/* Sammel-Speichern: Änderungen werden nur vorgemerkt und höchstens alle 20 Sekunden
+   gemeinsam in EINER Anfrage ins Konto geschrieben – bei wichtigen Aktionen und beim
+   Verlassen der App sofort. Unveränderte Daten werden gar nicht erst verschickt.
+   So bleibt die App flüssig, auch wenn viele gleichzeitig lernen. */
+const dirty = new Map();            // Pfad -> Funktion, die den aktuellen Inhalt liefert
+const lastSent = {};                // Pfad -> zuletzt erfolgreich gesendeter Inhalt
+let flushTimer = null, flushAt = 0;
 function writeDoc(path, body, delay) {
   if (!cloud.ok) return;
-  const { F } = cloud.fb;
-  clearTimeout(timers[path]);
-  timers[path] = setTimeout(() => {
-    setSync(navigator.onLine === false ? 'offline' : 'wait');
-    chains[path] = (chains[path] || Promise.resolve())
-      .then(() => F.setDoc(F.doc(cloud.fb.db, path), body(), { merge: true }))
-      .then(() => setSync('ok'))
-      .catch(() => setSync('err'));
-  }, delay == null ? 1200 : delay);
+  dirty.set(path, body);
+  scheduleFlush(delay == null ? 20000 : delay);
+}
+function scheduleFlush(ms) {
+  const at = Date.now() + ms;
+  if (flushTimer && flushAt <= at) return;          // es ist schon früher etwas geplant
+  clearTimeout(flushTimer);
+  flushAt = at; flushTimer = setTimeout(flush, ms);
+}
+function flush() {
+  clearTimeout(flushTimer); flushTimer = null; flushAt = 0;
+  if (!cloud.ok || !dirty.size) return;
+  const { F, db } = cloud.fb;
+  const items = [];
+  for (const [path, body] of dirty) {
+    const data = body(), json = JSON.stringify(data);
+    if (lastSent[path] !== json) items.push({ path, body, data, json });
+  }
+  dirty.clear();
+  if (!items.length) return;
+  setSync(navigator.onLine === false ? 'offline' : 'wait');
+  const batch = F.writeBatch(db);
+  items.forEach(it => batch.set(F.doc(db, it.path), it.data, { merge: true }));
+  batch.commit()
+    .then(() => { items.forEach(it => { lastSent[it.path] = it.json; }); if (!dirty.size) setSync('ok'); })
+    .catch(() => { items.forEach(it => { if (!dirty.has(it.path)) dirty.set(it.path, it.body); }); setSync('err'); scheduleFlush(15000); });
 }
 function persist(what, delay) {
   saveLocalSoon();
@@ -327,7 +357,7 @@ async function onAuth(user) {
       let pr = {}; try { pr = JSON.parse(d.json || '{}'); } catch (e) {}
       for (const k in pr) store.prog[d.lang + SEP + k] = pr[k];
     });
-    cloud.ok = true;
+    cloud.ok = true; progVer++;
     saveLocal();
     const langsWithProg = new Set(Object.keys(store.prog).map(k => k.split(SEP)[0]));
     writeDoc('users/' + cloud.uid, userBody, 200);
@@ -337,7 +367,7 @@ async function onAuth(user) {
   } catch (e) {
     setSync('err');
   }
-  startBoard();
+  if (!$('viewBoard').hidden && !document.hidden) startBoard();
   setupForegroundPush();
   renderProfile();
   if (store.lang && store.lang !== lang && allLangs().includes(store.lang)) loadLang(store.lang);
@@ -364,7 +394,7 @@ function startBoard() {
     snap => { board = snap.docs.map(d => Object.assign({ id: d.id }, d.data())); if (!$('viewBoard').hidden) renderBoard(); },
     () => { $('board').innerHTML = '<li class="empty">Die Rangliste ist gerade nicht erreichbar.</li>'; });
 }
-function stopBoard() { if (boardUnsub) boardUnsub(); boardUnsub = null; board = []; }
+function stopBoard(keep) { if (boardUnsub) boardUnsub(); boardUnsub = null; if (!keep) board = []; }
 function renderBoard() {
   const ul = $('board');
   if (!HAS_FIREBASE) { ul.innerHTML = '<li class="empty">Die Rangliste gibt es, sobald Firebase eingerichtet ist.</li>'; return; }
@@ -586,7 +616,7 @@ function answer(ok) {
   if (first) {
     item.seen = true; firstSeen++; if (ok) firstRight++;
     if (stateOf(item.c) === 'n') { if (store.newDay.d !== today()) store.newDay = { d: today(), n: 0 }; store.newDay.n++; }
-    store.prog[keyOf(item.c)] = ok ? 'k' : 'f';
+    store.prog[keyOf(item.c)] = ok ? 'k' : 'f'; progVer++;
   }
   const gain = ok ? (first ? 10 : 3) : 1;
   store.xp = (store.xp || 0) + gain; sessionXp += gain;
@@ -692,7 +722,7 @@ function showTab(t) {
   });
   if (t === 'repeat') renderRepeat();
   if (t === 'words') renderWords();
-  if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); }
+  if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); startBoard(); } else stopBoard(true);   // Rangliste nur live, solange sie offen ist
   if (t === 'learn') { renderChips(); lastAct = Date.now(); }
 }
 $('tabLearn').onclick = () => showTab('learn');
@@ -710,7 +740,7 @@ $('repKnownBtn').onclick = () => practice('k', '*');
 $('resetBtn').onclick = () => {
   const r = $('resetBtn');
   if (!r.dataset.armed) { r.dataset.armed = 1; r.textContent = 'Wirklich alles vergessen? Nochmal tippen.'; return; }
-  cards.forEach(c => delete store.prog[keyOf(c)]); persist(['prog', 'score'], 0);
+  cards.forEach(c => delete store.prog[keyOf(c)]); progVer++; persist(['prog', 'score'], 0);
   renderRepeat(); renderChips(); setMood('Alles auf Anfang. Los geht\'s!', true, 'bounce');
 };
 
@@ -797,8 +827,11 @@ function showInstall() {
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; showInstall(); });
 $('installBtn').onclick = async () => { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; $('installBar').hidden = true; };
 $('installClose').onclick = () => { lsSet('robbi.installDismissed', true); $('installBar').hidden = true; };
-window.addEventListener('pagehide', saveLocal);
-document.addEventListener('visibilitychange', () => { if (document.hidden) saveLocal(); });
+window.addEventListener('pagehide', () => { saveLocal(); flush(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { saveLocal(); flush(); stopBoard(true); }
+  else if (!$('viewBoard').hidden) startBoard();
+});
 for (const l in ACTORS) ACTORS[l].btn.onclick = () => {
   if (lang === l) return poke(ACTORS[l]);                 // angetippt: zwinkern, winken/Tee, Spruch
   if (!allLangs().includes(l)) return;
