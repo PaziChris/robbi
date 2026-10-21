@@ -1,6 +1,6 @@
 /* Robbi Service Worker: offline-fähig + Push-Nachrichten */
-const CACHE = 'robbi-v3';
-const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'firebase-config.js', 'manifest.webmanifest',
+const CACHE = 'robbi-v5';
+const SHELL = ['./', 'index.html', 'style.css?v=5', 'app.js?v=5', 'firebase-config.js?v=5', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png',
   'sprachen.txt', 'farsi.txt', 'griechisch.txt'];
 
@@ -12,12 +12,13 @@ self.addEventListener('activate', e => {
     .then(() => self.clients.claim()));
 });
 
-/* Eigene Dateien: erst Netz (damit neue Wörter sofort da sind), sonst Cache. Fremde Server: nicht anfassen. */
+/* Eigene Dateien: immer frisch vom Server holen (am Browser-Zwischenspeicher vorbei),
+   damit Seite und Design nie aus verschiedenen Versionen stammen. Offline: Cache. */
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== self.location.origin) return;
   e.respondWith(
-    fetch(e.request).then(res => {
+    fetch(e.request.url, { cache: 'no-cache', credentials: 'same-origin' }).then(res => {
       const copy = res.clone();
       caches.open(CACHE).then(c => c.put(e.request, copy));
       return res;
