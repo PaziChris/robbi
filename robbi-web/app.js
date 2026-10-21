@@ -49,10 +49,20 @@ const PRON = {
     map: { ts: 'z', tz: 'ds', th: 'th', dh: 'dh', gh: 'gh', ch: 'ch', v: 'w', z: 's' },
     key: [['á é í ó ú', 'diese Silbe betonen'], ['ch', 'wie in "Bach", vor e/i wie in "ich"'], ['gh', 'weiches Rachen-g, fast wie ein gehauchtes r'], ['j', 'wie in "ja"'], ['th', 'wie engl. "think"'], ['dh', 'wie engl. "this"'],
       ['z', 'weiches s, wie in "Sonne"'], ['s', 'scharfes s'], ['ts', 'wie deutsches z'], ['tz', 'wie ds'], ['v', 'w'], ['ne / óchi', 'ne = JA, óchi = NEIN!']]
+  },
+  Italienisch: {
+    intro: 'Italienisch spricht man fast so, wie man es schreibt. "Lies etwa" zeigt, wie du es als Deutschsprachige(r) lesen musst.',
+    fn: s => s.toLowerCase().replace(/sch|sci(?=[aou])|sc(?=[eiéèì])|cci(?=[aou])|cc(?=[eiéèì])|ci(?=[aou])|c(?=[eiéèì])|ch|ggi(?=[aou])|gg(?=[eiéèì])|gli(?=[aeouàèòù])|gli|gn|gi(?=[aou])|g(?=[eiéèì])|gh|qu|c|zz|z|v|h/g, m => ({
+      sch: 'sk', sci: 'sch', sc: 'sch', cci: 'ttsch', cc: 'ttsch', ci: 'tsch', c: 'k', ch: 'k', ggi: 'ddsch', gg: 'ddsch',
+      gli: m.length === 3 ? 'lj' : 'lji', gn: 'nj', gi: 'dsch', g: 'dsch', gh: 'g', qu: 'kw', zz: 'ts', z: 'ts', v: 'w', h: '' }[m])),
+    key: [['c vor e/i', 'tsch – ciao = tschao, cena = tschena'], ['c sonst, ch', 'k – casa, che = ke'], ['g vor e/i', 'dsch – gelato = dschelato'], ['gh', 'g – spaghetti'],
+      ['gn', 'nj – bagno = banjo'], ['gli', 'lj – famiglia = familja'], ['sc vor e/i', 'sch – pesce = pesche'], ['sch', 'sk – schiena'], ['z', 'ts oder ds – pizza, zero'],
+      ['v', 'w – vino = wino'], ['h', 'stumm – ho = o'], ['qu', 'kw – quanto'], ['Doppelte', 'länger sprechen – pala ≠ palla'], ['à è ì ò ù', 'hier betonen – città, perché']]
   }
 };
 function readAid(text, l) {
   const p = PRON[l]; if (!p) return '';
+  if (p.fn) { const o = p.fn(text); return o === text.toLowerCase() ? '' : o; }
   let out = text.replace(p.re, m => p.map[m] !== undefined ? p.map[m] : m);
   if (l === 'Griechisch') out = out.replace(/[áéíóú]/g, v => v.toUpperCase());
   return out === text ? '' : out;
@@ -70,7 +80,8 @@ const MODES = [['all', 'Alle'], ['new', 'Neu'], ['f', 'Falsch'], ['k', 'Gekonnt'
 const DIRS = [['d', 'Deutsch → ?'], ['f', '? → Deutsch'], ['m', 'Gemischt']];
 const CHEERS = {
   Farsi: ['Āfarin! (Bravo!)', 'Kheyli khub! (Sehr gut!)', 'Āli-e! (Super!)', 'Damet garm!'],
-  Griechisch: ['Brávo!', 'Polí kalá! (Sehr gut!)', 'Téleia! (Perfekt!)', 'Foveró! (Super!)']
+  Griechisch: ['Brávo!', 'Polí kalá! (Sehr gut!)', 'Téleia! (Perfekt!)', 'Foveró! (Super!)'],
+  Italienisch: ['Bravo!', 'Benissimo! (Sehr gut!)', 'Perfetto! (Perfekt!)', 'Fantastico!']
 };
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
@@ -186,7 +197,7 @@ function renderGoalPanel() {
   $('goalStats').innerHTML = `<span class="x"><b>${Math.floor(secsToday() / 60)}</b>min heute</span><span class="k"><b>${fmtDuration(weekSecs())}</b>diese Woche</span><span class="n"><b>${fmtDuration(totalSecs())}</b>insgesamt</span>`;
 }
 function celebrate() {
-  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce');
+  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce');
   if (reduceMotion) return;
   const colors = ['#1A7A87', '#D2563A', '#E0A526', '#2F8A5B', '#1D5FB4', '#159A93'];
   for (let i = 0; i < 40; i++) {

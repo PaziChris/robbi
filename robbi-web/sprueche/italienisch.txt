@@ -1,0 +1,54 @@
+# Tägliche Sprüche auf Italienisch (Alltagssprache)
+# Format:  Spruch ; deutsche Übersetzung
+# Einfach neue Zeilen dazuschreiben – der Push nimmt jeden Tag einen anderen.
+
+Forza, andiamo! È l'ora dell'italiano! ; Los geht's! Zeit für Italienisch!
+Dai, solo cinque minuti! ; Komm schon, nur fünf Minuten!
+Piano piano, ma ogni giorno! ; Langsam, aber jeden Tag!
+Bravo! Domani di nuovo? ; Bravo! Morgen wieder?
+Non avere paura degli errori! ; Hab keine Angst vor Fehlern!
+Parla, non essere timido! ; Sprich, sei nicht schüchtern!
+Ogni parola conta! ; Jedes Wort zählt!
+Dove sei? Le parole ti cercano! ; Wo bist du? Die Wörter suchen dich!
+Un caffè e un po' d'italiano? ; Ein Espresso und ein bisschen Italienisch?
+Sei una stella! Continua così! ; Du bist ein Star! Mach weiter so!
+Non domani, adesso! ; Nicht morgen – jetzt!
+Domani è tardi, vieni oggi ; Morgen ist zu spät, komm heute.
+Ce la puoi fare! ; Du schaffst das!
+Lascia Netflix, vieni a studiare! ; Lass Netflix, komm lernen!
+Ti manca l'italiano? Vieni! ; Fehlt dir Italienisch? Komm!
+Chi è il migliore? Tu! ; Wer ist der Beste? Du!
+Dieci carte e hai finito! ; Zehn Karten und du bist fertig!
+Chi va piano va sano e va lontano ; Wer langsam geht, kommt sicher und weit. (Sprichwort)
+Non mollare adesso! ; Gib jetzt nicht auf!
+Sveglia, campione! ; Aufwachen, Champion!
+Ciao studente! Pronto? ; Hallo Schüler! Bereit?
+Il divano può aspettare ; Das Sofa kann warten.
+Ci vediamo in cima alla classifica! ; Wir sehen uns an der Spitze der Rangliste!
+Le parole non si imparano da sole! ; Die Wörter lernen sich nicht von allein!
+Fammi vedere cosa sai! ; Zeig mir, was du kannst!
+Oggi è il tuo giorno! ; Heute ist dein Tag!
+Con passione tutto è possibile ; Mit Leidenschaft ist alles möglich.
+Chi impara, vince! ; Wer lernt, gewinnt!
+In bocca al lupo per oggi! ; Viel Glück für heute!
+Ieri ce l'hai fatta, oggi pure! ; Gestern hast du's geschafft, heute auch!
+Nessun errore, solo lezioni ; Keine Fehler, nur Lektionen.
+Dimmi una parola, qualsiasi! ; Sag mir ein Wort, egal welches!
+Un altro giorno, un'altra vittoria! ; Noch ein Tag, noch ein Sieg!
+Sei più bravo di quanto pensi! ; Du bist besser, als du denkst!
+Comincia! ; Fang an!
+L'italiano è dolce come il gelato ; Italienisch ist süß wie Eis.
+Non guardare Instagram... guarda le carte! ; Schau nicht auf Instagram... schau auf die Karten!
+Nessuno nasce imparato ; Niemand wird als Meister geboren. (Sprichwort)
+Andiamo verso il record! ; Auf zum Rekord!
+Come stai? Dillo in italiano! ; Wie geht's dir? Sag es auf Italienisch!
+Un minuto per l'italiano? ; Eine Minute für Italienisch?
+Mamma mia, che bravo che sei! ; Meine Güte, bist du gut!
+Forza e coraggio! ; Kraft und Mut!
+Pizza dopo, italiano adesso! ; Pizza später, Italienisch jetzt!
+Roma non è stata costruita in un giorno ; Rom wurde nicht an einem Tag erbaut. (Sprichwort)
+Volere è potere ; Wo ein Wille ist, ist ein Weg. (Sprichwort)
+Ancora una partita? ; Noch eine Runde?
+Che figata, stai imparando tanto! ; Wie geil, du lernst so viel!
+Dai che ce la fai! ; Komm, du schaffst das!
+Non vedo l'ora di sentirti parlare! ; Ich kann's kaum erwarten, dich sprechen zu hören!

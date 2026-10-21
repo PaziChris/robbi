@@ -1,0 +1,949 @@
+# Italienisch – Vokabeln für den Alltag (so wie man in Italien wirklich spricht)
+#
+# FORMAT:   italienisch ; deutsch ; optionale Notiz
+# Neue Kategorie einfach mit [Name] beginnen. Zeilen mit # werden ignoriert.
+#
+# AUSSPRACHE (Italienisch spricht man fast so, wie man es schreibt):
+#   c vor e/i  = tsch (ciao = tschao, cena = tschena)     c sonst = k (casa)
+#   ch         = k (che = ke, chiave = kjawe)
+#   g vor e/i  = dsch (gelato = dschelato)                g sonst = g (gatto)
+#   gh         = g (spaghetti)
+#   gn         = nj (bagno = banjo)                       gli = lj (famiglia = familja)
+#   sc vor e/i = sch (pesce = pesche)                     sch = sk (schiena = skjena)
+#   z          = ts oder ds (pizza = pitsa, zero = dsero)
+#   v          = w (vino = wino)                          h  = stumm (ho = o)
+#   qu         = kw (quanto = kwanto)
+#   Doppelkonsonanten länger sprechen: pala (Schaufel) ≠ palla (Ball)
+#   Akzent auf dem letzten Buchstaben (à è ì ò ù) = dort betonen: città, perché
+#   Bei Verben steht vorne: Infinitiv – ich-Form
+
+[Begrüßung]
+ciao ; Hallo / Tschüss ; locker, unter Freunden
+salve ; Hallo ; neutral, auch zu Fremden
+buongiorno ; Guten Morgen / Guten Tag ; bis etwa 14 Uhr
+buon pomeriggio ; Guten Nachmittag
+buonasera ; Guten Abend ; ab dem Nachmittag
+buonanotte ; Gute Nacht ; beim Schlafengehen
+arrivederci ; Auf Wiedersehen
+arrivederLa ; Auf Wiedersehen ; sehr höflich
+a dopo ; Bis später
+a presto ; Bis bald
+a domani ; Bis morgen
+ci vediamo ; Wir sehen uns
+ci sentiamo ; Wir hören uns ; am Telefon oder per Nachricht
+come stai? ; Wie geht's dir?
+come sta? ; Wie geht es Ihnen? ; höflich
+come va? ; Wie läuft's?
+tutto bene? ; Alles gut?
+bene, grazie. E tu? ; Gut, danke. Und du?
+benissimo! ; Sehr gut!
+non c'è male ; Nicht schlecht
+così così ; So lala
+abbastanza bene ; Ganz gut
+che si dice? ; Was gibt's Neues? ; locker
+niente di nuovo ; Nichts Neues
+come ti chiami? ; Wie heißt du?
+come si chiama? ; Wie heißen Sie?
+mi chiamo Lisa ; Ich heiße Lisa
+piacere! ; Freut mich!
+piacere mio ; Ganz meinerseits
+di dove sei? ; Woher kommst du?
+sono austriaco ; Ich bin Österreicher ; Frau: sono austriaca
+vengo dall'Austria ; Ich komme aus Österreich
+quanti anni hai? ; Wie alt bist du?
+ho venticinque anni ; Ich bin 25 Jahre alt ; wörtlich: ich habe 25 Jahre
+che lavoro fai? ; Was machst du beruflich?
+benvenuto! ; Willkommen! ; zu einer Frau: benvenuta, mehrere: benvenuti
+quanto tempo! ; Lange nicht gesehen!
+che piacere vederti! ; Schön, dich zu sehen!
+salutami la tua famiglia ; Grüß deine Familie von mir
+pronto? ; Hallo? ; am Telefon
+dove sei? ; Wo bist du? ; am Telefon
+
+[Höflichkeit]
+grazie ; Danke
+grazie mille ; Tausend Dank
+grazie tante ; Vielen Dank
+prego ; Bitte / Gern geschehen
+per favore ; Bitte (wenn man um etwas bittet)
+per piacere ; Bitte ; gleich wie per favore
+di niente ; Keine Ursache
+non c'è di che ; Keine Ursache
+scusa ; Entschuldigung ; zu einer Person, locker
+scusi ; Entschuldigen Sie ; höflich
+mi scusi ; Verzeihen Sie
+mi dispiace ; Es tut mir leid
+non fa niente ; Macht nichts
+non importa ; Ist egal / Macht nichts
+permesso? ; Darf ich? ; beim Eintreten oder Vorbeigehen
+posso? ; Darf ich?
+certo! ; Natürlich!
+con piacere ; Gerne
+volentieri ; Gerne
+buon appetito! ; Guten Appetit!
+cin cin! ; Prost!
+salute! ; Gesundheit! / Prost!
+buon viaggio ; Gute Reise
+buona giornata ; Schönen Tag noch
+buona serata ; Schönen Abend noch
+buon fine settimana ; Schönes Wochenende
+buon lavoro ; Gutes Arbeiten
+in bocca al lupo! ; Viel Glück! ; wörtlich: ins Maul des Wolfes – Antwort: crepi!
+crepi! ; Danke! (Antwort auf in bocca al lupo)
+auguri! ; Herzlichen Glückwunsch! / Alles Gute!
+buon compleanno! ; Alles Gute zum Geburtstag!
+buon Natale! ; Frohe Weihnachten!
+buona Pasqua! ; Frohe Ostern!
+buon anno! ; Frohes neues Jahr!
+congratulazioni! ; Gratulation!
+signore ; Herr ; Anrede: Signor Rossi
+signora ; Frau ; Anrede
+signorina ; Fräulein ; eher altmodisch
+mi raccomando ; Pass bitte auf / Denk dran ; sehr häufig
+gentilissimo ; sehr freundlich ; Dank: grazie, gentilissimo!
+
+[Wichtige Wörter]
+sì ; Ja
+no ; Nein
+va bene ; Okay / In Ordnung
+okay ; Okay ; auch in Italien sehr häufig
+d'accordo ; Einverstanden
+forse ; Vielleicht
+certo ; Sicher / Natürlich
+sicuro ; Sicher
+esatto ; Genau
+giusto ; Richtig
+davvero? ; Wirklich?
+sul serio? ; Im Ernst?
+ah, ecco ; Ach so
+allora ; Also / Dann ; Füllwort, extrem häufig
+dai! ; Komm schon! ; sehr häufig
+boh ; Keine Ahnung ; mit Schulterzucken
+beh ; Na ja
+magari ; Schön wär's / Vielleicht
+qui ; hier
+qua ; hier
+lì ; dort
+là ; dort
+questo ; das hier (dieses)
+quello ; das dort (jenes)
+adesso ; jetzt
+ora ; jetzt
+subito ; sofort
+dopo ; danach / später
+prima ; vorher / zuerst
+sempre ; immer
+mai ; nie
+a volte ; manchmal
+spesso ; oft
+molto ; sehr / viel
+poco ; wenig
+un po' ; ein bisschen
+troppo ; zu viel
+tutti ; alle
+tutto ; alles
+niente ; nichts
+qualcosa ; etwas
+qualcuno ; jemand
+anche ; auch
+solo ; nur
+ancora ; noch / wieder
+già ; schon
+e ; und
+o ; oder
+ma ; aber
+perché ; weil / warum
+se ; wenn / falls
+con ; mit
+senza ; ohne
+per ; für
+da ; von / bei / seit
+di ; von
+in ; in
+a ; zu / in / nach
+
+[Fragen]
+che cosa? ; Was?
+cosa? ; Was? ; locker
+chi? ; Wer?
+dove? ; Wo?
+quando? ; Wann?
+perché? ; Warum?
+come? ; Wie?
+quanto? ; Wie viel?
+quanti? ; Wie viele?
+quale? ; Welche(r)?
+da dove? ; Woher?
+cos'è questo? ; Was ist das?
+quanto costa? ; Wie viel kostet das?
+che ore sono? ; Wie spät ist es?
+dove vai? ; Wohin gehst du?
+cosa fai? ; Was machst du (gerade)?
+cosa è successo? ; Was ist passiert?
+cosa vuoi? ; Was willst du?
+cosa hai detto? ; Was hast du gesagt?
+chi è? ; Wer ist das?
+quando vieni? ; Wann kommst du?
+perché non sei venuto? ; Warum bist du nicht gekommen?
+posso farti una domanda? ; Darf ich dir eine Frage stellen?
+parli italiano? ; Sprichst du Italienisch?
+parli inglese? ; Sprichst du Englisch?
+parli tedesco? ; Sprichst du Deutsch?
+come si dice in italiano? ; Wie sagt man das auf Italienisch?
+cosa vuol dire "..."? ; Was bedeutet "..."?
+mi puoi aiutare? ; Kannst du mir helfen?
+l'ho detto bene? ; Habe ich das richtig gesagt?
+sei pronto? ; Bist du bereit? ; zu einer Frau: sei pronta?
+hai fame? ; Hast du Hunger?
+hai sete? ; Hast du Durst?
+sei stanco? ; Bist du müde? ; zu einer Frau: sei stanca?
+hai tempo? ; Hast du Zeit?
+cosa ti piace? ; Was magst du?
+dove abiti? ; Wo wohnst du?
+stai bene? ; Geht's dir gut?
+sei sicuro? ; Bist du sicher? ; zu einer Frau: sei sicura?
+che ne pensi? ; Was meinst du dazu?
+
+[Verständigung]
+sto imparando l'italiano ; Ich lerne Italienisch
+parlo un po' d'italiano ; Ich spreche ein bisschen Italienisch
+il mio italiano non è buono ; Mein Italienisch ist nicht gut
+non capisco ; Ich verstehe nicht
+ho capito ; Ich habe verstanden
+hai capito? ; Hast du verstanden?
+più piano, per favore ; Langsamer, bitte
+puoi ripetere? ; Kannst du das wiederholen?
+come, scusa? ; Wie bitte?
+non lo so ; Ich weiß es nicht
+non mi ricordo ; Ich erinnere mich nicht
+me lo sono dimenticato ; Ich hab's vergessen
+ah sì, mi ricordo ; Ah ja, jetzt fällt's mir ein
+come si dice "..."? ; Wie sagt man "..."?
+me lo scrivi? ; Schreibst du es mir auf?
+ho sbagliato ; Ich habe einen Fehler gemacht
+nessun problema ; Kein Problem
+parla con me in italiano ; Sprich Italienisch mit mir
+cosa intendi? ; Was meinst du?
+non ho capito bene ; Ich habe es nicht ganz verstanden
+
+[Familie]
+la famiglia ; die Familie
+la madre ; die Mutter
+la mamma ; die Mama
+il padre ; der Vater
+il papà ; der Papa
+il fratello ; der Bruder
+la sorella ; die Schwester
+il figlio ; der Sohn
+la figlia ; die Tochter
+il bambino ; das Kind (Junge) ; Mädchen: la bambina
+i bambini ; die Kinder
+il nonno ; der Opa
+la nonna ; die Oma
+lo zio ; der Onkel
+la zia ; die Tante
+il cugino ; der Cousin ; Cousine: la cugina
+il marito ; der Ehemann
+la moglie ; die Ehefrau
+il ragazzo ; der Junge / der Freund (Beziehung)
+la ragazza ; das Mädchen / die Freundin (Beziehung)
+il fidanzato ; der Verlobte / feste Freund
+la fidanzata ; die Verlobte / feste Freundin
+sono sposato ; Ich bin verheiratet ; Frau: sposata
+sono single ; Ich bin Single
+ho due fratelli ; Ich habe zwei Brüder ; auch: Geschwister
+ho una sorella ; Ich habe eine Schwester
+hai figli? ; Hast du Kinder?
+mia madre è medico ; Meine Mutter ist Ärztin
+i parenti ; die Verwandten
+i genitori ; die Eltern
+
+[Personen]
+io ; ich
+tu ; du
+lui ; er
+lei ; sie / Sie (höflich)
+noi ; wir
+voi ; ihr
+loro ; sie (Mehrzahl)
+la persona ; die Person
+l'uomo ; der Mann
+la donna ; die Frau
+l'amico ; der Freund ; Freundin: l'amica
+il vicino ; der Nachbar ; Nachbarin: la vicina
+il collega ; der Kollege ; Kollegin: la collega
+l'ospite ; der Gast
+l'insegnante ; der Lehrer / die Lehrerin
+il medico ; der Arzt
+lo studente ; der Student ; Studentin: la studentessa
+la gente ; die Leute
+è una brava persona ; Er/Sie ist ein guter Mensch
+
+[Gefühle]
+sono felice ; Ich bin glücklich
+sono contento ; Ich freue mich ; Frau: contenta
+sono triste ; Ich bin traurig
+non essere triste ; Sei nicht traurig
+non ti preoccupare ; Mach dir keine Sorgen
+sono preoccupato ; Ich mache mir Sorgen ; Frau: preoccupata
+sono stanco ; Ich bin müde ; Frau: stanca
+sono arrabbiato ; Ich bin wütend ; Frau: arrabbiata
+ho paura ; Ich habe Angst
+mi annoio ; Mir ist langweilig
+mi manchi ; Ich vermisse dich ; wörtlich: du fehlst mir
+mi piace ; Es gefällt mir
+non mi piace ; Es gefällt mir nicht
+lo adoro ; Ich liebe es
+non ne ho voglia ; Ich habe keine Lust darauf
+che noia! ; Wie langweilig!
+sto morendo dal ridere ; Ich sterbe vor Lachen
+calmati ; Beruhige dich
+sono emozionato ; Ich bin aufgeregt ; Frau: emozionata
+che vergogna ; Wie peinlich
+sono malato ; Ich bin krank ; Frau: malata
+ho freddo ; Mir ist kalt
+ho caldo ; Mir ist warm / heiß
+ho fame ; Ich habe Hunger
+ho sete ; Ich habe Durst
+sono pieno ; Ich bin satt ; Frau: piena
+ho sonno ; Ich bin schläfrig
+sono stressato ; Ich bin gestresst ; Frau: stressata
+ho voglia di ... ; Ich hätte Lust auf ... ; z.B. ho voglia di pizza
+sono innamorato ; Ich bin verliebt ; Frau: innamorata
+
+[Zeit]
+oggi ; heute
+domani ; morgen
+ieri ; gestern
+dopodomani ; übermorgen
+l'altro ieri ; vorgestern
+la mattina ; der Morgen / morgens
+il mezzogiorno ; der Mittag
+il pomeriggio ; der Nachmittag
+la sera ; der Abend
+la notte ; die Nacht
+stasera ; heute Abend
+ieri sera ; gestern Abend
+la settimana ; die Woche
+questa settimana ; diese Woche
+la settimana prossima ; nächste Woche
+il fine settimana ; das Wochenende ; auch: il weekend
+il mese ; der Monat
+l'anno ; das Jahr
+l'anno scorso ; letztes Jahr
+quest'anno ; dieses Jahr
+l'ora ; die Stunde / Uhrzeit
+il minuto ; die Minute
+presto ; früh / bald
+tardi ; spät
+lunedì ; Montag
+martedì ; Dienstag
+mercoledì ; Mittwoch
+giovedì ; Donnerstag
+venerdì ; Freitag
+sabato ; Samstag
+domenica ; Sonntag
+sono le tre ; Es ist drei Uhr
+sono le due e mezza ; Es ist halb drei
+è l'una ; Es ist ein Uhr
+e un quarto ; Viertel nach
+meno un quarto ; Viertel vor
+si è fatto tardi ; Es ist spät geworden
+non ho tempo ; Ich habe keine Zeit
+ho fretta ; Ich habe es eilig
+la primavera ; der Frühling
+l'estate ; der Sommer
+l'autunno ; der Herbst
+l'inverno ; der Winter
+
+[Zahlen]
+zero ; null
+uno ; eins
+due ; zwei
+tre ; drei
+quattro ; vier
+cinque ; fünf
+sei ; sechs
+sette ; sieben
+otto ; acht
+nove ; neun
+dieci ; zehn
+undici ; elf
+dodici ; zwölf
+tredici ; dreizehn
+quattordici ; vierzehn
+quindici ; fünfzehn
+sedici ; sechzehn
+diciassette ; siebzehn
+diciotto ; achtzehn
+diciannove ; neunzehn
+venti ; zwanzig
+ventuno ; einundzwanzig
+trenta ; dreißig
+quaranta ; vierzig
+cinquanta ; fünfzig
+sessanta ; sechzig
+settanta ; siebzig
+ottanta ; achtzig
+novanta ; neunzig
+cento ; hundert
+duecento ; zweihundert
+mille ; tausend
+duemila ; zweitausend
+un milione ; eine Million
+mezzo ; halb
+primo ; erste(r)
+secondo ; zweite(r)
+terzo ; dritte(r)
+
+[Farben]
+il colore ; die Farbe
+rosso ; rot
+blu ; blau
+azzurro ; hellblau
+verde ; grün
+giallo ; gelb
+nero ; schwarz
+bianco ; weiß
+arancione ; orange
+viola ; lila
+rosa ; rosa
+marrone ; braun
+grigio ; grau
+oro ; golden
+argento ; silbern
+scuro ; dunkel
+chiaro ; hell
+qual è il tuo colore preferito? ; Was ist deine Lieblingsfarbe?
+
+[Essen]
+il cibo ; das Essen
+la colazione ; das Frühstück
+il pranzo ; das Mittagessen
+la cena ; das Abendessen
+il pane ; das Brot
+la pasta ; die Nudeln
+il riso ; der Reis
+la pizza ; die Pizza
+il risotto ; das Risotto
+la carne ; das Fleisch
+il pollo ; das Huhn
+il pesce ; der Fisch
+il prosciutto ; der Schinken
+l'uovo ; das Ei ; Mehrzahl: le uova
+il formaggio ; der Käse
+la mozzarella ; der Mozzarella
+il parmigiano ; der Parmesan
+lo yogurt ; der Joghurt
+il latte ; die Milch
+il burro ; die Butter
+il miele ; der Honig
+la marmellata ; die Marmelade
+l'olio d'oliva ; das Olivenöl
+l'insalata ; der Salat
+il pomodoro ; die Tomate
+il cetriolo ; die Gurke
+la patata ; die Kartoffel
+la cipolla ; die Zwiebel
+l'aglio ; der Knoblauch
+la verdura ; das Gemüse
+la frutta ; das Obst
+la mela ; der Apfel
+l'arancia ; die Orange
+la banana ; die Banane
+l'uva ; die Trauben
+l'anguria ; die Wassermelone
+il limone ; die Zitrone
+la fragola ; die Erdbeere
+il sale ; das Salz
+il pepe ; der Pfeffer
+lo zucchero ; der Zucker
+l'acqua ; das Wasser
+acqua naturale ; stilles Wasser
+acqua frizzante ; Sprudelwasser
+il caffè ; der Kaffee ; in Italien = Espresso
+il cappuccino ; der Cappuccino ; Italiener trinken ihn nur am Vormittag
+il tè ; der Tee
+il succo ; der Saft
+il vino ; der Wein
+la birra ; das Bier
+il dolce ; die Süßspeise / das Dessert
+il gelato ; das Eis
+la torta ; der Kuchen
+il cornetto ; das Croissant
+buonissimo! ; Sehr lecker!
+piccante ; scharf
+dolce ; süß
+salato ; salzig
+acido ; sauer
+sono pieno, grazie ; Ich bin satt, danke
+ne vuoi ancora un po'? ; Willst du noch ein bisschen?
+no grazie, non ce la faccio più ; Nein danke, ich kann nicht mehr
+non mangio carne ; Ich esse kein Fleisch
+sono vegetariano ; Ich bin Vegetarier ; Frau: vegetariana
+cucini benissimo ; Du kochst super
+cosa cuciniamo? ; Was kochen wir?
+cosa c'è per cena? ; Was gibt's zum Abendessen?
+facciamo una pausa caffè? ; Machen wir eine Kaffeepause?
+
+[Restaurant]
+il ristorante ; das Restaurant
+la trattoria ; einfaches Restaurant / Gasthaus
+il bar ; die Bar / das Café ; dort trinkt man Kaffee
+il menù, per favore ; Die Karte, bitte
+un tavolo per due ; Einen Tisch für zwei
+cosa mi consiglia? ; Was empfehlen Sie mir?
+vorrei ... ; Ich hätte gern ...
+prendo ... ; Ich nehme ...
+un caffè, per favore ; Einen Espresso, bitte
+un bicchiere d'acqua ; Ein Glas Wasser
+un bicchiere di vino rosso ; Ein Glas Rotwein
+senza carne ; ohne Fleisch
+non troppo piccante ; nicht zu scharf
+il conto, per favore ; Die Rechnung, bitte
+quanto le devo? ; Was bin ich Ihnen schuldig?
+posso pagare con la carta? ; Kann ich mit Karte zahlen?
+questo non è mio ; Das ist nicht meins
+era buonissimo ; Es war sehr lecker
+il cameriere ; der Kellner ; Kellnerin: la cameriera
+il cucchiaio ; der Löffel
+la forchetta ; die Gabel
+il coltello ; das Messer
+il piatto ; der Teller
+il bicchiere ; das Glas
+la tazza ; die Tasse
+la prenotazione ; die Reservierung
+ho prenotato ; Ich habe reserviert
+il coperto ; das Gedeck ; steht oft extra auf der Rechnung
+la mancia ; das Trinkgeld
+
+[Einkaufen]
+fare la spesa ; einkaufen (Lebensmittel)
+fare shopping ; shoppen gehen
+il negozio ; das Geschäft
+il supermercato ; der Supermarkt
+il mercato ; der Markt
+il panificio ; die Bäckerei
+la farmacia ; die Apotheke
+i soldi ; das Geld
+l'euro ; der Euro
+caro ; teuer
+economico ; billig / günstig
+lo sconto ; der Rabatt
+è troppo caro! ; Das ist zu teuer!
+ha qualcosa di più economico? ; Haben Sie etwas Günstigeres?
+mi fa uno sconto? ; Geben Sie mir Rabatt?
+sto solo guardando ; Ich schaue nur
+vorrei questo ; Ich hätte gern das hier
+un chilo ; ein Kilo
+mezzo chilo ; ein halbes Kilo
+un etto ; 100 Gramm ; sehr gebräuchlich beim Einkaufen
+avete una taglia più grande? ; Haben Sie eine größere Größe?
+posso provarlo? ; Kann ich es anprobieren?
+il sacchetto ; die Tüte
+è aperto? ; Ist offen?
+aperto ; offen
+chiuso ; geschlossen
+è rotto ; Es ist kaputt
+lo scontrino ; der Kassenbon
+il resto ; das Wechselgeld
+
+[Unterwegs]
+la strada ; die Straße
+la via ; die Straße (in Adressen)
+la piazza ; der Platz
+a sinistra ; links
+a destra ; rechts
+dritto ; geradeaus
+vicino ; nah
+lontano ; weit
+dietro ; hinter
+davanti ; vor (räumlich)
+accanto ; neben
+sopra ; oben
+sotto ; unten
+dentro ; drinnen
+fuori ; draußen
+la macchina ; das Auto
+l'autobus ; der Bus
+la metro ; die U-Bahn
+il taxi ; das Taxi
+il treno ; der Zug
+l'aereo ; das Flugzeug
+l'aeroporto ; der Flughafen
+la fermata ; die Haltestelle
+la stazione ; der Bahnhof
+il biglietto ; die Fahrkarte / das Ticket
+la nave ; das Schiff
+il traghetto ; die Fähre
+il porto ; der Hafen
+l'albergo ; das Hotel ; auch: l'hotel
+l'indirizzo ; die Adresse
+la mappa ; der Stadtplan
+dov'è ...? ; Wo ist ...?
+dov'è la stazione? ; Wo ist der Bahnhof?
+dov'è il bagno? ; Wo ist die Toilette?
+come arrivo a ...? ; Wie komme ich zu ...?
+è lontano? ; Ist es weit?
+ci si arriva a piedi? ; Kann man zu Fuß hingehen?
+vai dritto, poi a sinistra ; Geh geradeaus, dann links
+si fermi qui, per favore ; Halten Sie hier, bitte
+mi sono perso ; Ich habe mich verlaufen ; Frau: mi sono persa
+andiamo! ; Gehen wir! / Los!
+quanto ci vuole? ; Wie lange dauert es?
+sto arrivando ; Ich bin unterwegs / Ich komme gleich
+sono arrivato ; Ich bin angekommen ; Frau: arrivata
+un biglietto per Roma ; Eine Fahrkarte nach Rom
+andata e ritorno ; Hin und zurück
+
+[Zuhause]
+la casa ; das Haus / Zuhause
+l'appartamento ; die Wohnung
+la stanza ; das Zimmer
+la cucina ; die Küche
+il bagno ; das Bad / die Toilette
+la camera da letto ; das Schlafzimmer
+il soggiorno ; das Wohnzimmer
+la porta ; die Tür
+la finestra ; das Fenster
+il tavolo ; der Tisch
+la sedia ; der Stuhl
+il letto ; das Bett
+il divano ; das Sofa
+il frigorifero ; der Kühlschrank ; kurz: il frigo
+la luce ; das Licht
+la chiave ; der Schlüssel
+il cellulare ; das Handy ; auch: il telefonino
+la televisione ; der Fernseher ; kurz: la tv
+il tappeto ; der Teppich
+entra! ; Komm rein!
+casa tua è bellissima ; Deine Wohnung ist wunderschön
+abito a Vienna ; Ich wohne in Wien
+abito qui vicino ; Ich wohne hier in der Nähe
+spegni la luce ; Mach das Licht aus
+accendi la luce ; Mach das Licht an
+chiudi la porta ; Mach die Tür zu
+apri la finestra ; Mach das Fenster auf
+sono a casa ; Ich bin zu Hause
+sto tornando a casa ; Ich komme nach Hause
+
+[Körper & Gesundheit]
+la testa ; der Kopf
+i capelli ; die Haare
+la faccia ; das Gesicht
+l'occhio ; das Auge ; Mehrzahl: gli occhi
+l'orecchio ; das Ohr
+il naso ; die Nase
+la bocca ; der Mund
+il dente ; der Zahn
+la mano ; die Hand ; Mehrzahl: le mani
+il braccio ; der Arm ; Mehrzahl: le braccia
+la gamba ; das Bein
+il piede ; der Fuß
+la pancia ; der Bauch
+il cuore ; das Herz
+la schiena ; der Rücken
+il collo ; der Hals
+ho mal di testa ; Ich habe Kopfschmerzen
+ho mal di pancia ; Ich habe Bauchweh
+ho la febbre ; Ich habe Fieber
+ho il raffreddore ; Ich bin erkältet
+la medicina ; das Medikament
+ho bisogno di un medico ; Ich brauche einen Arzt
+l'ospedale ; das Krankenhaus
+aiuto! ; Hilfe!
+l'ambulanza ; der Krankenwagen
+non mi sento bene ; Mir geht es nicht gut
+stai meglio? ; Geht es dir besser?
+devi riposarti ; Du musst dich ausruhen
+guarisci presto! ; Gute Besserung!
+sono allergico ; Ich bin allergisch ; Frau: allergica
+
+[Wetter & Natur]
+il tempo ; das Wetter / die Zeit
+che tempo fa? ; Wie ist das Wetter?
+fa bel tempo ; Das Wetter ist schön
+fa freddo ; Es ist kalt
+fa caldo ; Es ist heiß
+piove ; Es regnet
+nevica ; Es schneit
+c'è il sole ; Die Sonne scheint
+è nuvoloso ; Es ist bewölkt
+c'è vento ; Es ist windig
+il sole ; die Sonne
+la luna ; der Mond
+la stella ; der Stern
+il cielo ; der Himmel
+il mare ; das Meer
+la montagna ; der Berg
+il bosco ; der Wald
+l'albero ; der Baum
+il fiore ; die Blume
+il fiume ; der Fluss
+la spiaggia ; der Strand
+il lago ; der See
+l'isola ; die Insel
+l'animale ; das Tier
+il cane ; der Hund
+il gatto ; die Katze
+l'uccello ; der Vogel
+il cavallo ; das Pferd
+la foca ; die Robbe ; wie Robbie!
+la scimmia ; der Affe ; wie Arzi!
+
+[Arbeit & Schule]
+il lavoro ; die Arbeit
+lavoro ; Ich arbeite
+sono al lavoro ; Ich bin bei der Arbeit
+l'ufficio ; das Büro
+l'azienda ; die Firma
+il capo ; der Chef
+lo stipendio ; das Gehalt
+la scuola ; die Schule
+l'università ; die Universität
+la classe ; die Klasse
+la lezione ; der Unterricht / die Lektion
+studio ; Ich lerne / studiere
+l'esame ; die Prüfung
+il libro ; das Buch
+il quaderno ; das Heft
+la penna ; der Kugelschreiber
+il computer ; der Computer
+ho una riunione ; Ich habe eine Besprechung
+è festa ; Es ist Feiertag
+le ferie ; der Urlaub (vom Job)
+le vacanze ; die Ferien / der Urlaub
+il viaggio ; die Reise
+
+[Verben]
+andare – vado ; gehen – ich gehe ; vai (du), va (er/sie) · sono andato (ich bin gegangen)
+venire – vengo ; kommen – ich komme ; vieni, viene · sono venuto
+mangiare – mangio ; essen – ich esse ; mangi, mangia · ho mangiato
+bere – bevo ; trinken – ich trinke ; bevi, beve · ho bevuto
+vedere – vedo ; sehen – ich sehe ; vedi, vede · ho visto
+dire – dico ; sagen – ich sage ; dici, dice · ho detto
+parlare – parlo ; sprechen – ich spreche ; parli, parla · ho parlato
+sentire – sento ; hören / fühlen – ich höre ; senti, sente · ho sentito
+sapere – so ; wissen – ich weiß ; sai, sa · non lo so = ich weiß es nicht
+potere – posso ; können / dürfen – ich kann ; puoi, può
+volere – voglio ; wollen – ich will ; vuoi, vuole · vorrei = ich möchte
+avere – ho ; haben – ich habe ; hai, ha · h ist stumm: o, ai, a
+essere – sono ; sein – ich bin ; sei (du), è (er/sie) · ero (ich war)
+diventare – divento ; werden – ich werde ; sono diventato
+fare – faccio ; machen – ich mache ; fai, fa · ho fatto
+dare – do ; geben – ich gebe ; dai, dà · ho dato
+prendere – prendo ; nehmen – ich nehme ; prendi, prende · ho preso
+portare – porto ; bringen / tragen – ich bringe ; ho portato
+scrivere – scrivo ; schreiben – ich schreibe ; ho scritto
+leggere – leggo ; lesen – ich lese ; ho letto
+capire – capisco ; verstehen – ich verstehe ; capisci, capisce · ho capito
+chiedere – chiedo ; fragen – ich frage ; ho chiesto
+rispondere – rispondo ; antworten – ich antworte ; ho risposto
+comprare – compro ; kaufen – ich kaufe ; ho comprato
+vendere – vendo ; verkaufen – ich verkaufe ; ho venduto
+cucinare – cucino ; kochen – ich koche ; ho cucinato
+dormire – dormo ; schlafen – ich schlafe ; ho dormito
+svegliarsi – mi sveglio ; aufwachen – ich wache auf ; mi sono svegliato
+sedersi – mi siedo ; sich setzen – ich setze mich ; siediti! = setz dich!
+aspettare – aspetto ; warten – ich warte ; aspetta! = warte!
+aprire – apro ; öffnen – ich öffne ; ho aperto
+chiudere – chiudo ; schließen – ich schließe ; ho chiuso
+cercare – cerco ; suchen – ich suche ; ho cercato
+trovare – trovo ; finden – ich finde ; ho trovato
+pensare – penso ; denken – ich denke ; penso di sì = ich glaube schon
+amare – amo ; lieben – ich liebe ; ti amo = ich liebe dich
+piacere – mi piace ; gefallen – es gefällt mir ; mi piacciono = sie gefallen mir
+abitare – abito ; wohnen – ich wohne ; ho abitato
+vivere – vivo ; leben – ich lebe ; ho vissuto
+imparare – imparo ; lernen – ich lerne ; ho imparato
+insegnare – insegno ; unterrichten – ich unterrichte ; ho insegnato
+giocare – gioco ; spielen – ich spiele ; ho giocato
+correre – corro ; rennen – ich renne ; ho corso
+camminare – cammino ; zu Fuß gehen – ich gehe ; ho camminato
+guardare – guardo ; anschauen – ich schaue an ; ho guardato
+ascoltare – ascolto ; zuhören – ich höre zu ; ho ascoltato
+aiutare – aiuto ; helfen – ich helfe ; ho aiutato
+chiamare – chiamo ; anrufen / rufen – ich rufe an ; ho chiamato
+mandare – mando ; schicken – ich schicke ; ho mandato
+pagare – pago ; bezahlen – ich bezahle ; ho pagato
+lavare – lavo ; waschen – ich wasche ; ho lavato
+mettersi – mi metto ; anziehen – ich ziehe an ; mi sono messo
+piangere – piango ; weinen – ich weine ; ho pianto
+ridere – rido ; lachen – ich lache ; ho riso
+ballare – ballo ; tanzen – ich tanze ; ho ballato
+cominciare – comincio ; anfangen – ich fange an ; ho cominciato
+finire – finisco ; beenden – ich beende ; ho finito
+restare – resto ; bleiben – ich bleibe ; sono restato
+arrivare – arrivo ; ankommen – ich komme an ; sono arrivato
+tornare – torno ; zurückkommen – ich komme zurück ; sono tornato
+uscire – esco ; ausgehen – ich gehe raus ; sono uscito
+nuotare – nuoto ; schwimmen – ich schwimme ; ho nuotato
+guidare – guido ; fahren (Auto) – ich fahre ; ho guidato
+dimenticare – dimentico ; vergessen – ich vergesse ; ho dimenticato
+ricordare – ricordo ; sich erinnern – ich erinnere mich ; mi ricordo = ich weiß noch
+dovere – devo ; müssen – ich muss ; devi, deve
+
+[Befehle]
+vai! ; Geh!
+vieni! ; Komm!
+vieni qui ; Komm her
+siediti ; Setz dich
+aspetta! ; Warte!
+dimmi ; Sag mal / Sag mir
+mangia! ; Iss!
+guarda! ; Schau!
+senti! ; Hör mal!
+ascolta ; Hör zu
+dammi ; Gib mir
+dai, andiamo! ; Komm, gehen wir!
+sbrigati! ; Beeil dich!
+piano piano ; Langsam, langsam / Schritt für Schritt
+attenzione! ; Achtung!
+stai attento! ; Pass auf! ; zu einer Frau: stai attenta!
+lascia stare ; Lass es / Vergiss es
+chiamami ; Ruf mich an
+scrivimi ; Schreib mir
+dormi bene ; Schlaf gut
+basta! ; Genug! / Hör auf!
+aiutami ; Hilf mir
+fermati! ; Halt an! / Bleib stehen!
+smettila! ; Hör auf damit!
+
+[Adjektive]
+buono ; gut
+cattivo ; schlecht / böse
+grande ; groß
+piccolo ; klein
+bello ; schön
+brutto ; hässlich
+nuovo ; neu
+vecchio ; alt
+giovane ; jung
+caldo ; warm
+freddo ; kalt
+facile ; einfach
+difficile ; schwierig
+pesante ; schwer (Gewicht)
+leggero ; leicht (Gewicht)
+veloce ; schnell
+lento ; langsam
+intelligente ; klug
+divertente ; lustig
+simpatico ; sympathisch / nett
+gentile ; freundlich
+carino ; süß / hübsch
+interessante ; interessant
+noioso ; langweilig
+pieno ; voll
+vuoto ; leer
+pulito ; sauber
+sporco ; schmutzig
+ricco ; reich
+povero ; arm
+felice ; glücklich
+solo ; allein
+tranquillo ; ruhig / entspannt
+rumoroso ; laut
+perfetto ; perfekt
+fantastico ; fantastisch
+figo ; cool / geil ; Jugendsprache
+sbagliato ; falsch
+meglio ; besser
+più ; mehr
+meno ; weniger
+il migliore ; der Beste
+
+[Alltag]
+mi sono svegliato presto ; Ich bin früh aufgewacht
+vado a dormire ; Ich gehe schlafen
+sto lavorando ; Ich arbeite gerade
+sto mangiando ; Ich esse gerade
+adesso non posso parlare ; Ich kann gerade nicht reden
+ti chiamo dopo ; Ich ruf dich später an
+mandami un messaggio ; Schick mir eine Nachricht
+cosa fai oggi? ; Was machst du heute?
+hai tempo domani? ; Hast du morgen Zeit?
+usciamo? ; Gehen wir aus?
+prendiamo un caffè? ; Trinken wir einen Kaffee?
+vado al cinema con un amico ; Ich gehe mit einem Freund ins Kino
+sono stanco, voglio riposarmi ; Ich bin müde, ich will mich ausruhen
+oggi è stata una giornata pesante ; Heute war ein anstrengender Tag
+sono in ritardo ; Ich bin spät dran
+un attimo ; Einen Moment
+aspetta un minuto ; Warte eine Minute
+ho perso le chiavi ; Ich habe meine Schlüssel verloren
+il telefono è scarico ; Mein Handy hat keinen Akku
+c'è il wifi? ; Gibt es WLAN?
+qual è la password del wifi? ; Was ist das WLAN-Passwort?
+non ho soldi ; Ich habe kein Geld
+vado a fare la spesa ; Ich gehe einkaufen
+fa bel tempo, andiamo al parco ; Das Wetter ist schön, gehen wir in den Park
+ascolto musica ; Ich höre Musik
+guardo un film ; Ich schaue einen Film
+faccio sport ; Ich mache Sport
+faccio la doccia ; Ich dusche
+cosa fai nel fine settimana? ; Was machst du am Wochenende?
+lo faccio io ; Ich mach das
+puoi venire un attimo? ; Kannst du kurz kommen?
+subito! ; Sofort!
+speriamo ; Hoffentlich
+meno male ; Zum Glück / Gott sei Dank
+a che ora torni a casa? ; Wann kommst du nach Hause?
+facciamo così ; Machen wir es so
+che bella giornata! ; Was für ein schöner Tag!
+andiamo al mare ; Gehen wir ans Meer
+
+[Liebe & Freundschaft]
+ti amo ; Ich liebe dich ; romantisch
+ti voglio bene ; Ich hab dich lieb ; Familie und Freunde
+ti amo tantissimo ; Ich liebe dich so sehr
+sono innamorato di te ; Ich bin in dich verliebt ; Frau: innamorata
+amore mio ; meine Liebe / mein Schatz
+tesoro ; Schatz
+sei il mio migliore amico ; Du bist mein bester Freund ; Freundin: la mia migliore amica
+sei bellissima ; Du bist wunderschön ; zu einer Frau
+sei bellissimo ; Du siehst super aus ; zu einem Mann
+hai degli occhi bellissimi ; Du hast wunderschöne Augen
+voglio stare con te ; Ich will mit dir zusammen sein
+penso sempre a te ; Ich denke immer an dich
+ti va di uscire con me? ; Hast du Lust, mit mir auszugehen?
+prendiamo qualcosa da bere? ; Trinken wir etwas?
+mi dai il tuo numero? ; Gibst du mir deine Nummer?
+questo l'ho comprato per te ; Das habe ich für dich gekauft
+sei dolcissimo ; Du bist total lieb ; zu einer Frau: dolcissima
+con te sono felice ; Mit dir bin ich glücklich
+amico mio ; mein Freund
+fratello ; Bruder / Alter ; unter Freunden
+un bacio ; ein Küsschen ; am Ende von Nachrichten
+baci ; Küsse ; Abschiedsgruß unter Freunden
+
+[Redewendungen]
+che bello! ; Wie schön!
+che peccato ; Wie schade
+peccato ; Schade
+mamma mia! ; Meine Güte!
+che figata! ; Wie geil!
+non ci credo! ; Ich glaub's nicht!
+ma dai! ; Ach komm! / Echt jetzt?
+figurati! ; Keine Ursache! / Ach was!
+magari! ; Schön wär's!
+pazienza ; Was soll's / Da kann man nichts machen
+così è la vita ; So ist das Leben
+dolce far niente ; das süße Nichtstun
+piano piano si va lontano ; Langsam kommt man auch ans Ziel ; Sprichwort
+chi va piano va sano e va lontano ; Wer langsam geht, kommt sicher und weit ; Sprichwort
+non vedo l'ora! ; Ich kann's kaum erwarten!
+ne vale la pena ; Es lohnt sich
+che ne so io ; Was weiß ich
+fa niente ; Macht nichts
+in bocca al lupo ; Viel Glück
+che casino! ; Was für ein Chaos!
+mi fai morire dal ridere ; Du bringst mich zum Lachen
+evviva! ; Hurra!
+forza! ; Los! / Auf geht's!
+bravo! ; Gut gemacht! ; zu einer Frau: brava!
+che schifo! ; Wie eklig!
+meno male! ; Zum Glück!
+dai che ce la fai! ; Komm, du schaffst das!
+ci vuole pazienza ; Man braucht Geduld
+tutto a posto ; Alles in Ordnung
