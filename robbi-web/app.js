@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=20';
+import { initGames } from './games.js?v=21';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -195,7 +195,7 @@ function renderGoal(running) {
   box.classList.toggle('done', done); box.classList.toggle('running', running && !done);
   $('gbRing').style.strokeDashoffset = (94.25 * (1 - Math.min(1, s / goal))).toFixed(2);
   setText($('gbTime'), done ? 'Heute perfekt!' : fmtClock(goal - s));
-  setText($('gbTimeSub'), done ? (s - goal >= 1 ? `+${fmtClock(s - goal)} extra` : 'Ziel erreicht') : running ? 'läuft …' : `von ${store.goalMin} min · Pause`);
+  setText($('gbTimeSub'), done ? (s - goal >= 1 ? `+${fmtClock(s - goal)} extra` : 'Ziel erreicht') : running ? `läuft · Ziel ${store.goalMin} min` : `Ziel ${store.goalMin} min · Pause`);
   const dl = daysLeft(), cnt = $('gbCount');
   if (dl === null) { setText($('gbDays'), '–'); setText($('gbDaysLabel'), 'Kein Ziel-Datum'); setText($('gbDaysSub'), 'Tippen zum Einstellen'); return; }
   if (dl < 0) { setText($('gbDays'), '✓'); setText($('gbDaysLabel'), 'Ziel-Datum vorbei'); setText($('gbDaysSub'), 'Neues Datum setzen'); cnt.classList.remove('urgent'); return; }
@@ -593,7 +593,7 @@ function showCard(animate) {
   if (animate && !reduceMotion && $('scene').animate) $('scene').animate([{ transform: 'translateX(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 200, easing: 'ease-out' });
   $('flipActions').hidden = false; $('rateActions').hidden = true;
   $('count').textContent = `${done} / ${total}`;
-  $('barFill').style.width = total ? (done / total * 100) + '%' : '0';
+  $('barFill').style.transform = `scaleX(${total ? done / total : 0})`;
   $('score').textContent = sessionXp ? `+${sessionXp} Punkte` : '';
   if (!queue.length) { total ? endSession() : emptyState(); return; }
   const { c, rev } = queue[0];

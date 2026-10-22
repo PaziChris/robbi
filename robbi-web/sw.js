@@ -1,9 +1,9 @@
 /* Robbi Service Worker: offline-fähig + Push-Nachrichten */
-const CACHE = 'robbi-v20';
-const SHELL = ['./', 'index.html', 'style.css?v=20', 'app.js?v=20', 'games.js?v=20', 'firebase-config.js?v=20', 'manifest.webmanifest',
+const CACHE = 'robbi-v21';
+const SHELL = ['./', 'index.html', 'style.css?v=21', 'app.js?v=21', 'games.js?v=21', 'firebase-config.js?v=21', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png',
   'sprachen.txt', 'farsi.txt', 'griechisch.txt', 'italienisch.txt', 'spanisch.txt',
-  'saetze/farsi.txt?v=20', 'saetze/griechisch.txt?v=20', 'saetze/italienisch.txt?v=20', 'saetze/spanisch.txt?v=20'];
+  'saetze/farsi.txt?v=21', 'saetze/griechisch.txt?v=21', 'saetze/italienisch.txt?v=21', 'saetze/spanisch.txt?v=21'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

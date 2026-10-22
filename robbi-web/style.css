@@ -167,7 +167,7 @@ button:disabled { cursor: default; opacity: .45; }
 /* Card */
 .progress { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .bar { flex: 1; height: 8px; background: var(--sea-soft); border-radius: 99px; overflow: hidden; }
-.bar i { display: block; height: 100%; width: 0; background: var(--sea); border-radius: 99px; transition: width .3s; }
+.bar i { display: block; height: 100%; width: 100%; background: var(--sea); border-radius: 99px; transform: scaleX(0); transform-origin: left center; transition: transform .3s; will-change: transform; }
 .scene { perspective: 1200px; }
 .card { position: relative; width: 100%; height: 290px; border: 0; padding: 0; background: none; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.3,.7,.3,1); text-align: center; }
 .card.flipped { transform: rotateY(180deg); }
@@ -309,7 +309,8 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 @media (prefers-reduced-motion: reduce) { .gb.urgent .days { animation: none; } .ring-fg { transition: none; } }
 
 /* Ruhiges Atmen: bewegt die ganze Figur als ein Bild (das kann das iPhone ohne Neuzeichnen) */
-.pal svg { transform-origin: 50% 100%; will-change: transform; animation: idle 4s ease-in-out infinite; }
+/* Kein Dauer-Atmen mehr: es ließ das Handy bei jedem Bild die ganze Seite neu berechnen */
+.pal svg { transform-origin: 50% 100%; }
 .pal:not(.on) svg { animation: none; }
 @keyframes idle { 50% { transform: translateY(-1.5px) scale(1.012, 1.025); } }
 /* Karte: eigene Ebene für die Drehung, damit das Umdrehen auf dem iPhone flüssig bleibt */
