@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=22';
+import { initGames } from './games.js?v=23';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -17,9 +17,39 @@ const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, str
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
-function saveLocal() { clearTimeout(localTimer); lsSet(KEY, store); }
-let localTimer = null;
-function saveLocalSoon() { clearTimeout(localTimer); localTimer = setTimeout(saveLocal, 600); }
+/* Der Lernstand (prog) liegt pro Sprache in einem eigenen Speicherplatz. So wird beim Speichern
+   nur die geänderte Sprache geschrieben – ein großer Speicher-Block auf einmal ließ das iPhone stocken. */
+const PKEY = KEY + '.p.';
+const progSaved = {};
+(function loadProg() {
+  store.prog = Object.assign({}, store.prog || {});
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i); if (!k || !k.startsWith(PKEY)) continue;
+      const l = k.slice(PKEY.length), raw = localStorage.getItem(k), part = JSON.parse(raw) || {};
+      for (const s in part) store.prog[l + '\u0001' + s] = part[s];
+      progSaved[l] = raw;
+    }
+  } catch (e) {}
+})();
+function saveLocal() {
+  clearTimeout(localTimer); localTimer = null; firstPending = 0;
+  const byLang = {};
+  for (const k in store.prog) { const i = k.indexOf('\u0001'), l = k.slice(0, i); (byLang[l] = byLang[l] || {})[k.slice(i + 1)] = store.prog[k]; }
+  try {
+    for (const l in byLang) { const raw = JSON.stringify(byLang[l]); if (progSaved[l] !== raw) { localStorage.setItem(PKEY + l, raw); progSaved[l] = raw; } }
+    for (const l in progSaved) if (!byLang[l]) { localStorage.removeItem(PKEY + l); delete progSaved[l]; }
+  } catch (e) {}
+  const rest = Object.assign({}, store); delete rest.prog;
+  lsSet(KEY, rest);
+}
+let localTimer = null, firstPending = 0;
+// Gespeichert wird in einer kleinen Pause (2,5 s ohne Antippen), spätestens nach 20 s – und immer beim Verlassen der App
+function saveLocalSoon() {
+  const now = Date.now(); if (!firstPending) firstPending = now;
+  clearTimeout(localTimer);
+  localTimer = setTimeout(saveLocal, now - firstPending > 20000 ? 0 : 2500);
+}
 
 function parse(text, lang) {
   const out = []; let cat = 'Allgemein';
