@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=23';
+import { initGames } from './games.js?v=24';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -64,7 +64,7 @@ function parse(text, lang) {
   return out;
 }
 const SEP = '\u0001';
-const keyOf = c => c.lang + SEP + c.front + SEP + c.back;
+const keyOf = c => c._k || (c._k = c.lang + SEP + c.front + SEP + c.back);   // einmal pro Karte berechnet
 const stateOf = c => store.prog[keyOf(c)] || 'n';
 
 /* ---------- Aussprache ---------- */
@@ -562,7 +562,22 @@ async function init() {
 /* ---------- Zählen ---------- */
 function inMode(c, m) { const s = stateOf(c); return m === 'all' || (m === 'new' ? s === 'n' : s === m); }
 function pool(m, ct) { return cards.filter(c => (ct === '*' || c.cat === ct) && inMode(c, m)); }
-function countMode(m, ct = '*') { return pool(m, ct).length; }
+/* Zählen in einem einzigen Durchlauf, zwischengespeichert bis sich Karten oder Lernstand ändern
+   (vorher wurden für die Übersicht über 100-mal alle Karten durchgezählt – das dauerte auf dem iPhone) */
+let countCache = { cards: null, ver: -1, data: null };
+function counts() {
+  if (countCache.cards === cards && countCache.ver === progVer) return countCache.data;
+  const data = { '*': { all: 0, new: 0, f: 0, k: 0 } };
+  for (const c of cards) {
+    const s = stateOf(c), m = s === 'n' ? 'new' : s;
+    const g = data[c.cat] || (data[c.cat] = { all: 0, new: 0, f: 0, k: 0 });
+    g.all++; data['*'].all++;
+    if (m in g) { g[m]++; data['*'][m]++; }
+  }
+  countCache = { cards, ver: progVer, data };
+  return data;
+}
+function countMode(m, ct = '*') { const g = counts()[ct]; return g ? (g[m] || 0) : 0; }
 function catsOf(list) { return [...new Set(list.map(c => c.cat))]; }
 
 /* ---------- Oberfläche ---------- */
