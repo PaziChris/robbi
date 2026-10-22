@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=21';
+import { initGames } from './games.js?v=22';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -114,9 +114,12 @@ function anim(el, kind) {
   if (kind === 'bounce') el.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-10px)', offset: .3 }, { transform: 'translateY(0)', offset: .6 }, { transform: 'translateY(-3px)', offset: .8 }, { transform: 'translateY(0)' }], { duration: 500, easing: 'ease-out' });
   if (kind === 'shake') el.animate([{ transform: 'rotate(0)' }, { transform: 'rotate(-6deg)', offset: .25 }, { transform: 'rotate(6deg)', offset: .75 }, { transform: 'rotate(0)' }], { duration: 450, easing: 'ease-in-out' });
 }
-function setMood(text, happy, kind) {
+// Beim Üben (Karten, Wiederholen, Spiele) bleiben die Figuren ruhig – nur die Sprechblase ändert sich
+const practicing = () => !$('viewLearn').hidden || !$('viewRepeat').hidden || !$('viewPlay').hidden;
+function setMood(text, happy, kind, force) {
   const el = actor().el;
-  bubble.textContent = text;
+  if (bubble.textContent !== text) bubble.textContent = text;
+  if (practicing() && !force) return;
   Object.values(ACTORS).forEach(x => x.el.classList.remove('is-happy'));
   clearTimeout(happyTimer);
   if (happy) { el.classList.add('is-happy'); happyTimer = setTimeout(() => el.classList.remove('is-happy'), 1800); }
@@ -128,12 +131,11 @@ function lifeLoop(a) {
   setTimeout(() => {
     if (!document.hidden) {
       const el = a.el;
-      if (Math.random() < 0.14 && !el.classList.contains('is-happy')) pose(el, 'wink', 400);
-      else { pose(el, 'blink', 140); if (Math.random() < 0.25) setTimeout(() => pose(el, 'blink', 140), 280); }
-      if (!reduceMotion && a === actor()) { const x = Math.random(); if (x < 0.15) pose(el, a.act, a.actMs); else if (x < 0.27) pose(el, 'look', 1600); else if (x < 0.42) pose(el, 'wag', 2500); }
+      pose(el, 'blink', 140);
+      if (!practicing() && !reduceMotion && a === actor() && Math.random() < 0.15) pose(el, Math.random() < .5 ? 'look' : a.act, Math.random() < .5 ? 1600 : a.actMs);
     }
     lifeLoop(a);
-  }, 2200 + Math.random() * 3800);
+  }, 9000 + Math.random() * 9000);
 }
 function renderStage() {
   $('stage').dataset.active = lang === 'Farsi' ? 'fa' : lang === 'Griechisch' ? 'gr' : 'none';
@@ -218,7 +220,7 @@ function renderGoalPanel() {
   $('goalStats').innerHTML = `<span class="x"><b>${Math.floor(secsToday() / 60)}</b>min heute</span><span class="k"><b>${fmtDuration(weekSecs())}</b>diese Woche</span><span class="n"><b>${fmtDuration(totalSecs())}</b>insgesamt</span>`;
 }
 function celebrate() {
-  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce');
+  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce', true);
   if (reduceMotion) return;
   const colors = ['#1A7A87', '#D2563A', '#E0A526', '#2F8A5B', '#1D5FB4', '#159A93'];
   for (let i = 0; i < 40; i++) {
@@ -616,8 +618,8 @@ function emptyState() {
   $('fWord').textContent = mode === 'f' ? 'Keine falschen Karten. Super!' : mode === 'k' ? 'Noch nichts gekonnt. Lern erst ein paar Karten!' : mode === 'new' ? 'Alle Karten schon gelernt!' : 'Noch keine Wörter hier';
   $('flipActions').hidden = true;
 }
-function flip() {
-  if (!queue.length || performance.now() < lockUntil) return;   // Doppeltipp nach "Gewusst" ignorieren
+function flip(fromCard) {
+  if (!queue.length || (!fromCard && performance.now() < lockUntil)) return;   // Doppeltipp nach "Gewusst" ignorieren
   flipped = !flipped;
   $('card').classList.toggle('flipped', flipped);
   if (flipped) { $('flipActions').hidden = true; $('rateActions').hidden = false; }
@@ -641,7 +643,7 @@ function answer(ok) {
     setMood('Kein Problem, die kommt gleich nochmal.', false, 'shake');
   }
   updateBadge(); games.checkBadges();
-  lockUntil = performance.now() + 350;
+  lockUntil = performance.now() + 300;
   showCard(true);
 }
 function endSession() {
@@ -746,7 +748,7 @@ $('tabBoard').onclick = () => showTab('board');
 $('tabWords').onclick = () => showTab('words');
 $('sync').onclick = () => showTab('board');
 $('langSelect').onchange = e => { $('impLang').value = e.target.value; loadLang(e.target.value).then(() => setMood(`Wir lernen ${lang}!`, true, 'bounce')); };
-$('card').onclick = flip; $('flipBtn').onclick = flip;
+$('card').onclick = () => flip(true); $('flipBtn').onclick = () => flip(false);
 $('againBtn').onclick = () => answer(false); $('knewBtn').onclick = () => answer(true);
 $('restartBtn').onclick = () => startSession();
 $('endWrongBtn').onclick = () => practice('f', '*');
