@@ -1,0 +1,34 @@
+# Extra-Sätze für das Satz-Puzzle
+# FORMAT:  italienisch ; deutsch
+# leicht = 3–5 Wörter, mittel = 6–8 Wörter, schwer = ab 9 Wörtern
+
+Oggi sono molto stanco ; Heute bin ich sehr müde
+Vorrei un caffè, per favore ; Ich möchte einen Kaffee, bitte
+Quanto costa questo? ; Wie viel kostet das?
+Dov'è la stazione, scusi? ; Wo ist der Bahnhof, bitte?
+Parla più piano, per favore ; Sprich bitte langsamer
+Oggi fa molto caldo ; Heute ist es sehr heiß
+Mi piace molto la pizza ; Ich mag Pizza sehr
+Non capisco niente ; Ich verstehe nichts
+Domani andiamo al mare ; Morgen fahren wir ans Meer
+Ci vediamo domani sera ; Wir sehen uns morgen Abend
+Mia sorella abita a Roma da due anni ; Meine Schwester wohnt seit zwei Jahren in Rom
+Possiamo avere il conto, per favore? ; Können wir bitte die Rechnung haben?
+Imparo l'italiano ogni giorno con Robbi ; Ich lerne jeden Tag Italienisch mit Robbi
+Se hai tempo, chiamami stasera ; Wenn du Zeit hast, ruf mich heute Abend an
+Non so a che ora arriva l'autobus ; Ich weiß nicht, wann der Bus ankommt
+Stasera voglio cucinare la pasta per tutti ; Heute Abend will ich für alle Pasta kochen
+Il treno parte alle otto in punto ; Der Zug fährt pünktlich um acht ab
+Vuoi venire al cinema con noi? ; Willst du mit uns ins Kino kommen?
+Mia nonna cucina benissimo ; Meine Oma kocht sehr gut
+Penso che tu abbia ragione ; Ich glaube, du hast recht
+Se domani fa bel tempo, andiamo tutti insieme al mare ; Wenn morgen schönes Wetter ist, fahren wir alle zusammen ans Meer
+Studio l'italiano da un anno, ma faccio ancora molti errori ; Ich lerne seit einem Jahr Italienisch, aber ich mache noch viele Fehler
+Scusi, mi può dire come arrivo al Colosseo? ; Entschuldigung, können Sie mir sagen, wie ich zum Kolosseum komme?
+Quando ero piccolo, ogni estate andavamo dai nonni in Sicilia ; Als ich klein war, fuhren wir jeden Sommer zu den Großeltern nach Sizilien
+Ieri sera ero così stanco che sono andato a letto presto ; Gestern Abend war ich so müde, dass ich früh ins Bett gegangen bin
+Il mio amico dice che questa pizzeria fa la pizza migliore della città ; Mein Freund sagt, dass diese Pizzeria die beste Pizza der Stadt macht
+Quando arrivi a Milano, chiamami e ti vengo a prendere ; Wenn du in Mailand ankommst, ruf mich an und ich hole dich ab
+Pensavo che l'italiano fosse difficile, ma adesso lo adoro ; Ich dachte, Italienisch sei schwer, aber jetzt liebe ich es
+Un caffè al bar con gli amici è il modo migliore per iniziare la giornata ; Ein Kaffee in der Bar mit Freunden ist der beste Start in den Tag
+Potrebbe prenotare un tavolo per quattro persone alle otto? ; Könnten Sie einen Tisch für vier Personen um acht reservieren?

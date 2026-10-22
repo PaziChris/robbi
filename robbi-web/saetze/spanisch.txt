@@ -1,0 +1,34 @@
+# Extra-Sätze für das Satz-Puzzle
+# FORMAT:  spanisch ; deutsch
+# leicht = 3–5 Wörter, mittel = 6–8 Wörter, schwer = ab 9 Wörtern
+
+Hoy estoy muy cansado ; Heute bin ich sehr müde
+Quiero un café, por favor ; Ich möchte einen Kaffee, bitte
+¿Cuánto cuesta esto? ; Wie viel kostet das?
+¿Dónde está la estación? ; Wo ist der Bahnhof?
+Habla más despacio, por favor ; Sprich bitte langsamer
+Hoy hace mucho calor ; Heute ist es sehr heiß
+Me gusta mucho la paella ; Ich mag Paella sehr
+No entiendo nada ; Ich verstehe nichts
+Mañana vamos a la playa ; Morgen gehen wir an den Strand
+Nos vemos mañana por la noche ; Wir sehen uns morgen Abend
+Mi hermana vive en Madrid desde hace dos años ; Meine Schwester wohnt seit zwei Jahren in Madrid
+¿Nos trae la cuenta, por favor? ; Bringen Sie uns bitte die Rechnung?
+Aprendo español todos los días con Robbi ; Ich lerne jeden Tag Spanisch mit Robbi
+Si tienes tiempo, llámame esta noche ; Wenn du Zeit hast, ruf mich heute Abend an
+No sé a qué hora llega el autobús ; Ich weiß nicht, wann der Bus kommt
+Esta noche quiero hacer tortilla para todos ; Heute Abend will ich für alle Tortilla machen
+El tren sale a las ocho en punto ; Der Zug fährt pünktlich um acht ab
+¿Quieres venir al cine con nosotros? ; Willst du mit uns ins Kino kommen?
+Mi abuela cocina muy bien ; Meine Oma kocht sehr gut
+Creo que tienes razón ; Ich glaube, du hast recht
+Si mañana hace buen tiempo, vamos todos juntos a la playa ; Wenn morgen schönes Wetter ist, gehen wir alle zusammen an den Strand
+Estudio español desde hace un año, pero todavía cometo muchos errores ; Ich lerne seit einem Jahr Spanisch, aber ich mache noch viele Fehler
+Perdone, ¿me puede decir cómo llego a la Sagrada Familia? ; Entschuldigung, können Sie mir sagen, wie ich zur Sagrada Família komme?
+Cuando era pequeño, cada verano íbamos a casa de mis abuelos ; Als ich klein war, fuhren wir jeden Sommer zu meinen Großeltern
+Anoche estaba tan cansado que me acosté muy temprano ; Gestern Abend war ich so müde, dass ich sehr früh ins Bett ging
+Mi amigo dice que este bar tiene las mejores tapas de la ciudad ; Mein Freund sagt, dass diese Bar die besten Tapas der Stadt hat
+Cuando llegues a Sevilla, llámame y voy a buscarte ; Wenn du in Sevilla ankommst, ruf mich an und ich hole dich ab
+Pensaba que el español era difícil, pero ahora me encanta ; Ich dachte, Spanisch sei schwer, aber jetzt liebe ich es
+Un café con churros por la mañana es la mejor manera de empezar el día ; Ein Kaffee mit Churros am Morgen ist der beste Start in den Tag
+¿Podría reservar una mesa para cuatro personas a las nueve? ; Könnten Sie einen Tisch für vier Personen um neun reservieren?

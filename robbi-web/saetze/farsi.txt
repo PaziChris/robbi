@@ -1,0 +1,131 @@
+# Extra-Sätze für das Satz-Puzzle (Teheraner Umgangssprache)
+# FORMAT:  persisch (lateinisch) ; deutsch
+# Die Schwierigkeit ergibt sich von selbst aus der Länge:
+#   leicht = 3–5 Wörter, mittel = 6–8 Wörter, schwer = ab 9 Wörtern
+# Einfach neue Zeilen dazuschreiben.
+
+man kheyli khaste-am ; Ich bin sehr müde
+emruz havā khub-e ; Heute ist das Wetter gut
+in chāy kheyli dāgh-e ; Dieser Tee ist sehr heiß
+esm-e man Arzi-e ; Mein Name ist Arzi
+kojā dāri miri? ; Wohin gehst du gerade?
+man farsi yād migiram ; Ich lerne Persisch
+ghazā kheyli khoshmaze bud ; Das Essen war sehr lecker
+bāshe, fardā mibinamet ; Okay, wir sehen uns morgen
+ye chāy mikhām, lotfan ; Ich möchte bitte einen Tee
+man az Otrish umadam ; Ich komme aus Österreich
+to kheyli mehrabuni ; Du bist sehr lieb
+in khune kheyli bozorg-e ; Dieses Haus ist sehr groß
+bebakhshid, dir kardam ; Entschuldigung, ich bin spät dran
+gorosname, berim ghazā bokhorim ; Ich habe Hunger, lass uns essen gehen
+alān pul nadāram ; Ich habe gerade kein Geld
+ketābam ru miz-e ; Mein Buch liegt auf dem Tisch
+bābām alān khune-ast ; Mein Vater ist gerade zu Hause
+hālet chetore azizam? ; Wie geht es dir, mein Schatz?
+in chand-e lotfan? ; Wie viel kostet das bitte?
+bebakhshid, dastshuyi kojā-st? ; Entschuldigung, wo ist die Toilette?
+man ghahve dust nadāram ; Ich mag keinen Kaffee
+ghorme sabzi dust dāram ; Ich mag Ghorme Sabzi
+sā'at chand-e alān? ; Wie spät ist es jetzt?
+biyā berim birun ; Komm, lass uns rausgehen
+man nemidunam chi begam ; Ich weiß nicht, was ich sagen soll
+yavāshtar harf bezan lotfan ; Sprich bitte langsamer
+dobāre begu lotfan ; Sag es bitte noch einmal
+in kheyli gerun-e ; Das ist sehr teuer
+havā sard shode ; Es ist kalt geworden
+man dāram miram khune ; Ich gehe gerade nach Hause
+delam barāt tang shode ; Ich vermisse dich
+to kheyli bāhāli ; Du bist richtig cool
+emruz kār nadāram ; Heute habe ich frei
+ye livān āb mikhām ; Ich möchte ein Glas Wasser
+māshin-e man kharāb shode ; Mein Auto ist kaputt
+barādaram fotbāl bāzi mikone ; Mein Bruder spielt Fußball
+man fardā kār dāram ; Ich muss morgen arbeiten
+ishāllā hamechi khub mishe ; Hoffentlich wird alles gut
+in film kheyli bāhāl bud ; Dieser Film war richtig gut
+man ye gorbe dāram ; Ich habe eine Katze
+kojā zendegi mikoni? ; Wo wohnst du?
+to chand sālet-e? ; Wie alt bist du?
+man si sālam-e ; Ich bin dreißig Jahre alt
+emruz hālam khub nist ; Heute geht es mir nicht gut
+nush-e jun, bokhor! ; Guten Appetit, iss!
+vāy, che ghashang-e! ; Wow, wie schön!
+man injā montazeram ; Ich warte hier
+ketāb khundan dust dāram ; Ich lese gern Bücher
+
+khāharam tu Tehrun zendegi mikone ; Meine Schwester wohnt in Teheran
+fardā sobh bā ham berim kuh? ; Gehen wir morgen früh zusammen in die Berge?
+man har ruz farsi tamrin mikonam ; Ich übe jeden Tag Persisch
+diruz bā dustām raftim restorān ; Gestern war ich mit meinen Freunden im Restaurant
+mishe ye kam yavāshtar harf bezani? ; Kannst du ein bisschen langsamer sprechen?
+in ghazā ro māmānam dorost karde ; Dieses Essen hat meine Mama gemacht
+age vaght dāshti, behem zang bezan ; Wenn du Zeit hast, ruf mich an
+man nemidunam otobus key miyād ; Ich weiß nicht, wann der Bus kommt
+bebakhshid, istgāh-e metro kojā-st? ; Entschuldigung, wo ist die U-Bahn-Station?
+emshab mikhām ghorme sabzi dorost konam ; Heute Abend will ich Ghorme Sabzi kochen
+fardā che sā'ati hamdigaro bebinim? ; Um wie viel Uhr treffen wir uns morgen?
+havā emruz kheyli garm-e, na? ; Heute ist es sehr heiß, oder?
+man ye sāl-e ke farsi yād migiram ; Ich lerne seit einem Jahr Persisch
+mishe surat-hesāb ro biyārin lotfan? ; Können Sie bitte die Rechnung bringen?
+barādaram tu ye sherkat kār mikone ; Mein Bruder arbeitet in einer Firma
+ākhar-e hafte bā khānevāde mirim shomāl ; Am Wochenende fahren wir mit der Familie in den Norden
+ye kam namak be ghazā bezan ; Gib ein bisschen Salz ins Essen
+chera diruz be man zang nazadi? ; Warum hast du mich gestern nicht angerufen?
+man sobhā hamishe chāy mikhoram ; Morgens trinke ich immer Tee
+in lebās be to kheyli miyād ; Dieses Kleid steht dir sehr gut
+ghatār sā'at-e hasht harekat mikone ; Der Zug fährt um acht Uhr ab
+man injā ro aslan balad nistam ; Ich kenne mich hier überhaupt nicht aus
+lotfan dar ro beband, sard-e ; Mach bitte die Tür zu, es ist kalt
+kabāb-e un restorān harf nadāre ; Der Kebab in dem Restaurant ist unschlagbar
+mikhām ye bilit barāye Esfahān bekharam ; Ich möchte ein Ticket nach Isfahan kaufen
+bachehā tu pārk dāran bāzi mikonan ; Die Kinder spielen gerade im Park
+emruz kheyli kār dāshtam, khaste-am ; Ich hatte heute viel Arbeit, ich bin müde
+to ham bā mā miyāy sinamā? ; Kommst du auch mit uns ins Kino?
+māmān-bozorgam kheyli khoshmaze āshpazi mikone ; Meine Oma kocht sehr lecker
+man fekr mikonam to dorost migi ; Ich glaube, du hast recht
+fardā bārun miyād, chatr biyār ; Morgen regnet es, bring einen Schirm mit
+ba'd az kār miram bāshgāh ; Nach der Arbeit gehe ich ins Fitnessstudio
+in ketāb ro hatman bekhun, āli-e ; Lies dieses Buch unbedingt, es ist super
+chand vaght-e ke injā zendegi mikoni? ; Wie lange wohnst du schon hier?
+mā emshab khune mehmun dārim ; Wir haben heute Abend Gäste zu Hause
+gushim shārzh nadāre, mishe shārzhesh konam? ; Mein Handy ist leer, darf ich es aufladen?
+age bekhāy, mitunim tāksi begirim ; Wenn du willst, können wir ein Taxi nehmen
+man ghahve ro bedun-e shekar mikhoram ; Ich trinke den Kaffee ohne Zucker
+dustam az Shirāz umade didan-e man ; Meine Freundin ist aus Schiras gekommen, um mich zu besuchen
+in āhang ro kheyli dust dāram ; Ich liebe dieses Lied
+eyd-e nowruz hame mirim khune-ye māmān-bozorg ; Zu Nouruz gehen alle zu Oma
+lotfan ye kam sabr kon, alān miyām ; Warte bitte kurz, ich komme gleich
+diruz shab kheyli dir khābidam ; Gestern Nacht bin ich sehr spät schlafen gegangen
+bā metro zudtar mirasim tā bā tāksi ; Mit der U-Bahn sind wir schneller als mit dem Taxi
+mishe ye aks az mā begirin? ; Können Sie ein Foto von uns machen?
+
+age fardā havā khub bāshe, bā bachehā mirim Darband ; Wenn morgen das Wetter gut ist, gehen wir mit den Kindern nach Darband
+man do sāl-e ke farsi yād migiram, vali hanuz kheyli eshtebāh mikonam ; Ich lerne seit zwei Jahren Persisch, aber ich mache noch viele Fehler
+diruz raftim bāzār-e Tajrish va kheyli mive-ye tāze kharidim ; Gestern waren wir auf dem Tadschrisch-Basar und haben viel frisches Obst gekauft
+bebakhshid, mishe begin chetori az injā beram meydun-e Āzādi? ; Entschuldigung, können Sie mir sagen, wie ich von hier zum Azadi-Platz komme?
+māmānam har jom'e ghorme sabzi dorost mikone, chon hame dust dāran ; Meine Mama kocht jeden Freitag Ghorme Sabzi, weil es alle mögen
+vaghti bache budam, tābestunā miraftim shomāl pish-e māmān-bozorgam ; Als ich ein Kind war, fuhren wir im Sommer in den Norden zu meiner Oma
+age ye ruz biyāy Irān, hatman bāyad Esfahān ro bebini ; Wenn du eines Tages in den Iran kommst, musst du unbedingt Isfahan sehen
+man nemidunestam ke to ham farsi baladi, kheyli jāleb-e ; Ich wusste nicht, dass du auch Persisch kannst, sehr spannend
+ba'd az kār kheyli khaste budam, barāye hamin zud khābidam ; Nach der Arbeit war ich sehr müde, deshalb bin ich früh schlafen gegangen
+fekr mikonam fardā bārun miyād, pas behtare chatr bā khodet biyāri ; Ich glaube, morgen regnet es, also nimm besser einen Schirm mit
+mishe lotfan ye miz barāye chahār nafar sā'at-e hasht rezerv konin? ; Können Sie bitte einen Tisch für vier Personen um acht Uhr reservieren?
+dustam goft ke in restorān behtarin kabāb-e Tehrun ro dāre ; Mein Freund hat gesagt, dass dieses Restaurant den besten Kebab Teherans hat
+har vaght vaght dāshti, behem payām bede tā hamdigaro bebinim ; Wann immer du Zeit hast, schreib mir, damit wir uns treffen
+emsāl mikhām nowruz ro bā khānevāde-ye dustam tu Tehrun jashn begiram ; Dieses Jahr möchte ich Nouruz mit der Familie meines Freundes in Teheran feiern
+vaghti farsi harf mizanam, hame mikhandan chon lahjam bāmaze-ast ; Wenn ich Persisch spreche, lachen alle, weil mein Akzent lustig ist
+age ghazā khoshmaze nabāshe, Arzi aslan nemikhore va ghahr mikone ; Wenn das Essen nicht lecker ist, isst Arzi gar nichts und schmollt
+rānande-ye tāksi kheyli tond miraft va man ye kam tarsidam ; Der Taxifahrer fuhr sehr schnell und ich hatte ein bisschen Angst
+diruz tavallod-e khāharam bud va hame tu khune-ye mā jam' shodim ; Gestern war der Geburtstag meiner Schwester und alle waren bei uns zu Hause
+man kheyli dust dāram ye ruz bā to berim kenār-e daryā ; Ich würde sehr gerne eines Tages mit dir ans Meer fahren
+lotfan be man begu in kalame be ālmāni chi mishe ; Bitte sag mir, was dieses Wort auf Deutsch heißt
+bā inke kheyli khaste budam, tā nesf-e shab dars khundam ; Obwohl ich sehr müde war, habe ich bis Mitternacht gelernt
+age zudtar rāh biyofti, be ghatār-e sā'at-e haft mirasi ; Wenn du früher losgehst, erwischst du den Zug um sieben
+dustām hame montazer-e to hastan, chera inghadr dir kardi? ; Meine Freunde warten alle auf dich, warum bist du so spät?
+man fekr mikardam farsi sakht-e, vali alān kheyli dustesh dāram ; Ich dachte, Persisch ist schwer, aber jetzt liebe ich es
+ye estekān chāy-e dāgh bā ye tikke nabāt behtarin chiz-e donyā-st ; Ein Glas heißer Tee mit einem Stück Nabat ist das Beste der Welt
+vaghti residi Tehrun, hatman behem zang bezan ke biyām donbālet ; Wenn du in Teheran ankommst, ruf mich unbedingt an, damit ich dich abhole
+mitunim bā ham kār konim, chon har dotāmun ye hadaf dārim ; Wir können zusammenarbeiten, weil wir beide dasselbe Ziel haben
+emruz sobh unghadr terāfik bud ke ye sā'at dir residam sar-e kār ; Heute Morgen war so viel Verkehr, dass ich eine Stunde zu spät zur Arbeit kam
+age to nabudi, man hichvaght inghadr khub farsi yād nemigereftam ; Ohne dich hätte ich nie so gut Persisch gelernt
+pedar-bozorgam hamishe mige ke bā sabr ghure halvā mishe ; Mein Opa sagt immer, dass mit Geduld aus sauren Trauben Halva wird

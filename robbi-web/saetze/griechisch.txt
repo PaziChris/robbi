@@ -1,0 +1,128 @@
+# Extra-Sätze für das Satz-Puzzle (gesprochenes Neugriechisch)
+# FORMAT:  griechisch (lateinisch) ; deutsch
+# Die Schwierigkeit ergibt sich von selbst aus der Länge:
+#   leicht = 3–5 Wörter, mittel = 6–8 Wörter, schwer = ab 9 Wörtern
+# Einfach neue Zeilen dazuschreiben.
+
+íme polí kurazménos ; Ich bin sehr müde
+símera o kerós íne oréos ; Heute ist das Wetter schön
+to fajitó íne nostimótato ; Das Essen ist superlecker
+me léne Robbie ; Ich heiße Robbie
+pu pas tóra? ; Wohin gehst du jetzt?
+mathéno elliniká káthe méra ; Ich lerne jeden Tag Griechisch
+thélo éna kafé, parakaló ; Ich möchte einen Kaffee, bitte
+íme apó tin Afstría ; Ich komme aus Österreich
+íse polí kalós ánthropos ; Du bist ein sehr guter Mensch
+póso káni aftó? ; Wie viel kostet das?
+pu íne i tualéta? ; Wo ist die Toilette?
+dhen katalavéno típota ; Ich verstehe gar nichts
+milá pjo sigá, parakaló ; Sprich bitte langsamer
+pes to xaná, parakaló ; Sag es bitte noch einmal
+aftó íne polí akrivó ; Das ist sehr teuer
+káni krío símera ; Heute ist es kalt
+páo spíti tóra ; Ich gehe jetzt nach Hause
+mu lípis polí ; Du fehlst mir sehr
+ti óra íne? ; Wie spät ist es?
+éla na fáme mazí ; Komm, lass uns zusammen essen
+dhen xéro ti na po ; Ich weiß nicht, was ich sagen soll
+écho éna skílo ; Ich habe einen Hund
+pu ménis esí? ; Wo wohnst du?
+póso chronón íse? ; Wie alt bist du?
+íme triánda chronón ; Ich bin dreißig Jahre alt
+símera dhen íme kalá ; Heute geht es mir nicht gut
+kalí órexi se ólus! ; Guten Appetit allen!
+ti oréa théa! ; Was für eine schöne Aussicht!
+periméno edhó jia séna ; Ich warte hier auf dich
+m'arési na dhiavázo vivlía ; Ich lese gern Bücher
+o adhelfós mu pézi bála ; Mein Bruder spielt Fußball
+ávrio dhulévo norís ; Morgen arbeite ich früh
+óla tha páne kalá ; Alles wird gut
+to aftokínitó mu chálase ; Mein Auto ist kaputt gegangen
+thélo éna potíri neró ; Ich möchte ein Glas Wasser
+i thálassa íne zestí ; Das Meer ist warm
+ti kánis, fíle mu? ; Wie geht's, mein Freund?
+ta léme ávrio, jia! ; Bis morgen, tschüss!
+pináo polí, páme na fáme ; Ich habe großen Hunger, lass uns essen gehen
+dhen píno kafé ; Ich trinke keinen Kaffee
+m'arési polí o musakás ; Ich mag Moussaka sehr
+i tenía ítan téleia ; Der Film war perfekt
+i mitéra mu íne spíti ; Meine Mutter ist zu Hause
+páme jia báno? ; Gehen wir schwimmen?
+o kafés íne polí zestós ; Der Kaffee ist sehr heiß
+
+i adhelfí mu méni sti Thessaloníki ; Meine Schwester wohnt in Thessaloniki
+páme ávrio to proí stin paralía? ; Gehen wir morgen früh an den Strand?
+chthes vjíkame éxo me tus fílus mu ; Gestern bin ich mit meinen Freunden ausgegangen
+boréis na milás lígo pjo sigá? ; Kannst du ein bisschen langsamer sprechen?
+aftó to fajitó to ékane i mamá mu ; Dieses Essen hat meine Mama gemacht
+an échis chróno, pár' me tiléfono ; Wenn du Zeit hast, ruf mich an
+dhen xéro póte érchete to leoforío ; Ich weiß nicht, wann der Bus kommt
+sighnómi, pu íne o stathmós tu metró? ; Entschuldigung, wo ist die U-Bahn-Station?
+apópse thélo na majirépso musaká ; Heute Abend will ich Moussaka kochen
+ti óra tha vrethúme ávrio? ; Um wie viel Uhr treffen wir uns morgen?
+káni polí zésti símera, dhen nomízis? ; Heute ist es sehr heiß, findest du nicht?
+mathéno elliniká edhó ke éna chróno ; Ich lerne seit einem Jahr Griechisch
+boríte na mas férete to logariasmó? ; Können Sie uns die Rechnung bringen?
+o adhelfós mu dhulévi se mia etería ; Mein Bruder arbeitet in einer Firma
+to Savvatokíriako tha páme sto chorió ; Am Wochenende fahren wir ins Dorf
+vále lígo aláti sto fajitó ; Gib ein bisschen Salz ins Essen
+jatí dhe me pires chthes tiléfono? ; Warum hast du mich gestern nicht angerufen?
+to proí píno pánda frapé ; Morgens trinke ich immer Frappé
+aftó to fórema su páei polí ; Dieses Kleid steht dir sehr gut
+to tréno févji stis októ akrivós ; Der Zug fährt genau um acht ab
+dhen xéro kathólu tin periochí edhó ; Ich kenne die Gegend hier überhaupt nicht
+klíse tin pórta, káni krío ; Mach die Tür zu, es ist kalt
+se aftí tin tavérna ta suvlákia íne téleia ; In dieser Taverne sind die Souvlakia perfekt
+thélo éna isitírio jia tin Athína ; Ich möchte ein Ticket nach Athen
+ta pedhiá pézun akóma sto párko ; Die Kinder spielen noch im Park
+símera ícha polí dhuliá ke íme kurazménos ; Heute hatte ich viel Arbeit und bin müde
+érchese ki esí mazí mas sinemá? ; Kommst du auch mit uns ins Kino?
+i jiajiá mu majirévi polí nóstima ; Meine Oma kocht sehr lecker
+nomízo óti échis dhíkio ; Ich glaube, dass du recht hast
+ávrio tha vréxi, páre ombréla mazí su ; Morgen regnet es, nimm einen Schirm mit
+metá ti dhuliá páo sto jimnastírio ; Nach der Arbeit gehe ich ins Fitnessstudio
+dhiávase opósdhipote aftó to vivlío ; Lies unbedingt dieses Buch
+póso keró ménis edhó? ; Wie lange wohnst du schon hier?
+apópse échume kalesménus sto spíti ; Heute Abend haben wir Gäste zu Hause
+to kinitó mu ádhiase, boró na to fortíso? ; Mein Handy ist leer, darf ich es aufladen?
+an thélis, boríme na párume taxí ; Wenn du willst, können wir ein Taxi nehmen
+píno ton kafé chorís záchari ; Ich trinke den Kaffee ohne Zucker
+m'arési polí aftó to traghúdhi ; Ich mag dieses Lied sehr
+periméne lígo, érchome amésos ; Warte kurz, ich komme sofort
+chthes to vrádhi kimíthika polí argá ; Gestern Abend bin ich sehr spät schlafen gegangen
+me to metró tha ftásume pjo ghríghora ; Mit der U-Bahn kommen wir schneller an
+boríte na mas vgálete mia fotografía? ; Können Sie ein Foto von uns machen?
+to Páscha páme óli sto chorió ; Zu Ostern fahren alle ins Dorf
+thélis na pjúme éna uzáki mazí? ; Willst du mit mir einen Ouzo trinken?
+o Robbie trói psária káthe méra ; Robbie isst jeden Tag Fische
+
+an ávrio o kerós íne kalós, tha páme óli stin paralía ; Wenn morgen das Wetter gut ist, gehen wir alle an den Strand
+mathéno elliniká dhío chrónia, allá káno akóma polá láthi ; Ich lerne seit zwei Jahren Griechisch, aber ich mache noch viele Fehler
+chthes píghame sti laikí ke psonísame polá frésca frúta ; Gestern waren wir auf dem Bauernmarkt und haben viel frisches Obst gekauft
+sighnómi, boríte na mu píte pos tha páo stin Akrópoli? ; Entschuldigung, können Sie mir sagen, wie ich zur Akropolis komme?
+i mamá mu káni pastítsio káthe Kiriakí, jatí arési se ólus ; Meine Mama macht jeden Sonntag Pastitsio, weil es allen schmeckt
+ótan ímun mikrós, káthe kalokéri pijéname sto nisí tis jiajiás mu ; Als ich klein war, fuhren wir jeden Sommer auf die Insel meiner Oma
+an érthis kápia méra stin Elládha, prépi na dhis opósdhipote ta Metéora ; Wenn du eines Tages nach Griechenland kommst, musst du unbedingt die Meteora sehen
+dhen íxera óti xéris ki esí elliniká, ti ékplixi! ; Ich wusste nicht, dass du auch Griechisch kannst, was für eine Überraschung!
+metá ti dhuliá ímun polí kurazménos, ji' aftó kimíthika norís ; Nach der Arbeit war ich sehr müde, deshalb bin ich früh schlafen gegangen
+nomízo óti ávrio tha vréxi, ára kalítera na páris ombréla ; Ich glaube, morgen regnet es, also nimm besser einen Schirm
+boríte na mas klísete éna trapézi jia téseris stis októ? ; Können Sie uns einen Tisch für vier Personen um acht reservieren?
+o fílos mu ípe óti aftí i tavérna échi ta kalítera suvlákia ; Mein Freund hat gesagt, dass diese Taverne die besten Souvlakia hat
+ótan échis chróno, stíle mu míma na vrethúme jia kafé ; Wenn du Zeit hast, schick mir eine Nachricht, damit wir uns auf einen Kaffee treffen
+fétos thélo na jortáso to Páscha me tin ikojénia tu fílu mu ; Dieses Jahr möchte ich Ostern mit der Familie meines Freundes feiern
+ótan miláo elliniká, óli jelúne jatí i proforá mu íne astía ; Wenn ich Griechisch spreche, lachen alle, weil meine Aussprache lustig ist
+an to psári dhen íne frésko, o Robbie dhen to trói kathólu ; Wenn der Fisch nicht frisch ist, isst Robbie ihn überhaupt nicht
+o taxidzís odhigúse polí ghríghora ke fováthika lígo ; Der Taxifahrer fuhr sehr schnell und ich hatte ein bisschen Angst
+chthes ítan ta jenéthlia tis adhelfís mu ke maseftíkame óli spíti mas ; Gestern war der Geburtstag meiner Schwester und wir waren alle bei uns zu Hause
+tha íthela polí na páme kápia méra mazí se éna nisí ; Ich würde sehr gerne eines Tages mit dir auf eine Insel fahren
+pes mu se parakaló ti siméni aftí i léxi sta jermaniká ; Sag mir bitte, was dieses Wort auf Deutsch bedeutet
+ki as ímun polí kurazménos, dhiávaza méchri ta mesánichta ; Obwohl ich sehr müde war, habe ich bis Mitternacht gelernt
+an fíjis pjo norís, tha prolávis to tréno ton eftá ; Wenn du früher losgehst, erwischst du den Zug um sieben
+i fíli mu se periménun óli, jatí árjises tóso polí? ; Meine Freunde warten alle auf dich, warum bist du so spät?
+nómiza óti ta elliniká íne dhískola, allá tóra ta latrévo ; Ich dachte, Griechisch sei schwer, aber jetzt liebe ich es
+énas fréddo espréso sto balkóni me théa ti thálassa íne o parádhisos ; Ein Freddo Espresso auf dem Balkon mit Meerblick ist das Paradies
+ótan ftásis stin Athína, pár' me tiléfono na értho na se páro ; Wenn du in Athen ankommst, ruf mich an, damit ich dich abhole
+símera to proí íche tósi kínisi pu árjisa mia óra sti dhuliá ; Heute Morgen war so viel Verkehr, dass ich eine Stunde zu spät zur Arbeit kam
+an dhen ísuna esí, dhen tha ícha máthi póte tóso kalá elliniká ; Ohne dich hätte ich nie so gut Griechisch gelernt
+o pappús mu léi pánda óti lígo lígo jínete polí ; Mein Opa sagt immer, dass aus wenig viel wird
+káthe kalokéri pernáme tis dhiakopés mas se éna mikró nisí ton Kikládhon ; Jeden Sommer verbringen wir unsere Ferien auf einer kleinen Kykladeninsel

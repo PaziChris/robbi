@@ -180,19 +180,59 @@ export function initGames(api) {
   }
 
   /* ---------- 3) Satz-Puzzle ---------- */
-  function puzzle() {
-    const pool = api.cards.filter(c => { const n = cleanFront(c).split(/\s+/).length; return n >= 3 && n <= 8 && !c.front.includes('...'); });
-    if (pool.length < 3) { $('gameArea').innerHTML = '<p class="hint">Für das Satz-Puzzle braucht es mehr ganze Sätze in dieser Sprache.</p>'; return; }
+  // Sätze kommen aus der Wortliste (ganze Sätze) und zusätzlich aus saetze/<sprache>.txt
+  const PZ_LEVELS = [
+    { id: 'leicht', name: 'Leicht', icon: '🌱', desc: '3–5 Wörter', min: 3, max: 5, pts: 5 },
+    { id: 'mittel', name: 'Mittel', icon: '🔥', desc: '6–8 Wörter', min: 6, max: 8, pts: 8 },
+    { id: 'schwer', name: 'Schwer', icon: '🏔️', desc: 'ab 9 Wörtern', min: 9, max: 99, pts: 12 }
+  ];
+  const extraSentences = {};
+  async function loadExtraSentences(lang) {
+    if (extraSentences[lang]) return extraSentences[lang];
+    try {
+      const r = await fetch('saetze/' + lang.toLowerCase() + '.txt?v=20');
+      if (!r.ok) throw 0;
+      const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
+        .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
+        .filter(c => c.front && c.back);
+      return (extraSentences[lang] = list);
+    } catch (e) { return (extraSentences[lang] = []); }
+  }
+  const pzWords = c => cleanFront(c).split(/\s+/).filter(Boolean);
+  async function puzzle() {
+    const a = $('gameArea');
+    a.innerHTML = '<p class="hint">Sätze werden geladen …</p>';
+    const lang = api.lang, extra = await loadExtraSentences(lang);
+    if (api.lang !== lang || $('playGame').hidden || $('gameTitle').textContent.indexOf('Puzzle') < 0) return;
+    const seen = new Set(), all = [];
+    [...api.cards, ...extra].forEach(c => {
+      const key = cleanFront(c);
+      if (c.front.includes('...') || seen.has(key)) return;
+      seen.add(key); all.push(c);
+    });
+    const byLevel = lv => all.filter(c => { const n = pzWords(c).length; return n >= lv.min && n <= lv.max; });
+    $('gameInfo').textContent = 'Wähle die Schwierigkeit';
+    a.innerHTML = '<div class="pz-levels" id="pzLevels"></div>';
+    PZ_LEVELS.forEach(lv => {
+      const n = byLevel(lv).length, b = el('button', 'pz-level'); b.type = 'button';
+      b.innerHTML = `<span class="pz-ic">${lv.icon}</span><b>${lv.name}</b><small>${lv.desc} · ${n} Sätze · +${lv.pts} pro Satz</small>`;
+      if (n < 3) { b.disabled = true; b.title = 'Zu wenige Sätze in dieser Sprache'; }
+      if (S().pzLevel === lv.id) b.classList.add('last');
+      b.onclick = () => { S().pzLevel = lv.id; play(lv, byLevel(lv)); };
+      $('pzLevels').appendChild(b);
+    });
+  }
+  function play(lv, pool) {
     const round = shuffle(pool.slice()).slice(0, 5); let i = 0, solved = 0;
     const a = $('gameArea');
     function show() {
-      const c = round[i], words = cleanFront(c).split(/\s+/);
+      const c = round[i], words = pzWords(c);
       let chosen = [];
       let order = shuffle(words.map((w, k) => ({ w, k })));
       if (order.every((o, k) => o.k === k) && words.length > 1) order = order.reverse();
-      $('gameInfo').textContent = `Satz ${i + 1} / ${round.length}`;
+      $('gameInfo').textContent = `${lv.icon} ${lv.name} · Satz ${i + 1} / ${round.length}`;
       a.innerHTML = `<div class="q-card"><span class="lang">Deutsch</span><span class="q-word small">${esc(c.back)}</span></div>
-        <div class="pz-line" id="pzLine"></div><div class="pz-pool" id="pzPool"></div><p class="hint" id="pzMsg">Tippe die Wörter in der richtigen Reihenfolge an.</p>`;
+        <div class="pz-line" id="pzLine"></div><div class="pz-pool" id="pzPool"></div><p class="hint" id="pzMsg">Tippe die Wörter in der richtigen Reihenfolge an. Antippen oben nimmt ein Wort wieder zurück.</p>`;
       const draw = () => {
         const line = $('pzLine'), poolEl = $('pzPool'); line.innerHTML = ''; poolEl.innerHTML = '';
         chosen.forEach((o, idx) => { const b = el('button', 'chip pz'); b.type = 'button'; b.textContent = o.w; b.onclick = () => { chosen.splice(idx, 1); draw(); }; line.appendChild(b); });
@@ -202,19 +242,19 @@ export function initGames(api) {
         const ok = chosen.map(o => o.w).join(' ') === words.join(' ');
         const msg = $('pzMsg');
         if (ok) {
-          solved++; S().puzzles = (S().puzzles || 0) + 1; gain(5);
-          msg.innerHTML = `<b class="ok-text">Richtig! +5</b>`; api.setMood(api.cheer(), true, 'bounce');
+          solved++; S().puzzles = (S().puzzles || 0) + 1; gain(lv.pts);
+          msg.innerHTML = `<b class="ok-text">Richtig! +${lv.pts}</b>`; api.setMood(api.cheer(), true, 'bounce');
           later(() => { i++; i < round.length ? show() : finish(); }, 1100);
         } else {
           $('pzLine').classList.add('shake'); later(() => $('pzLine')?.classList.remove('shake'), 500);
           msg.innerHTML = `Nicht ganz. Richtig ist: <b>${esc(words.join(' '))}</b>`;
           api.setMood('Fast! Schau dir die Reihenfolge an.', false, 'shake');
-          later(() => { i++; i < round.length ? show() : finish(); }, 2600);
+          later(() => { i++; i < round.length ? show() : finish(); }, 1800 + words.length * 250);
         }
       };
       draw();
     }
-    function finish() { endScreen('Satz-Puzzle geschafft', [`<span class="big">${solved} / ${round.length}</span>`, `Sätze richtig · +${solved * 5} Punkte`], puzzle); }
+    function finish() { endScreen(`Satz-Puzzle · ${lv.name}`, [`<span class="big">${solved} / ${round.length}</span>`, `Sätze richtig · +${solved * lv.pts} Punkte`], () => play(lv, pool)); }
     show();
   }
 

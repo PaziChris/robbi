@@ -422,3 +422,13 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 .toast { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 60; max-width: calc(100% - 32px);
   background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 14px; font-weight: 700; font-size: 15px; box-shadow: 0 8px 24px -10px #0008; }
 @media (prefers-reduced-motion: reduce) { .mic.listening { animation: none; } .blitz-bar i, .mem span { transition: none; } }
+
+/* Satz-Puzzle: Schwierigkeit */
+.pz-levels { display: grid; gap: 10px; }
+.pz-level { display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto auto; align-items: center; text-align: left; gap: 0 10px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; }
+.pz-level .pz-ic { grid-row: 1 / 3; font-size: 30px; text-align: center; }
+.pz-level b { font-size: 17px; }
+.pz-level small { color: var(--muted); }
+.pz-level.last { border-color: var(--ink); border-width: 2px; }
+.pz-level:disabled { opacity: .45; cursor: default; }
+.pz-line .chip.pz, .pz-pool .chip.pz { white-space: normal; }
