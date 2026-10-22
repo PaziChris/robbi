@@ -3,6 +3,8 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
+import { initGames } from './games.js?v=17';
+
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
 const HAS_FIREBASE = !!(CFG && CFG.apiKey && !String(CFG.apiKey).startsWith('DEIN'));
@@ -10,7 +12,8 @@ const HAS_FIREBASE = !!(CFG && CFG.apiKey && !String(CFG.apiKey).startsWith('DEI
 /* ---------- Lokaler Speicher ---------- */
 const KEY = 'robbi.v3';
 const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, streak: 0, lastDay: '', pushLang: 'abwechselnd',
-  days: {}, goalMin: 30, goalDate: '2026-12-31', doneDay: '', newDay: { d: '', n: 0 } };
+  days: {}, goalMin: 30, goalDate: '2026-12-31', doneDay: '', newDay: { d: '', n: 0 },
+  stats: {}, badges: {}, outfit: { hat: '', face: '' }, duelsCounted: {} };
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
@@ -167,7 +170,7 @@ function fmtDate(iso, withYear) { const [y, m, d] = iso.split('-'); return `${+d
 // Kalendertage bis zum Ziel-Datum (heute nicht mitgezählt); gelernt wird an dl + 1 Tagen inklusive heute
 function daysLeft() { const t = new Date(store.goalDate + 'T00:00:00'); return isNaN(t) ? null : Math.round((t - new Date(today() + 'T00:00:00')) / 86400000); }
 function fmtDuration(s) { const m = Math.round(s / 60); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')} min`; }
-function isLearning() { return !document.hidden && !$('viewLearn').hidden && Date.now() - lastAct < 60000; }
+function isLearning() { return !document.hidden && (!$('viewLearn').hidden || !$('viewPlay').hidden) && Date.now() - lastAct < 60000; }
 function tick() {
   const running = isLearning();
   if (running) {
@@ -248,9 +251,11 @@ function progBody(l) {
   return { lang: l, json: JSON.stringify(out) };
 }
 const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.lang, dir: store.dir, nick: store.nick, pushLang: store.pushLang,
-  daysJson: JSON.stringify(trimDays(store.days)), goalMin: store.goalMin, goalDate: store.goalDate, doneDay: store.doneDay, newDayJson: JSON.stringify(store.newDay) });
+  daysJson: JSON.stringify(trimDays(store.days)), goalMin: store.goalMin, goalDate: store.goalDate, doneDay: store.doneDay, newDayJson: JSON.stringify(store.newDay),
+  statsJson: JSON.stringify(store.stats || {}), badgesJson: JSON.stringify(store.badges || {}), outfitJson: JSON.stringify(store.outfit || {}), duelsJson: JSON.stringify(store.duelsCounted || {}) });
 const scoreBody = () => ({ nick: store.nick || '', xp: store.xp || 0, streak: store.streak || 0, lastDay: store.lastDay || '', known: knownTotal(), lang: store.lang || '',
-  todaySec: secsToday(), day: today(), totalSec: totalSecs() });
+  todaySec: secsToday(), day: today(), totalSec: totalSecs(),
+  badges: Object.keys(store.badges || {}).length, blitz: (store.stats || {}).blitzBest || 0 });
 
 /* Sammel-Speichern: Änderungen werden nur vorgemerkt und höchstens alle 20 Sekunden
    gemeinsam in EINER Anfrage ins Konto geschrieben – bei wichtigen Aktionen und beim
@@ -343,6 +348,13 @@ async function onAuth(user) {
       if (d.goalMin) store.goalMin = d.goalMin;
       if (d.goalDate) store.goalDate = d.goalDate;
       if ((d.doneDay || '') > (store.doneDay || '')) store.doneDay = d.doneDay;
+      try {                                                  // Spielstand: jeweils der bessere Wert
+        const cs = JSON.parse(d.statsJson || '{}'), ls = store.stats = store.stats || {};
+        for (const k in cs) ls[k] = k === 'memoryBest' ? (ls[k] ? Math.min(ls[k], cs[k]) : cs[k]) : Math.max(ls[k] || 0, cs[k] || 0);
+        Object.assign(store.badges = store.badges || {}, JSON.parse(d.badgesJson || '{}'));
+        Object.assign(store.duelsCounted = store.duelsCounted || {}, JSON.parse(d.duelsJson || '{}'));
+        const co = JSON.parse(d.outfitJson || 'null'); if (co && (co.hat || co.face)) store.outfit = co;
+      } catch (e) {}
       try { const nd = JSON.parse(d.newDayJson || 'null'); if (nd && nd.d === today() && (store.newDay.d !== nd.d || nd.n > store.newDay.n)) store.newDay = nd; } catch (e) {}
     }
     if (sc.exists()) {
@@ -369,6 +381,7 @@ async function onAuth(user) {
   }
   if (!$('viewBoard').hidden && !document.hidden) startBoard();
   setupForegroundPush();
+  games.applyOutfit(); games.checkBadges();
   renderProfile();
   if (store.lang && store.lang !== lang && allLangs().includes(store.lang)) loadLang(store.lang);
   else { rebuildCards(); refresh(); }
@@ -409,7 +422,7 @@ function renderBoard() {
     const av = document.createElement('span'); av.className = 'avatar sm initial'; av.textContent = (r.nick || '?').trim().charAt(0).toUpperCase() || '?';
     const who = document.createElement('div'); who.className = 'who';
     const nm = document.createElement('b'); nm.textContent = (r.nick || 'Robbe ohne Namen') + (r.id === cloud.uid ? ' (du)' : '');
-    const sub = document.createElement('span'); sub.textContent = `${liveStreak(r.streak, r.lastDay)} Tage Serie · ${r.day === today() ? Math.floor((r.todaySec || 0) / 60) : 0} min heute · ${r.known || 0} gekonnt${r.lang ? ' · ' + r.lang : ''}`;
+    const sub = document.createElement('span'); sub.textContent = `${liveStreak(r.streak, r.lastDay)} Tage Serie · ${r.day === today() ? Math.floor((r.todaySec || 0) / 60) : 0} min heute · ${r.known || 0} gekonnt${r.badges ? ' · 🏅' + r.badges : ''}${r.lang ? ' · ' + r.lang : ''}`;
     who.append(nm, sub);
     const pts = document.createElement('div'); pts.className = 'pts'; pts.innerHTML = `${r.xp || 0}<small>Punkte</small>`;
     li.append(rank, av, who, pts); ul.appendChild(li);
@@ -627,7 +640,7 @@ function answer(ok) {
     queue.splice(Math.min(queue.length, 3), 0, item);   // kommt in 3 Karten wieder
     setMood('Kein Problem, die kommt gleich nochmal.', false, 'shake');
   }
-  updateBadge();
+  updateBadge(); games.checkBadges();
   lockUntil = performance.now() + 350;
   showCard(true);
 }
@@ -717,14 +730,16 @@ const clean = s => s.replace(/;/g, ',').trim();
 
 /* ---------- Tabs & Ereignisse ---------- */
 function showTab(t) {
-  [['learn', 'tabLearn', 'viewLearn'], ['repeat', 'tabRepeat', 'viewRepeat'], ['board', 'tabBoard', 'viewBoard'], ['words', 'tabWords', 'viewWords']].forEach(([n, tab, view]) => {
+  [['learn', 'tabLearn', 'viewLearn'], ['repeat', 'tabRepeat', 'viewRepeat'], ['play', 'tabPlay', 'viewPlay'], ['board', 'tabBoard', 'viewBoard'], ['words', 'tabWords', 'viewWords']].forEach(([n, tab, view]) => {
     $(tab).setAttribute('aria-selected', n === t); $(view).hidden = n !== t;
   });
   if (t === 'repeat') renderRepeat();
   if (t === 'words') renderWords();
   if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); startBoard(); } else stopBoard(true);   // Rangliste nur live, solange sie offen ist
   if (t === 'learn') { renderChips(); lastAct = Date.now(); }
+  if (t === 'play') { games.render(); lastAct = Date.now(); } else games.stop();
 }
+$('tabPlay').onclick = () => showTab('play');
 $('tabLearn').onclick = () => showTab('learn');
 $('tabRepeat').onclick = () => showTab('repeat');
 $('tabBoard').onclick = () => showTab('board');
@@ -843,6 +858,13 @@ window.addEventListener('online', () => { if (cloud.ok) setSync('ok'); });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 showInstall();
 Object.values(ACTORS).forEach(lifeLoop);
+function gainXp(n) { store.xp = (store.xp || 0) + n; touchStreak(); persist(['score', 'user']); }
+const games = initGames({
+  $, store, esc, shuffle, reduceMotion, readAid, today, persist, setMood, cheer, gainXp, cloud,
+  get lang() { return lang; }, get cards() { return cards; },
+  baseCards: () => parse(texts[lang] || '', lang),
+  liveStreak: () => liveStreak(store.streak, store.lastDay), knownTotal, totalSecs
+});
 
 /* ---------- Tagesziel-Timer & Countdown ---------- */
 ['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, () => { lastAct = Date.now(); }, { passive: true }));

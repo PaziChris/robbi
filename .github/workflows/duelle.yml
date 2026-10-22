@@ -1,0 +1,30 @@
+name: Duell-Nachrichten
+
+# Schaut regelmäßig nach neuen Herausforderungen und fertigen Duellen
+# und schickt die Push-Nachrichten. GitHub startet geplante Läufe manchmal verspätet.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: duelle
+  cancel-in-progress: false
+
+jobs:
+  duelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pakete installieren
+        working-directory: robbi-web/scripts
+        run: npm install --no-audit --no-fund
+      - name: Duell-Nachrichten verschicken
+        working-directory: robbi-web/scripts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          APP_URL: ${{ vars.APP_URL }}
+        run: node send-duels.mjs

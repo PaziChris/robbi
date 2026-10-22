@@ -20,5 +20,21 @@ service cloud.firestore {
         && request.resource.data.nick is string && request.resource.data.nick.size() <= 24
         && request.resource.data.xp is number && request.resource.data.xp >= 0;
     }
+
+    // Duelle: nur die beiden Spieler sehen sie. Wer herausfordert, legt an;
+    // der Herausgeforderte trägt sein Ergebnis ein.
+    match /duels/{id} {
+      allow read: if request.auth != null
+        && (resource.data.a == request.auth.uid || resource.data.b == request.auth.uid);
+      allow create: if request.auth != null
+        && request.resource.data.a == request.auth.uid
+        && request.resource.data.status == 'open';
+      allow update: if request.auth != null
+        && resource.data.b == request.auth.uid
+        && resource.data.status == 'open'
+        && request.resource.data.a == resource.data.a
+        && request.resource.data.b == resource.data.b
+        && request.resource.data.aScore == resource.data.aScore;
+    }
   }
 }

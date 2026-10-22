@@ -10,14 +10,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Robbi">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="manifest.webmanifest?v=16">
-<link rel="icon" href="icons/favicon.png?v=16">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=16">
+<link rel="manifest" href="manifest.webmanifest?v=17">
+<link rel="icon" href="icons/favicon.png?v=17">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=17">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=16">
-<script src="firebase-config.js?v=16"></script>
+<link rel="stylesheet" href="style.css?v=17">
+<script src="firebase-config.js?v=17"></script>
 </head>
 <body>
 <div class="app">
@@ -82,6 +82,12 @@
             <path d="M48.3 57.4 L51.7 57.4 L51.3 60.2 L48.7 60.2 Z"/>
             <path d="M51.4 58 L53.4 56.1 L54 56.7 L52 58.7 Z"/>
           </g>
+          <!-- Outfits (werden im Spielen-Tab freigeschaltet) -->
+          <g class="of of-sunglasses"><rect x="38" y="31" width="11.5" height="7.5" rx="3.2" fill="#111"/><rect x="50.5" y="31" width="11.5" height="7.5" rx="3.2" fill="#111"/><path d="M49.5 33.4 Q50 32.6 50.5 33.4 M38 33 L33.5 31.6 M62 33 L66.5 31.6" stroke="#111" stroke-width="1.1" fill="none"/><path d="M39.8 32.6 h3 M52.3 32.6 h3" stroke="#fff" stroke-width=".8" opacity=".55"/></g>
+          <g class="of of-hearts" fill="#E91E63"><path d="M44 39.5 C37.6 35.4 39.3 30.3 44 33.2 C48.7 30.3 50.4 35.4 44 39.5Z"/><path d="M56 39.5 C49.6 35.4 51.3 30.3 56 33.2 C60.7 30.3 62.4 35.4 56 39.5Z"/></g>
+          <g class="of of-party"><path d="M39 8 L61 8 L50 -10 Z" fill="#FF7043"/><path d="M42.4 2.6 L57.6 2.6 M45.6 -3 L54.4 -3" stroke="#FFD54F" stroke-width="2.1"/><circle cx="50" cy="-9.6" r="2.6" fill="#FFD54F"/></g>
+          <g class="of of-crown"><path d="M37 9 L37 -2.5 L43.5 3 L50 -6.5 L56.5 3 L63 -2.5 L63 9 Z" fill="#F2C230" stroke="#B8860B" stroke-width=".7" stroke-linejoin="round"/><rect x="37" y="6.5" width="26" height="2.8" fill="#E0A526"/><circle cx="50" cy="3" r="1.6" fill="#D32F2F"/><circle cx="42.8" cy="5.4" r="1.1" fill="#1D5FB4"/><circle cx="57.2" cy="5.4" r="1.1" fill="#1D5FB4"/></g>
+          <g class="of of-headphones"><path d="M26.5 38 C26.5 -1 73.5 -1 73.5 38" stroke="#263238" stroke-width="3.2" fill="none"/><rect x="21.5" y="32" width="8.5" height="14" rx="3.5" fill="#E53935"/><rect x="70" y="32" width="8.5" height="14" rx="3.5" fill="#E53935"/></g>
         </g>
         </g>
         <g class="m-arm">
@@ -122,10 +128,12 @@
         <ellipse cx="41.4" cy="58.3" rx="7" ry="3.6" transform="rotate(-58 41.4 58.3)" fill="var(--seal-dark)"/>
         <g class="head">
           <circle cx="80" cy="38" r="26" fill="var(--seal)"/>
+          <g class="cap">
           <path d="M58 22 Q60 6 82 6 Q104 7 104 21 Q82 17 58 22Z" fill="var(--navy)"/>
           <path d="M56 24 Q81 17 106 23 L106 25.5 Q81 20 56 27Z" fill="var(--brim)"/>
           <path d="M59 21.5 Q81 15.5 103 20.5" fill="none" stroke="var(--boteh)" stroke-width="1.1"/>
           <path d="M81 10 l0 5 M78.6 12.4 l4.8 0 M78.5 14.2 q2.5 2.6 5 0" fill="none" stroke="var(--boteh)" stroke-width=".9" stroke-linecap="round"/>
+          </g>
           <g class="open">
             <g class="eye l"><circle cx="71" cy="33" r="3.6" fill="var(--eye)"/><circle cx="72.2" cy="31.8" r="1.1" fill="var(--eye-shine)"/></g>
             <g class="eye r"><circle cx="89" cy="33" r="3.6" fill="var(--eye)"/><circle cx="90.2" cy="31.8" r="1.1" fill="var(--eye-shine)"/></g>
@@ -148,6 +156,12 @@
           <g class="whiskers" stroke="var(--beard-light)" stroke-width="1.1" stroke-linecap="round">
             <path d="M68 43 l-11 -2"/><path d="M68 45 l-11 2"/><path d="M92 43 l11 -2"/><path d="M92 45 l11 2"/>
           </g>
+          <!-- Outfits (werden im Spielen-Tab freigeschaltet) -->
+          <g class="of of-sunglasses"><rect x="64.5" y="29" width="13" height="8.5" rx="3.5" fill="#111"/><rect x="82.5" y="29" width="13" height="8.5" rx="3.5" fill="#111"/><path d="M77.5 32 Q80 30.6 82.5 32 M64.5 31.5 L58 30 M95.5 31.5 L102 30" stroke="#111" stroke-width="1.3" fill="none"/><path d="M66.5 31 h3.5 M84.5 31 h3.5" stroke="#fff" stroke-width=".9" opacity=".55"/></g>
+          <g class="of of-hearts" fill="#E91E63"><path d="M71 38 C63.5 33.2 65.5 27.2 71 30.6 C76.5 27.2 78.5 33.2 71 38Z"/><path d="M89 38 C81.5 33.2 83.5 27.2 89 30.6 C94.5 27.2 96.5 33.2 89 38Z"/><path d="M76.4 32 Q80 30.4 83.6 32" stroke="#E91E63" stroke-width="1.2" fill="none"/></g>
+          <g class="of of-party"><path d="M68 18 L92 18 L80 0.8 Z" fill="#FF7043"/><path d="M71.6 13 L88.4 13 M75.2 7.8 L84.8 7.8" stroke="#FFD54F" stroke-width="2.2"/><circle cx="80" cy="1.6" r="2.6" fill="#FFD54F"/></g>
+          <g class="of of-crown"><path d="M65 20 L65 8 L72 13.5 L80 3.5 L88 13.5 L95 8 L95 20 Z" fill="#F2C230" stroke="#B8860B" stroke-width=".7" stroke-linejoin="round"/><rect x="65" y="17.5" width="30" height="3" fill="#E0A526"/><circle cx="80" cy="13.5" r="1.7" fill="#D32F2F"/><circle cx="71.5" cy="16" r="1.2" fill="#1D5FB4"/><circle cx="88.5" cy="16" r="1.2" fill="#1D5FB4"/></g>
+          <g class="of of-headphones"><path d="M55.5 36 C55.5 5 104.5 5 104.5 36" stroke="#263238" stroke-width="3.2" fill="none"/><rect x="50.5" y="30.5" width="8.5" height="14" rx="3.5" fill="#E53935"/><rect x="101" y="30.5" width="8.5" height="14" rx="3.5" fill="#E53935"/></g>
         </g>
       </svg>
       <span class="tag"><b>Robbie</b><i>Robert Robertson</i>Griechisch</span>
@@ -174,8 +188,9 @@
 
   <div class="tabs" role="tablist">
     <button role="tab" id="tabLearn" aria-selected="true">Lernen</button>
-    <button role="tab" id="tabRepeat" aria-selected="false">Wiederholen<span class="badge" id="wrongBadge" hidden>0</span></button>
-    <button role="tab" id="tabBoard" aria-selected="false">Rangliste</button>
+    <button role="tab" id="tabRepeat" aria-selected="false">Wieder&shy;holen<span class="badge" id="wrongBadge" hidden>0</span></button>
+    <button role="tab" id="tabPlay" aria-selected="false">Spielen</button>
+    <button role="tab" id="tabBoard" aria-selected="false">Rang&shy;liste</button>
     <button role="tab" id="tabWords" aria-selected="false">Wörter</button>
   </div>
 
@@ -255,6 +270,28 @@
     <p class="label">Nach Thema</p>
     <ul class="catrows" id="repRows"></ul>
     <button class="btn quiet" id="resetBtn" type="button">Fortschritt zurücksetzen</button>
+  </section>
+
+  <!-- SPIELEN -->
+  <section class="view" id="viewPlay" hidden>
+    <div class="view" id="playMenu">
+      <div class="panel wotd" id="wotd"></div>
+      <div id="duelInbox" class="view"></div>
+      <div class="games" id="gameGrid"></div>
+      <div class="panel">
+        <h2>Abzeichen <span class="count" id="badgeCount"></span></h2>
+        <div class="badges" id="badgeGrid"></div>
+      </div>
+      <div class="panel">
+        <h2>Garderobe</h2>
+        <p id="wardrobeHint"></p>
+        <div class="wardrobe" id="wardrobe"></div>
+      </div>
+    </div>
+    <div class="view" id="playGame" hidden>
+      <div class="game-top"><button class="btn quiet small" id="gameBack" type="button">← Menü</button><b id="gameTitle"></b><span id="gameInfo"></span></div>
+      <div class="view" id="gameArea"></div>
+    </div>
   </section>
 
   <!-- RANGLISTE & PROFIL -->
@@ -398,6 +435,7 @@
     </details>
   </section>
 </div>
-<script type="module" src="app.js?v=16"></script>
+<div class="toast" id="toast" role="status" hidden></div>
+<script type="module" src="app.js?v=17"></script>
 </body>
 </html>

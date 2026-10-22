@@ -116,6 +116,17 @@ Freunde machen dasselbe mit deinem Link – sie registrieren sich selbst und lan
 
 ---
 
+---
+
+## Duelle freischalten (einmalig, 1 Minute)
+
+Für die Duelle braucht Firebase neue Regeln:
+1. Firebase → **Firestore Database** → Reiter **Regeln**
+2. Alles löschen und den kompletten Inhalt von **firestore.rules** (im Ordner robbi-web) einfügen
+3. **Veröffentlichen**
+
+Die Duell-Nachrichten (Herausforderung, Sieg, Niederlage) verschickt der Ablauf **„Duell-Nachrichten“** automatisch etwa alle 15 Minuten.
+
 ## Später: Dinge ändern
 
 | Was | Wie |

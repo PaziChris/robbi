@@ -22,6 +22,23 @@ function loadPhrases(file) {
     .split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && l.includes(';'))
     .map(l => { const i = l.indexOf(';'); return { say: l.slice(0, i).trim(), de: l.slice(i + 1).trim() }; });
 }
+/* ---- Wortlisten für das Wort des Tages (gleiche Auswahl wie in der App) ---- */
+const LANG_NAME = { farsi: 'Farsi', griechisch: 'Griechisch', italienisch: 'Italienisch', spanisch: 'Spanisch' };
+function loadWords(lang) {
+  try {
+    return fs.readFileSync(path.join(here, '..', lang + '.txt'), 'utf8').split(/\r?\n/)
+      .map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('['))
+      .map(l => l.split(';').map(s => s.trim())).filter(p => p.length >= 2 && p[0] && p[1]);
+  } catch (e) { return []; }
+}
+function wotdHash(s) { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; }
+function wordOfDay(lang) {
+  const list = loadWords(lang); if (!list.length) return '';
+  const w = list[wotdHash(TODAY_STR() + '|' + LANG_NAME[lang]) % list.length];
+  return `📖 Wort des Tages: ${w[0].split(' – ')[0]} = ${w[1]}`;
+}
+const TODAY_STR = () => TODAY;
+
 const PHRASES = { farsi: loadPhrases('farsi.txt'), griechisch: loadPhrases('griechisch.txt'), italienisch: loadPhrases('italienisch.txt'), spanisch: loadPhrases('spanisch.txt') };
 
 /* ---- Datum in Österreich ---- */
@@ -52,7 +69,7 @@ export function buildMessage(setting, uid, score) {
   const lang = chooseLang(setting);
   const p = pickPhrase(lang, uid);
   const name = lang === 'farsi' ? 'Arzi' : (lang === 'italienisch' || lang === 'spanisch') ? 'Robbi' : 'Robbie';
-  return { title: lang === 'farsi' ? 'Arzi · Farsi' : lang === 'italienisch' ? 'Robbi · Italienisch' : lang === 'spanisch' ? 'Robbi · Spanisch' : 'Robbie Robert Robertson · Griechisch', body: `${p.say} (${p.de})\n${streakLine(score, name)}` };
+  return { title: lang === 'farsi' ? 'Arzi · Farsi' : lang === 'italienisch' ? 'Robbi · Italienisch' : lang === 'spanisch' ? 'Robbi · Spanisch' : 'Robbie Robert Robertson · Griechisch', body: `${p.say} (${p.de})\n${streakLine(score, name)}\n${wordOfDay(lang)}`.trim() };
 }
 
 /* ---- Versand ---- */

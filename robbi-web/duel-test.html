@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<body><div class="app">
+<svg id="seal" class="seal"></svg><svg id="monkey" class="monkey"></svg>
+<section id="viewPlay"><div id="playMenu"><div id="wotd"></div><div id="duelInbox"></div><div id="gameGrid"></div><span id="badgeCount"></span><div id="badgeGrid"></div><p id="wardrobeHint"></p><div id="wardrobe"></div></div>
+<div id="playGame" hidden><button id="gameBack"></button><b id="gameTitle"></b><span id="gameInfo"></span><div id="gameArea"></div></div></section></div>
+<div id="toast" hidden></div>
+<script type="module">
+import { initGames } from './games.js';
+const DB = {}; let n = 0;
+const F = {
+  collection: (db, name) => ({ name }), doc: (db, name, id) => ({ name, id }),
+  where: (f, op, v) => ({ f, v }), limit: () => null, orderBy: () => null,
+  query: (c, ...cs) => ({ c, cs: cs.filter(Boolean) }),
+  getDocs: async q => { const col = DB[q.c.name] || {}; const docs = Object.entries(col).filter(([id, d]) => q.cs.every(w => !w.f || d[w.f] === w.v)).map(([id, d]) => ({ id, data: () => d })); return { docs }; },
+  addDoc: async (c, d) => { DB[c.name] = DB[c.name] || {}; const id = 'd' + (++n); DB[c.name][id] = d; return { id }; },
+  updateDoc: async (r, d) => Object.assign(DB[r.name][r.id], d)
+};
+DB.scores = { u2: { nick: 'Berry', lang: 'Griechisch', xp: 50 } };
+const words = Array.from({ length: 30 }, (_, i) => ({ lang: 'Farsi', cat: 'K' + (i % 3), front: 'wort' + i, back: 'Wort ' + i, note: '' }));
+const store = { xp: 0, stats: {}, badges: {}, outfit: {}, prog: {}, days: {}, nick: 'Breezy' };
+const cloud = { ok: true, uid: 'u1', fb: { F, db: {} } };
+window.T = { DB, store, cloud };
+window.games = initGames({ $: id => document.getElementById(id), store, esc: s => String(s), shuffle: a => a.sort(() => Math.random() - .5), reduceMotion: true,
+  readAid: () => '', today: () => '2026-10-22', persist: () => {}, setMood: (t) => { window.lastMood = t; }, cheer: () => 'Bravo', gainXp: x => { store.xp += x; }, cloud,
+  get lang() { return 'Farsi'; }, get cards() { return words; }, baseCards: () => words, liveStreak: () => 3, knownTotal: () => 0, totalSecs: () => 0 });
+games.render();
+</script>
