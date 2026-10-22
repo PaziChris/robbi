@@ -433,3 +433,6 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 .pz-level.last { border-color: var(--ink); border-width: 2px; }
 .pz-level:disabled { opacity: .45; cursor: default; }
 .pz-line .chip.pz, .pz-pool .chip.pz { white-space: normal; }
+
+.diag summary { cursor: pointer; font-weight: 700; }
+.diag ol { margin: 8px 0 0; padding-left: 20px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }

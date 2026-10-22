@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=24';
+import { initGames } from './games.js?v=25';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -33,6 +33,7 @@ const progSaved = {};
   } catch (e) {}
 })();
 function saveLocal() {
+  mark('Speichern im Handy');
   clearTimeout(localTimer); localTimer = null; firstPending = 0;
   const byLang = {};
   for (const k in store.prog) { const i = k.indexOf('\u0001'), l = k.slice(0, i); (byLang[l] = byLang[l] || {})[k.slice(i + 1)] = store.prog[k]; }
@@ -117,6 +118,30 @@ const seal = $('seal'), bubble = $('bubble');
 let fileLangs = {};
 const texts = {};
 let lang = '', cat = '*', mode = 'all', cards = [];
+const ROUND = 20;
+/* ---------- Technik-Info: merkt sich Hänger (Bild stand länger als 0,3 s) und was gerade lief ---------- */
+var diag = { marks: [], stalls: [] };
+function mark(what) { diag.marks.push([performance.now(), what]); if (diag.marks.length > 40) diag.marks.shift(); }
+(function watchFrames() {
+  let last = performance.now();
+  const frame = t => {
+    const gap = t - last;
+    if (gap > 300 && gap < 15000 && !document.hidden) {
+      const what = [...new Set(diag.marks.filter(m => m[0] >= last - 50).map(m => m[1]))].join(', ') || 'unbekannt';
+      diag.stalls.push(`${new Date().toLocaleTimeString('de-AT')} · ${Math.round(gap)} ms · ${what}`);
+      if (diag.stalls.length > 12) diag.stalls.shift();
+      if (diagOpen()) renderDiag();
+    }
+    last = t; requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+  document.addEventListener('visibilitychange', () => { last = performance.now(); });
+})();
+const diagOpen = () => { const p = document.getElementById('diagPanel'); return p && p.open && !document.getElementById('viewBoard').hidden; };
+function renderDiag() {
+  const ol = $('diagList'); if (!ol) return;
+  ol.innerHTML = diag.stalls.length ? diag.stalls.slice().reverse().map(s => `<li>${esc(s)}</li>`).join('') : '<li>Kein Hänger aufgezeichnet 🎉</li>';
+}
 let queue = [], total = 0, done = 0, firstRight = 0, firstSeen = 0, sessionXp = 0, flipped = false;
 
 const MODES = [['all', 'Alle'], ['new', 'Neu'], ['f', 'Falsch'], ['k', 'Gekonnt']];
@@ -209,7 +234,7 @@ function tick() {
     const t = today();
     store.days[t] = (store.days[t] || 0) + 1; tickN++;
     if (store.days[t] >= store.goalMin * 60 && store.doneDay !== t) { store.doneDay = t; tickN = 0; persist(['user', 'score'], 0); celebrate(); }
-    else if (tickN >= 30) { tickN = 0; persist(['user', 'score']); }
+    else if (tickN >= 60) { tickN = 0; persist(['user', 'score']); }
     else if (tickN % 10 === 0) saveLocalSoon();
   }
   renderGoal(running);
@@ -299,7 +324,7 @@ let flushTimer = null, flushAt = 0;
 function writeDoc(path, body, delay) {
   if (!cloud.ok) return;
   dirty.set(path, body);
-  scheduleFlush(delay == null ? 20000 : delay);
+  scheduleFlush(delay == null ? 45000 : delay);
 }
 function scheduleFlush(ms) {
   const at = Date.now() + ms;
@@ -319,10 +344,11 @@ function flush() {
   dirty.clear();
   if (!items.length) return;
   setSync(navigator.onLine === false ? 'offline' : 'wait');
+  mark('Cloud-Speichern (' + items.length + ')');
   const batch = F.writeBatch(db);
   items.forEach(it => batch.set(F.doc(db, it.path), it.data, { merge: true }));
   batch.commit()
-    .then(() => { items.forEach(it => { lastSent[it.path] = it.json; }); if (!dirty.size) setSync('ok'); })
+    .then(() => { mark('Cloud fertig'); items.forEach(it => { lastSent[it.path] = it.json; }); if (!dirty.size) setSync('ok'); })
     .catch(() => { items.forEach(it => { if (!dirty.has(it.path)) dirty.set(it.path, it.body); }); setSync('err'); scheduleFlush(15000); });
 }
 function persist(what, delay) {
@@ -436,7 +462,7 @@ function startBoard() {
   if (boardUnsub || !cloud.fb || !cloud.uid) return;
   const { F, db } = cloud.fb;
   boardUnsub = F.onSnapshot(F.query(F.collection(db, 'scores'), F.orderBy('xp', 'desc'), F.limit(50)),
-    snap => { board = snap.docs.map(d => Object.assign({ id: d.id }, d.data())); if (!$('viewBoard').hidden) renderBoard(); },
+    snap => { mark('Rangliste-Update'); board = snap.docs.map(d => Object.assign({ id: d.id }, d.data())); if (!$('viewBoard').hidden) renderBoard(); },
     () => { $('board').innerHTML = '<li class="empty">Die Rangliste ist gerade nicht erreichbar.</li>'; });
 }
 function stopBoard(keep) { if (boardUnsub) boardUnsub(); boardUnsub = null; if (!keep) board = []; }
@@ -627,6 +653,7 @@ function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.fl
 function startSession() {
   const list = pool(mode, cat);
   queue = shuffle(list.map(c => ({ c, rev: store.dir === 'd' || (store.dir === 'm' && Math.random() < .5), seen: false })));
+  if (mode === 'f' || mode === 'k') queue = queue.slice(0, ROUND);    // Falsche und Gekonnte in kleinen Runden
   total = queue.length; done = 0; firstRight = 0; firstSeen = 0; sessionXp = 0;
   $('session').hidden = false; $('endView').hidden = true;
   showCard();
@@ -664,12 +691,14 @@ function emptyState() {
   $('flipActions').hidden = true;
 }
 function flip(fromCard) {
+  mark('Umdrehen');
   if (!queue.length || (!fromCard && performance.now() < lockUntil)) return;   // Doppeltipp nach "Gewusst" ignorieren
   flipped = !flipped;
   $('card').classList.toggle('flipped', flipped);
   if (flipped) { $('flipActions').hidden = true; $('rateActions').hidden = false; }
 }
 function answer(ok) {
+  mark(ok ? 'Gewusst' : 'Nicht gewusst');
   if (!flipped || !queue.length) return;
   const item = queue.shift();
   const first = !item.seen;
@@ -696,8 +725,9 @@ function endSession() {
   const pct = firstSeen ? Math.round(firstRight / firstSeen * 100) : 0;
   $('endPct').textContent = pct + '%';
   $('endText').textContent = `${firstRight} von ${firstSeen} Karten auf Anhieb, +${sessionXp} Punkte. Serie: ${liveStreak(store.streak, store.lastDay)} Tage.`;
-  const w = countMode('f');
-  $('endWrongBtn').disabled = !w; $('endWrongBtn').textContent = w ? `Falsche üben (${w})` : 'Keine Fehler offen';
+  const w = countMode('f'), more = mode === 'k' ? countMode('k') : 0;
+  $('endWrongBtn').disabled = !w; $('endWrongBtn').textContent = w ? (w > ROUND ? `Nächste ${ROUND} Falsche (${w} offen)` : `Falsche üben (${w})`) : 'Keine Fehler offen';
+  $('restartBtn').textContent = mode === 'k' && more > ROUND ? `Nächste ${ROUND} Gekonnte` : mode === 'f' ? 'Andere Runde' : 'Nochmal';
   renderChips();
   setMood(pct >= 80 ? actor().praise : 'Wiederholen macht den Meister!', true, 'bounce');
 }
@@ -713,8 +743,8 @@ function renderRepeat() {
   $('repTitle').textContent = `Dein Fortschritt in ${lang}`;
   $('repStack').innerHTML = stackHtml('*');
   $('repLegend').innerHTML = `<span class="k"><b>${k}</b>gekonnt</span><span class="f"><b>${f}</b>falsch</span><span class="n"><b>${n}</b>neu</span>`;
-  $('repWrongBtn').disabled = !f; $('repWrongBtn').textContent = `Falsche üben (${f})`;
-  $('repKnownBtn').disabled = !k; $('repKnownBtn').textContent = `Gekonnte wiederholen (${k})`;
+  $('repWrongBtn').disabled = !f; $('repWrongBtn').textContent = f > ROUND ? `${ROUND} Falsche üben (von ${f})` : `Falsche üben (${f})`;
+  $('repKnownBtn').disabled = !k; $('repKnownBtn').textContent = k > ROUND ? `${ROUND} Gekonnte wiederholen (von ${k})` : `Gekonnte wiederholen (${k})`;
   const ul = $('repRows'); ul.innerHTML = '';
   catsOf(cards).forEach(ct => {
     const kc = countMode('k', ct), fc = countMode('f', ct), all = countMode('all', ct);
@@ -782,11 +812,12 @@ function showTab(t) {
   });
   if (t === 'repeat') renderRepeat();
   if (t === 'words') renderWords();
-  if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); startBoard(); } else stopBoard(true);   // Rangliste nur live, solange sie offen ist
+  if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); renderDiag(); startBoard(); } else stopBoard(true);   // Rangliste nur live, solange sie offen ist
   if (t === 'learn') { renderChips(); lastAct = Date.now(); }
   if (t === 'play') { games.render(); lastAct = Date.now(); } else games.stop();
 }
 $('tabPlay').onclick = () => showTab('play');
+$('diagPanel').addEventListener('toggle', renderDiag);
 $('tabLearn').onclick = () => showTab('learn');
 $('tabRepeat').onclick = () => showTab('repeat');
 $('tabBoard').onclick = () => showTab('board');
