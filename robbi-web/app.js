@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=25';
+import { initGames } from './games.js?v=26';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -665,7 +665,7 @@ function showCard(animate) {
   card.classList.remove('flipped'); flipped = false;
   requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('instant')));
   if (animate && !reduceMotion && $('scene').animate) $('scene').animate([{ transform: 'translateX(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 200, easing: 'ease-out' });
-  $('flipActions').hidden = false; $('rateActions').hidden = true;
+  $('flipActions').hidden = true; $('rateActions').hidden = false;
   $('count').textContent = `${done} / ${total}`;
   $('barFill').style.transform = `scaleX(${total ? done / total : 0})`;
   $('score').textContent = sessionXp ? `+${sessionXp} Punkte` : '';
@@ -688,18 +688,17 @@ function emptyState() {
   $('fCat').textContent = ''; $('fLang').textContent = ''; $('fState').className = 'state'; $('fState').textContent = '';
   $('fWord').classList.remove('long'); $('fRead').textContent = '';
   $('fWord').textContent = mode === 'f' ? 'Keine falschen Karten. Super!' : mode === 'k' ? 'Noch nichts gekonnt. Lern erst ein paar Karten!' : mode === 'new' ? 'Alle Karten schon gelernt!' : 'Noch keine Wörter hier';
-  $('flipActions').hidden = true;
+  $('flipActions').hidden = true; $('rateActions').hidden = true;
 }
 function flip(fromCard) {
   mark('Umdrehen');
-  if (!queue.length || (!fromCard && performance.now() < lockUntil)) return;   // Doppeltipp nach "Gewusst" ignorieren
+  if (!queue.length) return;
   flipped = !flipped;
   $('card').classList.toggle('flipped', flipped);
-  if (flipped) { $('flipActions').hidden = true; $('rateActions').hidden = false; }
 }
 function answer(ok) {
   mark(ok ? 'Gewusst' : 'Nicht gewusst');
-  if (!flipped || !queue.length) return;
+  if (!queue.length || performance.now() < lockUntil) return;   // Doppeltipp auf denselben Knopf zählt nur einmal
   const item = queue.shift();
   const first = !item.seen;
   if (first) {
@@ -717,7 +716,7 @@ function answer(ok) {
     setMood('Kein Problem, die kommt gleich nochmal.', false, 'shake');
   }
   updateBadge(); games.checkBadges();
-  lockUntil = performance.now() + 300;
+  lockUntil = performance.now() + 250;
   showCard(true);
 }
 function endSession() {

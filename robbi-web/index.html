@@ -10,14 +10,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Robbi">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="manifest.webmanifest?v=25">
-<link rel="icon" href="icons/favicon.png?v=25">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=25">
+<link rel="manifest" href="manifest.webmanifest?v=26">
+<link rel="icon" href="icons/favicon.png?v=26">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=26">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=25">
-<script src="firebase-config.js?v=25"></script>
+<link rel="stylesheet" href="style.css?v=26">
+<script src="firebase-config.js?v=26"></script>
 </head>
 <body>
 <div class="app">
@@ -258,14 +258,14 @@
           </div>
         </button>
       </div>
-      <div class="actions" id="flipActions">
+      <div class="actions" id="flipActions" hidden>
         <button class="btn primary wide" id="flipBtn">Umdrehen</button>
       </div>
-      <div class="actions" id="rateActions" hidden>
-        <button class="btn again" id="againBtn">Nochmal</button>
+      <div class="actions" id="rateActions">
+        <button class="btn again" id="againBtn">Nicht gewusst</button>
         <button class="btn primary" id="knewBtn">Gewusst</button>
       </div>
-      <p class="hint">Tastatur: <kbd>Leertaste</kbd> umdrehen · <kbd>N</kbd> nochmal · <kbd>J</kbd> gewusst</p>
+      <p class="hint">Karte antippen zum Umdrehen – bewerten geht auf beiden Seiten. Tastatur: <kbd>Leertaste</kbd> umdrehen · <kbd>N</kbd> nicht gewusst · <kbd>J</kbd> gewusst</p>
       <details class="panel" id="keyPanel">
         <summary>So sprichst du es aus</summary>
         <p id="keyIntro"></p>
@@ -470,6 +470,6 @@
   </section>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
-<script type="module" src="app.js?v=25"></script>
+<script type="module" src="app.js?v=26"></script>
 </body>
 </html>
