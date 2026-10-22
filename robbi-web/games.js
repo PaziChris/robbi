@@ -549,16 +549,24 @@ export function initGames(api) {
   /* ---------- Outfits ---------- */
   const OUTFITS = [
     { id: 'sunglasses', slot: 'face', icon: '🕶️', name: 'Sonnenbrille', xp: 100 },
+    { id: 'orange', slot: 'face', icon: '🟠', name: 'Brille mit orangen Gläsern', xp: 150 },
+    { id: 'jeans', slot: 'top', icon: '🧥', name: 'Dunkelblaue Jeansjacke', xp: 200 },
     { id: 'hearts', slot: 'face', icon: '😍', name: 'Herzbrille', xp: 250 },
+    { id: 'ny', slot: 'hat', icon: '🧢', name: 'Dunkelbraune NY-Kappe', xp: 300 },
+    { id: 'tehran', slot: 'top', icon: '👕', name: 'Tehran-T-Shirt', xp: 350 },
     { id: 'party', slot: 'hat', icon: '🥳', name: 'Partyhut', xp: 400 },
+    { id: 'persian', slot: 'top', icon: '👕', name: '„I am Persian“-T-Shirt', xp: 450 },
+    { id: 'larissa', slot: 'hat', icon: '🧢', name: '„Apo Larissa“-Kappe', xp: 500 },
+    { id: 'ghorme', slot: 'top', icon: '💚', name: '„I ❤ Ghorme Sabzi“-T-Shirt', xp: 600 },
     { id: 'headphones', slot: 'hat', icon: '🎧', name: 'Kopfhörer', xp: 700 },
     { id: 'crown', slot: 'hat', icon: '👑', name: 'Krone', xp: 1200 }
   ];
+  const SLOT_NAME = { hat: 'Kopf', face: 'Brille', top: 'Oberteil' };
   function applyOutfit() {
     const o = store.outfit || {};
     [$('seal'), $('monkey')].forEach(svg => {
       OUTFITS.forEach(x => svg.classList.toggle('o-' + x.id, o[x.slot] === x.id && (store.xp || 0) >= x.xp));
-      svg.classList.toggle('hat-on', ['party', 'crown'].includes(o.hat) && OUTFITS.some(x => x.id === o.hat && (store.xp || 0) >= x.xp));
+      svg.classList.toggle('hat-on', ['party', 'crown', 'ny', 'larissa'].includes(o.hat) && OUTFITS.some(x => x.id === o.hat && (store.xp || 0) >= x.xp));
     });
   }
   function renderWardrobe() {
@@ -567,7 +575,7 @@ export function initGames(api) {
     OUTFITS.forEach(x => {
       const open = (store.xp || 0) >= x.xp, on = o[x.slot] === x.id;
       const b = el('button', 'outfit' + (on ? ' on' : '') + (open ? '' : ' locked')); b.type = 'button';
-      b.innerHTML = `<span class="oi">${open ? x.icon : '🔒'}</span><b>${x.name}</b><small>${open ? (on ? 'Angezogen ✓' : 'Antippen zum Anziehen') : `ab ${x.xp} Punkten`}</small>`;
+      b.innerHTML = `<span class="oi">${open ? x.icon : '🔒'}</span><b>${x.name}</b><small>${SLOT_NAME[x.slot]} · ${open ? (on ? 'angezogen ✓' : 'antippen') : `ab ${x.xp} Punkten`}</small>`;
       b.disabled = !open;
       b.onclick = () => { o[x.slot] = on ? '' : x.id; api.persist(['user']); applyOutfit(); renderWardrobe(); api.setMood(on ? 'Wieder ganz normal!' : `${x.name} steht mir! ${x.icon}`, true, 'bounce'); };
       box.appendChild(b);

@@ -10,14 +10,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Robbi">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="manifest.webmanifest?v=17">
-<link rel="icon" href="icons/favicon.png?v=17">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=17">
+<link rel="manifest" href="manifest.webmanifest?v=18">
+<link rel="icon" href="icons/favicon.png?v=18">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=18">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=17">
-<script src="firebase-config.js?v=17"></script>
+<link rel="stylesheet" href="style.css?v=18">
+<script src="firebase-config.js?v=18"></script>
 </head>
 <body>
 <div class="app">
@@ -33,6 +33,7 @@
   <div class="stage" id="stage" data-active="none">
     <button class="pal" id="monkeyBtn" type="button" aria-label="Arzi – Farsi lernen">
       <svg class="monkey" id="monkey" viewBox="0 0 100 92" aria-hidden="true">
+        <defs><clipPath id="monkeyBodyClip"><ellipse cx="50" cy="68" rx="20" ry="18"/></clipPath></defs>
         <ellipse cx="50" cy="86" rx="36" ry="5" fill="var(--sea-soft)"/>
         <g class="m-tail"><path d="M64 78 C84 82 92 62 82 56 C75 52 70 60 76 63" fill="none" stroke="var(--monkey)" stroke-width="4.5" stroke-linecap="round"/></g>
         <g class="m-body">
@@ -43,7 +44,15 @@
           <path d="M45 51 L48 70 L41 85 M55 51 L52 70 L59 85" fill="none" stroke="var(--boteh)" stroke-width="1"/>
           <path d="M38 70 c-3.2 0 -4.6 -4.2 -1.4 -6.4 c2.2 -1.4 4.6 .6 3.4 3 c-.6 1.2 -1.6 1.6 -.6 3.4z" fill="var(--boteh)"/>
           <path d="M63.5 76 c-2.6 0 -3.7 -3.4 -1.1 -5.2 c1.8 -1.1 3.7 .5 2.7 2.4 c-.5 1 -1.3 1.3 -.5 2.8z" fill="var(--boteh)"/>
+          <!-- Oberteile -->
+          <g class="of of-jeans"><path d="M29.5 62 Q30.5 50 45 49 L47.5 72 L42 87 Q28.5 80 29.5 62Z" fill="#2C4A7A"/><path d="M70.5 62 Q69.5 50 55 49 L52.5 72 L58 87 Q71.5 80 70.5 62Z" fill="#2C4A7A"/>
+            <path d="M45 49 L41 55 L46 56.5 Z M55 49 L59 55 L54 56.5 Z" fill="#3E63A0"/><path d="M33 64 h7 v5 h-7 Z M60 64 h7 v5 h-7 Z" fill="none" stroke="#7FA0D6" stroke-width=".7" stroke-dasharray="1.3 .9"/><circle cx="46.2" cy="66" r=".9" fill="#C9A227"/><circle cx="53.8" cy="66" r=".9" fill="#C9A227"/></g>
+          <g class="of of-tehran" clip-path="url(#monkeyBodyClip)"><rect x="28" y="48" width="44" height="40" fill="#263238"/><text x="50" y="75" font-size="3.9" fill="#F2C230" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">TEHRAN</text></g>
+          <g class="of of-persian" clip-path="url(#monkeyBodyClip)"><rect x="28" y="48" width="44" height="40" fill="#F5F5F5"/><text x="50" y="73" font-size="3.4" fill="#1E3557" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">I AM</text><text x="50" y="77.6" font-size="3.4" fill="#1E3557" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">PERSIAN</text></g>
+          <g class="of of-ghorme" clip-path="url(#monkeyBodyClip)"><rect x="28" y="48" width="44" height="40" fill="#2E7D32"/><text x="47.3" y="72.6" font-size="3.6" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">I</text><path d="M51.6 72.74 C49.36 71.3 50.32 69.54 51.6 70.74 C52.88 69.54 53.84 71.3 51.6 72.74Z" fill="#E53935"/><text x="50" y="77" font-size="3.3" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">GHORME</text><text x="50" y="81.2" font-size="3.3" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">SABZI</text></g>
           <path d="M33 58 Q28 68 35 77" fill="none" stroke="var(--monkey)" stroke-width="6" stroke-linecap="round"/>
+          <g class="of of-jeans"><path d="M33 58 Q29.5 65 31.6 71" fill="none" stroke="#2C4A7A" stroke-width="7" stroke-linecap="round"/></g>
+          <g class="of of-tehran"><path d="M33 58 Q31.6 61 31.4 63.5" fill="none" stroke="#263238" stroke-width="7" stroke-linecap="round"/></g><g class="of of-persian"><path d="M33 58 Q31.6 61 31.4 63.5" fill="none" stroke="#F5F5F5" stroke-width="7" stroke-linecap="round"/></g><g class="of of-ghorme"><path d="M33 58 Q31.6 61 31.4 63.5" fill="none" stroke="#2E7D32" stroke-width="7" stroke-linecap="round"/></g>
           <ellipse cx="41" cy="85" rx="7" ry="3.5" fill="var(--monkey-dark)"/>
           <ellipse cx="59" cy="85" rx="7" ry="3.5" fill="var(--monkey-dark)"/>
         </g>
@@ -88,10 +97,15 @@
           <g class="of of-party"><path d="M39 8 L61 8 L50 -10 Z" fill="#FF7043"/><path d="M42.4 2.6 L57.6 2.6 M45.6 -3 L54.4 -3" stroke="#FFD54F" stroke-width="2.1"/><circle cx="50" cy="-9.6" r="2.6" fill="#FFD54F"/></g>
           <g class="of of-crown"><path d="M37 9 L37 -2.5 L43.5 3 L50 -6.5 L56.5 3 L63 -2.5 L63 9 Z" fill="#F2C230" stroke="#B8860B" stroke-width=".7" stroke-linejoin="round"/><rect x="37" y="6.5" width="26" height="2.8" fill="#E0A526"/><circle cx="50" cy="3" r="1.6" fill="#D32F2F"/><circle cx="42.8" cy="5.4" r="1.1" fill="#1D5FB4"/><circle cx="57.2" cy="5.4" r="1.1" fill="#1D5FB4"/></g>
           <g class="of of-headphones"><path d="M26.5 38 C26.5 -1 73.5 -1 73.5 38" stroke="#263238" stroke-width="3.2" fill="none"/><rect x="21.5" y="32" width="8.5" height="14" rx="3.5" fill="#E53935"/><rect x="70" y="32" width="8.5" height="14" rx="3.5" fill="#E53935"/></g>
+          <g class="of of-orange"><circle cx="44" cy="35" r="5.1" fill="#FF8C1A" fill-opacity=".72" stroke="#2B2B2B" stroke-width="1.1"/><circle cx="56" cy="35" r="5.1" fill="#FF8C1A" fill-opacity=".72" stroke="#2B2B2B" stroke-width="1.1"/><path d="M49.1 34.4 Q50 33.6 50.9 34.4 M38.9 34.4 L34 33 M61.1 34.4 L66 33" stroke="#2B2B2B" stroke-width="1" fill="none"/></g>
+          <g class="of of-ny"><path d="M33 18 Q34 -2 50 -2 Q66 -2 67 18 Z" fill="#4A2F1F"/><path d="M31 16.5 Q50 22.5 69 16.5 Q66 22.5 50 25.5 Q34 22.5 31 16.5 Z" fill="#3A2416"/><text x="50" y="12.5" font-size="9" fill="#F3E5D0" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">NY</text></g>
+          <g class="of of-larissa"><path d="M33 18 Q34 -2 50 -2 Q66 -2 67 18 Z" fill="#7B1E2B"/><path d="M31 16.5 Q50 22.5 69 16.5 Q66 22.5 50 25.5 Q34 22.5 31 16.5 Z" fill="#5E1520"/><text x="50" y="7" font-size="4.3" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">APO</text><text x="50" y="12.8" font-size="4.3" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">LARISSA</text></g>
         </g>
         </g>
         <g class="m-arm">
           <path d="M66 60 Q76 58 80 52" fill="none" stroke="var(--monkey)" stroke-width="6" stroke-linecap="round"/>
+          <g class="of of-jeans"><path d="M66 60 Q71.5 59 75 57" fill="none" stroke="#2C4A7A" stroke-width="7" stroke-linecap="round"/></g>
+          <g class="of of-tehran"><path d="M66 60 Q68.8 59.6 71 58.8" fill="none" stroke="#263238" stroke-width="7" stroke-linecap="round"/></g><g class="of of-persian"><path d="M66 60 Q68.8 59.6 71 58.8" fill="none" stroke="#F5F5F5" stroke-width="7" stroke-linecap="round"/></g><g class="of of-ghorme"><path d="M66 60 Q68.8 59.6 71 58.8" fill="none" stroke="#2E7D32" stroke-width="7" stroke-linecap="round"/></g>
           <g class="steam" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linecap="round"><path d="M78.5 34 q-2 -3 0 -6"/><path d="M82.5 34 q2 -3 0 -6"/></g>
           <path d="M76 36 L85 36 Q84.5 41 83 43 Q84 45 83 48 L78 48 Q77 45 78 43 Q76.5 41 76 36Z" fill="var(--glass)" stroke="var(--glass-edge)" stroke-width=".8"/>
           <path d="M77.1 39 L83.9 39 Q83.5 41.5 82.5 43 Q83.3 45 82.5 47 L78.5 47 Q77.7 45 78.5 43 Q77.5 41.5 77.1 39Z" fill="var(--tea)"/>
@@ -106,10 +120,22 @@
 
     <button class="pal" id="sealBtn" type="button" aria-label="Robbie Robert Robertson – Griechisch lernen">
       <svg class="seal" id="seal" viewBox="0 0 120 92" aria-hidden="true">
+        <defs><clipPath id="sealBodyClip"><path d="M12 74 C14 54 40 44 62 46 C86 48 100 58 100 72 C100 81 90 84 76 84 L22 84 C15 84 11 80 12 74 Z"/></clipPath></defs>
         <ellipse cx="60" cy="84" rx="54" ry="6" fill="var(--sea-soft)"/>
         <g class="tail"><path d="M10 74 L2 64 L14 66 Z M10 74 L4 84 L16 78 Z" fill="var(--seal-dark)"/></g>
         <g class="body">
           <path d="M12 74 C14 54 40 44 62 46 C86 48 100 58 100 72 C100 81 90 84 76 84 L22 84 C15 84 11 80 12 74 Z" fill="var(--seal)"/>
+          <!-- Oberteile -->
+          <g class="of of-jeans" clip-path="url(#sealBodyClip)"><rect x="10" y="44" width="92" height="42" fill="#2C4A7A"/>
+            <path d="M14 66 Q40 56 64 60 M18 78 Q40 72 62 74" fill="none" stroke="#7FA0D6" stroke-width=".8" stroke-dasharray="1.6 1.1"/>
+            <rect x="22" y="64" width="11" height="8" rx="1.5" fill="none" stroke="#7FA0D6" stroke-width=".8" stroke-dasharray="1.4 1"/>
+            <circle cx="27.5" cy="63" r="1" fill="#C9A227"/><circle cx="45" cy="62" r="1" fill="#C9A227"/><circle cx="46" cy="72" r="1" fill="#C9A227"/></g>
+          <g class="of of-tehran" clip-path="url(#sealBodyClip)"><rect x="10" y="44" width="92" height="42" fill="#263238"/>
+            <text x="27" y="73" font-size="5" fill="#F2C230" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">TEHRAN</text></g>
+          <g class="of of-persian" clip-path="url(#sealBodyClip)"><rect x="10" y="44" width="92" height="42" fill="#F5F5F5"/>
+            <text x="27" y="69" font-size="4.4" fill="#1E3557" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">I AM</text><text x="27" y="75" font-size="4.4" fill="#1E3557" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">PERSIAN</text></g>
+          <g class="of of-ghorme" clip-path="url(#sealBodyClip)"><rect x="10" y="44" width="92" height="42" fill="#2E7D32"/>
+            <text x="23.5" y="67" font-size="4.4" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">I</text><path d="M28.5 67.28 C25.42 65.3 26.74 62.88 28.5 64.53 C30.26 62.88 31.58 65.3 28.5 67.28Z" fill="#E53935"/><text x="27" y="72.5" font-size="4.3" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">GHORME</text><text x="27" y="78" font-size="4.3" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">SABZI</text></g>
           <g class="flipper"><ellipse cx="58" cy="78" rx="12" ry="5" transform="rotate(-18 58 78)" fill="var(--seal-dark)"/></g>
         </g>
         <!-- Komboloi: Quaste, Silberkette, Schild-Perle, Bernstein- und Silberperlen -->
@@ -162,6 +188,9 @@
           <g class="of of-party"><path d="M68 18 L92 18 L80 0.8 Z" fill="#FF7043"/><path d="M71.6 13 L88.4 13 M75.2 7.8 L84.8 7.8" stroke="#FFD54F" stroke-width="2.2"/><circle cx="80" cy="1.6" r="2.6" fill="#FFD54F"/></g>
           <g class="of of-crown"><path d="M65 20 L65 8 L72 13.5 L80 3.5 L88 13.5 L95 8 L95 20 Z" fill="#F2C230" stroke="#B8860B" stroke-width=".7" stroke-linejoin="round"/><rect x="65" y="17.5" width="30" height="3" fill="#E0A526"/><circle cx="80" cy="13.5" r="1.7" fill="#D32F2F"/><circle cx="71.5" cy="16" r="1.2" fill="#1D5FB4"/><circle cx="88.5" cy="16" r="1.2" fill="#1D5FB4"/></g>
           <g class="of of-headphones"><path d="M55.5 36 C55.5 5 104.5 5 104.5 36" stroke="#263238" stroke-width="3.2" fill="none"/><rect x="50.5" y="30.5" width="8.5" height="14" rx="3.5" fill="#E53935"/><rect x="101" y="30.5" width="8.5" height="14" rx="3.5" fill="#E53935"/></g>
+          <g class="of of-orange"><circle cx="71" cy="33" r="6" fill="#FF8C1A" fill-opacity=".72" stroke="#2B2B2B" stroke-width="1.3"/><circle cx="89" cy="33" r="6" fill="#FF8C1A" fill-opacity=".72" stroke="#2B2B2B" stroke-width="1.3"/><path d="M77 32.5 Q80 31 83 32.5 M65 32 L58 30 M95 32 L102 30" stroke="#2B2B2B" stroke-width="1.2" fill="none"/><path d="M68 30.5 q2 -1.5 4 -.5 M86 30.5 q2 -1.5 4 -.5" stroke="#fff" stroke-width=".8" fill="none" opacity=".7"/></g>
+          <g class="of of-ny"><path d="M58 21 Q59 3 80 3 Q101 3 102 21 Z" fill="#4A2F1F"/><path d="M55 19.5 Q80 25.5 105 19.5 Q102 25.5 80 28.5 Q58 25.5 55 19.5 Z" fill="#3A2416"/><circle cx="80" cy="3.6" r="1.6" fill="#3A2416"/><text x="80" y="17" font-size="10" fill="#F3E5D0" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">NY</text></g>
+          <g class="of of-larissa"><path d="M58 21 Q59 3 80 3 Q101 3 102 21 Z" fill="#7B1E2B"/><path d="M55 19.5 Q80 25.5 105 19.5 Q102 25.5 80 28.5 Q58 25.5 55 19.5 Z" fill="#5E1520"/><circle cx="80" cy="3.6" r="1.6" fill="#5E1520"/><text x="80" y="11.8" font-size="4.8" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">APO</text><text x="80" y="18" font-size="4.8" fill="#fff" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle">LARISSA</text></g>
         </g>
       </svg>
       <span class="tag"><b>Robbie</b><i>Robert Robertson</i>Griechisch</span>
@@ -436,6 +465,6 @@
   </section>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
-<script type="module" src="app.js?v=17"></script>
+<script type="module" src="app.js?v=18"></script>
 </body>
 </html>
