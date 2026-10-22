@@ -228,24 +228,31 @@ export function initGames(api) {
     a.innerHTML = `<div class="q-card slim"><span class="lang">Fang die Übersetzung von</span><span class="q-word small" id="ctWord"></span></div>
       <div class="catch-field" id="ctField"><div class="catcher">${farsi ? '🐒' : '🦭'}</div></div>`;
     const field = $('ctField');
-    let q, score = 0, lives = 3, speed = 55, items = [], last = performance.now(), spawnIn = 0, raf = 0, over = false;
+    let q, score = 0, lives = 3, speed = 62, items = [], last = performance.now(), spawnIn = 0, raf = 0, over = false, untilCorrect = 0;
     const H = () => field.clientHeight, W = () => field.clientWidth;
-    function newQ() { q = makeQ(pool); q.rev = false; q.prompt = q.c.back; q.answer = cleanFront(q.c); q.options = []; $('ctWord').textContent = q.prompt; }
+    function newQ() { q = makeQ(pool); q.rev = false; q.prompt = q.c.back; q.answer = cleanFront(q.c); q.options = []; $('ctWord').textContent = q.prompt; untilCorrect = 2 + Math.floor(Math.random() * 4); }
     function info() { $('gameInfo').textContent = `${score} gefangen · ${'❤️'.repeat(lives)}${'🤍'.repeat(3 - lives)}`; }
     function spawn() {
-      const correct = Math.random() < .38 || !items.some(it => it.correct);
+      // Das richtige Wort kommt erst nach 2–5 falschen (zufällig), nie gleich als erstes
+      const hasCorrect = items.some(it => it.correct && !it.dead);
+      untilCorrect--;
+      const correct = !hasCorrect && (untilCorrect <= 0 || (untilCorrect <= 2 && Math.random() < .2));
       let text = q.answer;
-      if (!correct) { for (let k = 0; k < 10; k++) { const x = cleanFront(rnd(pool)); if (x !== q.answer) { text = x; break; } } }
+      if (!correct) {
+        const shown = new Set(items.filter(it => !it.dead).map(it => it.text));
+        for (let k = 0; k < 15; k++) { const x = cleanFront(rnd(pool)); if (x !== q.answer && !shown.has(x)) { text = x; break; } }
+        if (text === q.answer) return;
+      }
       const node = el('button', 'drop'); node.type = 'button';
       node.innerHTML = `${icon}<span>${esc(text)}</span>`;
       field.appendChild(node);
       const w = node.offsetWidth || 100;
-      const it = { node, y: -50, x: Math.random() * Math.max(10, W() - w - 10) + 5, correct: text === q.answer, dead: false };
+      const it = { node, y: -50, x: Math.random() * Math.max(10, W() - w - 10) + 5, correct: text === q.answer, text, dead: false };
       node.style.left = it.x + 'px';
       node.onclick = () => {
         if (it.dead || over) return; it.dead = true;
         if (it.correct) {
-          score++; speed = Math.min(150, speed + 6); node.classList.add('caught'); api.setMood(farsi ? 'Safran gefangen! 🌸' : 'Fisch gefangen! 🐟', true);
+          score++; speed = Math.min(165, speed + 6); node.classList.add('caught'); api.setMood(farsi ? 'Safran gefangen! 🌸' : 'Fisch gefangen! 🐟', true);
           items.forEach(o => { if (o !== it && !o.dead) { o.dead = true; o.node.classList.add('fade'); later(() => o.node.remove(), 400); } });
           later(newQ, 50);
         } else { lives--; node.classList.add('wrong'); api.setMood('Falscher Fang!', false, 'shake'); }
@@ -257,7 +264,7 @@ export function initGames(api) {
     function loop(now) {
       const dt = Math.min(.05, (now - last) / 1000); last = now;
       spawnIn -= dt;
-      if (spawnIn <= 0) { spawn(); spawnIn = Math.max(.75, 1.5 - score * .04); }
+      if (spawnIn <= 0) { spawn(); spawnIn = Math.max(.5, 0.95 - score * .03); }
       const h = H();
       items.forEach(it => {
         if (it.dead) return;
