@@ -7,3 +7,4 @@ Farsi ; farsi.txt
 Griechisch ; griechisch.txt
 Italienisch ; italienisch.txt
 Spanisch ; spanisch.txt
+Französisch ; franzoesisch.txt

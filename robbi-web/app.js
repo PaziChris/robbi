@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=27';
+import { initGames } from './games.js?v=28';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -102,8 +102,58 @@ const PRON = {
     key: [['c vor e/i, z', 'wie engl. "th" (Spanien) bzw. s (Lateinamerika) – gracias'], ['c sonst', 'k – casa'], ['ch', 'tsch – chico'], ['j, g vor e/i', 'ch wie in "Bach" – jamón, gente'],
       ['gue / gui', 'ge / gi, das u ist stumm – guitarra'], ['ll', 'j wie in "ja" – calle = kaje'], ['ñ', 'nj – mañana = manjana'], ['qu', 'k – queso'], ['h', 'stumm – hola = ola'],
       ['v', 'fast wie b – vino'], ['y', 'j – yo; allein "y" = i'], ['r / rr', 'kurz / lang gerollt – pero ≠ perro'], ['á é í ó ú', 'diese Silbe betonen']]
+  },
+  Französisch: {
+    intro: 'Französisch spricht man anders, als man es schreibt – die meisten Endungen sind stumm. "Lies etwa" zeigt ungefähr, wie es klingt. "ang", "ong" und "äng" sind Nasenlaute: das g hört man kaum.',
+    fn: s => s.toLowerCase().split(/([^a-zàâäçéèêëîïôöûùüÿœæ]+)/).map(frWord).join(''),
+    key: [['Endungen', 'meist stumm: -e, -s, -t, -d, -x – petit = peti'], ['-er / -ez / -é', 'e – parler = parle, chez = sche'], ['-et, ai, è, ê', 'ä – mais = mä'],
+      ['ou', 'u – vous = wu'], ['u', 'ü – tu = tü'], ['oi', 'oa – moi = moa'], ['au / eau', 'o – beau = bo'], ['eu', 'ö – deux = dö'],
+      ['an / en', 'Nasenlaut "ang" – enfant'], ['on', 'Nasenlaut "ong" – bonjour'], ['in / ain / un', 'Nasenlaut "äng" – pain, vin'],
+      ['ch', 'sch – chat = scha'], ['j, g vor e/i', 'weiches sch wie in "Journal" – je, rouge'], ['gn', 'nj – montagne'], ['qu', 'k – que = ke'],
+      ['ç, c vor e/i', 's – ça, merci'], ['h', 'stumm – hôtel = otel'], ['ille', 'ij – fille = fij'], ['v / z', 'w / weiches s – vin, zéro']]
   }
 };
+/* Französisch: grobe Lese-Hilfe Wort für Wort */
+const FR_WORDS = { les: 'le', des: 'de', mes: 'me', tes: 'te', ses: 'se', ces: 'se', est: 'ä', et: 'e', un: 'äng', une: 'ün', je: 'sche', le: 'le', de: 'de', ne: 'ne', que: 'ke',
+  te: 'te', me: 'me', se: 'se', ce: 'se', oui: 'ui', vous: 'wu', nous: 'nu', tu: 'tü', il: 'il', ils: 'il', elle: 'äl', au: 'o', aux: 'o', eux: 'ö', y: 'i', a: 'a', 'à': 'a',
+  en: 'ang', on: 'ong', bien: 'bjäng', 'très': 'trä', plus: 'plü', pas: 'pa', mais: 'mä', avec: 'awäk', pour: 'pur', sur: 'sür', dans: 'dang', chez: 'sche', fils: 'fis',
+  monsieur: 'mösjö', femme: 'famm', six: 'sis', dix: 'dis', sept: 'sätt', huit: 'üit', neuf: 'nöf', cinq: 'sängk', vingt: 'wäng', vingts: 'wäng', soixante: 'soasangt', cent: 'sang', mille: 'mil', ville: 'wil',
+  tranquille: 'trangkil', c: 's', j: 'sch', qu: 'k', l: 'l', d: 'd', m: 'm', t: 't', s: 's', n: 'n', hier: 'jär', mer: 'mär', cher: 'schär', fer: 'fär', hiver: 'iwär',
+  ouais: 'uä', bus: 'büs', sens: 'sangs', fac: 'fak', sac: 'sak', lac: 'lak', avion: 'awjong', quoi: 'koa', pourquoi: 'purkoa', ok: 'okä', cool: 'kul', week: 'uik', wifi: 'uifi' };
+function frWord(w) {
+  if (!w || !/[a-zà-ÿœæ]/.test(w)) return w;
+  if (FR_WORDS[w] !== undefined) return FR_WORDS[w];
+  if (w.length > 2) {
+    if (/er$/.test(w) && w.length >= 4) w = w.slice(0, -2) + 'é';
+    else if (/ez$/.test(w)) w = w.slice(0, -2) + 'é';
+    else if (/et$/.test(w)) w = w.slice(0, -2) + 'è';
+    else {
+      w = w.replace(/[sxzdtp]+$/, '');
+      if (w.length > 2) w = w.replace(/ge$/, 'j').replace(/ce$/, 'ç').replace(/([nm])e$/, '$1\u0001').replace(/e$/, '');
+    }
+  }
+  const NV = '(?![aeiouyàâéèêëîïôûùœnm\u0001])';
+  return w.replace(new RegExp(['eaux?', 'au', 'ien' + NV, 'oin' + NV, 'oi', 'oy', 'o[uùû]', 'aill', 'eill', 'ail$', 'eil$', '[ae]in' + NV, 'aim' + NV, 'a[iî]', 'e[iî]', 'œu', 'eu', 'œ',
+    '(?<=[aeiouéèê])ill', 'ill', 'tion', 'gn', 'ch', 'ph', 'th', 'qu', 'gu(?=[eiéèêy])', 'g(?=[eiéèêy])', 'ç', 'c', 'j', 'h', 'v', 'z', 'y',
+    '[ae][nm]' + NV, 'o[nm]' + NV, '[iu][nm]' + NV, 'u', 'é', '[èêë]', '[àâ]', '[îï]', 'ô', '[ûù]'].join('|'), 'g'), (m, off, str) => {
+    if (/^ill$/.test(m)) return 'ij';
+    if (m === 'aill' || m === 'ail') return 'aj';
+    if (m === 'eill' || m === 'eil') return 'äj';
+    if (/^o[uùû]$/.test(m)) return 'u';
+    if (/^a[iî]$/.test(m) || /^e[iî]$/.test(m)) return 'ä';
+    if (m === 'c') return /[eiéèêy]/.test(str[off + 1] || '') ? 's' : 'k';
+    const M = { eau: 'o', eaux: 'o', au: 'o', oi: 'oa', oy: 'oaj', ou: 'u', ai: 'ä', ei: 'ä', 'œu': 'ö', eu: 'ö', 'œ': 'ö', tion: 'sjong', gn: 'nj', ch: 'sch', ph: 'f', th: 't',
+      qu: 'k', gu: 'g', g: 'sch', 'ç': 's', j: 'sch', h: '', v: 'w', z: 's', y: 'i', u: 'ü', 'é': 'e', 'è': 'ä', 'ê': 'ä', 'ë': 'ä', 'â': 'a', 'à': 'a', 'î': 'i', 'ï': 'i', 'ô': 'o', 'û': 'ü', 'ù': 'ü' };
+    if (M[m] !== undefined) return M[m];
+    if (/^ien/.test(m)) return 'jäng';
+    if (/^oin/.test(m)) return 'oäng';
+    if (/^(ain|ein|aim)$/.test(m)) return 'äng';
+    if (/^[ae][nm]$/.test(m)) return 'ang';
+    if (/^o[nm]$/.test(m)) return 'ong';
+    if (/^[iu][nm]$/.test(m)) return 'äng';
+    return m;
+  }).replace(/\u0001/g, '');
+}
 function readAid(text, l) {
   const p = PRON[l]; if (!p) return '';
   if (p.fn) { const o = p.fn(text); return o === text.toLowerCase() ? '' : o; }
@@ -150,7 +200,8 @@ const CHEERS = {
   Farsi: ['Āfarin! (Bravo!)', 'Kheyli khub! (Sehr gut!)', 'Āli-e! (Super!)', 'Damet garm!'],
   Griechisch: ['Brávo!', 'Polí kalá! (Sehr gut!)', 'Téleia! (Perfekt!)', 'Foveró! (Super!)'],
   Italienisch: ['Bravo!', 'Benissimo! (Sehr gut!)', 'Perfetto! (Perfekt!)', 'Fantastico!'],
-  Spanisch: ['¡Muy bien! (Sehr gut!)', '¡Perfecto!', '¡Genial!', '¡Olé!']
+  Spanisch: ['¡Muy bien! (Sehr gut!)', '¡Perfecto!', '¡Genial!', '¡Olé!'],
+  Französisch: ['Bravo !', 'Très bien ! (Sehr gut!)', 'Parfait ! (Perfekt!)', 'Génial !']
 };
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
@@ -275,7 +326,7 @@ function renderGoalPanel() {
   $('goalStats').innerHTML = `<span class="x"><b>${Math.floor(secsToday() / 60)}</b>min heute</span><span class="k"><b>${fmtDuration(weekSecs())}</b>diese Woche</span><span class="n"><b>${fmtDuration(totalSecs())}</b>insgesamt</span>`;
 }
 function celebrate() {
-  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce', true);
+  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : lang === 'Französisch' ? 'Magnifique ! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce', true);
   if (reduceMotion) return;
   const colors = ['#1A7A87', '#D2563A', '#E0A526', '#2F8A5B', '#1D5FB4', '#159A93'];
   for (let i = 0; i < 40; i++) {

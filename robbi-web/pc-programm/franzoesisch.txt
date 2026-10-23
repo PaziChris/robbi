@@ -1,0 +1,957 @@
+# Französisch – Vokabeln für den Alltag (so wie man in Frankreich wirklich spricht)
+#
+# FORMAT:   französisch ; deutsch ; optionale Notiz
+# Neue Kategorie einfach mit [Name] beginnen. Zeilen mit # werden ignoriert.
+#
+# AUSSPRACHE (Französisch schreibt man anders, als man es spricht):
+#   Endungen meist stumm:  -e, -s, -t, -d, -x, -z (petit = peti, temps = tang)
+#   -er / -ez / -é  = e (parler = parle, chez = sche)       -et = ä
+#   ou  = u (vous = wu)          u  = ü (tu = tü)           oi = oa (moi = moa)
+#   au / eau = o (beau = bo)     ai / è / ê = ä (mais = mä)  eu = ö (deux = dö)
+#   an / en = nasales "ang", on = "ong", in / ain / un = nasales "äng" (das g kaum hörbar)
+#   ch  = sch (chat = scha)      j / g vor e,i = weiches sch wie in "Journal"
+#   gn  = nj (montagne)          qu = k        ç / c vor e,i = s       h = stumm
+#   ille = ij (fille = fij)      v = w (vin = wäng)         z / s zwischen Vokalen = weiches s
+#   Umgangssprache: "ne" fällt oft weg (je sais pas statt je ne sais pas), "on" statt "nous"
+#   Bei Verben steht vorne: Infinitiv – ich-Form
+
+[Begrüßung]
+salut ; Hallo / Tschüss ; locker unter Freunden
+bonjour ; Guten Tag / Hallo
+bonsoir ; Guten Abend
+bonne nuit ; Gute Nacht
+au revoir ; Auf Wiedersehen
+à plus ; Bis später ; locker, auch geschrieben "à+"
+à tout à l'heure ; Bis gleich
+à bientôt ; Bis bald
+à demain ; Bis morgen
+on se voit ; Wir sehen uns
+ça va ? ; Wie geht's?
+comment ça va ? ; Wie geht es dir?
+comment allez-vous ? ; Wie geht es Ihnen? ; höflich
+ça va bien, merci. Et toi ? ; Gut, danke. Und dir?
+très bien ! ; Sehr gut!
+pas mal ; Nicht schlecht
+comme ci, comme ça ; So lala
+ça roule ; Läuft gut ; locker
+quoi de neuf ? ; Was gibt's Neues?
+rien de spécial ; Nichts Besonderes
+tu t'appelles comment ? ; Wie heißt du? ; Umgangssprache, Buch: comment tu t'appelles ?
+comment vous appelez-vous ? ; Wie heißen Sie?
+je m'appelle Lisa ; Ich heiße Lisa
+enchanté ; Freut mich ; eine Frau sagt "enchantée" (gleich gesprochen)
+moi aussi ; Mich auch / Ich auch
+tu viens d'où ? ; Woher kommst du?
+je suis autrichien ; Ich bin Österreicher ; Frau: autrichienne
+je viens d'Autriche ; Ich komme aus Österreich
+tu as quel âge ? ; Wie alt bist du?
+j'ai vingt-cinq ans ; Ich bin 25 Jahre alt
+tu fais quoi dans la vie ? ; Was machst du beruflich?
+bienvenue ! ; Willkommen!
+ça fait longtemps ! ; Lange nicht gesehen!
+ça me fait plaisir de te voir ; Schön, dich zu sehen
+salue ta famille de ma part ; Grüß deine Familie von mir
+allô ? ; Hallo? (am Telefon)
+t'es où ? ; Wo bist du? ; Umgangssprache für "tu es où"
+coucou ! ; Huhu! / Hallo! ; sehr locker, unter Freunden und Familie
+bonne journée ! ; Einen schönen Tag!
+bonne soirée ! ; Einen schönen Abend!
+
+[Höflichkeit]
+merci ; Danke
+merci beaucoup ; Vielen Dank
+merci mille fois ; Tausend Dank
+de rien ; Gern geschehen
+je t'en prie ; Bitte sehr / Gern geschehen
+je vous en prie ; Bitte sehr ; höflich
+s'il te plaît ; Bitte (zu dir)
+s'il vous plaît ; Bitte (zu Ihnen / zu mehreren)
+pardon ; Entschuldigung / Wie bitte?
+excuse-moi ; Entschuldige
+excusez-moi ; Entschuldigen Sie
+désolé ; Tut mir leid ; Frau: désolée
+je suis vraiment désolé ; Es tut mir wirklich leid
+c'est pas grave ; Ist nicht schlimm ; Umgangssprache ohne "ne"
+pas de souci ; Kein Problem
+pas de problème ; Kein Problem
+avec plaisir ; Gerne / Mit Vergnügen
+volontiers ; Gerne
+bien sûr ! ; Natürlich!
+je peux ? ; Darf ich?
+bon appétit ! ; Guten Appetit!
+santé ! ; Prost! / Gesundheit!
+à la tienne ! ; Prost! (auf dich)
+à vos souhaits ! ; Gesundheit! (beim Niesen)
+bon voyage ! ; Gute Reise!
+bon week-end ! ; Schönes Wochenende!
+bon courage ! ; Viel Kraft! / Halt durch!
+bonne chance ! ; Viel Glück!
+félicitations ! ; Herzlichen Glückwunsch!
+joyeux anniversaire ! ; Alles Gute zum Geburtstag!
+joyeux Noël ! ; Frohe Weihnachten!
+joyeuses Pâques ! ; Frohe Ostern!
+bonne année ! ; Frohes neues Jahr!
+monsieur ; Herr / mein Herr
+madame ; Frau / gnädige Frau
+mademoiselle ; Fräulein ; heute eher altmodisch
+c'est très gentil ; Das ist sehr nett
+c'est gentil de ta part ; Das ist nett von dir
+après vous ; Nach Ihnen
+
+[Wichtige Wörter]
+oui ; Ja
+non ; Nein
+ouais ; Ja / Jo ; locker
+d'accord ; Einverstanden / Okay
+ok ; Okay
+peut-être ; Vielleicht
+bien sûr ; Natürlich
+exactement ; Genau
+c'est ça ; Genau so
+vraiment ? ; Wirklich?
+sérieux ? ; Im Ernst?
+ah bon ? ; Ach so? / Echt?
+alors ; Also / Dann
+bon ; Gut / Na gut
+bref ; Kurz gesagt / Jedenfalls
+voilà ; So / Da haben wir's
+bah ; Na ja ; Füllwort
+euh ; Äh
+ici ; Hier
+là ; Da / Dort
+là-bas ; Dort drüben
+ça ; Das
+ceci ; Dies (hier)
+maintenant ; Jetzt
+tout de suite ; Sofort
+après ; Danach / Nachher
+avant ; Vorher
+toujours ; Immer
+jamais ; Nie
+parfois ; Manchmal
+souvent ; Oft
+beaucoup ; Viel
+un peu ; Ein bisschen
+trop ; Zu viel
+tout le monde ; Alle / Jeder
+tout ; Alles
+rien ; Nichts
+quelque chose ; Etwas
+quelqu'un ; Jemand
+aussi ; Auch
+seulement ; Nur
+encore ; Noch / Wieder
+déjà ; Schon
+et ; Und
+ou ; Oder
+mais ; Aber
+parce que ; Weil
+si ; Wenn / Ob
+avec ; Mit
+sans ; Ohne
+pour ; Für
+de ; Von / Aus
+dans ; In (drinnen)
+à ; In / Nach / Zu
+chez moi ; Bei mir (zu Hause)
+grave ; Voll / Total ; Jugendsprache: "c'est grave bien" = voll gut
+trop bien ; Voll gut
+
+[Fragen]
+quoi ? ; Was?
+qu'est-ce que c'est ? ; Was ist das?
+c'est quoi ? ; Was ist das? ; Umgangssprache
+qui ? ; Wer?
+où ? ; Wo?
+quand ? ; Wann?
+pourquoi ? ; Warum?
+comment ? ; Wie?
+combien ? ; Wie viel?
+lequel ? ; Welcher?
+d'où ? ; Woher?
+ça coûte combien ? ; Wie viel kostet das?
+il est quelle heure ? ; Wie spät ist es? ; Umgangssprache, Buch: quelle heure est-il ?
+tu vas où ? ; Wohin gehst du?
+tu fais quoi ? ; Was machst du?
+qu'est-ce qui s'est passé ? ; Was ist passiert?
+tu veux quoi ? ; Was willst du?
+t'as dit quoi ? ; Was hast du gesagt? ; Umgangssprache für "tu as dit quoi"
+c'est qui ? ; Wer ist das?
+tu viens quand ? ; Wann kommst du?
+pourquoi t'es pas venu ? ; Warum bist du nicht gekommen?
+je peux te poser une question ? ; Darf ich dir eine Frage stellen?
+tu parles français ? ; Sprichst du Französisch?
+tu parles anglais ? ; Sprichst du Englisch?
+tu parles allemand ? ; Sprichst du Deutsch?
+comment on dit ça en français ? ; Wie sagt man das auf Französisch?
+ça veut dire quoi ? ; Was bedeutet das?
+tu peux m'aider ? ; Kannst du mir helfen?
+je l'ai bien dit ? ; Habe ich das richtig gesagt?
+t'es prêt ? ; Bist du bereit? ; Frau: t'es prête ?
+t'as faim ? ; Hast du Hunger?
+t'as soif ? ; Hast du Durst?
+t'es fatigué ? ; Bist du müde?
+t'as le temps ? ; Hast du Zeit?
+qu'est-ce que tu aimes ? ; Was magst du?
+tu habites où ? ; Wo wohnst du?
+ça va, toi ? ; Geht's dir gut?
+t'es sûr ? ; Bist du sicher?
+t'en penses quoi ? ; Was hältst du davon?
+on y va ? ; Gehen wir?
+
+[Verständigung]
+j'apprends le français ; Ich lerne Französisch
+je parle un peu français ; Ich spreche ein bisschen Französisch
+mon français est pas terrible ; Mein Französisch ist nicht so toll
+je comprends pas ; Ich verstehe nicht ; Umgangssprache, Buch: je ne comprends pas
+j'ai compris ; Ich habe verstanden
+tu as compris ? ; Hast du verstanden?
+plus lentement, s'il te plaît ; Langsamer, bitte
+tu peux répéter ? ; Kannst du das wiederholen?
+pardon, quoi ? ; Wie bitte, was?
+je sais pas ; Ich weiß nicht ; sprich: "schä pa"
+je me souviens plus ; Ich erinnere mich nicht mehr
+j'ai oublié ; Ich habe es vergessen
+ah oui, je me souviens ; Ah ja, ich erinnere mich
+comment on dit... ? ; Wie sagt man ...?
+tu peux me l'écrire ? ; Kannst du es mir aufschreiben?
+je me suis trompé ; Ich habe mich geirrt
+aucun problème ; Überhaupt kein Problem
+parle-moi en français ; Sprich Französisch mit mir
+tu veux dire quoi ? ; Was meinst du?
+j'ai pas bien compris ; Ich habe es nicht ganz verstanden
+
+[Familie]
+la famille ; die Familie
+la mère ; die Mutter
+maman ; Mama
+le père ; der Vater
+papa ; Papa
+le frère ; der Bruder
+la sœur ; die Schwester
+le fils ; der Sohn ; das s wird gesprochen: "fis"
+la fille ; die Tochter / das Mädchen
+l'enfant ; das Kind
+les enfants ; die Kinder
+le grand-père ; der Großvater
+papi ; Opa
+la grand-mère ; die Großmutter
+mamie ; Oma
+l'oncle ; der Onkel
+la tante ; die Tante
+le cousin ; der Cousin
+la cousine ; die Cousine
+le mari ; der Ehemann
+la femme ; die Frau / Ehefrau ; sprich: "famm"
+le copain ; der Freund (Partner)
+la copine ; die Freundin (Partnerin)
+je suis marié ; Ich bin verheiratet
+je suis célibataire ; Ich bin Single
+j'ai deux frères ; Ich habe zwei Brüder
+j'ai une sœur ; Ich habe eine Schwester
+t'as des enfants ? ; Hast du Kinder?
+ma mère est médecin ; Meine Mutter ist Ärztin
+les parents ; die Eltern / die Verwandten
+
+[Personen]
+je ; ich
+moi ; ich (betont) / mir
+tu ; du
+toi ; du (betont) / dir
+il ; er
+elle ; sie
+on ; man / wir ; Umgangssprache statt "nous"
+nous ; wir
+vous ; ihr / Sie
+ils ; sie (Mehrzahl)
+la personne ; die Person
+l'homme ; der Mann
+la dame ; die Dame
+l'ami ; der Freund
+l'amie ; die Freundin
+le pote ; der Kumpel ; locker
+le voisin ; der Nachbar
+le collègue ; der Kollege
+le prof ; der Lehrer ; kurz für professeur
+le médecin ; der Arzt
+l'étudiant ; der Student
+les gens ; die Leute
+c'est quelqu'un de bien ; Das ist ein guter Mensch
+
+[Gefühle]
+je suis heureux ; Ich bin glücklich ; Frau: heureuse
+je suis content ; Ich freue mich ; Frau: contente
+je suis triste ; Ich bin traurig
+sois pas triste ; Sei nicht traurig
+t'inquiète ; Keine Sorge ; Umgangssprache für "ne t'inquiète pas"
+je suis inquiet ; Ich mache mir Sorgen
+je suis crevé ; Ich bin fix und fertig ; locker
+je suis fatigué ; Ich bin müde
+je suis énervé ; Ich bin genervt / wütend
+j'ai peur ; Ich habe Angst
+je m'ennuie ; Mir ist langweilig
+tu me manques ; Du fehlst mir
+j'aime bien ; Gefällt mir
+j'aime pas ; Gefällt mir nicht
+j'adore ! ; Ich liebe es!
+j'ai pas envie ; Ich habe keine Lust
+c'est nul ; Das ist blöd / mies
+je suis mort de rire ; Ich lach mich tot
+calme-toi ; Beruhig dich
+je suis ému ; Ich bin gerührt
+la honte ! ; Wie peinlich!
+je suis malade ; Ich bin krank
+j'ai froid ; Mir ist kalt
+j'ai chaud ; Mir ist warm
+j'ai faim ; Ich habe Hunger
+j'ai soif ; Ich habe Durst
+j'ai trop mangé ; Ich habe zu viel gegessen
+j'ai sommeil ; Ich bin schläfrig
+je suis stressé ; Ich bin gestresst
+j'ai envie de... ; Ich habe Lust auf ...
+je suis amoureux ; Ich bin verliebt ; Frau: amoureuse
+j'en ai marre ! ; Ich habe die Nase voll!
+
+[Zeit]
+aujourd'hui ; heute
+demain ; morgen
+hier ; gestern
+après-demain ; übermorgen
+avant-hier ; vorgestern
+le matin ; der Morgen
+midi ; Mittag
+l'après-midi ; der Nachmittag
+le soir ; der Abend
+la nuit ; die Nacht
+ce soir ; heute Abend
+hier soir ; gestern Abend
+la semaine ; die Woche
+cette semaine ; diese Woche
+la semaine prochaine ; nächste Woche
+le week-end ; das Wochenende
+le mois ; der Monat
+l'an / l'année ; das Jahr
+l'année dernière ; letztes Jahr
+cette année ; dieses Jahr
+l'heure ; die Stunde / die Uhrzeit
+la minute ; die Minute
+tôt ; früh
+tard ; spät
+lundi ; Montag
+mardi ; Dienstag
+mercredi ; Mittwoch
+jeudi ; Donnerstag
+vendredi ; Freitag
+samedi ; Samstag
+dimanche ; Sonntag
+il est trois heures ; Es ist drei Uhr
+il est deux heures et demie ; Es ist halb drei
+il est une heure ; Es ist ein Uhr
+et quart ; Viertel nach
+moins le quart ; Viertel vor
+il est tard ; Es ist spät
+j'ai pas le temps ; Ich habe keine Zeit
+je suis pressé ; Ich habe es eilig
+le printemps ; der Frühling
+l'été ; der Sommer
+l'automne ; der Herbst
+l'hiver ; der Winter
+
+[Zahlen]
+zéro ; null
+un ; eins
+deux ; zwei
+trois ; drei
+quatre ; vier
+cinq ; fünf
+six ; sechs
+sept ; sieben ; das p ist stumm: "sätt"
+huit ; acht
+neuf ; neun
+dix ; zehn
+onze ; elf
+douze ; zwölf
+treize ; dreizehn
+quatorze ; vierzehn
+quinze ; fünfzehn
+seize ; sechzehn
+dix-sept ; siebzehn
+dix-huit ; achtzehn
+dix-neuf ; neunzehn
+vingt ; zwanzig
+vingt et un ; einundzwanzig
+trente ; dreißig
+quarante ; vierzig
+cinquante ; fünfzig
+soixante ; sechzig
+soixante-dix ; siebzig ; wörtlich "sechzig-zehn" (in Belgien/Schweiz: septante)
+quatre-vingts ; achtzig ; wörtlich "vier-zwanzig"
+quatre-vingt-dix ; neunzig
+cent ; hundert
+deux cents ; zweihundert
+mille ; tausend
+deux mille ; zweitausend
+un million ; eine Million
+la moitié ; die Hälfte
+premier ; erster
+deuxième ; zweiter
+troisième ; dritter
+
+[Farben]
+la couleur ; die Farbe
+rouge ; rot
+bleu ; blau
+bleu clair ; hellblau
+vert ; grün
+jaune ; gelb
+noir ; schwarz
+blanc ; weiß
+orange ; orange
+violet ; lila
+rose ; rosa
+marron ; braun
+gris ; grau
+doré ; golden
+argenté ; silbern
+foncé ; dunkel
+clair ; hell
+c'est quoi ta couleur préférée ? ; Was ist deine Lieblingsfarbe?
+
+[Essen]
+la nourriture ; das Essen
+la bouffe ; das Essen ; locker
+le petit-déjeuner ; das Frühstück
+le déjeuner ; das Mittagessen
+le dîner ; das Abendessen
+le pain ; das Brot
+la baguette ; das Baguette
+le croissant ; das Croissant
+les pâtes ; die Nudeln
+le riz ; der Reis
+la viande ; das Fleisch
+le poulet ; das Hähnchen
+le poisson ; der Fisch
+le jambon ; der Schinken
+l'œuf ; das Ei
+le fromage ; der Käse
+le yaourt ; der Joghurt
+le lait ; die Milch
+le beurre ; die Butter
+le miel ; der Honig
+la confiture ; die Marmelade
+l'huile d'olive ; das Olivenöl
+la salade ; der Salat
+la tomate ; die Tomate
+le concombre ; die Gurke
+la pomme de terre ; die Kartoffel
+les frites ; die Pommes
+l'oignon ; die Zwiebel
+l'ail ; der Knoblauch
+les légumes ; das Gemüse
+les fruits ; das Obst
+la pomme ; der Apfel
+l'orange ; die Orange
+la banane ; die Banane
+le raisin ; die Weintraube
+la pastèque ; die Wassermelone
+le citron ; die Zitrone
+la fraise ; die Erdbeere
+le sel ; das Salz
+le poivre ; der Pfeffer
+le sucre ; der Zucker
+l'eau ; das Wasser
+l'eau plate ; stilles Wasser
+l'eau gazeuse ; Sprudelwasser
+le café ; der Kaffee (Espresso)
+le café crème ; Kaffee mit Milch
+le thé ; der Tee
+le jus ; der Saft
+le vin ; der Wein
+la bière ; das Bier
+le dessert ; der Nachtisch
+la glace ; das Eis
+le gâteau ; der Kuchen
+la crêpe ; die Crêpe
+c'est trop bon ! ; Das ist so lecker!
+épicé ; scharf
+sucré ; süß
+salé ; salzig
+acide ; sauer
+j'ai bien mangé, merci ; Ich bin satt, danke
+t'en veux encore un peu ? ; Willst du noch ein bisschen?
+non merci, j'en peux plus ; Nein danke, ich kann nicht mehr
+je mange pas de viande ; Ich esse kein Fleisch
+je suis végétarien ; Ich bin Vegetarier
+tu cuisines super bien ; Du kochst super
+on fait quoi à manger ? ; Was kochen wir?
+qu'est-ce qu'on mange ce soir ? ; Was gibt es heute Abend?
+on fait une pause café ? ; Machen wir eine Kaffeepause?
+
+[Restaurant]
+le restaurant ; das Restaurant
+le resto ; das Lokal ; locker
+le bistrot ; das Bistro
+le café ; das Café
+la carte, s'il vous plaît ; Die Karte, bitte
+une table pour deux ; Ein Tisch für zwei
+qu'est-ce que vous me conseillez ? ; Was empfehlen Sie mir?
+je voudrais... ; Ich hätte gerne ...
+je vais prendre... ; Ich nehme ...
+un café, s'il vous plaît ; Einen Kaffee, bitte
+une carafe d'eau ; Eine Karaffe Leitungswasser ; in Frankreich gratis
+un verre de vin rouge ; Ein Glas Rotwein
+sans viande ; Ohne Fleisch
+pas trop épicé ; Nicht zu scharf
+l'addition, s'il vous plaît ; Die Rechnung, bitte
+je vous dois combien ? ; Was schulde ich Ihnen?
+je peux payer par carte ? ; Kann ich mit Karte zahlen?
+c'est pas à moi ; Das gehört nicht mir
+c'était délicieux ; Es war köstlich
+le serveur ; der Kellner
+la serveuse ; die Kellnerin
+la cuillère ; der Löffel
+la fourchette ; die Gabel
+le couteau ; das Messer
+l'assiette ; der Teller
+le verre ; das Glas
+la tasse ; die Tasse
+la réservation ; die Reservierung
+j'ai réservé ; Ich habe reserviert
+le pourboire ; das Trinkgeld
+le menu du jour ; das Tagesmenü
+
+[Einkaufen]
+faire les courses ; einkaufen (Lebensmittel)
+faire du shopping ; shoppen gehen
+le magasin ; das Geschäft
+le supermarché ; der Supermarkt
+le marché ; der Markt
+la boulangerie ; die Bäckerei
+la pharmacie ; die Apotheke
+l'argent ; das Geld
+les sous ; die Kohle (Geld) ; locker
+l'euro ; der Euro
+cher ; teuer
+pas cher ; billig
+la réduction ; der Rabatt
+c'est trop cher ! ; Das ist zu teuer!
+vous avez moins cher ? ; Haben Sie etwas Billigeres?
+vous pouvez me faire un prix ? ; Können Sie mir einen Rabatt geben?
+je regarde seulement ; Ich schaue nur
+je voudrais ça ; Ich hätte gerne das
+un kilo ; ein Kilo
+un demi-kilo ; ein halbes Kilo
+vous avez une taille au-dessus ? ; Haben Sie eine Größe größer?
+je peux l'essayer ? ; Kann ich es anprobieren?
+le sac ; die Tüte / die Tasche
+c'est ouvert ? ; Ist offen?
+ouvert ; offen
+fermé ; geschlossen
+c'est cassé ; Das ist kaputt
+le ticket de caisse ; der Kassenbon
+la monnaie ; das Wechselgeld / Kleingeld
+
+[Unterwegs]
+la rue ; die Straße
+la place ; der Platz
+à gauche ; links
+à droite ; rechts
+tout droit ; geradeaus
+près ; nah
+loin ; weit
+derrière ; hinter
+devant ; vor
+à côté ; daneben
+sur ; auf
+sous ; unter
+dedans ; drinnen
+dehors ; draußen
+la voiture ; das Auto
+la bagnole ; die Karre ; locker
+le bus ; der Bus
+le métro ; die U-Bahn
+le taxi ; das Taxi
+le train ; der Zug
+l'avion ; das Flugzeug
+l'aéroport ; der Flughafen
+l'arrêt ; die Haltestelle
+la gare ; der Bahnhof
+le billet ; die Fahrkarte
+le vélo ; das Fahrrad
+le bateau ; das Schiff
+le port ; der Hafen
+l'hôtel ; das Hotel
+l'adresse ; die Adresse
+le plan ; der Stadtplan
+c'est où... ? ; Wo ist ...?
+la gare, c'est où ? ; Wo ist der Bahnhof?
+les toilettes, c'est où ? ; Wo ist die Toilette?
+comment je vais à... ? ; Wie komme ich nach ...?
+c'est loin ? ; Ist es weit?
+on peut y aller à pied ? ; Kann man zu Fuß hingehen?
+allez tout droit, puis à gauche ; Gehen Sie geradeaus, dann links
+arrêtez-vous ici, s'il vous plaît ; Halten Sie hier, bitte
+je suis perdu ; Ich habe mich verlaufen
+on y va ! ; Los geht's!
+ça prend combien de temps ? ; Wie lange dauert es?
+j'arrive ; Ich komme gleich
+je suis arrivé ; Ich bin angekommen
+un billet pour Paris ; Eine Fahrkarte nach Paris
+aller-retour ; hin und zurück
+
+[Zuhause]
+la maison ; das Haus
+l'appartement ; die Wohnung
+l'appart ; die Wohnung ; locker
+la pièce ; das Zimmer
+la cuisine ; die Küche
+la salle de bain ; das Badezimmer
+la chambre ; das Schlafzimmer
+le salon ; das Wohnzimmer
+la porte ; die Tür
+la fenêtre ; das Fenster
+la table ; der Tisch
+la chaise ; der Stuhl
+le lit ; das Bett
+le canapé ; das Sofa
+le frigo ; der Kühlschrank
+la lumière ; das Licht
+la clé ; der Schlüssel
+le portable ; das Handy
+la télé ; der Fernseher
+entre ! ; Komm rein!
+ton appart est super beau ; Deine Wohnung ist wunderschön
+j'habite à Vienne ; Ich wohne in Wien
+j'habite pas loin ; Ich wohne in der Nähe
+éteins la lumière ; Mach das Licht aus
+allume la lumière ; Mach das Licht an
+ferme la porte ; Mach die Tür zu
+ouvre la fenêtre ; Mach das Fenster auf
+je suis à la maison ; Ich bin zu Hause
+je rentre à la maison ; Ich gehe nach Hause
+
+[Körper & Gesundheit]
+la tête ; der Kopf
+les cheveux ; die Haare
+le visage ; das Gesicht
+l'œil ; das Auge ; Mehrzahl: les yeux
+l'oreille ; das Ohr
+le nez ; die Nase
+la bouche ; der Mund
+la dent ; der Zahn
+la main ; die Hand
+le bras ; der Arm
+la jambe ; das Bein
+le pied ; der Fuß
+le ventre ; der Bauch
+le cœur ; das Herz
+le dos ; der Rücken
+le cou ; der Hals
+j'ai mal à la tête ; Ich habe Kopfschmerzen
+j'ai mal au ventre ; Ich habe Bauchschmerzen
+j'ai de la fièvre ; Ich habe Fieber
+je suis enrhumé ; Ich bin erkältet
+le médicament ; das Medikament
+j'ai besoin d'un médecin ; Ich brauche einen Arzt
+l'hôpital ; das Krankenhaus
+au secours ! ; Hilfe!
+l'ambulance ; der Krankenwagen
+je me sens pas bien ; Ich fühle mich nicht gut
+ça va mieux ? ; Geht es dir besser?
+tu dois te reposer ; Du musst dich ausruhen
+bon rétablissement ! ; Gute Besserung!
+je suis allergique ; Ich bin allergisch
+
+[Wetter & Natur]
+le temps ; das Wetter / die Zeit
+il fait quel temps ? ; Wie ist das Wetter?
+il fait beau ; Es ist schönes Wetter
+il fait froid ; Es ist kalt
+il fait chaud ; Es ist heiß
+il pleut ; Es regnet
+il neige ; Es schneit
+il y a du soleil ; Die Sonne scheint
+c'est nuageux ; Es ist bewölkt
+il y a du vent ; Es ist windig
+le soleil ; die Sonne
+la lune ; der Mond
+l'étoile ; der Stern
+le ciel ; der Himmel
+la mer ; das Meer
+la montagne ; der Berg
+la forêt ; der Wald
+l'arbre ; der Baum
+la fleur ; die Blume
+la rivière ; der Fluss
+la plage ; der Strand
+le lac ; der See
+l'île ; die Insel
+l'animal ; das Tier
+le chien ; der Hund
+le chat ; die Katze
+l'oiseau ; der Vogel
+le cheval ; das Pferd
+le phoque ; die Robbe
+le singe ; der Affe
+
+[Arbeit & Schule]
+le travail ; die Arbeit
+le boulot ; der Job ; locker
+je travaille ; Ich arbeite
+je suis au boulot ; Ich bin in der Arbeit
+le bureau ; das Büro
+l'entreprise ; die Firma
+le chef ; der Chef
+le salaire ; das Gehalt
+l'école ; die Schule
+la fac ; die Uni ; locker für faculté
+la classe ; die Klasse
+le cours ; der Unterricht / der Kurs
+j'étudie ; Ich studiere
+l'examen ; die Prüfung
+le livre ; das Buch
+le cahier ; das Heft
+le stylo ; der Kuli
+l'ordinateur ; der Computer
+j'ai une réunion ; Ich habe eine Besprechung
+c'est férié ; Es ist Feiertag
+les congés ; der Urlaub (von der Arbeit)
+les vacances ; die Ferien
+le voyage ; die Reise
+
+[Verben]
+aller – je vais ; gehen
+venir – je viens ; kommen
+manger – je mange ; essen
+boire – je bois ; trinken
+voir – je vois ; sehen
+dire – je dis ; sagen
+parler – je parle ; sprechen
+entendre – j'entends ; hören
+savoir – je sais ; wissen
+pouvoir – je peux ; können
+vouloir – je veux ; wollen
+avoir – j'ai ; haben
+être – je suis ; sein
+devenir – je deviens ; werden
+faire – je fais ; machen
+donner – je donne ; geben
+prendre – je prends ; nehmen
+apporter – j'apporte ; bringen
+écrire – j'écris ; schreiben
+lire – je lis ; lesen
+comprendre – je comprends ; verstehen
+demander – je demande ; fragen
+répondre – je réponds ; antworten
+acheter – j'achète ; kaufen
+vendre – je vends ; verkaufen
+cuisiner – je cuisine ; kochen
+dormir – je dors ; schlafen
+se réveiller – je me réveille ; aufwachen
+s'asseoir – je m'assieds ; sich setzen
+attendre – j'attends ; warten
+ouvrir – j'ouvre ; öffnen
+fermer – je ferme ; schließen
+chercher – je cherche ; suchen
+trouver – je trouve ; finden
+penser – je pense ; denken
+aimer – j'aime ; lieben / mögen
+habiter – j'habite ; wohnen
+vivre – je vis ; leben
+apprendre – j'apprends ; lernen
+enseigner – j'enseigne ; unterrichten
+jouer – je joue ; spielen
+courir – je cours ; laufen / rennen
+marcher – je marche ; gehen / spazieren
+regarder – je regarde ; anschauen
+écouter – j'écoute ; zuhören
+aider – j'aide ; helfen
+appeler – j'appelle ; anrufen / rufen
+envoyer – j'envoie ; schicken
+payer – je paie ; bezahlen
+laver – je lave ; waschen
+s'habiller – je m'habille ; sich anziehen
+pleurer – je pleure ; weinen
+rire – je ris ; lachen
+danser – je danse ; tanzen
+commencer – je commence ; anfangen
+finir – je finis ; beenden
+rester – je reste ; bleiben
+arriver – j'arrive ; ankommen
+rentrer – je rentre ; heimkommen
+sortir – je sors ; ausgehen
+nager – je nage ; schwimmen
+conduire – je conduis ; Auto fahren
+oublier – j'oublie ; vergessen
+se souvenir – je me souviens ; sich erinnern
+devoir – je dois ; müssen
+aimer bien – j'aime bien ; gern mögen
+
+[Befehle]
+vas-y ! ; Los! / Mach schon!
+viens ! ; Komm!
+viens ici ; Komm her
+assieds-toi ; Setz dich
+attends ! ; Warte!
+dis-moi ; Sag mal
+mange ! ; Iss!
+regarde ! ; Schau!
+écoute ! ; Hör zu!
+donne-moi ça ; Gib mir das
+allez, on y va ! ; Komm, gehen wir!
+dépêche-toi ! ; Beeil dich!
+doucement ; Langsam / Vorsichtig
+attention ! ; Achtung!
+fais gaffe ! ; Pass auf! ; locker
+laisse tomber ; Lass gut sein / Vergiss es
+appelle-moi ; Ruf mich an
+écris-moi ; Schreib mir
+dors bien ; Schlaf gut
+ça suffit ! ; Es reicht!
+aide-moi ; Hilf mir
+arrête ! ; Hör auf!
+tais-toi ! ; Sei still!
+bouge pas ! ; Beweg dich nicht!
+
+[Adjektive]
+bon / bonne ; gut
+mauvais ; schlecht
+grand ; groß
+petit ; klein
+beau ; schön ; Frau: belle
+moche ; hässlich ; locker
+nouveau ; neu
+vieux ; alt
+jeune ; jung
+chaud ; warm / heiß
+froid ; kalt
+facile ; leicht / einfach
+difficile ; schwierig
+lourd ; schwer
+léger ; leicht (Gewicht)
+rapide ; schnell
+lent ; langsam
+intelligent ; klug
+drôle ; lustig
+sympa ; sympathisch / nett
+gentil ; nett / lieb
+mignon ; süß / niedlich
+intéressant ; interessant
+ennuyeux ; langweilig
+plein ; voll
+vide ; leer
+propre ; sauber
+sale ; schmutzig
+riche ; reich
+pauvre ; arm
+heureux ; glücklich
+seul ; allein
+calme ; ruhig
+bruyant ; laut
+parfait ; perfekt
+génial ; genial
+cool ; cool
+faux ; falsch
+mieux ; besser
+plus ; mehr
+moins ; weniger
+le meilleur ; der Beste
+
+[Alltag]
+je me suis levé tôt ; Ich bin früh aufgestanden
+je vais me coucher ; Ich gehe schlafen
+je suis en train de travailler ; Ich arbeite gerade
+je suis en train de manger ; Ich esse gerade
+je peux pas parler, là ; Ich kann gerade nicht reden
+je te rappelle ; Ich rufe dich zurück
+envoie-moi un message ; Schick mir eine Nachricht
+tu fais quoi aujourd'hui ? ; Was machst du heute?
+t'es libre demain ? ; Hast du morgen Zeit?
+on sort ? ; Gehen wir aus?
+on prend un café ? ; Trinken wir einen Kaffee?
+je vais au cinéma avec un pote ; Ich gehe mit einem Kumpel ins Kino
+je suis crevé, je veux me reposer ; Ich bin fertig, ich will mich ausruhen
+c'était une journée difficile ; Das war ein anstrengender Tag
+je suis en retard ; Ich bin spät dran
+une seconde ; Eine Sekunde
+attends une minute ; Warte eine Minute
+j'ai perdu mes clés ; Ich habe meine Schlüssel verloren
+j'ai plus de batterie ; Mein Akku ist leer
+il y a du wifi ? ; Gibt es WLAN?
+c'est quoi le code wifi ? ; Wie lautet das WLAN-Passwort?
+j'ai pas d'argent ; Ich habe kein Geld
+je vais faire les courses ; Ich gehe einkaufen
+il fait beau, on va au parc ; Es ist schön, gehen wir in den Park
+j'écoute de la musique ; Ich höre Musik
+je regarde un film ; Ich schaue einen Film
+je fais du sport ; Ich mache Sport
+je prends une douche ; Ich gehe duschen
+tu fais quoi ce week-end ? ; Was machst du am Wochenende?
+je m'en occupe ; Ich kümmere mich darum
+tu peux venir deux secondes ? ; Kannst du kurz kommen?
+j'arrive tout de suite ! ; Ich komme sofort!
+j'espère ; Hoffentlich / Ich hoffe es
+heureusement ; Zum Glück
+tu rentres à quelle heure ? ; Wann kommst du nach Hause?
+on fait comme ça ; Machen wir es so
+quelle belle journée ! ; Was für ein schöner Tag!
+on va à la plage ; Wir gehen an den Strand
+
+[Liebe & Freundschaft]
+je t'aime ; Ich liebe dich
+je t'aime bien ; Ich mag dich
+je t'aime trop ; Ich liebe dich so sehr
+je suis amoureux de toi ; Ich bin in dich verliebt
+mon amour ; mein Schatz / meine Liebe
+mon chéri ; mein Liebling (zu einem Mann)
+ma chérie ; mein Liebling (zu einer Frau)
+t'es mon meilleur ami ; Du bist mein bester Freund
+t'es trop belle ; Du bist wunderschön (zu einer Frau)
+t'es trop beau ; Du bist wunderschön (zu einem Mann)
+t'as de beaux yeux ; Du hast schöne Augen
+je veux être avec toi ; Ich will mit dir zusammen sein
+je pense tout le temps à toi ; Ich denke immer an dich
+tu veux sortir avec moi ? ; Willst du mit mir ausgehen?
+on va boire un verre ? ; Gehen wir etwas trinken?
+tu me donnes ton numéro ? ; Gibst du mir deine Nummer?
+je t'ai acheté ça ; Das habe ich dir gekauft
+t'es trop mignon ; Du bist so süß
+avec toi, je suis heureux ; Mit dir bin ich glücklich
+mon pote ; mein Kumpel
+mon frère ; Bruder / Alter ; unter Freunden
+bisous ; Küsschen ; am Ende von Nachrichten
+je t'embrasse ; Ich umarme dich / Liebe Grüße
+la bise ; das Begrüßungsküsschen auf die Wange
+
+[Redewendungen]
+c'est génial ! ; Das ist genial!
+dommage ; Schade
+c'est dommage ; Das ist schade
+oh là là ! ; Oje! / Ach du meine Güte!
+c'est trop bien ! ; Das ist voll gut!
+j'y crois pas ! ; Ich glaub's nicht!
+n'importe quoi ! ; So ein Quatsch!
+t'inquiète ! ; Keine Sorge!
+si seulement ! ; Wenn's nur so wäre!
+tant pis ; Pech gehabt / Egal
+c'est la vie ; So ist das Leben
+petit à petit, l'oiseau fait son nid ; Mit der Zeit pflückt man die Rose ; wörtlich: Stück für Stück baut der Vogel sein Nest
+qui vivra verra ; Wer lebt, wird sehen / Abwarten
+j'ai hâte ! ; Ich kann es kaum erwarten!
+ça vaut le coup ; Das lohnt sich
+qu'est-ce que j'en sais ? ; Was weiß ich?
+ça fait rien ; Macht nichts ; Umgangssprache
+quel bordel ! ; Was für ein Chaos! ; derb-locker
+tu me fais trop rire ; Du bringst mich so zum Lachen
+youpi ! ; Juhu!
+allez ! ; Los! / Komm schon!
+bravo ! ; Bravo!
+beurk ! ; Igitt!
+ouf ! ; Puh!
+tu vas y arriver ! ; Du schaffst das!
+il faut de la patience ; Man braucht Geduld
+tout va bien ; Alles in Ordnung
+c'est parti ! ; Los geht's!
+la vache ! ; Wow! / Krass! ; wörtlich "die Kuh"
+c'est ouf ! ; Das ist irre! ; Jugendsprache, "ouf" = fou rückwärts
+bof ; Naja / Mittelmäßig

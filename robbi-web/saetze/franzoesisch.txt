@@ -1,0 +1,34 @@
+# Extra-Sätze für das Satz-Puzzle
+# FORMAT:  französisch ; deutsch
+# leicht = 3–5 Wörter, mittel = 6–8 Wörter, schwer = ab 9 Wörtern
+
+Aujourd'hui je suis crevé ; Heute bin ich fix und fertig
+Un café, s'il vous plaît ; Einen Kaffee, bitte
+Ça coûte combien, ça ? ; Wie viel kostet das?
+La gare, c'est où ? ; Wo ist der Bahnhof?
+Parle plus lentement, s'il te plaît ; Sprich bitte langsamer
+Il fait très chaud aujourd'hui ; Heute ist es sehr heiß
+J'adore les croissants au beurre ; Ich liebe Buttercroissants
+Je comprends rien du tout ; Ich verstehe gar nichts
+Demain on va à la plage ; Morgen gehen wir an den Strand
+On se voit demain soir ; Wir sehen uns morgen Abend
+Ma sœur habite à Paris depuis deux ans ; Meine Schwester wohnt seit zwei Jahren in Paris
+On peut avoir l'addition, s'il vous plaît ? ; Können wir bitte die Rechnung haben?
+J'apprends le français tous les jours avec Robbi ; Ich lerne jeden Tag Französisch mit Robbi
+Si t'as le temps, appelle-moi ce soir ; Wenn du Zeit hast, ruf mich heute Abend an
+Je sais pas à quelle heure arrive le bus ; Ich weiß nicht, wann der Bus kommt
+Ce soir je fais des crêpes pour tout le monde ; Heute Abend mache ich Crêpes für alle
+Le train part à huit heures pile ; Der Zug fährt pünktlich um acht ab
+Tu veux venir au cinéma avec nous ? ; Willst du mit uns ins Kino kommen?
+Ma grand-mère cuisine super bien ; Meine Oma kocht super
+Je pense que t'as raison ; Ich glaube, du hast recht
+S'il fait beau demain, on va tous ensemble à la plage ; Wenn morgen schönes Wetter ist, gehen wir alle zusammen an den Strand
+J'apprends le français depuis un an, mais je fais encore plein de fautes ; Ich lerne seit einem Jahr Französisch, aber ich mache noch viele Fehler
+Excusez-moi, vous pouvez me dire comment aller à la tour Eiffel ? ; Entschuldigung, können Sie mir sagen, wie ich zum Eiffelturm komme?
+Quand j'étais petit, on allait chaque été chez mes grands-parents en Provence ; Als ich klein war, fuhren wir jeden Sommer zu meinen Großeltern in die Provence
+Hier soir j'étais tellement fatigué que je me suis couché très tôt ; Gestern Abend war ich so müde, dass ich sehr früh ins Bett ging
+Mon pote dit que cette boulangerie fait les meilleurs croissants de la ville ; Mein Kumpel sagt, dass diese Bäckerei die besten Croissants der Stadt macht
+Quand tu arrives à Lyon, appelle-moi et je viens te chercher ; Wenn du in Lyon ankommst, ruf mich an und ich hole dich ab
+Je pensais que le français était difficile, mais maintenant j'adore ; Ich dachte, Französisch sei schwer, aber jetzt liebe ich es
+Un café en terrasse avec des amis, c'est la meilleure façon de commencer la journée ; Ein Kaffee auf der Terrasse mit Freunden ist der beste Start in den Tag
+Vous pourriez réserver une table pour quatre personnes à vingt heures ? ; Könnten Sie einen Tisch für vier Personen um 20 Uhr reservieren?
