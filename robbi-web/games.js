@@ -190,7 +190,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase() + '.txt?v=26');
+      const r = await fetch('saetze/' + lang.toLowerCase() + '.txt?v=27');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -606,14 +606,21 @@ export function initGames(api) {
     { id: 'larissa', slot: 'hat', icon: '🧢', name: '„Apo Larissa“-Kappe', xp: 500 },
     { id: 'ghorme', slot: 'top', icon: '💚', name: '„I ❤ Ghorme Sabzi“-T-Shirt', xp: 600 },
     { id: 'headphones', slot: 'hat', icon: '🎧', name: 'Kopfhörer', xp: 700 },
-    { id: 'crown', slot: 'hat', icon: '👑', name: 'Krone', xp: 1200 }
+    { id: 'aviator', slot: 'face', icon: '🥽', name: 'Goldene Pilotenbrille', xp: 650 },
+    { id: 'beanie', slot: 'hat', icon: '🧶', name: 'Senfgelbe Wollmütze', xp: 750 },
+    { id: 'strawhat', slot: 'hat', icon: '👒', name: 'Strohhut für den Sommer', xp: 850 },
+    { id: 'runner', slot: 'feet', icon: '👟', name: 'Silberne Retro-Runner', xp: 950 },
+    { id: 'black', slot: 'feet', icon: '👟', name: 'Schwarz-silberne Sneaker', xp: 1100 },
+    { id: 'crown', slot: 'hat', icon: '👑', name: 'Krone', xp: 1200 },
+    { id: 'court', slot: 'feet', icon: '🏀', name: 'Lila-gold High-Tops', xp: 1500 }
   ];
-  const SLOT_NAME = { hat: 'Kopf', face: 'Brille', top: 'Oberteil' };
+  const SLOT_NAME = { hat: 'Kopf', face: 'Brille', top: 'Oberteil', feet: 'Schuhe' };
   function applyOutfit() {
     const o = store.outfit || {};
     [$('seal'), $('monkey')].forEach(svg => {
       OUTFITS.forEach(x => svg.classList.toggle('o-' + x.id, o[x.slot] === x.id && (store.xp || 0) >= x.xp));
-      svg.classList.toggle('hat-on', ['party', 'crown', 'ny', 'larissa'].includes(o.hat) && OUTFITS.some(x => x.id === o.hat && (store.xp || 0) >= x.xp));
+      svg.classList.toggle('hat-on', ['party', 'crown', 'ny', 'larissa', 'beanie', 'strawhat'].includes(o.hat) && OUTFITS.some(x => x.id === o.hat && (store.xp || 0) >= x.xp));
+      svg.classList.toggle('shoes-on', !!o.feet && OUTFITS.some(x => x.id === o.feet && (store.xp || 0) >= x.xp));
     });
   }
   function renderWardrobe() {

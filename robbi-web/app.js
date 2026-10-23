@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=26';
+import { initGames } from './games.js?v=27';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -411,7 +411,7 @@ async function onAuth(user) {
         for (const k in cs) ls[k] = k === 'memoryBest' ? (ls[k] ? Math.min(ls[k], cs[k]) : cs[k]) : Math.max(ls[k] || 0, cs[k] || 0);
         Object.assign(store.badges = store.badges || {}, JSON.parse(d.badgesJson || '{}'));
         Object.assign(store.duelsCounted = store.duelsCounted || {}, JSON.parse(d.duelsJson || '{}'));
-        const co = JSON.parse(d.outfitJson || 'null'); if (co && (co.hat || co.face)) store.outfit = co;
+        const co = JSON.parse(d.outfitJson || 'null'); if (co && Object.values(co).some(Boolean)) store.outfit = co;
       } catch (e) {}
       try { const nd = JSON.parse(d.newDayJson || 'null'); if (nd && nd.d === today() && (store.newDay.d !== nd.d || nd.n > store.newDay.n)) store.newDay = nd; } catch (e) {}
     }

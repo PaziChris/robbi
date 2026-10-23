@@ -333,7 +333,9 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 .pal svg { overflow: visible; }
 .of { display: none; }
 .o-sunglasses .of-sunglasses, .o-hearts .of-hearts, .o-party .of-party, .o-crown .of-crown, .o-headphones .of-headphones,
-.o-orange .of-orange, .o-jeans .of-jeans, .o-ny .of-ny, .o-larissa .of-larissa, .o-tehran .of-tehran, .o-persian .of-persian, .o-ghorme .of-ghorme { display: inline; }
+.o-orange .of-orange, .o-jeans .of-jeans, .o-ny .of-ny, .o-larissa .of-larissa, .o-tehran .of-tehran, .o-persian .of-persian, .o-ghorme .of-ghorme,
+.o-aviator .of-aviator, .o-beanie .of-beanie, .o-strawhat .of-strawhat, .o-runner .of-runner, .o-black .of-black, .o-court .of-court { display: inline; }
+.monkey.shoes-on .m-foot { display: none; }
 .seal.hat-on .cap { display: none; }
 
 .wotd { background: var(--sea-soft); border-color: transparent; gap: 4px; }
