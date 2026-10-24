@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported } from './speech.js?v=32';
+import { createListener, speechSupported } from './speech.js?v=33';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -19,7 +19,18 @@ export function initGames(api) {
 
   /* ---------- Hilfen ---------- */
   function cleanFront(c) { return c.front.split(' – ')[0]; }          // bei Verben nur den Infinitiv
-  function quizPool() { return api.cards.filter(c => c.front.length <= 40 && c.back.length <= 40); }
+  function allQuiz() { return api.cards.filter(c => c.front.length <= 40 && c.back.length <= 40); }
+  // In den Spielen wählbar: alle Wörter (zufällig) oder nur die gekonnten
+  const onlyKnown = () => store.playPool === 'known';
+  let poolWarned = false;
+  function knownOr(list, min) {
+    if (!onlyKnown()) return list;
+    const k = list.filter(c => api.stateOf(c) === 'k');
+    if (k.length >= min) return k;
+    if (!poolWarned) { poolWarned = true; later(() => toast(`Noch zu wenige gekonnte Wörter (${k.length}) – ich nehme diesmal alle.`), 50); }
+    return list;
+  }
+  function quizPool() { return knownOr(allQuiz(), 8); }
   function makeQ(pool) {
     const c = rnd(pool), rev = Math.random() < .5;
     const val = x => rev ? cleanFront(x) : x.back;
@@ -66,7 +77,21 @@ export function initGames(api) {
       ${aid ? `<div class="wotd-read">Lies etwa: ${esc(aid)}</div>` : ''}
       <div class="wotd-de">${esc(w.back)}</div>${w.note ? `<p>${esc(w.note)}</p>` : ''}`;
   }
+  function renderPoolPick() {
+    const box = $('poolPick'); if (!box) return;
+    const known = allQuiz().filter(c => api.stateOf(c) === 'k').length;
+    box.innerHTML = '<span class="pp-label">Fragen aus</span>';
+    [['all', '🎲 Allen Wörtern'], ['known', `✅ Nur gekonnten (${known})`]].forEach(([v, t]) => {
+      const b = el('button', 'chip'); b.type = 'button'; b.textContent = t;
+      b.setAttribute('aria-pressed', (store.playPool || 'all') === v);
+      b.onclick = () => { store.playPool = v; poolWarned = false; api.persist(['user']); renderPoolPick(); };
+      box.appendChild(b);
+    });
+    const s = el('small', 'pp-hint', 'Gilt für Blitzrunde, Memory, Fangspiel und Sprech-Challenge. Duelle nehmen immer alle Wörter.');
+    box.appendChild(s);
+  }
   function renderGrid() {
+    renderPoolPick();
     const g = $('gameGrid'); g.innerHTML = '';
     GAMES.forEach(gm => {
       const b = el('button', 'game-card');
@@ -148,7 +173,7 @@ export function initGames(api) {
 
   /* ---------- 2) Memory ---------- */
   function memory() {
-    const pool = quizPool().filter(c => cleanFront(c).length <= 18 && c.back.length <= 18);
+    const pool = knownOr(allQuiz().filter(c => cleanFront(c).length <= 18 && c.back.length <= 18), 6);
     if (pool.length < 6) { needCards(999); return; }
     const picked = []; const seenF = new Set(), seenB = new Set();
     for (const c of shuffle(pool.slice())) { const f = cleanFront(c); if (seenF.has(f) || seenB.has(c.back)) continue; seenF.add(f); seenB.add(c.back); picked.push(c); if (picked.length === 6) break; }
@@ -193,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=32');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=33');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -390,7 +415,7 @@ export function initGames(api) {
   }
   function speech() {
     if (!speechSupport()) { $('gameArea').innerHTML = '<p class="hint">Dein Gerät kann hier leider keine Sprache erkennen.</p>'; return; }
-    const pool = api.cards.filter(c => !c.front.includes('–') && !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5);
+    const pool = knownOr(api.cards.filter(c => !c.front.includes('–') && !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5), 5);
     if (pool.length < 5) { needCards(999); return; }
     const round = shuffle(pool.slice()).slice(0, 10); let i = 0, ok = 0, unhook = null;
     const a = $('gameArea');
@@ -429,6 +454,21 @@ export function initGames(api) {
   // Was falsch ist, kommt zurück auf den Stapel "Falsch".
   const TEST_N = 20;
   function testPool() { return api.cards.filter(c => api.stateOf(c) === 'k'); }
+  // Eintippen: Groß/klein, Akzente, Satzzeichen und Hinweise in Klammern sind egal; Varianten mit "/" zählen einzeln
+  const normT = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\([^)]*\)/g, ' ')
+    .replace(/[’'`´"„“”«»!?¿¡.,;:…\-–]/g, ' ').replace(/\s+/g, ' ').trim();
+  function checkTyped(input, target, toDe) {
+    const v = normT(input);
+    const variants = [target, ...target.split(/\s*\/\s*/)].map(normT).filter(Boolean);
+    if (toDe) variants.push(...variants.map(x => x.replace(/^(der|die|das|ein|eine|ich|mein|meine) /, '')));
+    if (variants.includes(v)) return 'exact';
+    const best = Math.min(...variants.map(x => lev(v, x) / Math.max(1, x.length)));
+    const near = Math.min(...variants.map(x => lev(v, x) <= Math.max(1, Math.floor(x.length * .15)) ? 0 : 1));
+    if (near === 0) return 'typo';
+    // Farsi in persischer Schrift eingetippt? Dann übers Konsonantengerüst vergleichen
+    if (/[\u0600-\u06FF]/.test(input) && similar(input, target, api.lang) >= .75) return 'typo';
+    return best <= .15 ? 'typo' : 'wrong';
+  }
   function lastTest() { return (store.testLog || []).filter(t => t.l === api.lang).slice(-1)[0]; }
   function testComment(p) {
     return p >= 90 ? 'Ausgezeichnet! Das sitzt wirklich. 🏆' : p >= 75 ? 'Sehr gut! Nur ein paar Wackler.' : p >= 50 ? 'Gut! Die falschen üben wir nochmal.' : 'Nicht schlimm – genau dafür ist der Test da. Die falschen liegen jetzt bei „Falsch“.';
@@ -445,17 +485,34 @@ export function initGames(api) {
     a.innerHTML = `<div class="end test-start"><span class="label">Prüfung · ${esc(api.lang)}</span>
       <span class="big">🎓</span>
       <span>${Math.min(TEST_N, pool.length)} Fragen aus deinen <b>${pool.length}</b> gekonnten Karten. Kein „Gewusst“-Knopf – hier zählt nur, was du wirklich weißt.</span>
-      ${canSpeak ? '<label class="check"><input type="checkbox" id="tsSpeak" checked> Mit Sprech-Aufgaben (laut sagen)</label>' : '<span class="hint">Sprech-Aufgaben gibt es auf diesem Gerät nicht – nur Auswahlfragen.</span>'}
+      <span class="label">Aufgaben</span>
+      <label class="check"><input type="checkbox" id="tsMcOn" checked> 🔘 Auswählen (4 Antworten)</label>
+      <label class="check"><input type="checkbox" id="tsTypeOn" checked> ⌨️ Eintippen (kleine Tippfehler zählen nicht)</label>
+      ${canSpeak ? '<label class="check"><input type="checkbox" id="tsSpeak" checked> 🎤 Laut sagen</label>' : '<span class="hint">Sprech-Aufgaben gibt es auf diesem Gerät nicht.</span>'}
       ${log.length ? `<span class="hint">Deine letzten Tests: ${log.map(t => `${t.p} %`).join(' · ')}</span>` : ''}
       <div class="actions"><button class="btn primary" id="tsGo" type="button">Test starten</button></div></div>`;
-    $('tsGo').onclick = () => runTest(pool, canSpeak && $('tsSpeak') && $('tsSpeak').checked);
+    $('tsGo').onclick = () => {
+      const kinds = { mc: $('tsMcOn').checked, type: $('tsTypeOn').checked, speak: canSpeak && !!$('tsSpeak') && $('tsSpeak').checked };
+      if (!kinds.mc && !kinds.type && !kinds.speak) kinds.mc = true;
+      store.testKinds = kinds; runTest(pool, kinds);
+    };
+    const tk = store.testKinds; if (tk) { $('tsMcOn').checked = tk.mc !== false; $('tsTypeOn').checked = tk.type !== false; if ($('tsSpeak')) $('tsSpeak').checked = tk.speak !== false; }
   }
-  function runTest(pool, speak) {
-    const cards = shuffle(pool.slice()).slice(0, TEST_N), all = quizPool().length >= 8 ? quizPool() : api.cards;
+  function runTest(pool, want) {
+    const cards = shuffle(pool.slice()).slice(0, TEST_N), all = allQuiz().length >= 8 ? allQuiz() : api.cards;
     const a = $('gameArea'); let i = 0, right = 0, unhook = null; const wrong = [];
     stopFn = () => { unhook && unhook(); };
     const speakable = c => !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5;
-    const kinds = cards.map((c, k) => speak && speakable(c) && k % 3 === 2 ? 'speak' : Math.random() < .5 ? 'toDe' : 'toFr');
+    const typeable = c => !c.front.includes('...') && cleanFront(c).length <= 40;
+    // Aufgabenarten gleichmäßig verteilen, dann mischen
+    const menu = []; if (want.mc) menu.push('mc'); if (want.type) menu.push('type'); if (want.speak) menu.push('speak');
+    const slots = shuffle(cards.map((_, k) => menu[k % menu.length]));
+    const kinds = cards.map((c, k) => {
+      let s = slots[k];
+      if (s === 'speak' && !speakable(c)) s = want.type ? 'type' : 'mc';
+      if (s === 'type' && !typeable(c)) s = 'mc';
+      return s === 'mc' ? (Math.random() < .5 ? 'toDe' : 'toFr') : s === 'type' ? (Math.random() < .75 ? 'typeFr' : 'typeDe') : 'speak';
+    });
     const next = ok => {
       if (ok) right++; else if (!wrong.includes(cards[i])) wrong.push(cards[i]);
       i++; i < cards.length ? show() : finish();
@@ -501,7 +558,34 @@ export function initGames(api) {
         else { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`; later(() => next(false), 2000); }
       });
     }
-    function show() { const c = cards[i], k = kinds[i]; k === 'speak' ? speakQ(c) : mc(c, k === 'toDe'); }
+    function typeQ(c, toDe) {
+      header();
+      const target = toDe ? c.back : cleanFront(c);
+      a.innerHTML = `<div class="blitz-bar"><i style="width:${i / cards.length * 100}%"></i></div>
+        <div class="q-card"><span class="lang">${toDe ? 'Tipp ein, was es auf Deutsch heißt' : `Tipp es auf ${esc(api.lang)} ein`}</span><span class="q-word small">${esc(toDe ? cleanFront(c) : c.back)}</span></div>
+        <form class="type-box" id="tsForm" autocomplete="off"><input id="tsIn" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="${toDe ? 'auf Deutsch …' : 'in Umschrift, z. B. wie auf den Karten …'}">
+        <button class="btn primary" type="submit">Prüfen</button></form>
+        <p class="hint" id="tsMsg">${toDe ? 'Eine der Bedeutungen reicht.' : 'Akzente und Großschreibung sind egal.'}</p>
+        <div class="actions" id="tsAfter"><button class="btn quiet" id="tsSkip" type="button">Weiß ich nicht</button></div>`;
+      const inp = $('tsIn'), msg = $('tsMsg'), after = $('tsAfter');
+      setTimeout(() => { try { inp.focus({ preventScroll: true }); } catch (e) {} }, 50);
+      let done = false;
+      const finishQ = ok => { if (done) return; done = true; inp.disabled = true; $('tsForm').querySelector('button').disabled = true; return ok; };
+      $('tsSkip').onclick = () => { if (done) return; finishQ(false); msg.innerHTML = `Lösung: <b>${esc(target)}</b>`; after.innerHTML = ''; later(() => next(false), 1600); };
+      $('tsForm').onsubmit = e => {
+        e.preventDefault(); if (done) return;
+        const v = inp.value.trim(); if (!v) { inp.focus(); return; }
+        const r = checkTyped(v, target, toDe);
+        if (r === 'exact') { finishQ(true); msg.innerHTML = '<b class="ok-text">Richtig!</b>'; after.innerHTML = ''; later(() => next(true), 900); return; }
+        if (r === 'typo') { finishQ(true); msg.innerHTML = `<b class="ok-text">Fast perfekt – kleiner Tippfehler, zählt als richtig.</b> Genau: <b>${esc(target)}</b>`; after.innerHTML = ''; later(() => next(true), 2000); return; }
+        finishQ(false);
+        msg.innerHTML = `Leider falsch. Richtig ist: <b>${esc(target)}</b><br><small>Du hast geschrieben: „${esc(v)}“</small>`;
+        after.innerHTML = '<button class="btn quiet" id="tsTypo" type="button">✏️ War nur vertippt</button><button class="btn primary" id="tsOn" type="button">Weiter</button>';
+        $('tsTypo').onclick = () => next(true);
+        $('tsOn').onclick = () => next(false);
+      };
+    }
+    function show() { const c = cards[i], k = kinds[i]; k === 'speak' ? speakQ(c) : k === 'typeFr' ? typeQ(c, false) : k === 'typeDe' ? typeQ(c, true) : mc(c, k === 'toDe'); }
     function finish() {
       stop();
       const n = cards.length, p = Math.round(right / n * 100), pts = right * 4 + (p >= 90 ? 25 : 0);
@@ -614,7 +698,7 @@ export function initGames(api) {
   }
   function playDuel(existing, opponent) {
     if (!needCards(8)) return;
-    const pool = quizPool(), a = $('gameArea'); let n = 0, score = 0, q, locked = false; const t0 = Date.now();
+    const pool = allQuiz(), a = $('gameArea'); let n = 0, score = 0, q, locked = false; const t0 = Date.now();
     function next() {
       if (n >= 10) return done();
       q = makeQ(pool); locked = false; n++;

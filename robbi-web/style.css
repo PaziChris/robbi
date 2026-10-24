@@ -441,11 +441,11 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 
 /* Hintergründe der Bühne (ein ruhiges Bild je Sprache) */
 .stage[data-bg]:not([data-bg=""]) { border-radius: 20px; padding: 10px 10px 4px; background-color: var(--sea-soft); background-size: cover; background-position: center bottom; background-repeat: no-repeat; }
-.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=32); }
-.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=32); }
-.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=32); }
-.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=32); }
-.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=32); }
+.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=33); }
+.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=33); }
+.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=33); }
+.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=33); }
+.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=33); }
 .stage[data-bg]:not([data-bg=""]) .pal .tag { background: color-mix(in srgb, var(--surface) 78%, transparent); border-radius: 10px; padding: 1px 8px; }
 
 /* Prüfung */
@@ -456,3 +456,13 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 #repTestBtn { width: 100%; }
 
 .mic.busy { opacity: .6; animation: micpulse 1.4s ease-in-out infinite; }
+
+/* Spiele: Wortquelle */
+.pool-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 10px; }
+.pool-pick .pp-label { font-size: 13px; font-weight: 700; color: var(--muted); margin-right: 2px; }
+.pool-pick .pp-hint { flex-basis: 100%; color: var(--muted); font-size: 12px; }
+/* Prüfung: Eintippen */
+.type-box { display: flex; gap: 8px; }
+.type-box input { flex: 1; min-width: 0; font: inherit; font-size: 18px; padding: 12px 14px; border: 2px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--ink); }
+.type-box input:focus { outline: none; border-color: var(--sea); }
+.test-start .label + .check { margin-top: -4px; }
