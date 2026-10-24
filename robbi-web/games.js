@@ -190,7 +190,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=29');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=30');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
