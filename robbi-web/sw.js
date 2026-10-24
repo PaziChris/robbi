@@ -1,10 +1,10 @@
 /* Robbi Service Worker: offline-fähig + Push-Nachrichten */
-const CACHE = 'robbi-v39';
-const SHELL = ['./', 'index.html', 'style.css?v=39', 'app.js?v=39', 'games.js?v=39', 'speech.js?v=39', 'firebase-config.js?v=39', 'manifest.webmanifest',
+const CACHE = 'robbi-v40';
+const SHELL = ['./', 'index.html', 'style.css?v=40', 'app.js?v=40', 'games.js?v=40', 'speech.js?v=40', 'firebase-config.js?v=40', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png',
-  'sprachen.txt', 'farsi.txt', 'griechisch.txt', 'italienisch.txt', 'spanisch.txt', 'franzoesisch.txt',
-  'saetze/farsi.txt?v=39', 'saetze/griechisch.txt?v=39', 'saetze/italienisch.txt?v=39', 'saetze/spanisch.txt?v=39', 'saetze/franzoesisch.txt?v=39',
-  'bg/aegaeis.svg?v=39', 'bg/teheran.svg?v=39', 'bg/rom.svg?v=39', 'bg/sevilla.svg?v=39', 'bg/paris.svg?v=39'];
+  'sprachen.txt', 'farsi.txt', 'griechisch.txt', 'italienisch.txt', 'spanisch.txt', 'franzoesisch.txt', 'serbisch.txt',
+  'saetze/farsi.txt?v=40', 'saetze/griechisch.txt?v=40', 'saetze/italienisch.txt?v=40', 'saetze/spanisch.txt?v=40', 'saetze/franzoesisch.txt?v=40', 'saetze/serbisch.txt?v=40',
+  'bg/aegaeis.svg?v=40', 'bg/teheran.svg?v=40', 'bg/rom.svg?v=40', 'bg/sevilla.svg?v=40', 'bg/paris.svg?v=40', 'bg/belgrad.svg?v=40'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

@@ -1,0 +1,34 @@
+# Extra-Sätze für das Satz-Puzzle
+# FORMAT:  serbisch ; deutsch
+# leicht = 3–5 Wörter, mittel = 6–8 Wörter, schwer = ab 9 Wörtern
+
+Danas sam mrtav umoran ; Heute bin ich todmüde
+Jednu kafu, molim vas ; Einen Kaffee, bitte
+Koliko ovo košta? ; Wie viel kostet das?
+Gde je autobuska stanica? ; Wo ist der Busbahnhof?
+Pričaj sporije, molim te ; Sprich bitte langsamer
+Danas je jako vruće ; Heute ist es sehr heiß
+Obožavam ćevape sa kajmakom ; Ich liebe Ćevapi mit Kajmak
+Ništa ne razumem ; Ich verstehe gar nichts
+Sutra idemo na Adu ; Morgen gehen wir auf die Ada
+Vidimo se sutra uveče ; Wir sehen uns morgen Abend
+Moja sestra živi u Beogradu već dve godine ; Meine Schwester wohnt seit zwei Jahren in Belgrad
+Možemo li da dobijemo račun? ; Können wir die Rechnung bekommen?
+Svaki dan učim srpski sa Robbijem ; Ich lerne jeden Tag Serbisch mit Robbi
+Ako imaš vremena, zovi me večeras ; Wenn du Zeit hast, ruf mich heute Abend an
+Ne znam kad dolazi autobus ; Ich weiß nicht, wann der Bus kommt
+Večeras pravim sarmu za sve ; Heute Abend mache ich Sarma für alle
+Voz kreće tačno u osam ; Der Zug fährt pünktlich um acht ab
+Hoćeš sa nama u bioskop? ; Kommst du mit uns ins Kino?
+Moja baka odlično kuva ; Meine Oma kocht ausgezeichnet
+Mislim da si u pravu ; Ich glaube, du hast recht
+Ako sutra bude lepo vreme, idemo svi zajedno na Adu ; Wenn morgen schönes Wetter ist, gehen wir alle zusammen auf die Ada
+Učim srpski već godinu dana, ali još uvek pravim mnogo grešaka ; Ich lerne seit einem Jahr Serbisch, aber ich mache noch viele Fehler
+Izvinite, možete li da mi kažete kako da stignem do Hrama Svetog Save? ; Entschuldigung, können Sie mir sagen, wie ich zum Sveti-Sava-Dom komme?
+Kad sam bio mali, svako leto smo išli kod babe na selo ; Als ich klein war, fuhren wir jeden Sommer zu Oma aufs Land
+Sinoć sam bio toliko umoran da sam odmah zaspao ; Gestern Abend war ich so müde, dass ich sofort eingeschlafen bin
+Moj drug kaže da ova pekara ima najbolji burek u gradu ; Mein Kumpel sagt, dass diese Bäckerei den besten Burek der Stadt hat
+Kad stigneš u Novi Sad, javi mi se i dolazim po tebe ; Wenn du in Novi Sad ankommst, melde dich und ich hole dich ab
+Mislio sam da je srpski težak, ali sad ga obožavam ; Ich dachte, Serbisch sei schwer, aber jetzt liebe ich es
+Domaća kafa sa prijateljima je najbolji početak dana ; Ein Mokka mit Freunden ist der beste Start in den Tag
+Možete li da rezervišete sto za četiri osobe u osam sati? ; Können Sie einen Tisch für vier Personen um acht Uhr reservieren?

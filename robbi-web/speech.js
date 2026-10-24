@@ -4,8 +4,8 @@
  *    Das Modell wird beim ersten Mal geladen (~80 MB) und danach vom Browser zwischengespeichert.
  */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-export const SR_LANG = { Farsi: 'fa-IR', Griechisch: 'el-GR', Italienisch: 'it-IT', Spanisch: 'es-ES', 'Französisch': 'fr-FR' };
-const WHISPER_LANG = { Farsi: 'persian', Griechisch: 'greek', Italienisch: 'italian', Spanisch: 'spanish', 'Französisch': 'french' };
+export const SR_LANG = { Farsi: 'fa-IR', Griechisch: 'el-GR', Italienisch: 'it-IT', Spanisch: 'es-ES', 'Französisch': 'fr-FR', Serbisch: 'sr-RS' };
+const WHISPER_LANG = { Farsi: 'persian', Griechisch: 'greek', Italienisch: 'italian', Spanisch: 'spanish', 'Französisch': 'french', Serbisch: 'serbian' };
 const TJS = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.2';
 const MODEL = 'Xenova/whisper-base';
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);

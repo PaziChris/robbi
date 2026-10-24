@@ -1,0 +1,939 @@
+# Serbisch – Vokabeln für den Alltag (so wie man in Belgrad wirklich spricht)
+#
+# FORMAT:   serbisch (lateinische Schrift) ; deutsch ; optionale Notiz
+# Neue Kategorie einfach mit [Name] beginnen. Zeilen mit # werden ignoriert.
+#
+# AUSSPRACHE (Serbisch spricht man genau so, wie man es schreibt – jeder Buchstabe ein Laut):
+#   c  = z wie in "Zeit" (cena = zena)          č  = tsch, hart (čaj = tschai)
+#   ć  = tsch, weich (kuća = kutscha)           dž = dsch, hart (džep)     đ = dsch, weich (đak)
+#   š  = sch (šta = schta)                      ž  = weiches sch wie in "Journal" (žena)
+#   j  = j wie in "ja"                          lj = lj wie in "Million" (ljubav)
+#   nj = nj wie in "Champagner" (konj)          h  = ch wie in "Bach" (hleb = chleb)
+#   v  = w (voda = woda)                        z  = weiches s wie in "Sonne" (zima)
+#   s  = scharfes s (sok)                       r  kann allein eine Silbe sein: prst, crn, trg
+#   Serbisch wird auch kyrillisch geschrieben (Ћирилица) – hier steht die lateinische Schrift.
+#   Bei Verben steht vorne: Infinitiv – ich-Form
+
+[Begrüßung]
+zdravo ; Hallo
+ćao ; Hallo / Tschüss ; locker
+dobro jutro ; Guten Morgen
+dobar dan ; Guten Tag
+dobro veče ; Guten Abend
+laku noć ; Gute Nacht
+doviđenja ; Auf Wiedersehen
+vidimo se ; Wir sehen uns
+vidimo se kasnije ; Bis später
+vidimo se sutra ; Bis morgen
+čujemo se ; Wir hören uns
+kako si? ; Wie geht's dir?
+kako ste? ; Wie geht es Ihnen? ; höflich oder zu mehreren
+šta ima? ; Was gibt's? ; locker
+šta radiš? ; Was machst du?
+dobro sam, hvala. A ti? ; Mir geht's gut, danke. Und dir?
+odlično! ; Ausgezeichnet!
+nije loše ; Nicht schlecht
+onako ; So lala
+sve je u redu ; Alles in Ordnung
+ništa novo ; Nichts Neues
+kako se zoveš? ; Wie heißt du?
+kako se zovete? ; Wie heißen Sie?
+zovem se Lisa ; Ich heiße Lisa
+drago mi je ; Freut mich
+i meni ; Mich auch
+odakle si? ; Woher kommst du?
+ja sam iz Austrije ; Ich komme aus Österreich
+koliko imaš godina? ; Wie alt bist du?
+imam dvadeset pet godina ; Ich bin 25 Jahre alt
+čime se baviš? ; Was machst du beruflich?
+dobrodošli! ; Willkommen!
+dugo se nismo videli! ; Lange nicht gesehen!
+drago mi je što te vidim ; Schön, dich zu sehen
+pozdravi porodicu ; Grüß die Familie
+halo? ; Hallo? (am Telefon)
+gde si? ; Wo bist du?
+ej, brate! ; Hey, Bruder! ; locker unter Freunden
+prijatan dan! ; Einen schönen Tag!
+prijatno veče! ; Einen schönen Abend!
+
+[Höflichkeit]
+hvala ; Danke
+hvala puno ; Vielen Dank
+hvala ti ; Danke dir
+hvala vam ; Danke Ihnen
+molim ; Bitte / Gern geschehen / Wie bitte?
+nema na čemu ; Gern geschehen
+izvini ; Entschuldige
+izvinite ; Entschuldigen Sie
+žao mi je ; Es tut mir leid
+stvarno mi je žao ; Es tut mir wirklich leid
+nema veze ; Macht nichts
+nije problem ; Kein Problem
+nema problema ; Kein Problem
+sa zadovoljstvom ; Mit Vergnügen
+rado ; Gerne
+naravno! ; Natürlich!
+mogu li? ; Darf ich?
+prijatno! ; Guten Appetit! / Mahlzeit!
+živeli! ; Prost!
+nazdravlje! ; Gesundheit! / Prost!
+srećan put! ; Gute Reise!
+lep vikend! ; Schönes Wochenende!
+srećno! ; Viel Glück!
+čestitam! ; Herzlichen Glückwunsch!
+srećan rođendan! ; Alles Gute zum Geburtstag!
+srećan Božić! ; Frohe Weihnachten! ; orthodox am 7. Jänner
+Hristos se rodi! ; Christus ist geboren! ; Weihnachtsgruß, Antwort: Vaistinu se rodi!
+Hristos vaskrse! ; Christus ist auferstanden! ; Ostergruß, Antwort: Vaistinu vaskrse!
+srećna Nova godina! ; Frohes neues Jahr!
+gospodine ; mein Herr
+gospođo ; gnädige Frau
+gospođice ; Fräulein
+baš ste ljubazni ; Sie sind sehr freundlich
+to je lepo od tebe ; Das ist nett von dir
+izvolite ; Bitte schön (beim Anbieten / Hereinbitten)
+posle vas ; Nach Ihnen
+
+[Wichtige Wörter]
+da ; ja
+ne ; nein
+aha ; aha / ja
+dobro ; gut / okay
+važi ; abgemacht / okay ; sehr häufig
+okej ; okay
+možda ; vielleicht
+naravno ; natürlich
+tačno ; genau
+tako je ; genau so
+stvarno? ; wirklich?
+ozbiljno? ; im Ernst?
+a, tako ; ach so
+pa ; also / na ja ; Füllwort
+ajde! ; los! / komm schon!
+eto ; da / siehst du
+bre ; Füllwort für Nachdruck ; typisch Belgrad: "ajde, bre!"
+ovde ; hier
+tamo ; dort
+ovo ; das (hier)
+to ; das
+sad ; jetzt
+odmah ; sofort
+posle ; danach
+pre ; vorher
+uvek ; immer
+nikad ; nie
+ponekad ; manchmal
+često ; oft
+mnogo ; viel
+puno ; viel ; locker
+malo ; ein bisschen
+previše ; zu viel
+svi ; alle
+sve ; alles
+ništa ; nichts
+nešto ; etwas
+neko ; jemand
+i ; und / auch
+takođe ; auch / ebenfalls
+samo ; nur
+još ; noch
+već ; schon
+ili ; oder
+ali ; aber
+zato što ; weil
+ako ; wenn / falls
+sa ; mit
+bez ; ohne
+za ; für
+iz ; aus
+u ; in
+na ; auf / an
+kod mene ; bei mir
+
+[Fragen]
+šta? ; Was?
+šta je ovo? ; Was ist das?
+ko? ; Wer?
+gde? ; Wo?
+kad? ; Wann?
+zašto? ; Warum?
+kako? ; Wie?
+koliko? ; Wie viel?
+koji? ; Welcher?
+odakle? ; Woher?
+koliko košta? ; Wie viel kostet das?
+koliko je sati? ; Wie spät ist es?
+gde ideš? ; Wohin gehst du?
+šta radiš sad? ; Was machst du gerade?
+šta se desilo? ; Was ist passiert?
+šta hoćeš? ; Was willst du?
+šta si rekao? ; Was hast du gesagt?
+ko je to? ; Wer ist das?
+kad dolaziš? ; Wann kommst du?
+zašto nisi došao? ; Warum bist du nicht gekommen?
+mogu li da te pitam nešto? ; Darf ich dich etwas fragen?
+govoriš li srpski? ; Sprichst du Serbisch?
+govoriš li engleski? ; Sprichst du Englisch?
+govoriš li nemački? ; Sprichst du Deutsch?
+kako se kaže na srpskom? ; Wie sagt man das auf Serbisch?
+šta znači...? ; Was bedeutet ...?
+možeš li da mi pomogneš? ; Kannst du mir helfen?
+jesam li dobro rekao? ; Habe ich es richtig gesagt?
+jesi li spreman? ; Bist du bereit?
+jesi li gladan? ; Hast du Hunger?
+jesi li žedan? ; Hast du Durst?
+jesi li umoran? ; Bist du müde?
+imaš li vremena? ; Hast du Zeit?
+šta voliš? ; Was magst du?
+gde živiš? ; Wo wohnst du?
+jesi li dobro? ; Geht's dir gut?
+jesi li siguran? ; Bist du sicher?
+šta misliš? ; Was meinst du?
+idemo? ; Gehen wir?
+može? ; Passt das? / Geht das? ; sehr häufig
+
+[Verständigung]
+učim srpski ; Ich lerne Serbisch
+govorim malo srpski ; Ich spreche ein bisschen Serbisch
+moj srpski nije dobar ; Mein Serbisch ist nicht gut
+ne razumem ; Ich verstehe nicht
+razumem ; Ich verstehe
+razumeš li? ; Verstehst du?
+polako, molim te ; Langsam, bitte
+možeš li da ponoviš? ; Kannst du das wiederholen?
+molim? ; Wie bitte?
+ne znam ; Ich weiß nicht
+ne sećam se ; Ich erinnere mich nicht
+zaboravio sam ; Ich habe es vergessen
+a da, sećam se ; Ach ja, ich erinnere mich
+kako se kaže...? ; Wie sagt man ...?
+možeš li da mi napišeš? ; Kannst du es mir aufschreiben?
+pogrešio sam ; Ich habe mich geirrt
+nije bitno ; Ist nicht wichtig
+pričaj sa mnom na srpskom ; Sprich Serbisch mit mir
+šta hoćeš da kažeš? ; Was willst du sagen?
+nisam baš razumeo ; Ich habe es nicht ganz verstanden
+
+[Familie]
+porodica ; die Familie
+majka ; die Mutter
+mama ; Mama
+otac ; der Vater
+tata ; Papa
+brat ; der Bruder
+sestra ; die Schwester
+sin ; der Sohn
+ćerka ; die Tochter
+dete ; das Kind
+deca ; die Kinder
+deda ; der Opa
+baka ; die Oma
+ujak ; der Onkel (Bruder der Mutter)
+stric ; der Onkel (Bruder des Vaters)
+tetka ; die Tante
+rođak ; der Cousin
+rođaka ; die Cousine
+muž ; der Ehemann
+žena ; die Frau / Ehefrau
+dečko ; der Freund (Partner)
+devojka ; die Freundin (Partnerin) / das Mädchen
+oženjen sam ; Ich bin verheiratet (Mann)
+udata sam ; Ich bin verheiratet (Frau)
+sam sam ; Ich bin allein / Single
+imam dva brata ; Ich habe zwei Brüder
+imam sestru ; Ich habe eine Schwester
+imaš li dece? ; Hast du Kinder?
+moja mama je lekar ; Meine Mama ist Ärztin
+roditelji ; die Eltern
+kum ; der Trauzeuge / Taufpate ; sehr wichtige Rolle in Serbien
+
+[Personen]
+ja ; ich
+ti ; du
+on ; er
+ona ; sie
+mi ; wir
+vi ; ihr / Sie
+oni ; sie (Mehrzahl)
+osoba ; die Person
+čovek ; der Mann / der Mensch
+žena ; die Frau
+prijatelj ; der Freund
+drugarica ; die Freundin
+drug ; der Kumpel / Freund
+komšija ; der Nachbar
+kolega ; der Kollege
+gost ; der Gast
+profesor ; der Lehrer
+lekar ; der Arzt
+student ; der Student
+ljudi ; die Leute
+on je dobar čovek ; Er ist ein guter Mensch
+
+[Gefühle]
+srećan sam ; Ich bin glücklich ; Frau: srećna sam
+zadovoljan sam ; Ich bin zufrieden
+tužan sam ; Ich bin traurig ; Frau: tužna sam
+nemoj da si tužan ; Sei nicht traurig
+ne brini ; Keine Sorge
+brinem se ; Ich mache mir Sorgen
+umoran sam ; Ich bin müde
+mrtav umoran ; todmüde
+ljut sam ; Ich bin wütend
+plašim se ; Ich habe Angst
+dosadno mi je ; Mir ist langweilig
+nedostaješ mi ; Du fehlst mir
+sviđa mi se ; Es gefällt mir
+ne sviđa mi se ; Es gefällt mir nicht
+obožavam to ; Ich liebe das
+nemam volje ; Ich habe keine Lust
+kakva dosada! ; Wie langweilig!
+umirem od smeha ; Ich lach mich tot
+smiri se ; Beruhig dich
+uzbuđen sam ; Ich bin aufgeregt
+sramota! ; Wie peinlich!
+bolestan sam ; Ich bin krank
+hladno mi je ; Mir ist kalt
+vruće mi je ; Mir ist heiß
+gladan sam ; Ich habe Hunger
+žedan sam ; Ich habe Durst
+sit sam ; Ich bin satt
+pospan sam ; Ich bin müde (schläfrig)
+pod stresom sam ; Ich bin gestresst
+imam želju za... ; Ich habe Lust auf ...
+zaljubljen sam ; Ich bin verliebt
+dosta mi je! ; Ich habe genug!
+
+[Zeit]
+danas ; heute
+sutra ; morgen
+juče ; gestern
+prekosutra ; übermorgen
+prekjuče ; vorgestern
+jutro ; der Morgen
+podne ; der Mittag
+popodne ; der Nachmittag
+veče ; der Abend
+noć ; die Nacht
+večeras ; heute Abend
+sinoć ; gestern Abend
+nedelja ; die Woche / der Sonntag
+ove nedelje ; diese Woche
+sledeće nedelje ; nächste Woche
+vikend ; das Wochenende
+mesec ; der Monat
+godina ; das Jahr
+prošle godine ; letztes Jahr
+ove godine ; dieses Jahr
+sat ; die Stunde / die Uhr
+minut ; die Minute
+rano ; früh
+kasno ; spät
+ponedeljak ; Montag
+utorak ; Dienstag
+sreda ; Mittwoch
+četvrtak ; Donnerstag
+petak ; Freitag
+subota ; Samstag
+nedelja ; Sonntag
+tri sata je ; Es ist drei Uhr
+pola tri ; halb drei
+jedan je sat ; Es ist ein Uhr
+i petnaest ; Viertel nach
+petnaest do ; Viertel vor
+kasno je ; Es ist spät
+nemam vremena ; Ich habe keine Zeit
+žurim ; Ich habe es eilig
+proleće ; der Frühling
+leto ; der Sommer
+jesen ; der Herbst
+zima ; der Winter
+
+[Zahlen]
+nula ; null
+jedan ; eins
+dva ; zwei
+tri ; drei
+četiri ; vier
+pet ; fünf
+šest ; sechs
+sedam ; sieben
+osam ; acht
+devet ; neun
+deset ; zehn
+jedanaest ; elf
+dvanaest ; zwölf
+trinaest ; dreizehn
+četrnaest ; vierzehn
+petnaest ; fünfzehn
+šesnaest ; sechzehn
+sedamnaest ; siebzehn
+osamnaest ; achtzehn
+devetnaest ; neunzehn
+dvadeset ; zwanzig
+dvadeset jedan ; einundzwanzig
+trideset ; dreißig
+četrdeset ; vierzig
+pedeset ; fünfzig
+šezdeset ; sechzig
+sedamdeset ; siebzig
+osamdeset ; achtzig
+devedeset ; neunzig
+sto ; hundert
+dvesta ; zweihundert
+hiljadu ; tausend
+dve hiljade ; zweitausend
+milion ; eine Million
+pola ; die Hälfte
+prvi ; erster
+drugi ; zweiter
+treći ; dritter
+
+[Farben]
+boja ; die Farbe
+crveno ; rot
+plavo ; blau
+svetloplavo ; hellblau
+zeleno ; grün
+žuto ; gelb
+crno ; schwarz
+belo ; weiß
+narandžasto ; orange
+ljubičasto ; lila
+roze ; rosa
+braon ; braun
+sivo ; grau
+zlatno ; golden
+srebrno ; silbern
+tamno ; dunkel
+svetlo ; hell
+koja ti je omiljena boja? ; Was ist deine Lieblingsfarbe?
+
+[Essen]
+hrana ; das Essen
+doručak ; das Frühstück
+ručak ; das Mittagessen
+večera ; das Abendessen
+hleb ; das Brot
+pasta ; die Nudeln
+pirinač ; der Reis
+meso ; das Fleisch
+piletina ; das Hähnchen
+riba ; der Fisch
+pršut ; der Rohschinken
+jaje ; das Ei
+sir ; der Käse
+kajmak ; Kajmak (Rahmkäse) ; typisch serbisch
+jogurt ; der Joghurt
+mleko ; die Milch
+puter ; die Butter
+med ; der Honig
+džem ; die Marmelade
+ajvar ; Ajvar (Paprikaaufstrich)
+maslinovo ulje ; das Olivenöl
+salata ; der Salat
+paradajz ; die Tomate
+krastavac ; die Gurke
+krompir ; die Kartoffel
+pomfrit ; die Pommes
+luk ; die Zwiebel
+beli luk ; der Knoblauch
+povrće ; das Gemüse
+voće ; das Obst
+jabuka ; der Apfel
+pomorandža ; die Orange
+banana ; die Banane
+grožđe ; die Weintraube
+lubenica ; die Wassermelone
+limun ; die Zitrone
+jagoda ; die Erdbeere
+so ; das Salz
+biber ; der Pfeffer
+šećer ; der Zucker
+voda ; das Wasser
+kisela voda ; Mineralwasser (mit Kohlensäure)
+kafa ; der Kaffee
+domaća kafa ; der Mokka (türkischer Kaffee)
+čaj ; der Tee
+sok ; der Saft
+vino ; der Wein
+pivo ; das Bier
+rakija ; der Schnaps ; z.B. šljivovica (Zwetschke)
+ćevapi ; Ćevapi (Grillröllchen)
+pljeskavica ; Pljeskavica (serbischer Burger)
+burek ; Burek (Blätterteig mit Fleisch oder Käse)
+sarma ; Sarma (Krautrouladen)
+gibanica ; Gibanica (Käsestrudel)
+kolač ; der Kuchen
+sladoled ; das Eis
+baš je ukusno! ; Das ist so lecker!
+ljuto ; scharf
+slatko ; süß
+slano ; salzig
+kiselo ; sauer
+sit sam, hvala ; Ich bin satt, danke
+hoćeš još malo? ; Willst du noch ein bisschen?
+ne mogu više, hvala ; Ich kann nicht mehr, danke
+ne jedem meso ; Ich esse kein Fleisch
+vegetarijanac sam ; Ich bin Vegetarier
+odlično kuvaš ; Du kochst ausgezeichnet
+šta ćemo da kuvamo? ; Was kochen wir?
+šta ima za večeru? ; Was gibt's zum Abendessen?
+hoćemo na kafu? ; Gehen wir auf einen Kaffee?
+
+[Restaurant]
+restoran ; das Restaurant
+kafana ; das Gasthaus / Lokal ; typisch serbisch, oft mit Live-Musik
+kafić ; das Café
+jelovnik, molim ; Die Speisekarte, bitte
+sto za dvoje ; Ein Tisch für zwei
+šta preporučujete? ; Was empfehlen Sie?
+hteo bih... ; Ich hätte gerne ... (Mann)
+htela bih... ; Ich hätte gerne ... (Frau)
+uzeću... ; Ich nehme ...
+jednu kafu, molim ; Einen Kaffee, bitte
+čašu vode ; Ein Glas Wasser
+čašu crnog vina ; Ein Glas Rotwein ; Rotwein heißt auf Serbisch "schwarzer Wein"
+bez mesa ; ohne Fleisch
+ne previše ljuto ; nicht zu scharf
+račun, molim ; Die Rechnung, bitte
+koliko sam dužan? ; Was schulde ich?
+mogu li da platim karticom? ; Kann ich mit Karte zahlen?
+ovo nije moje ; Das ist nicht meins
+bilo je odlično ; Es war ausgezeichnet
+konobar ; der Kellner
+konobarica ; die Kellnerin
+kašika ; der Löffel
+viljuška ; die Gabel
+nož ; das Messer
+tanjir ; der Teller
+čaša ; das Glas
+šolja ; die Tasse
+rezervacija ; die Reservierung
+imam rezervaciju ; Ich habe reserviert
+bakšiš ; das Trinkgeld
+
+[Einkaufen]
+kupovina ; der Einkauf
+ići u kupovinu ; einkaufen gehen
+prodavnica ; das Geschäft
+supermarket ; der Supermarkt
+pijaca ; der Markt
+pekara ; die Bäckerei
+apoteka ; die Apotheke
+pare ; das Geld ; locker
+novac ; das Geld
+dinar ; der Dinar
+skupo ; teuer
+jeftino ; billig
+popust ; der Rabatt
+preskupo je! ; Das ist zu teuer!
+imate li nešto jeftinije? ; Haben Sie etwas Billigeres?
+možete li malo da spustite cenu? ; Können Sie mit dem Preis runtergehen?
+samo gledam ; Ich schaue nur
+hteo bih ovo ; Ich hätte gerne das
+kilo ; ein Kilo
+pola kile ; ein halbes Kilo
+imate li veći broj? ; Haben Sie eine größere Größe?
+mogu li da probam? ; Kann ich es anprobieren?
+kesa ; die Tüte
+da li je otvoreno? ; Ist offen?
+otvoreno ; offen
+zatvoreno ; geschlossen
+pokvareno je ; Das ist kaputt
+račun ; die Rechnung / der Kassenbon
+kusur ; das Wechselgeld
+
+[Unterwegs]
+ulica ; die Straße
+trg ; der Platz
+levo ; links
+desno ; rechts
+pravo ; geradeaus
+blizu ; nah
+daleko ; weit
+iza ; hinter
+ispred ; vor
+pored ; neben
+iznad ; über
+ispod ; unter
+unutra ; drinnen
+napolju ; draußen
+auto ; das Auto
+kola ; das Auto ; locker
+autobus ; der Bus
+tramvaj ; die Straßenbahn
+taksi ; das Taxi
+voz ; der Zug
+avion ; das Flugzeug
+aerodrom ; der Flughafen
+stanica ; die Haltestelle / der Bahnhof
+karta ; die Fahrkarte
+bicikl ; das Fahrrad
+brod ; das Schiff
+most ; die Brücke
+hotel ; das Hotel
+adresa ; die Adresse
+mapa ; die Karte (Stadtplan)
+gde je...? ; Wo ist ...?
+gde je stanica? ; Wo ist der Bahnhof?
+gde je toalet? ; Wo ist die Toilette?
+kako da stignem do...? ; Wie komme ich zu ...?
+je li daleko? ; Ist es weit?
+može li peške? ; Kann man zu Fuß gehen?
+idite pravo, pa levo ; Gehen Sie geradeaus, dann links
+stanite ovde, molim vas ; Halten Sie hier, bitte
+izgubio sam se ; Ich habe mich verlaufen
+idemo! ; Gehen wir!
+koliko traje? ; Wie lange dauert es?
+stižem ; Ich komme gleich
+stigao sam ; Ich bin angekommen
+jednu kartu za Novi Sad ; Eine Fahrkarte nach Novi Sad
+povratna karta ; Hin- und Rückfahrkarte
+
+[Zuhause]
+kuća ; das Haus
+stan ; die Wohnung
+soba ; das Zimmer
+kuhinja ; die Küche
+kupatilo ; das Badezimmer
+spavaća soba ; das Schlafzimmer
+dnevna soba ; das Wohnzimmer
+vrata ; die Tür
+prozor ; das Fenster
+sto ; der Tisch
+stolica ; der Stuhl
+krevet ; das Bett
+kauč ; das Sofa
+frižider ; der Kühlschrank
+svetlo ; das Licht
+ključ ; der Schlüssel
+telefon ; das Handy
+televizor ; der Fernseher
+uđi! ; Komm rein!
+stan ti je baš lep ; Deine Wohnung ist sehr schön
+živim u Beču ; Ich wohne in Wien
+živim blizu ; Ich wohne in der Nähe
+ugasi svetlo ; Mach das Licht aus
+upali svetlo ; Mach das Licht an
+zatvori vrata ; Mach die Tür zu
+otvori prozor ; Mach das Fenster auf
+kod kuće sam ; Ich bin zu Hause
+idem kući ; Ich gehe nach Hause
+
+[Körper & Gesundheit]
+glava ; der Kopf
+kosa ; die Haare
+lice ; das Gesicht
+oko ; das Auge ; Mehrzahl: oči
+uvo ; das Ohr
+nos ; die Nase
+usta ; der Mund
+zub ; der Zahn
+ruka ; die Hand / der Arm
+noga ; das Bein / der Fuß
+stomak ; der Bauch
+srce ; das Herz
+leđa ; der Rücken
+vrat ; der Hals
+boli me glava ; Ich habe Kopfschmerzen
+boli me stomak ; Ich habe Bauchschmerzen
+imam temperaturu ; Ich habe Fieber
+prehlađen sam ; Ich bin erkältet
+lek ; das Medikament
+treba mi lekar ; Ich brauche einen Arzt
+bolnica ; das Krankenhaus
+upomoć! ; Hilfe!
+hitna pomoć ; der Krankenwagen / Notruf
+ne osećam se dobro ; Ich fühle mich nicht gut
+jesi li bolje? ; Geht es dir besser?
+moraš da se odmoriš ; Du musst dich ausruhen
+brz oporavak! ; Gute Besserung!
+alergičan sam ; Ich bin allergisch
+
+[Wetter & Natur]
+vreme ; das Wetter / die Zeit
+kakvo je vreme? ; Wie ist das Wetter?
+lepo je vreme ; Es ist schönes Wetter
+hladno je ; Es ist kalt
+toplo je ; Es ist warm
+vruće je ; Es ist heiß
+pada kiša ; Es regnet
+pada sneg ; Es schneit
+sunčano je ; Es ist sonnig
+oblačno je ; Es ist bewölkt
+duva vetar ; Es ist windig
+sunce ; die Sonne
+mesec ; der Mond
+zvezda ; der Stern
+nebo ; der Himmel
+more ; das Meer
+planina ; der Berg
+šuma ; der Wald
+drvo ; der Baum
+cvet ; die Blume
+reka ; der Fluss
+plaža ; der Strand
+jezero ; der See
+ostrvo ; die Insel
+životinja ; das Tier
+pas ; der Hund
+mačka ; die Katze
+ptica ; der Vogel
+konj ; das Pferd
+foka ; die Robbe
+majmun ; der Affe
+
+[Arbeit & Schule]
+posao ; die Arbeit / der Job
+radim ; Ich arbeite
+na poslu sam ; Ich bin in der Arbeit
+kancelarija ; das Büro
+firma ; die Firma
+šef ; der Chef
+plata ; das Gehalt
+škola ; die Schule
+fakultet ; die Uni
+razred ; die Klasse
+čas ; die Unterrichtsstunde
+studiram ; Ich studiere
+ispit ; die Prüfung
+knjiga ; das Buch
+sveska ; das Heft
+olovka ; der Stift
+kompjuter ; der Computer
+imam sastanak ; Ich habe eine Besprechung
+praznik je ; Es ist Feiertag
+godišnji odmor ; der Urlaub
+raspust ; die Ferien
+putovanje ; die Reise
+
+[Verben]
+ići – idem ; gehen
+doći – dođem ; kommen
+jesti – jedem ; essen
+piti – pijem ; trinken
+videti – vidim ; sehen
+reći – kažem ; sagen
+pričati – pričam ; reden / erzählen
+govoriti – govorim ; sprechen
+čuti – čujem ; hören
+znati – znam ; wissen / können
+moći – mogu ; können
+hteti – hoću ; wollen
+imati – imam ; haben
+biti – sam ; sein
+postati – postanem ; werden
+raditi – radim ; arbeiten / machen
+dati – dam ; geben
+uzeti – uzmem ; nehmen
+doneti – donesem ; bringen
+pisati – pišem ; schreiben
+čitati – čitam ; lesen
+razumeti – razumem ; verstehen
+pitati – pitam ; fragen
+odgovoriti – odgovorim ; antworten
+kupiti – kupim ; kaufen
+prodati – prodam ; verkaufen
+kuvati – kuvam ; kochen
+spavati – spavam ; schlafen
+probuditi se – probudim se ; aufwachen
+sesti – sednem ; sich setzen
+čekati – čekam ; warten
+otvoriti – otvorim ; öffnen
+zatvoriti – zatvorim ; schließen
+tražiti – tražim ; suchen
+naći – nađem ; finden
+misliti – mislim ; denken
+voleti – volim ; lieben / mögen
+živeti – živim ; leben / wohnen
+učiti – učim ; lernen
+predavati – predajem ; unterrichten
+igrati se – igram se ; spielen
+trčati – trčim ; laufen / rennen
+šetati – šetam ; spazieren gehen
+gledati – gledam ; schauen
+slušati – slušam ; zuhören
+pomoći – pomognem ; helfen
+zvati – zovem ; anrufen / rufen
+poslati – pošaljem ; schicken
+platiti – platim ; bezahlen
+prati – perem ; waschen
+obući se – obučem se ; sich anziehen
+plakati – plačem ; weinen
+smejati se – smejem se ; lachen
+igrati – igram ; tanzen / spielen
+početi – počnem ; anfangen
+završiti – završim ; beenden
+ostati – ostanem ; bleiben
+stići – stignem ; ankommen
+vratiti se – vratim se ; zurückkommen
+izaći – izađem ; ausgehen
+plivati – plivam ; schwimmen
+voziti – vozim ; fahren
+zaboraviti – zaboravim ; vergessen
+sećati se – sećam se ; sich erinnern
+morati – moram ; müssen
+sviđati se – sviđa mi se ; gefallen
+
+[Befehle]
+idi! ; Geh!
+dođi! ; Komm!
+dođi ovamo ; Komm her
+sedi ; Setz dich
+čekaj! ; Warte!
+reci mi ; Sag mir
+jedi! ; Iss!
+gledaj! ; Schau!
+slušaj! ; Hör zu!
+daj mi to ; Gib mir das
+ajde, idemo! ; Komm, gehen wir!
+požuri! ; Beeil dich!
+polako ; langsam / ruhig
+pazi! ; Pass auf!
+pažnja! ; Achtung!
+pusti to ; Lass das / Vergiss es
+zovi me ; Ruf mich an
+piši mi ; Schreib mir
+lepo spavaj ; Schlaf gut
+dosta je! ; Es reicht!
+pomozi mi ; Hilf mir
+stani! ; Halt!
+prestani! ; Hör auf!
+ćuti! ; Sei still!
+
+[Adjektive]
+dobar ; gut
+loš ; schlecht
+veliki ; groß
+mali ; klein
+lep ; schön
+ružan ; hässlich
+nov ; neu
+star ; alt
+mlad ; jung
+topao ; warm
+hladan ; kalt
+lak ; leicht / einfach
+težak ; schwer / schwierig
+brz ; schnell
+spor ; langsam
+pametan ; klug
+smešan ; lustig
+simpatičan ; sympathisch
+ljubazan ; freundlich
+sladak ; süß / niedlich
+zanimljiv ; interessant
+dosadan ; langweilig
+pun ; voll
+prazan ; leer
+čist ; sauber
+prljav ; schmutzig
+bogat ; reich
+siromašan ; arm
+srećan ; glücklich
+sam ; allein
+miran ; ruhig
+bučan ; laut
+savršen ; perfekt
+super ; super
+kul ; cool
+pogrešan ; falsch
+bolje ; besser
+više ; mehr
+manje ; weniger
+najbolji ; der Beste
+
+[Alltag]
+probudio sam se rano ; Ich bin früh aufgewacht
+idem da spavam ; Ich gehe schlafen
+radim sad ; Ich arbeite gerade
+jedem sad ; Ich esse gerade
+ne mogu sad da pričam ; Ich kann gerade nicht reden
+zvaću te kasnije ; Ich rufe dich später an
+pošalji mi poruku ; Schick mir eine Nachricht
+šta radiš danas? ; Was machst du heute?
+imaš li vremena sutra? ; Hast du morgen Zeit?
+hoćemo da izađemo? ; Gehen wir aus?
+idemo na kafu? ; Gehen wir auf einen Kaffee?
+idem u bioskop sa drugom ; Ich gehe mit einem Freund ins Kino
+umoran sam, hoću da se odmorim ; Ich bin müde, ich will mich ausruhen
+bio je težak dan ; Es war ein schwerer Tag
+kasnim ; Ich bin spät dran
+samo malo ; Einen Moment
+sačekaj minut ; Warte eine Minute
+izgubio sam ključeve ; Ich habe die Schlüssel verloren
+prazna mi je baterija ; Mein Akku ist leer
+imate li vaj-faj? ; Haben Sie WLAN?
+koja je šifra za vaj-faj? ; Wie lautet das WLAN-Passwort?
+nemam para ; Ich habe kein Geld
+idem u prodavnicu ; Ich gehe einkaufen
+lepo je vreme, idemo u park ; Es ist schön, gehen wir in den Park
+slušam muziku ; Ich höre Musik
+gledam film ; Ich schaue einen Film
+treniram ; Ich trainiere
+idem da se istuširam ; Ich gehe duschen
+šta radiš za vikend? ; Was machst du am Wochenende?
+ja ću to da sredim ; Ich kümmere mich darum
+možeš li da dođeš na sekund? ; Kannst du kurz kommen?
+odmah dolazim! ; Ich komme sofort!
+nadam se ; Hoffentlich / Ich hoffe es
+srećom ; Zum Glück
+kad se vraćaš kući? ; Wann kommst du nach Hause?
+hajde tako ; Machen wir es so
+kakav lep dan! ; Was für ein schöner Tag!
+idemo na Adu ; Gehen wir auf die Ada ; Belgrads Badeinsel
+
+[Liebe & Freundschaft]
+volim te ; Ich liebe dich
+mnogo te volim ; Ich liebe dich sehr
+zaljubljen sam u tebe ; Ich bin in dich verliebt
+ljubavi ; mein Schatz / meine Liebe
+dušo ; Liebling ; wörtlich "Seele"
+srce moje ; mein Herz
+ti si moj najbolji prijatelj ; Du bist mein bester Freund
+baš si lepa ; Du bist wunderschön (zu einer Frau)
+baš si lep ; Du bist sehr schön (zu einem Mann)
+imaš prelepe oči ; Du hast wunderschöne Augen
+hoću da budem s tobom ; Ich will mit dir zusammen sein
+stalno mislim na tebe ; Ich denke ständig an dich
+hoćeš da izađemo? ; Willst du mit mir ausgehen?
+idemo na piće? ; Gehen wir etwas trinken?
+daš mi svoj broj? ; Gibst du mir deine Nummer?
+ovo sam ti kupio ; Das habe ich dir gekauft
+baš si sladak ; Du bist so süß
+s tobom sam srećan ; Mit dir bin ich glücklich
+prijatelju moj ; mein Freund
+brate ; Bruder / Alter ; unter Freunden
+pusa ; Küsschen
+puno pozdrava ; Viele Grüße
+
+[Redewendungen]
+super! ; Super!
+šteta ; Schade
+baš šteta ; Wirklich schade
+joj! ; Oje!
+ma daj! ; Ach komm! / Echt jetzt?
+ne mogu da verujem! ; Ich kann es nicht glauben!
+nema šanse! ; Keine Chance! / Niemals!
+ma nema veze ; Ach, egal
+polako ; Immer mit der Ruhe ; Lebensmotto in Serbien
+takav je život ; So ist das Leben
+ko rano rani, dve sreće grabi ; Morgenstund hat Gold im Mund ; wörtlich: wer früh aufsteht, schnappt zwei Glücke
+bez muke nema nauke ; Ohne Fleiß kein Preis
+jedva čekam! ; Ich kann es kaum erwarten!
+vredi ; Es lohnt sich
+šta ja znam ; Was weiß ich
+nije strašno ; Nicht schlimm
+kakav haos! ; Was für ein Chaos!
+umreću od smeha ; Ich sterbe vor Lachen
+bravo! ; Bravo!
+ajde, bre! ; Jetzt komm schon! ; typisch Belgrad
+uh! ; Puh!
+fuj! ; Igitt!
+možeš ti to! ; Du schaffst das!
+treba strpljenja ; Man braucht Geduld
+sve je pod kontrolom ; Alles unter Kontrolle
+krenuli smo! ; Los geht's!
+nema frke ; Kein Stress ; locker
+živi bili pa videli ; Abwarten und Tee trinken ; wörtlich: lebt, dann seht ihr

@@ -8,3 +8,4 @@ Griechisch ; griechisch.txt
 Italienisch ; italienisch.txt
 Spanisch ; spanisch.txt
 Französisch ; franzoesisch.txt
+Serbisch ; serbisch.txt

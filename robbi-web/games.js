@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, aiPossible, setSelfMode, last as srLast } from './speech.js?v=38';
+import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, aiPossible, setSelfMode, last as srLast } from './speech.js?v=40';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=39');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=40');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -418,11 +418,13 @@ export function initGames(api) {
   const GR = { 'ου': 'u', 'αι': 'e', 'ει': 'i', 'οι': 'i', 'υι': 'i', 'μπ': 'b', 'ντ': 'd', 'γκ': 'g', 'γγ': 'ng', 'τσ': 'ts', 'τζ': 'tz', 'αυ': 'av', 'ευ': 'ev',
     'α': 'a', 'β': 'v', 'γ': 'gh', 'δ': 'dh', 'ε': 'e', 'ζ': 'z', 'η': 'i', 'θ': 'th', 'ι': 'i', 'κ': 'k', 'λ': 'l', 'μ': 'm', 'ν': 'n', 'ξ': 'x', 'ο': 'o', 'π': 'p', 'ρ': 'r', 'σ': 's', 'ς': 's', 'τ': 't', 'υ': 'i', 'φ': 'f', 'χ': 'ch', 'ψ': 'ps', 'ω': 'o' };
   const FA = { 'آ': 'a', 'ا': 'a', 'ب': 'b', 'پ': 'p', 'ت': 't', 'ث': 's', 'ج': 'j', 'چ': 'ch', 'ح': 'h', 'خ': 'kh', 'د': 'd', 'ذ': 'z', 'ر': 'r', 'ز': 'z', 'ژ': 'zh', 'س': 's', 'ش': 'sh', 'ص': 's', 'ض': 'z', 'ط': 't', 'ظ': 'z', 'ع': '', 'غ': 'gh', 'ف': 'f', 'ق': 'gh', 'ک': 'k', 'ك': 'k', 'گ': 'g', 'ل': 'l', 'م': 'm', 'ن': 'n', 'و': 'v', 'ه': 'h', 'ی': 'y', 'ي': 'y', 'ئ': 'y', 'ء': '' };
+  const SRC = { 'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'ђ': 'dj', 'е': 'e', 'ж': 'z', 'з': 'z', 'и': 'i', 'ј': 'j', 'к': 'k', 'л': 'l', 'љ': 'lj', 'м': 'm', 'н': 'n', 'њ': 'nj', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'ћ': 'c', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'c', 'џ': 'dz', 'ш': 's' };
   const strip = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   function toLatin(s, l) {
     s = strip(s);
     if (l === 'Griechisch') { s = s.replace(/γ(?=ι|ε|η|υ|αι|οι)/g, 'j').replace(/ου|αι|ει|οι|υι|μπ|ντ|γκ|γγ|τσ|τζ|αυ|ευ|[α-ω]/g, m => GR[m] ?? m); }   // γ vor e/i klingt wie j
     if (l === 'Farsi') { s = [...s].map(ch => FA[ch] ?? ch).join(''); }
+    if (l === 'Serbisch') { s = s.replace(/đ/g, 'dj'); s = [...s].map(ch => SRC[ch] ?? ch).join(''); }   // kyrillisch → lateinisch
     return s.replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
   function skeleton(s, l) {          // für Farsi: nur das Konsonantengerüst vergleichen (die Schrift hat kaum Vokale)

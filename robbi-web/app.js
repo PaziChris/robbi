@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=39';
+import { initGames } from './games.js?v=40';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -103,6 +103,13 @@ const PRON = {
       ['gue / gui', 'ge / gi, das u ist stumm – guitarra'], ['ll', 'j wie in "ja" – calle = kaje'], ['ñ', 'nj – mañana = manjana'], ['qu', 'k – queso'], ['h', 'stumm – hola = ola'],
       ['v', 'fast wie b – vino'], ['y', 'j – yo; allein "y" = i'], ['r / rr', 'kurz / lang gerollt – pero ≠ perro'], ['á é í ó ú', 'diese Silbe betonen']]
   },
+  Serbisch: {
+    intro: 'Serbisch spricht man genau so, wie man es schreibt – jeder Buchstabe ist immer derselbe Laut. "Lies etwa" zeigt, wie du es als Deutschsprachige(r) lesen musst.',
+    fn: s => s.toLowerCase().replace(/dž|lj|nj|č|ć|đ|š|ž|c|h|v|z|s(?=[aeiou])|j/g, m => ({ 'dž': 'dsch', lj: 'lj', nj: 'nj', 'č': 'tsch', 'ć': 'tsch', 'đ': 'dsch', 'š': 'sch', 'ž': 'sch', c: 'z', h: 'ch', v: 'w', z: 's', s: 'ss', j: 'j' }[m])),
+    key: [['c', 'z wie in "Zeit" – cena'], ['č', 'tsch, hart – čaj'], ['ć', 'tsch, weich – kuća'], ['dž', 'dsch, hart – džep'], ['đ', 'dsch, weich – đak'],
+      ['š', 'sch – šta'], ['ž', 'weiches sch wie in "Journal" – žena'], ['j', 'j wie in "ja"'], ['lj', 'lj wie in "Million" – ljubav'], ['nj', 'nj wie in "Champagner" – konj'],
+      ['h', 'ch wie in "Bach" – hleb'], ['v', 'w – voda'], ['z', 'weiches s wie in "Sonne" – zima'], ['s', 'scharfes s – sok'], ['r', 'kann allein eine Silbe sein – prst, crn']]
+  },
   Französisch: {
     intro: 'Französisch spricht man anders, als man es schreibt – die meisten Endungen sind stumm. "Lies etwa" zeigt ungefähr, wie es klingt. "ang", "ong" und "äng" sind Nasenlaute: das g hört man kaum.',
     fn: s => s.toLowerCase().split(/([^a-zàâäçéèêëîïôöûùüÿœæ]+)/).map(frWord).join(''),
@@ -201,7 +208,8 @@ const CHEERS = {
   Griechisch: ['Brávo!', 'Polí kalá! (Sehr gut!)', 'Téleia! (Perfekt!)', 'Foveró! (Super!)'],
   Italienisch: ['Bravo!', 'Benissimo! (Sehr gut!)', 'Perfetto! (Perfekt!)', 'Fantastico!'],
   Spanisch: ['¡Muy bien! (Sehr gut!)', '¡Perfecto!', '¡Genial!', '¡Olé!'],
-  Französisch: ['Bravo !', 'Très bien ! (Sehr gut!)', 'Parfait ! (Perfekt!)', 'Génial !']
+  Französisch: ['Bravo !', 'Très bien ! (Sehr gut!)', 'Parfait ! (Perfekt!)', 'Génial !'],
+  Serbisch: ['Bravo!', 'Odlično! (Ausgezeichnet!)', 'Svaka čast! (Respekt!)', 'Super!']
 };
 const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!']; return l[Math.floor(Math.random() * l.length)]; };
 
@@ -245,7 +253,7 @@ function lifeLoop(a) {
 }
 function renderStage() {
   $('stage').dataset.active = lang === 'Farsi' ? 'fa' : lang === 'Griechisch' ? 'gr' : 'none';
-  $('stage').dataset.bg = { Farsi: 'teheran', Griechisch: 'aegaeis', Italienisch: 'rom', Spanisch: 'sevilla', 'Französisch': 'paris' }[lang] || '';
+  $('stage').dataset.bg = { Farsi: 'teheran', Griechisch: 'aegaeis', Italienisch: 'rom', Spanisch: 'sevilla', 'Französisch': 'paris', Serbisch: 'belgrad' }[lang] || '';
   for (const l in ACTORS) { const on = l === lang; ACTORS[l].btn.classList.toggle('on', on); ACTORS[l].btn.setAttribute('aria-pressed', on); }
 }
 function poke(a) {
@@ -327,7 +335,7 @@ function renderGoalPanel() {
   $('goalStats').innerHTML = `<span class="x"><b>${Math.floor(secsToday() / 60)}</b>min heute</span><span class="k"><b>${fmtDuration(weekSecs())}</b>diese Woche</span><span class="n"><b>${fmtDuration(totalSecs())}</b>insgesamt</span>`;
 }
 function celebrate() {
-  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : lang === 'Französisch' ? 'Magnifique ! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce', true);
+  setMood((lang === 'Farsi' ? 'Āfarin! ' : lang === 'Griechisch' ? 'Brávo! ' : lang === 'Italienisch' ? 'Bravissimo! ' : lang === 'Spanisch' ? '¡Fenomenal! ' : lang === 'Französisch' ? 'Magnifique ! ' : lang === 'Serbisch' ? 'Svaka čast! ' : '') + 'Gut gemacht – heutige Session perfekt!', true, 'bounce', true);
   if (reduceMotion) return;
   const colors = ['#1A7A87', '#D2563A', '#E0A526', '#2F8A5B', '#1D5FB4', '#159A93'];
   for (let i = 0; i < 40; i++) {
