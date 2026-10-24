@@ -26,11 +26,10 @@ export const speechSupported = lang => !!engineFor(lang);
 export function whisperReady() { return !!asr; }
 
 /* ---------- Whisper laden ----------
- * Schnell: WebGPU (Grafikchip, ab iOS 26 / neuere Androids). Sonst WASM (Prozessor, langsamer).
+ * Läuft auf dem Prozessor (WASM). WebGPU ließ das iPhone abstürzen (zu viel Speicher), deshalb nicht mehr.
  * Nach dem Laden einmal "aufwärmen", damit die erste echte Erkennung nicht so lange dauert. */
 let asr = null, asrP = null, asrDevice = '', progressCb = null;
 export const whisperInfo = () => asrDevice;
-async function hasWebGPU() { try { return !!(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (e) { return false; } }
 function loadWhisper(onProgress) {
   if (onProgress) progressCb = onProgress;
   if (asr) return Promise.resolve(asr);
@@ -46,17 +45,17 @@ function loadWhisper(onProgress) {
     asrP = (async () => {
       const T = await import(/* webpackIgnore: true */ TJS);
       T.env.allowLocalModels = false;
-      let p = null;
-      if (await hasWebGPU()) {
-        try {
-          p = await T.pipeline('automatic-speech-recognition', 'onnx-community/whisper-base', { device: 'webgpu', dtype: { encoder_model: 'fp32', decoder_model_merged: 'q4' }, progress_callback });
-          await p(new Float32Array(16000), { language: 'persian', task: 'transcribe', max_new_tokens: 4 });   // läuft WebGPU wirklich?
-          asrDevice = 'webgpu';
-        } catch (e) { p = null; }
-      }
-      if (!p) { p = await T.pipeline('automatic-speech-recognition', MODEL, { dtype: 'q8', device: 'wasm', progress_callback }); asrDevice = 'wasm'; }
+      // Absturz-Schutz: Ist beim letzten Mal die Seite beim Laden/Erkennen abgestürzt (zu wenig Speicher),
+      // nehmen wir ab dann das kleinere Modell.
+      let crashed = '';
+      try { crashed = localStorage.getItem('robbi.srTry') || ''; } catch (e) {}
+      const small = crashed === 'base' || (() => { try { return localStorage.getItem('robbi.srModel') === 'tiny'; } catch (e) { return false; } })();
+      const model = small ? 'Xenova/whisper-tiny' : MODEL;
+      try { if (small) localStorage.setItem('robbi.srModel', 'tiny'); localStorage.setItem('robbi.srTry', small ? 'tiny' : 'base'); } catch (e) {}
+      const p = await T.pipeline('automatic-speech-recognition', model, { dtype: 'q8', device: 'wasm', progress_callback });
+      asrDevice = small ? 'tiny' : 'base';
       try { await p(new Float32Array(16000), { language: 'persian', task: 'transcribe', max_new_tokens: 4 }); } catch (e) {}   // aufwärmen
-      try { localStorage.setItem('robbi.whisperLoaded', '1'); } catch (e) {}
+      try { localStorage.setItem('robbi.whisperLoaded', '1'); localStorage.removeItem('robbi.srTry'); } catch (e) {}
       asr = p; return p;
     })().catch(e => { asrP = null; throw e; });
   }
@@ -154,8 +153,11 @@ export function createListener(lang, cb = {}) {
         // leise Aufnahmen etwas lauter machen – hilft der Erkennung
         let peak = 0; for (let k = 0; k < pcm.length; k++) peak = Math.max(peak, Math.abs(pcm[k]));
         if (peak > 0 && peak < .5) { const g = Math.min(8, .9 / peak); for (let k = 0; k < pcm.length; k++) pcm[k] *= g; }
+        try { localStorage.setItem('robbi.srTry', asrDevice); } catch (e) {}
         const t1 = performance.now();
-        const out = await asr(pcm, { language: WHISPER_LANG[lang], task: 'transcribe', max_new_tokens: 32 });
+        const clearTry = () => { try { localStorage.removeItem('robbi.srTry'); } catch (e) {} };
+        let out;
+        try { out = await asr(pcm, { language: WHISPER_LANG[lang], task: 'transcribe', max_new_tokens: 32 }); } finally { clearTry(); }   // nur ein echter Absturz lässt die Markierung stehen
         last.ms = Math.round(performance.now() - t1);
         const text = (Array.isArray(out) ? out[0].text : out.text || '').replace(/\[[^\]]*\]|\([^)]*\)/g, '').trim();
         last.text = text;
