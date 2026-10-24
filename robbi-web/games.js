@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported } from './speech.js?v=33';
+import { createListener, speechSupported } from './speech.js?v=34';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=33');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=34');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -391,14 +391,14 @@ export function initGames(api) {
     };
     return () => { if (l) l.abort(); };
   }
-  const passMark = kind => kind === 'whisper' ? .55 : .6;
+  const passMark = kind => kind === 'whisper' ? .55 : .65;
   const GR = { 'ου': 'u', 'αι': 'e', 'ει': 'i', 'οι': 'i', 'υι': 'i', 'μπ': 'b', 'ντ': 'd', 'γκ': 'g', 'γγ': 'ng', 'τσ': 'ts', 'τζ': 'tz', 'αυ': 'av', 'ευ': 'ev',
     'α': 'a', 'β': 'v', 'γ': 'gh', 'δ': 'dh', 'ε': 'e', 'ζ': 'z', 'η': 'i', 'θ': 'th', 'ι': 'i', 'κ': 'k', 'λ': 'l', 'μ': 'm', 'ν': 'n', 'ξ': 'x', 'ο': 'o', 'π': 'p', 'ρ': 'r', 'σ': 's', 'ς': 's', 'τ': 't', 'υ': 'i', 'φ': 'f', 'χ': 'ch', 'ψ': 'ps', 'ω': 'o' };
   const FA = { 'آ': 'a', 'ا': 'a', 'ب': 'b', 'پ': 'p', 'ت': 't', 'ث': 's', 'ج': 'j', 'چ': 'ch', 'ح': 'h', 'خ': 'kh', 'د': 'd', 'ذ': 'z', 'ر': 'r', 'ز': 'z', 'ژ': 'zh', 'س': 's', 'ش': 'sh', 'ص': 's', 'ض': 'z', 'ط': 't', 'ظ': 'z', 'ع': '', 'غ': 'gh', 'ف': 'f', 'ق': 'gh', 'ک': 'k', 'ك': 'k', 'گ': 'g', 'ل': 'l', 'م': 'm', 'ن': 'n', 'و': 'v', 'ه': 'h', 'ی': 'y', 'ي': 'y', 'ئ': 'y', 'ء': '' };
   const strip = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   function toLatin(s, l) {
     s = strip(s);
-    if (l === 'Griechisch') { s = s.replace(/ου|αι|ει|οι|υι|μπ|ντ|γκ|γγ|τσ|τζ|αυ|ευ|[α-ω]/g, m => GR[m] ?? m); }
+    if (l === 'Griechisch') { s = s.replace(/γ(?=ι|ε|η|υ|αι|οι)/g, 'j').replace(/ου|αι|ει|οι|υι|μπ|ντ|γκ|γγ|τσ|τζ|αυ|ευ|[α-ω]/g, m => GR[m] ?? m); }   // γ vor e/i klingt wie j
     if (l === 'Farsi') { s = [...s].map(ch => FA[ch] ?? ch).join(''); }
     return s.replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
@@ -408,10 +408,26 @@ export function initGames(api) {
     return s.replace(/\s/g, '');
   }
   function lev(a, b) { const m = a.length, n = b.length; if (!m) return n; if (!n) return m; let p = Array.from({ length: n + 1 }, (_, j) => j); for (let i = 1; i <= m; i++) { const c = [i]; for (let j = 1; j <= n; j++) c[j] = Math.min(p[j] + 1, c[j - 1] + 1, p[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); p = c; } return p[n]; }
+  /* Wie ähnlich ist das Gehörte dem Ziel? Großzügig: Varianten mit "/", Wörter rundherum werden ignoriert,
+     doppelte Buchstaben zählen einfach (bei Farsi zählt nur das Konsonantengerüst). */
+  const ratio = (a, b) => (!a || !b) ? 0 : 1 - lev(a, b) / Math.max(a.length, b.length);
+  const dedupe = s => s.replace(/(.)\1+/g, '$1');
+  function similar1(heard, target, l) {
+    const A = toLatin(heard, l), B = toLatin(target, l);
+    if (!A || !B) return 0;
+    const bw = B.split(' ').length, aw = A.split(' ');
+    const pieces = new Set([A]);                                     // auch Ausschnitte (falls man mehr gesagt hat)
+    for (let n = Math.max(1, bw - 1); n <= bw + 1; n++) for (let i = 0; i + n <= aw.length; i++) pieces.add(aw.slice(i, i + n).join(' '));
+    let best = 0;
+    for (const p of pieces) {
+      const a = dedupe(skeleton(p, l)), b = dedupe(skeleton(B, l));
+      best = Math.max(best, ratio(a, b));
+    }
+    return best;
+  }
   function similar(heard, target, l) {
-    const a = skeleton(toLatin(heard, l), l), b = skeleton(toLatin(target, l), l);
-    if (!a || !b) return 0;
-    return 1 - lev(a, b) / Math.max(a.length, b.length);
+    const vs = [target, ...target.replace(/\([^)]*\)/g, '').split(/\s*\/\s*/)].filter(Boolean);
+    return Math.max(...vs.map(v => similar1(heard, v, l)));
   }
   function speech() {
     if (!speechSupport()) { $('gameArea').innerHTML = '<p class="hint">Dein Gerät kann hier leider keine Sprache erkennen.</p>'; return; }
@@ -439,7 +455,8 @@ export function initGames(api) {
           api.setMood(api.cheer(), true, 'bounce');
           later(() => { i++; i < round.length ? show() : finish(); }, 1600);
         } else {
-          msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Versuch es nochmal oder schau dir die Lösung an.`;
+          msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Versuch es nochmal oder schau dir die Lösung an.<br><button class="btn quiet small" id="spOwn" type="button">✓ Ich hab's richtig gesagt</button>`;
+          $('spOwn').onclick = () => { ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3); i++; i < round.length ? show() : finish(); };
           api.setMood('Fast! Nochmal probieren?', false, 'shake');
         }
       });
@@ -554,8 +571,14 @@ export function initGames(api) {
         const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
         tries++;
         if (best >= passMark(kind)) { msg.innerHTML = `<b class="ok-text">Richtig!</b> (gehört: „${esc(alts[0])}“)`; S().speechOk = (S().speechOk || 0) + 1; later(() => next(true), 1100); }
-        else if (tries < 2) msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Noch ein Versuch!`;
-        else { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`; later(() => next(false), 2000); }
+        else if (tries < 2) { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Noch ein Versuch! <button class="btn quiet small" id="tsOwn" type="button">✓ Ich hab's richtig gesagt</button>`; $('tsOwn').onclick = () => { unhook && unhook(); next(true); }; }
+        else {
+          unhook && unhook();
+          msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`;
+          $('tsSkip').outerHTML = '<button class="btn quiet" id="tsOwn" type="button">✓ Ich hab\'s richtig gesagt</button>';
+          $('tsMc').outerHTML = '<button class="btn primary" id="tsOn" type="button">Weiter</button>';
+          $('tsOwn').onclick = () => next(true); $('tsOn').onclick = () => next(false);
+        }
       });
     }
     function typeQ(c, toDe) {
