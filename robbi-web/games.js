@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported, engineFor } from './speech.js?v=35';
+import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, last as srLast } from './speech.js?v=36';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=35');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=36');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -373,7 +373,7 @@ export function initGames(api) {
         onState: s => {
           btn.classList.toggle('listening', s === 'listening'); busy(s !== 'listening');
           msg.textContent = s === 'loading' ? 'Lade die Spracherkennung … (nur beim ersten Mal)'
-            : s === 'listening' ? (cur.kind === 'whisper' ? 'Ich höre zu … sag es und tippe dann nochmal aufs Mikrofon.' : 'Ich höre zu …')
+            : s === 'listening' ? (cur.kind === 'whisper' ? 'Ich höre zu … sag es einfach – ich merke, wenn du fertig bist.' : 'Ich höre zu …')
             : 'Ich höre genau hin …';
         },
         onProgress: (pct, mb) => { msg.textContent = `Lade die Spracherkennung: ${pct} % von ca. ${mb} MB – nur beim ersten Mal, am besten im WLAN.`; }
@@ -381,6 +381,7 @@ export function initGames(api) {
       try {
         const alts = await cur.start();
         btn.classList.remove('listening'); busy(false);
+        if (cur.kind === 'whisper') api.mark && api.mark(`KI-Erkennung (${whisperInfo()}): ${srLast.ms} ms für ${srLast.secs.toFixed(1)} s`);
         if (cur === l) onHeard(alts, cur.kind);
       } catch (e) {
         btn.classList.remove('listening'); busy(false);
@@ -440,6 +441,7 @@ export function initGames(api) {
   }
   function speech() {
     if (!speechSupport()) { $('gameArea').innerHTML = '<p class="hint">Dein Gerät kann hier leider keine Sprache erkennen.</p>'; return; }
+    preloadWhisper(api.lang);
     const pool = knownOr(api.cards.filter(c => !c.front.includes('–') && !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5), 5);
     if (pool.length < 5) { needCards(999); return; }
     const round = shuffle(pool.slice()).slice(0, 10); let i = 0, ok = 0, unhook = null;
@@ -508,6 +510,7 @@ export function initGames(api) {
       return;
     }
     const canSpeak = speechSupport();
+    if (canSpeak) preloadWhisper(api.lang);
     a.innerHTML = `<div class="end test-start"><span class="label">Prüfung · ${esc(api.lang)}</span>
       <span class="big">🎓</span>
       <span>${Math.min(TEST_N, pool.length)} Fragen aus deinen <b>${pool.length}</b> gekonnten Karten. Kein „Gewusst“-Knopf – hier zählt nur, was du wirklich weißt.</span>

@@ -15,7 +15,7 @@ const nativeFailed = new Set(JSON.parse((() => { try { return localStorage.getIt
 function rememberFail(lang) { nativeFailed.add(lang); try { localStorage.setItem('robbi.srFailed', JSON.stringify([...nativeFailed])); } catch (e) {} }
 
 const info = (code, detail) => { const e = new Error(code); e.detail = detail; return e; };
-export const last = { secs: 0, rms: 0, text: '' };
+export const last = { secs: 0, rms: 0, text: '', ms: 0 };
 export function engineFor(lang) {
   if (!SR_LANG[lang]) return null;
   const nativeOk = !!SR && !nativeFailed.has(lang) && !(isIOS && lang === 'Farsi');   // iPhone kennt kein Farsi
@@ -25,29 +25,46 @@ export function engineFor(lang) {
 export const speechSupported = lang => !!engineFor(lang);
 export function whisperReady() { return !!asr; }
 
-/* ---------- Whisper laden ---------- */
-let asr = null, asrP = null;
+/* ---------- Whisper laden ----------
+ * Schnell: WebGPU (Grafikchip, ab iOS 26 / neuere Androids). Sonst WASM (Prozessor, langsamer).
+ * Nach dem Laden einmal "aufwärmen", damit die erste echte Erkennung nicht so lange dauert. */
+let asr = null, asrP = null, asrDevice = '', progressCb = null;
+export const whisperInfo = () => asrDevice;
+async function hasWebGPU() { try { return !!(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (e) { return false; } }
 function loadWhisper(onProgress) {
+  if (onProgress) progressCb = onProgress;
   if (asr) return Promise.resolve(asr);
   if (!asrP) {
     const files = {};
+    const progress_callback = ev => {
+      if (ev.status === 'progress' && ev.total) {
+        files[ev.file] = [ev.loaded || 0, ev.total];
+        let l = 0, t = 0; for (const k in files) { l += files[k][0]; t += files[k][1]; }
+        progressCb && progressCb(Math.round(l / t * 100), Math.round(t / 1e6));
+      }
+    };
     asrP = (async () => {
       const T = await import(/* webpackIgnore: true */ TJS);
       T.env.allowLocalModels = false;
-      const p = await T.pipeline('automatic-speech-recognition', MODEL, {
-        dtype: 'q8', device: 'wasm',
-        progress_callback: ev => {
-          if (ev.status === 'progress' && ev.total) {
-            files[ev.file] = [ev.loaded || 0, ev.total];
-            let l = 0, t = 0; for (const k in files) { l += files[k][0]; t += files[k][1]; }
-            onProgress && onProgress(Math.round(l / t * 100), Math.round(t / 1e6));
-          }
-        }
-      });
+      let p = null;
+      if (await hasWebGPU()) {
+        try {
+          p = await T.pipeline('automatic-speech-recognition', 'onnx-community/whisper-base', { device: 'webgpu', dtype: { encoder_model: 'fp32', decoder_model_merged: 'q4' }, progress_callback });
+          await p(new Float32Array(16000), { language: 'persian', task: 'transcribe', max_new_tokens: 4 });   // läuft WebGPU wirklich?
+          asrDevice = 'webgpu';
+        } catch (e) { p = null; }
+      }
+      if (!p) { p = await T.pipeline('automatic-speech-recognition', MODEL, { dtype: 'q8', device: 'wasm', progress_callback }); asrDevice = 'wasm'; }
+      try { await p(new Float32Array(16000), { language: 'persian', task: 'transcribe', max_new_tokens: 4 }); } catch (e) {}   // aufwärmen
+      try { localStorage.setItem('robbi.whisperLoaded', '1'); } catch (e) {}
       asr = p; return p;
     })().catch(e => { asrP = null; throw e; });
   }
   return asrP;
+}
+// Wenn die Erkennung schon einmal geladen war: im Hintergrund vorbereiten (kommt dann aus dem Zwischenspeicher)
+export function preloadWhisper(lang) {
+  try { if (engineFor(lang) === 'whisper' && localStorage.getItem('robbi.whisperLoaded')) loadWhisper().catch(() => {}); } catch (e) {}
 }
 
 /* ---------- Aufnahme → 16 kHz Mono ---------- */
@@ -102,8 +119,26 @@ export function createListener(lang, cb = {}) {
         media.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
         media.start();
         cb.onState && cb.onState('listening');
-        timer = setTimeout(() => { if (media && media.state === 'recording') media.stop(); }, 6000);
-        await stopped; cleanup();
+        const stopRec = () => { if (media && media.state === 'recording') media.stop(); };
+        timer = setTimeout(stopRec, 6000);
+        // Sprechpause erkennen: nach dem Sprechen ~0,8 s Stille → Aufnahme endet von selbst
+        let vadCtx = null, vadIv = null;
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          vadCtx = new AC(); if (vadCtx.state === 'suspended') vadCtx.resume().catch(() => {});
+          const an = vadCtx.createAnalyser(); an.fftSize = 1024; vadCtx.createMediaStreamSource(stream).connect(an);
+          const buf = new Float32Array(an.fftSize); let spoke = false, quietSince = 0, floor = 0; const t0 = performance.now();
+          vadIv = setInterval(() => {
+            an.getFloatTimeDomainData(buf); let s = 0; for (let k = 0; k < buf.length; k++) s += buf[k] * buf[k];
+            const rms = Math.sqrt(s / buf.length), now = performance.now();
+            if (now - t0 < 250) { floor = Math.max(floor, rms); return; }         // Grundrauschen messen
+            const loud = rms > Math.max(.015, floor * 2.5);
+            if (loud) { spoke = true; quietSince = 0; }
+            else if (spoke) { if (!quietSince) quietSince = now; if (now - quietSince > 800) stopRec(); }
+            else if (now - t0 > 4000) stopRec();                                  // gar nichts gesagt
+          }, 80);
+        } catch (e) {}
+        await stopped; clearInterval(vadIv); try { vadCtx && vadCtx.close(); } catch (e) {} cleanup();
         if (aborted) throw new Error('aborted');
         cb.onState && cb.onState('thinking');
         const blob = new Blob(chunks, { type: chunks[0] ? chunks[0].type : 'audio/mp4' });
@@ -119,7 +154,9 @@ export function createListener(lang, cb = {}) {
         // leise Aufnahmen etwas lauter machen – hilft der Erkennung
         let peak = 0; for (let k = 0; k < pcm.length; k++) peak = Math.max(peak, Math.abs(pcm[k]));
         if (peak > 0 && peak < .5) { const g = Math.min(8, .9 / peak); for (let k = 0; k < pcm.length; k++) pcm[k] *= g; }
-        const out = await asr(pcm, { language: WHISPER_LANG[lang], task: 'transcribe' });
+        const t1 = performance.now();
+        const out = await asr(pcm, { language: WHISPER_LANG[lang], task: 'transcribe', max_new_tokens: 32 });
+        last.ms = Math.round(performance.now() - t1);
         const text = (Array.isArray(out) ? out[0].text : out.text || '').replace(/\[[^\]]*\]|\([^)]*\)/g, '').trim();
         last.text = text;
         if (!text) throw info('nothing', `Die KI hat in ${secs.toFixed(1)} s Aufnahme nichts verstanden.`);
