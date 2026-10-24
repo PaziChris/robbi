@@ -1,5 +1,5 @@
 /* Robbi – Spielen-Bereich
- * Blitzrunde, Memory, Satz-Puzzle, Fangspiel, Sprech-Challenge, Duell,
+ * Prüfung, Blitzrunde, Memory, Satz-Puzzle, Fangspiel, Sprech-Challenge, Duell,
  * Wort des Tages, Abzeichen und Outfits.
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
@@ -41,6 +41,7 @@ export function initGames(api) {
 
   /* ---------- Menü ---------- */
   const GAMES = [
+    { id: 'test', icon: '🎓', name: 'Prüfung', desc: 'Test aus deinen gekonnten Wörtern', best: () => { const t = lastTest(); return t ? `Zuletzt: ${t.p} %` : 'Noch kein Test'; } },
     { id: 'blitz', icon: '⚡', name: 'Blitzrunde', desc: '60 Sekunden, so viele wie möglich', best: () => bestText(S().blitzBest, ' richtig') },
     { id: 'memory', icon: '🧠', name: 'Memory', desc: 'Finde die 6 Paare', best: () => bestText(S().memoryBest, ' s') },
     { id: 'puzzle', icon: '🧩', name: 'Satz-Puzzle', desc: 'Bau den Satz richtig zusammen', best: () => `${S().puzzles || 0} Sätze gebaut` },
@@ -83,7 +84,7 @@ export function initGames(api) {
     $('gameTitle').textContent = gm.icon + ' ' + gm.name;
     $('gameInfo').textContent = '';
     $('gameArea').innerHTML = '';
-    if (!noRun) ({ blitz, memory, puzzle, catch: catchGame, speech, duel })[id]();
+    if (!noRun) ({ test, blitz, memory, puzzle, catch: catchGame, speech, duel })[id]();
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
   function stop() { if (stopFn) { const f = stopFn; stopFn = null; f(); } clearTimers(); }
@@ -190,7 +191,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=30');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=31');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -399,6 +400,108 @@ export function initGames(api) {
     show();
   }
 
+
+  /* ---------- 7) Prüfung: Test aus den gekonnten Karten ---------- */
+  // Kein Selbstbewerten: Multiple Choice in beide Richtungen und (wenn möglich) laut sprechen.
+  // Was falsch ist, kommt zurück auf den Stapel "Falsch".
+  const TEST_N = 20;
+  function testPool() { return api.cards.filter(c => api.stateOf(c) === 'k'); }
+  function lastTest() { return (store.testLog || []).filter(t => t.l === api.lang).slice(-1)[0]; }
+  function testComment(p) {
+    return p >= 90 ? 'Ausgezeichnet! Das sitzt wirklich. 🏆' : p >= 75 ? 'Sehr gut! Nur ein paar Wackler.' : p >= 50 ? 'Gut! Die falschen üben wir nochmal.' : 'Nicht schlimm – genau dafür ist der Test da. Die falschen liegen jetzt bei „Falsch“.';
+  }
+  function test() {
+    const pool = testPool(), a = $('gameArea');
+    const log = (store.testLog || []).filter(t => t.l === api.lang).slice(-5).reverse();
+    $('gameInfo').textContent = '';
+    if (pool.length < 8) {
+      a.innerHTML = `<div class="end"><span class="label">Prüfung</span><span>Für den Test brauchst du mindestens 8 gekonnte Karten in ${esc(api.lang)}. Du hast ${pool.length}.</span><span class="hint">Lern ein paar Karten und markiere sie mit „Gewusst“ – dann kannst du dich testen.</span></div>`;
+      return;
+    }
+    const canSpeak = speechSupport();
+    a.innerHTML = `<div class="end test-start"><span class="label">Prüfung · ${esc(api.lang)}</span>
+      <span class="big">🎓</span>
+      <span>${Math.min(TEST_N, pool.length)} Fragen aus deinen <b>${pool.length}</b> gekonnten Karten. Kein „Gewusst“-Knopf – hier zählt nur, was du wirklich weißt.</span>
+      ${canSpeak ? '<label class="check"><input type="checkbox" id="tsSpeak" checked> Mit Sprech-Aufgaben (laut sagen)</label>' : '<span class="hint">Sprech-Aufgaben gibt es auf diesem Gerät nicht – nur Auswahlfragen.</span>'}
+      ${log.length ? `<span class="hint">Deine letzten Tests: ${log.map(t => `${t.p} %`).join(' · ')}</span>` : ''}
+      <div class="actions"><button class="btn primary" id="tsGo" type="button">Test starten</button></div></div>`;
+    $('tsGo').onclick = () => runTest(pool, canSpeak && $('tsSpeak') && $('tsSpeak').checked);
+  }
+  function runTest(pool, speak) {
+    const cards = shuffle(pool.slice()).slice(0, TEST_N), all = quizPool().length >= 8 ? quizPool() : api.cards;
+    const a = $('gameArea'); let i = 0, right = 0, rec = null; const wrong = [];
+    stopFn = () => { try { rec && rec.abort(); } catch (e) {} };
+    const speakable = c => !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5;
+    const kinds = cards.map((c, k) => speak && speakable(c) && k % 3 === 2 ? 'speak' : Math.random() < .5 ? 'toDe' : 'toFr');
+    const next = ok => {
+      if (ok) right++; else if (!wrong.includes(cards[i])) wrong.push(cards[i]);
+      i++; i < cards.length ? show() : finish();
+    };
+    function header() { $('gameInfo').textContent = `Frage ${i + 1} / ${cards.length} · ${right} richtig`; }
+    function mc(c, toDe) {
+      header();
+      const val = x => toDe ? x.back : cleanFront(x), answer = val(c);
+      const opts = new Set([answer]);
+      for (const src of [shuffle(all.filter(x => x.cat === c.cat)), shuffle(all.slice())]) for (const x of src) { if (opts.size >= 4) break; if (val(x) !== answer) opts.add(val(x)); }
+      a.innerHTML = `<div class="blitz-bar"><i style="width:${i / cards.length * 100}%"></i></div>
+        <div class="q-card"><span class="lang">${toDe ? `Was heißt das auf Deutsch?` : `Wie sagt man das auf ${esc(api.lang)}?`}</span><span class="q-word small">${esc(toDe ? cleanFront(c) : c.back)}</span></div>
+        <div class="opts" id="tsOpts"></div>`;
+      let locked = false;
+      shuffle([...opts]).forEach(o => {
+        const b = el('button', 'opt'); b.type = 'button'; b.textContent = o;
+        b.onclick = () => {
+          if (locked) return; locked = true;
+          const ok = o === answer;
+          b.classList.add(ok ? 'ok' : 'bad');
+          if (!ok) [...$('tsOpts').children].find(x => x.textContent === answer)?.classList.add('ok');
+          later(() => next(ok), ok ? 450 : 1500);
+        };
+        $('tsOpts').appendChild(b);
+      });
+    }
+    function speakQ(c) {
+      header(); let tries = 0;
+      a.innerHTML = `<div class="blitz-bar"><i style="width:${i / cards.length * 100}%"></i></div>
+        <div class="q-card"><span class="lang">Sag laut auf ${esc(api.lang)}</span><span class="q-word small">${esc(c.back)}</span></div>
+        <button class="mic" id="micBtn" type="button" aria-label="Sprechen">🎤</button>
+        <p class="hint" id="tsMsg">Tippe aufs Mikrofon und sag es laut.</p>
+        <div class="actions"><button class="btn quiet" id="tsSkip" type="button">Weiß ich nicht</button><button class="btn quiet" id="tsMc" type="button">Mikro geht nicht</button></div>`;
+      const msg = $('tsMsg');
+      $('tsSkip').onclick = () => { try { rec && rec.abort(); } catch (e) {} msg.innerHTML = `Lösung: <b>${esc(cleanFront(c))}</b>`; $('tsSkip').disabled = true; later(() => next(false), 1600); };
+      $('tsMc').onclick = () => { try { rec && rec.abort(); } catch (e) {} mc(c, false); };
+      $('micBtn').onclick = () => {
+        try { rec && rec.abort(); } catch (e) {}
+        rec = new SR(); rec.lang = SR_LANG[api.lang]; rec.interimResults = false; rec.maxAlternatives = 5;
+        $('micBtn').classList.add('listening'); msg.textContent = 'Ich höre zu …';
+        rec.onresult = ev => {
+          const alts = [...ev.results[0]].map(r => r.transcript);
+          const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
+          tries++;
+          if (best >= .6) { msg.innerHTML = `<b class="ok-text">Richtig!</b> (gehört: „${esc(alts[0])}“)`; S().speechOk = (S().speechOk || 0) + 1; later(() => next(true), 1100); }
+          else if (tries < 2) msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Noch ein Versuch!`;
+          else { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`; later(() => next(false), 2000); }
+        };
+        rec.onerror = ev => { msg.textContent = ev.error === 'not-allowed' ? 'Bitte erlaube das Mikrofon – oder tippe „Mikro geht nicht“.' : ev.error === 'no-speech' ? 'Ich habe nichts gehört. Nochmal?' : 'Das hat nicht geklappt – tippe „Mikro geht nicht“ für eine Auswahlfrage.'; };
+        rec.onend = () => $('micBtn')?.classList.remove('listening');
+        try { rec.start(); } catch (e) { mc(c, false); }
+      };
+    }
+    function show() { const c = cards[i], k = kinds[i]; k === 'speak' ? speakQ(c) : mc(c, k === 'toDe'); }
+    function finish() {
+      stop();
+      const n = cards.length, p = Math.round(right / n * 100), pts = right * 4 + (p >= 90 ? 25 : 0);
+      wrong.forEach(c => api.markWrong(c));
+      store.testLog = (store.testLog || []).concat({ d: api.today(), l: api.lang, p, n }).slice(-30);
+      S().testsDone = (S().testsDone || 0) + 1; S().testBest = Math.max(S().testBest || 0, p);
+      gain(pts); api.persist(['user', 'score', 'prog'], 0);
+      api.setMood(testComment(p), p >= 75, p >= 75 ? 'bounce' : '');
+      const list = wrong.length ? `<ul class="test-wrong">${wrong.map(c => `<li><b>${esc(cleanFront(c))}</b> = ${esc(c.back)}</li>`).join('')}</ul>` : '';
+      endScreen(`Prüfung · ${api.lang}`, [`<span class="big">${p} %</span>`, `${right} von ${n} richtig · +${pts} Punkte`, esc(testComment(p)),
+        wrong.length ? `Diese ${wrong.length} liegen jetzt wieder bei „Falsch“:${list}` : 'Keine einzige falsch – stark!'], test);
+    }
+    show();
+  }
+
   /* ---------- 6) Duell ---------- */
   const cloud = () => api.cloud.ok && api.cloud.fb ? api.cloud.fb : null;
   function duelScore(d, who) { return { s: d[who + 'Score'] || 0, t: d[who + 'Time'] || 0 }; }
@@ -560,6 +663,8 @@ export function initGames(api) {
     { id: 'catch15', icon: '🎣', name: 'Meisterfänger', req: 'Fangspiel: 15 gefangen', ok: () => (S().catchBest || 0) >= 15 },
     { id: 'speech10', icon: '🎤', name: 'Gute Aussprache', req: '10× richtig ausgesprochen', ok: () => (S().speechOk || 0) >= 10 },
     { id: 'duel1', icon: '🥊', name: 'Duellant', req: 'Ein Duell gewonnen', ok: () => (S().duelsWon || 0) >= 1 },
+    { id: 'test1', icon: '🎓', name: 'Prüfling', req: 'Den ersten Test gemacht', ok: () => (S().testsDone || 0) >= 1 },
+    { id: 'test90', icon: '🥇', name: 'Mit Auszeichnung', req: 'Einen Test mit 90 % bestanden', ok: () => (S().testBest || 0) >= 90 },
     { id: 'poly', icon: '🌍', name: 'Weltenbummler', req: 'In 2 Sprachen gelernt', ok: () => langsLearned() >= 2 },
     { id: 'xp1000', icon: '💎', name: 'Punkte-König', req: '1000 Punkte', ok: () => (store.xp || 0) >= 1000 }
   ];
@@ -639,5 +744,5 @@ export function initGames(api) {
   }
 
   applyOutfit();
-  return { render, stop, applyOutfit, checkBadges, badgeCount, isPlaying: () => !!stopFn };
+  return { render, stop, start, applyOutfit, checkBadges, badgeCount, isPlaying: () => !!stopFn };
 }

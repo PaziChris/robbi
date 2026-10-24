@@ -1,10 +1,10 @@
 /* Robbi Service Worker: offline-fähig + Push-Nachrichten */
-const CACHE = 'robbi-v30';
-const SHELL = ['./', 'index.html', 'style.css?v=30', 'app.js?v=30', 'games.js?v=30', 'firebase-config.js?v=30', 'manifest.webmanifest',
+const CACHE = 'robbi-v31';
+const SHELL = ['./', 'index.html', 'style.css?v=31', 'app.js?v=31', 'games.js?v=31', 'firebase-config.js?v=31', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png',
   'sprachen.txt', 'farsi.txt', 'griechisch.txt', 'italienisch.txt', 'spanisch.txt', 'franzoesisch.txt',
-  'saetze/farsi.txt?v=30', 'saetze/griechisch.txt?v=30', 'saetze/italienisch.txt?v=30', 'saetze/spanisch.txt?v=30', 'saetze/franzoesisch.txt?v=30',
-  'bg/aegaeis.svg?v=30', 'bg/teheran.svg?v=30', 'bg/rom.svg?v=30', 'bg/sevilla.svg?v=30', 'bg/paris.svg?v=30'];
+  'saetze/farsi.txt?v=31', 'saetze/griechisch.txt?v=31', 'saetze/italienisch.txt?v=31', 'saetze/spanisch.txt?v=31', 'saetze/franzoesisch.txt?v=31',
+  'bg/aegaeis.svg?v=31', 'bg/teheran.svg?v=31', 'bg/rom.svg?v=31', 'bg/sevilla.svg?v=31', 'bg/paris.svg?v=31'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -43,8 +43,10 @@ try {
 /* Tippen auf die Benachrichtigung öffnet Robbi */
 self.addEventListener('notificationclick', e => {
   e.notification.close();
+  const d = e.notification.data || {};
+  const isTest = d.test === '1' || (d.FCM_MSG && d.FCM_MSG.data && d.FCM_MSG.data.test === '1');
   e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
-    for (const c of list) if ('focus' in c) return c.focus();
-    return self.clients.openWindow('./');
+    for (const c of list) if ('focus' in c) { if (isTest) c.postMessage({ robbi: 'test' }); return c.focus(); }
+    return self.clients.openWindow(isTest ? './?test=1' : './');
   }));
 });

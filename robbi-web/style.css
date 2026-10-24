@@ -441,9 +441,16 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 
 /* Hintergründe der Bühne (ein ruhiges Bild je Sprache) */
 .stage[data-bg]:not([data-bg=""]) { border-radius: 20px; padding: 10px 10px 4px; background-color: var(--sea-soft); background-size: cover; background-position: center bottom; background-repeat: no-repeat; }
-.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=30); }
-.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=30); }
-.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=30); }
-.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=30); }
-.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=30); }
+.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=31); }
+.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=31); }
+.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=31); }
+.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=31); }
+.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=31); }
 .stage[data-bg]:not([data-bg=""]) .pal .tag { background: color-mix(in srgb, var(--surface) 78%, transparent); border-radius: 10px; padding: 1px 8px; }
+
+/* Prüfung */
+.check { display: flex; gap: 8px; align-items: center; font-size: 15px; cursor: pointer; }
+.check input { width: 20px; height: 20px; accent-color: var(--sea); }
+.test-start .big { font-size: 48px; }
+.test-wrong { text-align: left; margin: 6px 0 0; padding-left: 18px; font-size: 14px; max-height: 220px; overflow: auto; }
+#repTestBtn { width: 100%; }

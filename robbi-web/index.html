@@ -10,14 +10,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Robbi">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="manifest.webmanifest?v=30">
-<link rel="icon" href="icons/favicon.png?v=30">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=30">
+<link rel="manifest" href="manifest.webmanifest?v=31">
+<link rel="icon" href="icons/favicon.png?v=31">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=31">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
-<link rel="stylesheet" href="style.css?v=30">
-<script src="firebase-config.js?v=30"></script>
+<link rel="stylesheet" href="style.css?v=31">
+<script src="firebase-config.js?v=31"></script>
 </head>
 <body>
 <div class="app">
@@ -308,6 +308,7 @@
         <button class="btn again" id="repWrongBtn">Falsche üben</button>
         <button class="btn good" id="repKnownBtn">Gekonnte wiederholen</button>
       </div>
+      <div class="actions"><button class="btn primary" id="repTestBtn">🎓 Test aus gekonnten Wörtern</button></div>
       <p>Eine Karte gilt als gekonnt, wenn du sie beim ersten Versuch weißt. Weißt du eine gekonnte Karte nicht mehr, wandert sie zurück zu den falschen.</p>
     </div>
     <p class="label">Nach Thema</p>
@@ -421,6 +422,7 @@
           <option value="aus">Aus</option>
         </select>
       </div>
+      <label class="check"><input type="checkbox" id="weeklyTest" checked> Sonntags: Wochentest per Push statt Spruch</label>
       <button class="btn primary" id="pushBtn" type="button">Benachrichtigungen einschalten</button>
       <p id="pushHint"></p>
       <span class="msg" id="pushMsg" aria-live="polite"></span>
@@ -485,6 +487,6 @@
   </section>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
-<script type="module" src="app.js?v=30"></script>
+<script type="module" src="app.js?v=31"></script>
 </body>
 </html>

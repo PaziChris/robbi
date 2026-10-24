@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=30';
+import { initGames } from './games.js?v=31';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -13,7 +13,7 @@ const HAS_FIREBASE = !!(CFG && CFG.apiKey && !String(CFG.apiKey).startsWith('DEI
 const KEY = 'robbi.v3';
 const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, streak: 0, lastDay: '', pushLang: 'abwechselnd',
   days: {}, goalMin: 30, goalDate: '2026-12-31', doneDay: '', newDay: { d: '', n: 0 },
-  stats: {}, badges: {}, outfit: { hat: '', face: '' }, duelsCounted: {} };
+  stats: {}, badges: {}, outfit: { hat: '', face: '' }, duelsCounted: {}, testLog: [], weeklyTest: true };
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
@@ -361,7 +361,8 @@ function progBody(l) {
 }
 const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.lang, dir: store.dir, nick: store.nick, pushLang: store.pushLang,
   daysJson: JSON.stringify(trimDays(store.days)), goalMin: store.goalMin, goalDate: store.goalDate, doneDay: store.doneDay, newDayJson: JSON.stringify(store.newDay),
-  statsJson: JSON.stringify(store.stats || {}), badgesJson: JSON.stringify(store.badges || {}), outfitJson: JSON.stringify(store.outfit || {}), duelsJson: JSON.stringify(store.duelsCounted || {}) });
+  statsJson: JSON.stringify(store.stats || {}), badgesJson: JSON.stringify(store.badges || {}), outfitJson: JSON.stringify(store.outfit || {}), duelsJson: JSON.stringify(store.duelsCounted || {}),
+  testsJson: JSON.stringify((store.testLog || []).slice(-30)), weeklyTest: store.weeklyTest !== false });
 const scoreBody = () => ({ nick: store.nick || '', xp: store.xp || 0, streak: store.streak || 0, lastDay: store.lastDay || '', known: knownTotal(), lang: store.lang || '',
   todaySec: secsToday(), day: today(), totalSec: totalSecs(),
   badges: Object.keys(store.badges || {}).length, blitz: (store.stats || {}).blitzBest || 0 });
@@ -453,6 +454,12 @@ async function onAuth(user) {
       if (d.nick) store.nick = d.nick;
       if (d.lang) store.lang = d.lang;
       if (d.pushLang) store.pushLang = d.pushLang;
+      if (d.weeklyTest === false) store.weeklyTest = false;
+      try {                                                  // Test-Verlauf: beide zusammenführen
+        const seen = new Set(), merged = [];
+        (JSON.parse(d.testsJson || '[]')).concat(store.testLog || []).forEach(t => { const k = t.d + t.l + t.p + t.n; if (!seen.has(k)) { seen.add(k); merged.push(t); } });
+        store.testLog = merged.sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : 0).slice(-30);
+      } catch (e) {}
       let cd = {}; try { cd = JSON.parse(d.daysJson || '{}'); } catch (e) {}
       for (const k in cd) store.days[k] = Math.max(store.days[k] || 0, cd[k] || 0);   // Lernzeit: pro Tag das Maximum
       if (d.goalMin) store.goalMin = d.goalMin;
@@ -552,6 +559,7 @@ function renderProfile() {
   if (document.activeElement !== $('nickInput')) $('nickInput').value = store.nick || '';
   $('meStats').innerHTML = `<span class="x"><b>${store.xp || 0}</b>Punkte</span><span class="f"><b>${liveStreak(store.streak, store.lastDay)}</b>Tage Serie</span><span class="k"><b>${knownTotal()}</b>gekonnt</span>`;
   $('pushMode').value = store.pushLang || 'abwechselnd';
+  $('weeklyTest').checked = store.weeklyTest !== false;
   renderPushState();
 }
 
@@ -634,6 +642,11 @@ async function init() {
   const langs = allLangs();
   if (!langs.length) { $('fWord').textContent = 'Keine Wortlisten gefunden'; setMood('Hier fehlen die Wortlisten.', false); }
   else await loadLang(langs.includes(store.lang) ? store.lang : langs[0]);
+  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', e => { if (e.data && e.data.robbi === 'test') { showTab('play'); games.start('test'); } });
+  if (/[?&]test=1/.test(location.search)) {                  // aus der Wochentest-Nachricht geöffnet
+    history.replaceState(null, '', location.pathname);
+    setTimeout(() => { showTab('play'); games.start('test'); }, 300);
+  }
   initFirebase();
 }
 
@@ -881,6 +894,8 @@ $('restartBtn').onclick = () => startSession();
 $('endWrongBtn').onclick = () => practice('f', '*');
 $('repWrongBtn').onclick = () => practice('f', '*');
 $('repKnownBtn').onclick = () => practice('k', '*');
+$('repTestBtn').onclick = () => { showTab('play'); games.start('test'); };
+$('weeklyTest').onchange = () => { store.weeklyTest = $('weeklyTest').checked; persist(['user'], 0); $('pushMsg').textContent = store.weeklyTest ? 'Sonntags kommt jetzt dein Wochentest.' : 'Kein Wochentest per Push – testen kannst du dich trotzdem jederzeit.'; };
 $('resetBtn').onclick = () => {
   const r = $('resetBtn');
   if (!r.dataset.armed) { r.dataset.armed = 1; r.textContent = 'Wirklich alles vergessen? Nochmal tippen.'; return; }
@@ -992,6 +1007,8 @@ const games = initGames({
   $, store, esc, shuffle, reduceMotion, readAid, today, persist, setMood, cheer, gainXp, cloud,
   get lang() { return lang; }, get cards() { return cards; },
   baseCards: () => parse(texts[lang] || '', lang),
+  stateOf,
+  markWrong: c => { store.prog[keyOf(c)] = 'f'; progVer++; updateBadge(); },
   liveStreak: () => liveStreak(store.streak, store.lastDay), knownTotal, totalSecs
 });
 

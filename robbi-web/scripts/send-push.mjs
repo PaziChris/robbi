@@ -65,6 +65,16 @@ function streakLine(score, name) {
   if (score.lastDay === YESTERDAY && s > 0) return `Halte deine Serie: ${s} ${s === 1 ? 'Tag' : 'Tage'}!`;
   return `${name} vermisst dich – fünf Minuten?`;
 }
+// Sonntags: Wochentest statt Spruch (wer das in der App ausgeschaltet hat, bekommt den normalen Spruch)
+const IS_SUNDAY = new Date(TODAY + 'T12:00:00Z').getUTCDay() === 0;
+const TEST_LINES = ['20 Fragen aus deinen gekonnten Wörtern – schaffst du 90 %?', 'Zeig, was hängen geblieben ist! Was falsch ist, üben wir nochmal.',
+  'Diese Woche schon viel gelernt? Dann ab zum Test!', 'Kein „Gewusst“-Knopf, nur echtes Wissen. Bereit?'];
+export function buildTestMessage(setting, uid, score) {
+  const lang = chooseLang(setting);
+  const who = lang === 'farsi' ? 'Arzi' : (lang === 'italienisch' || lang === 'spanisch' || lang === 'franzoesisch') ? 'Robbi' : 'Robbie';
+  const line = TEST_LINES[(DAY + hash(uid)) % TEST_LINES.length];
+  return { title: `🎓 Wochentest · ${LANG_NAME[lang]}`, body: `${who} hat deinen Wochentest vorbereitet. ${line}\n${streakLine(score, who)}`, test: true };
+}
 export function buildMessage(setting, uid, score) {
   const lang = chooseLang(setting);
   const p = pickPhrase(lang, uid);
@@ -77,6 +87,7 @@ async function main() {
   if (DRY && !process.env.FIREBASE_SERVICE_ACCOUNT) {
     // Probelauf ohne Firebase: zeigt nur, wie heutige Nachrichten aussehen würden
     for (const s of ['farsi', 'griechisch', 'abwechselnd']) console.log(s.padEnd(12), JSON.stringify(buildMessage(s, 'demo-user', { streak: 3, lastDay: YESTERDAY })));
+    console.log('Wochentest  ', JSON.stringify(buildTestMessage('farsi', 'demo-user', { streak: 3, lastDay: YESTERDAY })));
     return;
   }
   if (!process.env.FIREBASE_SERVICE_ACCOUNT) throw new Error('FIREBASE_SERVICE_ACCOUNT fehlt (GitHub → Settings → Secrets).');
@@ -102,14 +113,16 @@ async function main() {
     const tokens = Array.isArray(u.fcmTokens) ? u.fcmTokens.filter(Boolean) : [];
     if (!tokens.length || u.pushLang === 'aus') { skipped++; continue; }
     const scoreDoc = await db.collection('scores').doc(doc.id).get();
-    const msg = buildMessage(u.pushLang || 'abwechselnd', doc.id, scoreDoc.exists ? scoreDoc.data() : null);
+    const sc = scoreDoc.exists ? scoreDoc.data() : null;
+    const msg = (IS_SUNDAY || process.env.TEST_PUSH === '1') && u.weeklyTest !== false ? buildTestMessage(u.pushLang || 'abwechselnd', doc.id, sc) : buildMessage(u.pushLang || 'abwechselnd', doc.id, sc);
     if (DRY) { console.log(doc.id, msg); continue; }
     const res = await messaging.sendEachForMulticast({
       tokens,
       notification: { title: msg.title, body: msg.body },
+      data: msg.test ? { test: '1' } : {},
       webpush: {
         notification: { icon: APP_URL + 'icons/icon-192.png', badge: APP_URL + 'icons/icon-192.png' },
-        fcmOptions: APP_URL.startsWith('https://') ? { link: APP_URL } : undefined
+        fcmOptions: APP_URL.startsWith('https://') ? { link: APP_URL + (msg.test ? '?test=1' : '') } : undefined
       }
     });
     sent += res.successCount;
