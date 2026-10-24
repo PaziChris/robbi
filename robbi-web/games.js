@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, last as srLast } from './speech.js?v=37';
+import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, aiPossible, setSelfMode, last as srLast } from './speech.js?v=38';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=37');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=38');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -359,12 +359,16 @@ export function initGames(api) {
   /* ---------- 5) Sprech-Challenge ---------- */
   function speechSupport() { return speechSupported(api.lang); }
   /* Mikrofon-Knopf: eingebaute Erkennung oder (z. B. Farsi am iPhone) Whisper direkt am Handy */
-  function hookMic(btn, msg, onHeard) {
+  function hookMic(btn, msg, onHeard, target, onSelfOk) {
     let l = null;
     const busy = on => { btn.classList.toggle('busy', on); };
     const eng = engineFor(api.lang);
-    const note = document.createElement('small'); note.className = 'engine-note';
-    note.textContent = eng === 'whisper' ? '🧠 KI-Erkennung direkt am Handy' : '📱 Spracherkennung des Geräts';
+    const note = document.createElement('div'); note.className = 'engine-note';
+    if (aiPossible(api.lang) || eng === 'self') {
+      // Umschalter: KI-Erkennung (langsamer) oder selbst anhören (sofort)
+      note.innerHTML = `<button type="button" class="chip" aria-pressed="${eng === 'whisper'}" data-m="ai" ${aiPossible(api.lang) ? '' : 'disabled'}>🧠 KI erkennt</button><button type="button" class="chip" aria-pressed="${eng === 'self'}" data-m="self">👂 Selbst anhören</button>`;
+      note.querySelectorAll('button').forEach(b => b.onclick = () => { setSelfMode(b.dataset.m === 'self'); if (l) l.abort(); l = null; const nb = btn.cloneNode(true); btn.replaceWith(nb); note.remove(); hookMic(nb, msg, onHeard, target, onSelfOk); msg.textContent = b.dataset.m === 'self' ? 'Sag es laut – danach hörst du dich selbst und vergleichst mit der Lösung.' : 'Die KI hört zu und prüft deine Aussprache (dauert ein paar Sekunden).'; });
+    } else note.textContent = '📱 Spracherkennung des Geräts';
     btn.insertAdjacentElement('afterend', note);
     btn.onclick = async () => {
       if (l && l.isRecording()) { l.stop(); return; }            // Whisper: zweites Tippen beendet die Aufnahme
@@ -373,7 +377,7 @@ export function initGames(api) {
         onState: s => {
           btn.classList.toggle('listening', s === 'listening'); busy(s !== 'listening');
           msg.textContent = s === 'loading' ? 'Lade die Spracherkennung … (nur beim ersten Mal)'
-            : s === 'listening' ? (cur.kind === 'whisper' ? 'Ich höre zu … sag es einfach – ich merke, wenn du fertig bist.' : 'Ich höre zu …')
+            : s === 'listening' ? (cur.kind !== 'native' ? 'Ich höre zu … sag es einfach – ich merke, wenn du fertig bist.' : 'Ich höre zu …')
             : 'Ich höre genau hin …';
         },
         onProgress: (pct, mb) => { msg.textContent = `Lade die Spracherkennung: ${pct} % von ca. ${mb} MB – nur beim ersten Mal, am besten im WLAN.`; }
@@ -381,6 +385,15 @@ export function initGames(api) {
       try {
         const alts = await cur.start();
         btn.classList.remove('listening'); busy(false);
+        if (alts && alts.self) {                                   // selbst anhören und vergleichen
+          const sol = target ? target() : '', aid = sol ? api.readAid(sol, api.lang) : '';
+          msg.innerHTML = `<audio controls src="${alts.url}" class="self-audio"></audio><br>Richtig ist: <b>${esc(sol)}</b>${aid ? ` · lies etwa: ${esc(aid)}` : ''}<br>Klang das so?
+            <span class="self-btns"><button class="btn quiet small" type="button" id="selfAgain">Nochmal</button><button class="btn primary small" type="button" id="selfOk">✓ Ja, klang richtig</button></span>`;
+          try { msg.querySelector('audio').play().catch(() => {}); } catch (e) {}
+          $('selfAgain').onclick = () => { msg.textContent = 'Nochmal: tippe aufs Mikrofon und sag es laut.'; };
+          $('selfOk').onclick = () => onSelfOk && onSelfOk();
+          return;
+        }
         if (cur.kind === 'whisper') api.mark && api.mark(`KI-Erkennung (${whisperInfo()}): ${srLast.ms} ms für ${srLast.secs.toFixed(1)} s`);
         if (cur === l) onHeard(alts, cur.kind);
       } catch (e) {
@@ -470,7 +483,7 @@ export function initGames(api) {
           $('spOwn').onclick = () => { ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3); i++; i < round.length ? show() : finish(); };
           api.setMood('Fast! Nochmal probieren?', false, 'shake');
         }
-      });
+      }, () => cleanFront(c), () => { ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3); i++; i < round.length ? show() : finish(); });
     }
     function finish() { endScreen('Sprech-Challenge geschafft', [`<span class="big">${ok} / ${round.length}</span>`, `richtig ausgesprochen · +${ok * 3} Punkte`], speech); }
     show();
@@ -591,7 +604,7 @@ export function initGames(api) {
           $('tsMc').outerHTML = '<button class="btn primary" id="tsOn" type="button">Weiter</button>';
           $('tsOwn').onclick = () => next(true); $('tsOn').onclick = () => next(false);
         }
-      });
+      }, () => cleanFront(c), () => { unhook && unhook(); next(true); });
     }
     function typeQ(c, toDe) {
       header();

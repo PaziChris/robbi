@@ -16,12 +16,19 @@ function rememberFail(lang) { nativeFailed.add(lang); try { localStorage.setItem
 
 const info = (code, detail) => { const e = new Error(code); e.detail = detail; return e; };
 export const last = { secs: 0, rms: 0, text: '', ms: 0 };
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
+// Ist die KI-Erkennung auf diesem Gerät schon zweimal abgestürzt, bleibt nur "selbst anhören"
+if (lsGet('robbi.srTry') === 'tiny') { lsSet('robbi.srOff', '1'); lsSet('robbi.srTry', null); }
 export function engineFor(lang) {
   if (!SR_LANG[lang]) return null;
   const nativeOk = !!SR && !nativeFailed.has(lang) && !(isIOS && lang === 'Farsi');   // iPhone kennt kein Farsi
   if (nativeOk) return 'native';
-  return canRecord() ? 'whisper' : null;
+  if (!canRecord()) return null;
+  return lsGet('robbi.srOff') || lsGet('robbi.srMode') === 'self' ? 'self' : 'whisper';
 }
+export const aiPossible = lang => !!SR_LANG[lang] && canRecord() && !lsGet('robbi.srOff') && engineFor(lang) !== 'native';
+export function setSelfMode(on) { lsSet('robbi.srMode', on ? 'self' : null); }
 export const speechSupported = lang => !!engineFor(lang);
 export function whisperReady() { return !!asr; }
 
@@ -45,17 +52,16 @@ function loadWhisper(onProgress) {
     asrP = (async () => {
       const T = await import(/* webpackIgnore: true */ TJS);
       T.env.allowLocalModels = false;
-      // Absturz-Schutz: Ist beim letzten Mal die Seite beim Laden/Erkennen abgestürzt (zu wenig Speicher),
-      // nehmen wir ab dann das kleinere Modell.
-      let crashed = '';
-      try { crashed = localStorage.getItem('robbi.srTry') || ''; } catch (e) {}
-      const small = crashed === 'base' || (() => { try { return localStorage.getItem('robbi.srModel') === 'tiny'; } catch (e) { return false; } })();
+      // iPhone: Safari erlaubt einer Webseite nur wenig Arbeitsspeicher → immer das kleine Modell, ohne Aufwärmen.
+      // Andere Geräte: das genauere Modell; ist es einmal abgestürzt, ab dann auch das kleine.
+      const small = isIOS || lsGet('robbi.srTry') === 'base' || lsGet('robbi.srModel') === 'tiny';
+      if (small && !isIOS) lsSet('robbi.srModel', 'tiny');
       const model = small ? 'Xenova/whisper-tiny' : MODEL;
-      try { if (small) localStorage.setItem('robbi.srModel', 'tiny'); localStorage.setItem('robbi.srTry', small ? 'tiny' : 'base'); } catch (e) {}
+      lsSet('robbi.srTry', small ? 'tiny' : 'base');
       const p = await T.pipeline('automatic-speech-recognition', model, { dtype: 'q8', device: 'wasm', progress_callback });
       asrDevice = small ? 'tiny' : 'base';
-      try { await p(new Float32Array(16000), { language: 'persian', task: 'transcribe', max_new_tokens: 4 }); } catch (e) {}   // aufwärmen
-      try { localStorage.setItem('robbi.whisperLoaded', '1'); localStorage.removeItem('robbi.srTry'); } catch (e) {}
+      if (!isIOS) { try { await p(new Float32Array(16000), { language: 'persian', task: 'transcribe', max_new_tokens: 4 }); } catch (e) {} }
+      lsSet('robbi.whisperLoaded', '1'); lsSet('robbi.srTry', null);
       asr = p; return p;
     })().catch(e => { asrP = null; throw e; });
   }
@@ -63,7 +69,8 @@ function loadWhisper(onProgress) {
 }
 // Wenn die Erkennung schon einmal geladen war: im Hintergrund vorbereiten (kommt dann aus dem Zwischenspeicher)
 export function preloadWhisper(lang) {
-  try { if (engineFor(lang) === 'whisper' && localStorage.getItem('robbi.whisperLoaded')) loadWhisper().catch(() => {}); } catch (e) {}
+  if (isIOS) return;                                        // am iPhone erst laden, wenn wirklich gesprochen wird
+  if (engineFor(lang) === 'whisper' && lsGet('robbi.whisperLoaded')) loadWhisper().catch(() => {});
 }
 
 /* ---------- Aufnahme → 16 kHz Mono ---------- */
@@ -107,8 +114,9 @@ export function createListener(lang, cb = {}) {
         try { rec.start(); } catch (e) { reject(new Error('start')); }
       });
       // Whisper: Modell (falls nötig) laden, dann bis zu 6 s aufnehmen (zweites Tippen beendet früher)
+      // 'self': nur aufnehmen – man hört sich selbst an und vergleicht mit der Lösung
       return (async () => {
-        if (!asr) { cb.onState && cb.onState('loading'); await loadWhisper(cb.onProgress).catch(() => { throw new Error('load'); }); }
+        if (kind === 'whisper' && !asr) { cb.onState && cb.onState('loading'); await loadWhisper(cb.onProgress).catch(() => { throw new Error('load'); }); }
         if (aborted) throw new Error('aborted');
         try { stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }); }
         catch (e) { throw new Error('not-allowed'); }
@@ -139,6 +147,11 @@ export function createListener(lang, cb = {}) {
         } catch (e) {}
         await stopped; clearInterval(vadIv); try { vadCtx && vadCtx.close(); } catch (e) {} cleanup();
         if (aborted) throw new Error('aborted');
+        if (kind === 'self') {
+          const blob = new Blob(chunks, { type: chunks[0] ? chunks[0].type : 'audio/mp4' });
+          if (!blob.size) throw info('empty', 'Die Aufnahme ist leer.');
+          return { self: true, url: URL.createObjectURL(blob) };
+        }
         cb.onState && cb.onState('thinking');
         const blob = new Blob(chunks, { type: chunks[0] ? chunks[0].type : 'audio/mp4' });
         if (!blob.size) throw info('empty', 'Die Aufnahme ist leer (0 Byte).');
@@ -167,6 +180,6 @@ export function createListener(lang, cb = {}) {
     },
     stop() { if (kind === 'native') { try { rec && rec.stop(); } catch (e) {} } else if (media && media.state === 'recording') media.stop(); },
     abort() { aborted = true; try { rec && rec.abort(); } catch (e) {} try { if (media && media.state === 'recording') media.stop(); } catch (e) {} cleanup(); },
-    isRecording() { return kind === 'whisper' ? !!(media && media.state === 'recording') : false; }
+    isRecording() { return kind !== 'native' ? !!(media && media.state === 'recording') : false; }
   };
 }
