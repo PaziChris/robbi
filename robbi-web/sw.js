@@ -1,9 +1,10 @@
 /* Robbi Service Worker: offline-fähig + Push-Nachrichten */
-const CACHE = 'robbi-v28';
-const SHELL = ['./', 'index.html', 'style.css?v=28', 'app.js?v=28', 'games.js?v=28', 'firebase-config.js?v=28', 'manifest.webmanifest',
+const CACHE = 'robbi-v29';
+const SHELL = ['./', 'index.html', 'style.css?v=29', 'app.js?v=29', 'games.js?v=29', 'firebase-config.js?v=29', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.png',
   'sprachen.txt', 'farsi.txt', 'griechisch.txt', 'italienisch.txt', 'spanisch.txt', 'franzoesisch.txt',
-  'saetze/farsi.txt?v=28', 'saetze/griechisch.txt?v=28', 'saetze/italienisch.txt?v=28', 'saetze/spanisch.txt?v=28', 'saetze/franzoesisch.txt?v=28'];
+  'saetze/farsi.txt?v=29', 'saetze/griechisch.txt?v=29', 'saetze/italienisch.txt?v=29', 'saetze/spanisch.txt?v=29', 'saetze/franzoesisch.txt?v=29',
+  'bg/aegaeis.svg?v=29', 'bg/teheran.svg?v=29', 'bg/rom.svg?v=29', 'bg/sevilla.svg?v=29', 'bg/paris.svg?v=29'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

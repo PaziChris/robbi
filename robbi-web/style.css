@@ -438,3 +438,12 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 
 .diag summary { cursor: pointer; font-weight: 700; }
 .diag ol { margin: 8px 0 0; padding-left: 20px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Hintergründe der Bühne (ein ruhiges Bild je Sprache) */
+.stage[data-bg]:not([data-bg=""]) { border-radius: 20px; padding: 10px 10px 4px; background-color: var(--sea-soft); background-size: cover; background-position: center bottom; background-repeat: no-repeat; }
+.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=29); }
+.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=29); }
+.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=29); }
+.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=29); }
+.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=29); }
+.stage[data-bg]:not([data-bg=""]) .pal .tag { background: color-mix(in srgb, var(--surface) 78%, transparent); border-radius: 10px; padding: 1px 8px; }

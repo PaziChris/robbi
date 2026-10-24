@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=28';
+import { initGames } from './games.js?v=29';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -245,6 +245,7 @@ function lifeLoop(a) {
 }
 function renderStage() {
   $('stage').dataset.active = lang === 'Farsi' ? 'fa' : lang === 'Griechisch' ? 'gr' : 'none';
+  $('stage').dataset.bg = { Farsi: 'teheran', Griechisch: 'aegaeis', Italienisch: 'rom', Spanisch: 'sevilla', 'Französisch': 'paris' }[lang] || '';
   for (const l in ACTORS) { const on = l === lang; ACTORS[l].btn.classList.toggle('on', on); ACTORS[l].btn.setAttribute('aria-pressed', on); }
 }
 function poke(a) {
