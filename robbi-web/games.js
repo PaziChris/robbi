@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported } from './speech.js?v=34';
+import { createListener, speechSupported, engineFor } from './speech.js?v=35';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=34');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=35');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -362,6 +362,10 @@ export function initGames(api) {
   function hookMic(btn, msg, onHeard) {
     let l = null;
     const busy = on => { btn.classList.toggle('busy', on); };
+    const eng = engineFor(api.lang);
+    const note = document.createElement('small'); note.className = 'engine-note';
+    note.textContent = eng === 'whisper' ? '🧠 KI-Erkennung direkt am Handy' : '📱 Spracherkennung des Geräts';
+    btn.insertAdjacentElement('afterend', note);
     btn.onclick = async () => {
       if (l && l.isRecording()) { l.stop(); return; }            // Whisper: zweites Tippen beendet die Aufnahme
       if (l) l.abort();
@@ -383,8 +387,13 @@ export function initGames(api) {
         const m = e && e.message;
         if (m === 'aborted' || cur !== l) return;
         if (m === 'fallback') { l = null; msg.textContent = 'Dein Gerät kennt diese Sprache nicht – ab jetzt nehme ich die KI-Erkennung am Handy. Tippe nochmal aufs Mikrofon.'; return; }
+        api.mark && api.mark('Sprache: ' + (e.detail || m));
         msg.textContent = m === 'not-allowed' ? 'Bitte erlaube den Zugriff aufs Mikrofon (Einstellungen → Safari → Mikrofon).'
           : m === 'no-speech' ? 'Ich habe nichts gehört. Nochmal?'
+          : m === 'short' ? `${e.detail} Tippe aufs Mikrofon, sag das Wort und tippe erst danach nochmal.`
+          : m === 'silent' ? `${e.detail} Das Mikrofon hat nichts aufgenommen – schließ die App ganz, öffne sie neu und probier es nochmal.`
+          : m === 'nothing' ? `${e.detail} Sprich etwas lauter und deutlicher, nah am Handy.`
+          : m === 'empty' || m === 'decode' ? `${e.detail} Bitte schick mir davon einen Screenshot.`
           : m === 'load' ? 'Die Spracherkennung konnte nicht geladen werden. Bist du online? Versuch es nochmal.'
           : 'Das hat nicht geklappt. Nochmal?';
       }

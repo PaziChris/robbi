@@ -14,6 +14,8 @@ const canRecord = () => !!(navigator.mediaDevices && navigator.mediaDevices.getU
 const nativeFailed = new Set(JSON.parse((() => { try { return localStorage.getItem('robbi.srFailed') || '[]'; } catch (e) { return '[]'; } })()));
 function rememberFail(lang) { nativeFailed.add(lang); try { localStorage.setItem('robbi.srFailed', JSON.stringify([...nativeFailed])); } catch (e) {} }
 
+const info = (code, detail) => { const e = new Error(code); e.detail = detail; return e; };
+export const last = { secs: 0, rms: 0, text: '' };
 export function engineFor(lang) {
   if (!SR_LANG[lang]) return null;
   const nativeOk = !!SR && !nativeFailed.has(lang) && !(isIOS && lang === 'Farsi');   // iPhone kennt kein Farsi
@@ -105,11 +107,22 @@ export function createListener(lang, cb = {}) {
         if (aborted) throw new Error('aborted');
         cb.onState && cb.onState('thinking');
         const blob = new Blob(chunks, { type: chunks[0] ? chunks[0].type : 'audio/mp4' });
-        const pcm = await toPcm16k(blob);
-        if (pcm.length < 16000 * 0.3) throw new Error('no-speech');
+        if (!blob.size) throw info('empty', 'Die Aufnahme ist leer (0 Byte).');
+        let pcm;
+        try { pcm = await toPcm16k(blob); } catch (e) { throw info('decode', `Die Aufnahme ließ sich nicht lesen (${blob.type || 'unbekanntes Format'}).`); }
+        const secs = pcm.length / 16000;
+        let sum = 0; for (let k = 0; k < pcm.length; k++) sum += pcm[k] * pcm[k];
+        const rms = Math.sqrt(sum / Math.max(1, pcm.length));
+        last.secs = secs; last.rms = rms;
+        if (secs < 0.4) throw info('short', `Die Aufnahme war nur ${secs.toFixed(1)} s lang.`);
+        if (rms < 0.002) throw info('silent', `Die Aufnahme war stumm (${secs.toFixed(1)} s, Pegel ${rms.toFixed(4)}).`);
+        // leise Aufnahmen etwas lauter machen – hilft der Erkennung
+        let peak = 0; for (let k = 0; k < pcm.length; k++) peak = Math.max(peak, Math.abs(pcm[k]));
+        if (peak > 0 && peak < .5) { const g = Math.min(8, .9 / peak); for (let k = 0; k < pcm.length; k++) pcm[k] *= g; }
         const out = await asr(pcm, { language: WHISPER_LANG[lang], task: 'transcribe' });
-        const text = (Array.isArray(out) ? out[0].text : out.text || '').trim();
-        if (!text) throw new Error('no-speech');
+        const text = (Array.isArray(out) ? out[0].text : out.text || '').replace(/\[[^\]]*\]|\([^)]*\)/g, '').trim();
+        last.text = text;
+        if (!text) throw info('nothing', `Die KI hat in ${secs.toFixed(1)} s Aufnahme nichts verstanden.`);
         return [text];
       })().catch(e => { cleanup(); throw e; });
     },

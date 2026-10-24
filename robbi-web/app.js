@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=34';
+import { initGames } from './games.js?v=35';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -1007,7 +1007,7 @@ const games = initGames({
   $, store, esc, shuffle, reduceMotion, readAid, today, persist, setMood, cheer, gainXp, cloud,
   get lang() { return lang; }, get cards() { return cards; },
   baseCards: () => parse(texts[lang] || '', lang),
-  stateOf,
+  stateOf, mark,
   markWrong: c => { store.prog[keyOf(c)] = 'f'; progVer++; updateBadge(); },
   liveStreak: () => liveStreak(store.streak, store.lastDay), knownTotal, totalSecs
 });
