@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=38');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=39');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -426,6 +426,7 @@ export function initGames(api) {
     return s.replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
   }
   function skeleton(s, l) {          // für Farsi: nur das Konsonantengerüst vergleichen (die Schrift hat kaum Vokale)
+    if (l === 'Farsi') s = s.replace(/c(?!h)/g, 's');   // merci = mersi
     s = s.replace(/kh/g, 'x').replace(/sh/g, '$').replace(/ch/g, 'c').replace(/gh/g, 'q').replace(/zh/g, 'j');
     if (l === 'Farsi') s = s.replace(/[aeiouvyh'\s]/g, '');
     return s.replace(/\s/g, '');
@@ -452,6 +453,23 @@ export function initGames(api) {
     const vs = [target, ...target.replace(/\([^)]*\)/g, '').split(/\s*\/\s*/)].filter(Boolean);
     return Math.max(...vs.map(v => similar1(heard, v, l)));
   }
+  /* Gehörtes lesbar machen: persische Schrift → passende Karte (Umschrift + Deutsch), sonst grobe Umschrift */
+  function heardText(h, target) {
+    if (!h) return '…';
+    if (!/[\u0600-\u06FF\u0370-\u03FF]/.test(h)) return h;
+    if (target && similar(h, target, api.lang) >= .7) { const c = api.cards.find(x => cleanFront(x) === target); return c ? `${target} = ${c.back}` : target; }
+    // ganze Aussage mit ganzer Karte vergleichen (keine Teilstücke), bei Gleichstand die ähnlich lange Karte
+    const hs = dedupe(skeleton(toLatin(h, api.lang), api.lang));
+    let best = null, bs = 0, bl = 99;
+    for (const c of api.cards) {
+      const cs = dedupe(skeleton(toLatin(cleanFront(c), api.lang), api.lang)), s = ratio(hs, cs), dl = Math.abs(cs.length - hs.length);
+      if (s > bs || (s === bs && dl < bl)) { bs = s; best = c; bl = dl; }
+    }
+    if (best && bs >= .75) return `${cleanFront(best)} = ${best.back}`;
+    let lat = toLatin(h, api.lang);
+    if (api.lang === 'Farsi') lat = [...strip(h)].map(ch => ({ 'و': 'u', 'ی': 'i', 'ي': 'i', 'ا': 'ā', 'آ': 'ā' })[ch] ?? FA[ch] ?? (/\s/.test(ch) ? ' ' : '')).join('').replace(/\s+/g, ' ').trim();
+    return lat || h;
+  }
   function speech() {
     if (!speechSupport()) { $('gameArea').innerHTML = '<p class="hint">Dein Gerät kann hier leider keine Sprache erkennen.</p>'; return; }
     preloadWhisper(api.lang);
@@ -475,11 +493,11 @@ export function initGames(api) {
         const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
         if (best >= passMark(kind)) {
           ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3);
-          msg.innerHTML = `<b class="ok-text">Super ausgesprochen! +3</b> (gehört: „${esc(alts[0])}“)`;
+          msg.innerHTML = `<b class="ok-text">Super ausgesprochen! +3</b> (gehört: „${esc(heardText(alts[0], cleanFront(c)))}“)`;
           api.setMood(api.cheer(), true, 'bounce');
           later(() => { i++; i < round.length ? show() : finish(); }, 1600);
         } else {
-          msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Versuch es nochmal oder schau dir die Lösung an.<br><button class="btn quiet small" id="spOwn" type="button">✓ Ich hab's richtig gesagt</button>`;
+          msg.innerHTML = `Gehört: „${esc(heardText(alts[0]))}“. Versuch es nochmal oder schau dir die Lösung an.<br><button class="btn quiet small" id="spOwn" type="button">✓ Ich hab's richtig gesagt</button>`;
           $('spOwn').onclick = () => { ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3); i++; i < round.length ? show() : finish(); };
           api.setMood('Fast! Nochmal probieren?', false, 'shake');
         }
@@ -595,11 +613,11 @@ export function initGames(api) {
       unhook = hookMic($('micBtn'), msg, (alts, kind) => {
         const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
         tries++;
-        if (best >= passMark(kind)) { msg.innerHTML = `<b class="ok-text">Richtig!</b> (gehört: „${esc(alts[0])}“)`; S().speechOk = (S().speechOk || 0) + 1; later(() => next(true), 1100); }
-        else if (tries < 2) { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Noch ein Versuch! <button class="btn quiet small" id="tsOwn" type="button">✓ Ich hab's richtig gesagt</button>`; $('tsOwn').onclick = () => { unhook && unhook(); next(true); }; }
+        if (best >= passMark(kind)) { msg.innerHTML = `<b class="ok-text">Richtig!</b> (gehört: „${esc(heardText(alts[0], cleanFront(c)))}“)`; S().speechOk = (S().speechOk || 0) + 1; later(() => next(true), 1100); }
+        else if (tries < 2) { msg.innerHTML = `Gehört: „${esc(heardText(alts[0]))}“. Noch ein Versuch! <button class="btn quiet small" id="tsOwn" type="button">✓ Ich hab's richtig gesagt</button>`; $('tsOwn').onclick = () => { unhook && unhook(); next(true); }; }
         else {
           unhook && unhook();
-          msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`;
+          msg.innerHTML = `Gehört: „${esc(heardText(alts[0]))}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`;
           $('tsSkip').outerHTML = '<button class="btn quiet" id="tsOwn" type="button">✓ Ich hab\'s richtig gesagt</button>';
           $('tsMc').outerHTML = '<button class="btn primary" id="tsOn" type="button">Weiter</button>';
           $('tsOwn').onclick = () => next(true); $('tsOn').onclick = () => next(false);
