@@ -3,7 +3,7 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=31';
+import { initGames } from './games.js?v=32';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;

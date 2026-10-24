@@ -4,6 +4,8 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
+import { createListener, speechSupported } from './speech.js?v=32';
+
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
   const S = () => (store.stats = store.stats || {});
@@ -191,7 +193,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=31');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=32');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -330,9 +332,41 @@ export function initGames(api) {
   }
 
   /* ---------- 5) Sprech-Challenge ---------- */
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const SR_LANG = { Farsi: 'fa-IR', Griechisch: 'el-GR', Italienisch: 'it-IT', Spanisch: 'es-ES', Französisch: 'fr-FR' };
-  function speechSupport() { return !!SR && !!SR_LANG[api.lang]; }
+  function speechSupport() { return speechSupported(api.lang); }
+  /* Mikrofon-Knopf: eingebaute Erkennung oder (z. B. Farsi am iPhone) Whisper direkt am Handy */
+  function hookMic(btn, msg, onHeard) {
+    let l = null;
+    const busy = on => { btn.classList.toggle('busy', on); };
+    btn.onclick = async () => {
+      if (l && l.isRecording()) { l.stop(); return; }            // Whisper: zweites Tippen beendet die Aufnahme
+      if (l) l.abort();
+      const cur = l = createListener(api.lang, {
+        onState: s => {
+          btn.classList.toggle('listening', s === 'listening'); busy(s !== 'listening');
+          msg.textContent = s === 'loading' ? 'Lade die Spracherkennung … (nur beim ersten Mal)'
+            : s === 'listening' ? (cur.kind === 'whisper' ? 'Ich höre zu … sag es und tippe dann nochmal aufs Mikrofon.' : 'Ich höre zu …')
+            : 'Ich höre genau hin …';
+        },
+        onProgress: (pct, mb) => { msg.textContent = `Lade die Spracherkennung: ${pct} % von ca. ${mb} MB – nur beim ersten Mal, am besten im WLAN.`; }
+      });
+      try {
+        const alts = await cur.start();
+        btn.classList.remove('listening'); busy(false);
+        if (cur === l) onHeard(alts, cur.kind);
+      } catch (e) {
+        btn.classList.remove('listening'); busy(false);
+        const m = e && e.message;
+        if (m === 'aborted' || cur !== l) return;
+        if (m === 'fallback') { l = null; msg.textContent = 'Dein Gerät kennt diese Sprache nicht – ab jetzt nehme ich die KI-Erkennung am Handy. Tippe nochmal aufs Mikrofon.'; return; }
+        msg.textContent = m === 'not-allowed' ? 'Bitte erlaube den Zugriff aufs Mikrofon (Einstellungen → Safari → Mikrofon).'
+          : m === 'no-speech' ? 'Ich habe nichts gehört. Nochmal?'
+          : m === 'load' ? 'Die Spracherkennung konnte nicht geladen werden. Bist du online? Versuch es nochmal.'
+          : 'Das hat nicht geklappt. Nochmal?';
+      }
+    };
+    return () => { if (l) l.abort(); };
+  }
+  const passMark = kind => kind === 'whisper' ? .55 : .6;
   const GR = { 'ου': 'u', 'αι': 'e', 'ει': 'i', 'οι': 'i', 'υι': 'i', 'μπ': 'b', 'ντ': 'd', 'γκ': 'g', 'γγ': 'ng', 'τσ': 'ts', 'τζ': 'tz', 'αυ': 'av', 'ευ': 'ev',
     'α': 'a', 'β': 'v', 'γ': 'gh', 'δ': 'dh', 'ε': 'e', 'ζ': 'z', 'η': 'i', 'θ': 'th', 'ι': 'i', 'κ': 'k', 'λ': 'l', 'μ': 'm', 'ν': 'n', 'ξ': 'x', 'ο': 'o', 'π': 'p', 'ρ': 'r', 'σ': 's', 'ς': 's', 'τ': 't', 'υ': 'i', 'φ': 'f', 'χ': 'ch', 'ψ': 'ps', 'ω': 'o' };
   const FA = { 'آ': 'a', 'ا': 'a', 'ب': 'b', 'پ': 'p', 'ت': 't', 'ث': 's', 'ج': 'j', 'چ': 'ch', 'ح': 'h', 'خ': 'kh', 'د': 'd', 'ذ': 'z', 'ر': 'r', 'ز': 'z', 'ژ': 'zh', 'س': 's', 'ش': 'sh', 'ص': 's', 'ض': 'z', 'ط': 't', 'ظ': 'z', 'ع': '', 'غ': 'gh', 'ف': 'f', 'ق': 'gh', 'ک': 'k', 'ك': 'k', 'گ': 'g', 'ل': 'l', 'م': 'm', 'ن': 'n', 'و': 'v', 'ه': 'h', 'ی': 'y', 'ي': 'y', 'ئ': 'y', 'ء': '' };
@@ -356,11 +390,11 @@ export function initGames(api) {
   }
   function speech() {
     if (!speechSupport()) { $('gameArea').innerHTML = '<p class="hint">Dein Gerät kann hier leider keine Sprache erkennen.</p>'; return; }
-    const pool = api.cards.filter(c => !c.front.includes('–') && !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 4);
+    const pool = api.cards.filter(c => !c.front.includes('–') && !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5);
     if (pool.length < 5) { needCards(999); return; }
-    const round = shuffle(pool.slice()).slice(0, 5); let i = 0, ok = 0, rec = null;
+    const round = shuffle(pool.slice()).slice(0, 10); let i = 0, ok = 0, unhook = null;
     const a = $('gameArea');
-    stopFn = () => { try { rec && rec.abort(); } catch (e) {} };
+    stopFn = () => { unhook && unhook(); };
     function show() {
       const c = round[i];
       $('gameInfo').textContent = `Wort ${i + 1} / ${round.length}`;
@@ -371,30 +405,19 @@ export function initGames(api) {
       const msg = $('spMsg');
       $('spShow').onclick = () => { const aid = api.readAid(cleanFront(c), api.lang); msg.innerHTML = `Lösung: <b>${esc(cleanFront(c))}</b>${aid ? ` · lies etwa: ${esc(aid)}` : ''}`; };
       $('spNext').onclick = () => { i++; i < round.length ? show() : finish(); };
-      $('micBtn').onclick = () => {
-        try { rec && rec.abort(); } catch (e) {}
-        rec = new SR(); rec.lang = SR_LANG[api.lang]; rec.interimResults = false; rec.maxAlternatives = 5;
-        $('micBtn').classList.add('listening'); msg.textContent = 'Ich höre zu …';
-        rec.onresult = ev => {
-          const alts = [...ev.results[0]].map(r => r.transcript);
-          const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
-          if (best >= .6) {
-            ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3);
-            msg.innerHTML = `<b class="ok-text">Super ausgesprochen! +3</b> (gehört: „${esc(alts[0])}“)`;
-            api.setMood(api.cheer(), true, 'bounce');
-            later(() => { i++; i < round.length ? show() : finish(); }, 1600);
-          } else {
-            msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Versuch es nochmal oder schau dir die Lösung an.`;
-            api.setMood('Fast! Nochmal probieren?', false, 'shake');
-          }
-        };
-        rec.onerror = ev => {
-          const why = ev.error === 'not-allowed' ? 'Bitte erlaube den Zugriff aufs Mikrofon.' : ev.error === 'no-speech' ? 'Ich habe nichts gehört. Nochmal?' : ev.error === 'language-not-supported' ? `Dein Gerät kann ${api.lang} leider nicht erkennen.` : 'Das hat nicht geklappt. Nochmal?';
-          msg.textContent = why;
-        };
-        rec.onend = () => $('micBtn')?.classList.remove('listening');
-        try { rec.start(); } catch (e) { msg.textContent = 'Das Mikrofon konnte nicht starten.'; }
-      };
+      unhook && unhook();
+      unhook = hookMic($('micBtn'), msg, (alts, kind) => {
+        const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
+        if (best >= passMark(kind)) {
+          ok++; S().speechOk = (S().speechOk || 0) + 1; gain(3);
+          msg.innerHTML = `<b class="ok-text">Super ausgesprochen! +3</b> (gehört: „${esc(alts[0])}“)`;
+          api.setMood(api.cheer(), true, 'bounce');
+          later(() => { i++; i < round.length ? show() : finish(); }, 1600);
+        } else {
+          msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Versuch es nochmal oder schau dir die Lösung an.`;
+          api.setMood('Fast! Nochmal probieren?', false, 'shake');
+        }
+      });
     }
     function finish() { endScreen('Sprech-Challenge geschafft', [`<span class="big">${ok} / ${round.length}</span>`, `richtig ausgesprochen · +${ok * 3} Punkte`], speech); }
     show();
@@ -429,8 +452,8 @@ export function initGames(api) {
   }
   function runTest(pool, speak) {
     const cards = shuffle(pool.slice()).slice(0, TEST_N), all = quizPool().length >= 8 ? quizPool() : api.cards;
-    const a = $('gameArea'); let i = 0, right = 0, rec = null; const wrong = [];
-    stopFn = () => { try { rec && rec.abort(); } catch (e) {} };
+    const a = $('gameArea'); let i = 0, right = 0, unhook = null; const wrong = [];
+    stopFn = () => { unhook && unhook(); };
     const speakable = c => !c.front.includes('...') && cleanFront(c).split(/\s+/).length <= 5;
     const kinds = cards.map((c, k) => speak && speakable(c) && k % 3 === 2 ? 'speak' : Math.random() < .5 ? 'toDe' : 'toFr');
     const next = ok => {
@@ -467,24 +490,16 @@ export function initGames(api) {
         <p class="hint" id="tsMsg">Tippe aufs Mikrofon und sag es laut.</p>
         <div class="actions"><button class="btn quiet" id="tsSkip" type="button">Weiß ich nicht</button><button class="btn quiet" id="tsMc" type="button">Mikro geht nicht</button></div>`;
       const msg = $('tsMsg');
-      $('tsSkip').onclick = () => { try { rec && rec.abort(); } catch (e) {} msg.innerHTML = `Lösung: <b>${esc(cleanFront(c))}</b>`; $('tsSkip').disabled = true; later(() => next(false), 1600); };
-      $('tsMc').onclick = () => { try { rec && rec.abort(); } catch (e) {} mc(c, false); };
-      $('micBtn').onclick = () => {
-        try { rec && rec.abort(); } catch (e) {}
-        rec = new SR(); rec.lang = SR_LANG[api.lang]; rec.interimResults = false; rec.maxAlternatives = 5;
-        $('micBtn').classList.add('listening'); msg.textContent = 'Ich höre zu …';
-        rec.onresult = ev => {
-          const alts = [...ev.results[0]].map(r => r.transcript);
-          const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
-          tries++;
-          if (best >= .6) { msg.innerHTML = `<b class="ok-text">Richtig!</b> (gehört: „${esc(alts[0])}“)`; S().speechOk = (S().speechOk || 0) + 1; later(() => next(true), 1100); }
-          else if (tries < 2) msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Noch ein Versuch!`;
-          else { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`; later(() => next(false), 2000); }
-        };
-        rec.onerror = ev => { msg.textContent = ev.error === 'not-allowed' ? 'Bitte erlaube das Mikrofon – oder tippe „Mikro geht nicht“.' : ev.error === 'no-speech' ? 'Ich habe nichts gehört. Nochmal?' : 'Das hat nicht geklappt – tippe „Mikro geht nicht“ für eine Auswahlfrage.'; };
-        rec.onend = () => $('micBtn')?.classList.remove('listening');
-        try { rec.start(); } catch (e) { mc(c, false); }
-      };
+      $('tsSkip').onclick = () => { unhook && unhook(); msg.innerHTML = `Lösung: <b>${esc(cleanFront(c))}</b>`; $('tsSkip').disabled = true; later(() => next(false), 1600); };
+      $('tsMc').onclick = () => { unhook && unhook(); mc(c, false); };
+      unhook && unhook();
+      unhook = hookMic($('micBtn'), msg, (alts, kind) => {
+        const best = Math.max(...alts.map(t => similar(t, cleanFront(c), api.lang)));
+        tries++;
+        if (best >= passMark(kind)) { msg.innerHTML = `<b class="ok-text">Richtig!</b> (gehört: „${esc(alts[0])}“)`; S().speechOk = (S().speechOk || 0) + 1; later(() => next(true), 1100); }
+        else if (tries < 2) msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Noch ein Versuch!`;
+        else { msg.innerHTML = `Gehört: „${esc(alts[0] || '…')}“. Richtig wäre: <b>${esc(cleanFront(c))}</b>`; later(() => next(false), 2000); }
+      });
     }
     function show() { const c = cards[i], k = kinds[i]; k === 'speak' ? speakQ(c) : mc(c, k === 'toDe'); }
     function finish() {
