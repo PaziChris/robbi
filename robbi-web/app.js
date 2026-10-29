@@ -3,8 +3,8 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=43';
-import { ANIMALS, buddySvg, GOLD_XP } from './buddies.js?v=43';
+import { initGames } from './games.js?v=44';
+import { ANIMALS, buddySvg, GOLD_XP } from './buddies.js?v=44';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -18,18 +18,20 @@ const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, str
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
-/* Der Lernstand (prog) liegt pro Sprache in einem eigenen Speicherplatz. So wird beim Speichern
-   nur die geänderte Sprache geschrieben – ein großer Speicher-Block auf einmal ließ das iPhone stocken. */
+/* Lernstand (prog), Wiederholungs-Termine (srs) und Favoriten (favs) liegen pro Sprache in eigenen Speicherplätzen.
+   So wird beim Speichern nur geschrieben, was sich geändert hat – ein großer Block auf einmal ließ das iPhone stocken. */
 const PKEY = KEY + '.p.';
-const progSaved = {};
-(function loadProg() {
-  store.prog = Object.assign({}, store.prog || {});
+const MAPS = [['prog', PKEY], ['srs', KEY + '.s.'], ['favs', KEY + '.f.']];
+const lsSaved = {};
+(function loadMaps() {
+  for (const [m] of MAPS) store[m] = Object.assign({}, store[m] || {});
   try {
     for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i); if (!k || !k.startsWith(PKEY)) continue;
-      const l = k.slice(PKEY.length), raw = localStorage.getItem(k), part = JSON.parse(raw) || {};
-      for (const s in part) store.prog[l + '\u0001' + s] = part[s];
-      progSaved[l] = raw;
+      const k = localStorage.key(i); if (!k) continue;
+      const hit = MAPS.find(([, pre]) => k.startsWith(pre)); if (!hit) continue;
+      const l = k.slice(hit[1].length), raw = localStorage.getItem(k), part = JSON.parse(raw) || {};
+      for (const s in part) store[hit[0]][l + '\u0001' + s] = part[s];
+      lsSaved[k] = raw;
     }
   } catch (e) {}
 })();
@@ -37,13 +39,15 @@ if (!store.outfits) store.outfits = { arzi: Object.assign({}, store.outfit), rob
 function saveLocal() {
   mark('Speichern im Handy');
   clearTimeout(localTimer); localTimer = null; firstPending = 0;
-  const byLang = {};
-  for (const k in store.prog) { const i = k.indexOf('\u0001'), l = k.slice(0, i); (byLang[l] = byLang[l] || {})[k.slice(i + 1)] = store.prog[k]; }
   try {
-    for (const l in byLang) { const raw = JSON.stringify(byLang[l]); if (progSaved[l] !== raw) { localStorage.setItem(PKEY + l, raw); progSaved[l] = raw; } }
-    for (const l in progSaved) if (!byLang[l]) { localStorage.removeItem(PKEY + l); delete progSaved[l]; }
+    for (const [m, pre] of MAPS) {
+      const byLang = {};
+      for (const k in store[m]) { const i = k.indexOf('\u0001'), l = k.slice(0, i); (byLang[l] = byLang[l] || {})[k.slice(i + 1)] = store[m][k]; }
+      for (const l in byLang) { const key = pre + l, raw = JSON.stringify(byLang[l]); if (lsSaved[key] !== raw) { localStorage.setItem(key, raw); lsSaved[key] = raw; } }
+      for (const key in lsSaved) if (key.startsWith(pre) && !byLang[key.slice(pre.length)]) { localStorage.removeItem(key); delete lsSaved[key]; }
+    }
   } catch (e) {}
-  const rest = Object.assign({}, store); delete rest.prog;
+  const rest = Object.assign({}, store); for (const [m] of MAPS) delete rest[m];
   lsSet(KEY, rest);
 }
 let localTimer = null, firstPending = 0;
@@ -203,7 +207,7 @@ function renderDiag() {
 }
 let queue = [], total = 0, done = 0, firstRight = 0, firstSeen = 0, sessionXp = 0, flipped = false;
 
-const MODES = [['all', 'Alle'], ['new', 'Neu'], ['f', 'Falsch'], ['k', 'Gekonnt']];
+const MODES = [['all', 'Alle'], ['new', 'Neu'], ['due', '🔁 Fällig'], ['f', 'Falsch'], ['k', 'Gekonnt'], ['fav', '⭐']];
 const DIRS = [['d', 'Deutsch → ?'], ['f', '? → Deutsch'], ['m', 'Gemischt']];
 const CHEERS = {
   Farsi: ['Āfarin! (Bravo!)', 'Kheyli khub! (Sehr gut!)', 'Āli-e! (Super!)', 'Damet garm!'],
@@ -478,7 +482,10 @@ function setSync(kind) {
 function progBody(l) {
   const out = {}, pre = l + SEP;
   for (const k in store.prog) if (k.startsWith(pre)) out[k.slice(pre.length)] = store.prog[k];
-  return { lang: l, json: JSON.stringify(out) };
+  const srs = {}, favs = [];
+  for (const k in store.srs) if (k.startsWith(pre)) srs[k.slice(pre.length)] = store.srs[k];
+  for (const k in store.favs) if (k.startsWith(pre) && store.favs[k]) favs.push(k.slice(pre.length));
+  return { lang: l, json: JSON.stringify(out), srsJson: JSON.stringify(srs), favsJson: JSON.stringify(favs) };
 }
 const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.lang, dir: store.dir, nick: store.nick, pushLang: store.pushLang,
   daysJson: JSON.stringify(trimDays(store.days)), goalMin: store.goalMin, goalDate: store.goalDate, doneDay: store.doneDay, newDayJson: JSON.stringify(store.newDay),
@@ -610,6 +617,8 @@ async function onAuth(user) {
       const d = p.data(); if (!d.lang) return;
       let pr = {}; try { pr = JSON.parse(d.json || '{}'); } catch (e) {}
       for (const k in pr) store.prog[d.lang + SEP + k] = pr[k];
+      try { const cs = JSON.parse(d.srsJson || '{}'); for (const s in cs) { const k = d.lang + SEP + s, lv = store.srs[k]; if (!lv || (cs[s][1] || 0) > (lv[1] || 0)) store.srs[k] = cs[s]; } } catch (e) {}
+      try { JSON.parse(d.favsJson || '[]').forEach(s => { store.favs[d.lang + SEP + s] = 1; }); } catch (e) {}
     });
     cloud.ok = true; progVer++;
     saveLocal();
@@ -776,21 +785,48 @@ async function init() {
 }
 
 /* ---------- Zählen ---------- */
-function inMode(c, m) { const s = stateOf(c); return m === 'all' || (m === 'new' ? s === 'n' : s === m); }
+/* ---------- Schlaue Wiederholung ----------
+ * Jede gekonnte Karte hat eine Stufe und einen Termin. Richtig → nächste Stufe (1, 3, 7, 14, 30, 60, 120 Tage),
+ * falsch → zurück auf Stufe 0. "Fällig" sind gekonnte Karten, deren Termin heute oder früher ist. */
+const SRS_INT = [1, 3, 7, 14, 30, 60, 120];
+const dayNum = () => Math.floor(Date.parse(today() + 'T12:00:00Z') / 864e5);
+const hashKey = k => { let h = 0; for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) >>> 0; return h; };
+let srsAdded = false;
+function srsGet(k) {
+  let v = store.srs[k];
+  if (!v && store.prog[k] === 'k') { v = store.srs[k] = [1, dayNum() + 1 + hashKey(k) % 14]; srsAdded = true; }   // früher Gekonntes: auf 2 Wochen verteilt
+  return v;
+}
+function srsAnswer(k, ok) {
+  const prev = store.srs[k];
+  store.srs[k] = ok ? (b => [b, dayNum() + SRS_INT[b]])(prev ? Math.min(prev[0] + 1, SRS_INT.length - 1) : 0) : [0, dayNum()];
+}
+const isDue = c => stateOf(c) === 'k' && (srsGet(keyOf(c)) || [0, 0])[1] <= dayNum();
+const isFav = c => !!store.favs[keyOf(c)];
+function inMode(c, m) {
+  if (m === 'due') return isDue(c);
+  if (m === 'fav') return isFav(c);
+  const s = stateOf(c); return m === 'all' || (m === 'new' ? s === 'n' : s === m);
+}
 function pool(m, ct) { return cards.filter(c => (ct === '*' || c.cat === ct) && inMode(c, m)); }
 /* Zählen in einem einzigen Durchlauf, zwischengespeichert bis sich Karten oder Lernstand ändern
    (vorher wurden für die Übersicht über 100-mal alle Karten durchgezählt – das dauerte auf dem iPhone) */
 let countCache = { cards: null, ver: -1, data: null };
 function counts() {
-  if (countCache.cards === cards && countCache.ver === progVer) return countCache.data;
-  const data = { '*': { all: 0, new: 0, f: 0, k: 0 } };
+  const dn = dayNum();
+  if (countCache.cards === cards && countCache.ver === progVer && countCache.day === dn) return countCache.data;
+  const blank = () => ({ all: 0, new: 0, f: 0, k: 0, due: 0, fav: 0 });
+  const data = { '*': blank() };
   for (const c of cards) {
     const s = stateOf(c), m = s === 'n' ? 'new' : s;
-    const g = data[c.cat] || (data[c.cat] = { all: 0, new: 0, f: 0, k: 0 });
-    g.all++; data['*'].all++;
-    if (m in g) { g[m]++; data['*'][m]++; }
+    const g = data[c.cat] || (data[c.cat] = blank()), all = data['*'];
+    g.all++; all.all++;
+    if (m in g) { g[m]++; all[m]++; }
+    if (s === 'k' && isDue(c)) { g.due++; all.due++; }
+    if (isFav(c)) { g.fav++; all.fav++; }
   }
-  countCache = { cards, ver: progVer, data };
+  if (srsAdded) { srsAdded = false; saveLocalSoon(); }
+  countCache = { cards, ver: progVer, day: dn, data };
   return data;
 }
 function countMode(m, ct = '*') { const g = counts()[ct]; return g ? (g[m] || 0) : 0; }
@@ -808,7 +844,7 @@ function chip(box, text, n, pressed, cls, onclick) {
   b.innerHTML = esc(text) + (n === null ? '' : `<span class="n">${n}</span>`);
   b.onclick = onclick; box.appendChild(b);
 }
-function updateBadge() { const w = countMode('f'); $('wrongBadge').hidden = !w; $('wrongBadge').textContent = w; }
+function updateBadge() { const w = countMode('f') + countMode('due'); $('wrongBadge').hidden = !w; $('wrongBadge').textContent = w; }   // Falsche + heute Fällige
 function renderChips() {
   const cats = catsOf(cards);
   if (cat !== '*' && !cats.includes(cat)) cat = '*';
@@ -843,7 +879,7 @@ function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.fl
 function startSession() {
   const list = pool(mode, cat);
   queue = shuffle(list.map(c => ({ c, rev: store.dir === 'd' || (store.dir === 'm' && Math.random() < .5), seen: false })));
-  if (mode === 'f' || mode === 'k') queue = queue.slice(0, ROUND);    // Falsche und Gekonnte in kleinen Runden
+  if (mode === 'f' || mode === 'k' || mode === 'due' || mode === 'fav') queue = queue.slice(0, ROUND);    // in kleinen Runden
   total = queue.length; done = 0; firstRight = 0; firstSeen = 0; sessionXp = 0;
   $('session').hidden = false; $('endView').hidden = true;
   showCard();
@@ -856,6 +892,7 @@ function showCard(animate) {
   requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('instant')));
   if (animate && !reduceMotion && $('scene').animate) $('scene').animate([{ transform: 'translateX(18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 200, easing: 'ease-out' });
   $('flipActions').hidden = true; $('rateActions').hidden = false;
+  const fb = $('favBtn'); if (fb) { const on = !!(queue[0] && isFav(queue[0].c)); fb.hidden = !queue.length; fb.textContent = on ? '★' : '☆'; fb.setAttribute('aria-pressed', on); }
   $('count').textContent = `${done} / ${total}`;
   $('barFill').style.transform = `scaleX(${total ? done / total : 0})`;
   $('score').textContent = sessionXp ? `+${sessionXp} Punkte` : '';
@@ -877,7 +914,7 @@ function showCard(animate) {
 function emptyState() {
   $('fCat').textContent = ''; $('fLang').textContent = ''; $('fState').className = 'state'; $('fState').textContent = '';
   $('fWord').classList.remove('long'); $('fRead').textContent = '';
-  $('fWord').textContent = mode === 'f' ? 'Keine falschen Karten. Super!' : mode === 'k' ? 'Noch nichts gekonnt. Lern erst ein paar Karten!' : mode === 'new' ? 'Alle Karten schon gelernt!' : 'Noch keine Wörter hier';
+  $('fWord').textContent = mode === 'due' ? 'Heute ist nichts fällig. Super!' : mode === 'fav' ? 'Noch keine Favoriten – tippe auf ☆ bei einer Karte.' : mode === 'f' ? 'Keine falschen Karten. Super!' : mode === 'k' ? 'Noch nichts gekonnt. Lern erst ein paar Karten!' : mode === 'new' ? 'Alle Karten schon gelernt!' : 'Noch keine Wörter hier';
   $('flipActions').hidden = true; $('rateActions').hidden = true;
 }
 function flip(fromCard) {
@@ -894,7 +931,7 @@ function answer(ok) {
   if (first) {
     item.seen = true; firstSeen++; if (ok) firstRight++;
     if (stateOf(item.c) === 'n') { if (store.newDay.d !== today()) store.newDay = { d: today(), n: 0 }; store.newDay.n++; }
-    store.prog[keyOf(item.c)] = ok ? 'k' : 'f'; progVer++;
+    store.prog[keyOf(item.c)] = ok ? 'k' : 'f'; srsAnswer(keyOf(item.c), ok); progVer++;
   }
   const gain = ok ? (first ? 10 : 3) : 1;
   store.xp = (store.xp || 0) + gain; sessionXp += gain;
@@ -928,7 +965,10 @@ function stackHtml(ct) {
   return `<span class="k" style="width:${countMode('k', ct) / t * 100}%"></span><span class="f" style="width:${countMode('f', ct) / t * 100}%"></span>`;
 }
 function renderRepeat() {
-  const k = countMode('k'), f = countMode('f'), n = countMode('new');
+  const k = countMode('k'), f = countMode('f'), n = countMode('new'), due = countMode('due'), fav = countMode('fav');
+  $('dueText').textContent = due ? `${due} gekonnte ${due === 1 ? 'Karte ist' : 'Karten sind'} heute dran – genau jetzt festigt Wiederholen am meisten.` : (k ? 'Heute ist nichts fällig. Super! Die nächsten Karten kommen von selbst zur richtigen Zeit.' : 'Sobald du Karten kannst, kommen sie hier zur richtigen Zeit zum Wiederholen.');
+  $('repDueBtn').disabled = !due; $('repDueBtn').textContent = due ? (due > ROUND ? `${ROUND} Fällige wiederholen (von ${due})` : `Fällige wiederholen (${due})`) : 'Nichts fällig ✓';
+  $('repFavBtn').disabled = !fav; $('repFavBtn').textContent = `⭐ Favoriten (${fav})`;
   $('repTitle').textContent = `Dein Fortschritt in ${lang}`;
   $('repStack').innerHTML = stackHtml('*');
   $('repLegend').innerHTML = `<span class="k"><b>${k}</b>gekonnt</span><span class="f"><b>${f}</b>falsch</span><span class="n"><b>${n}</b>neu</span>`;
@@ -1013,11 +1053,21 @@ $('tabBoard').onclick = () => showTab('board');
 $('tabWords').onclick = () => showTab('words');
 $('sync').onclick = () => showTab('board');
 $('langSelect').onchange = e => { $('impLang').value = e.target.value; loadLang(e.target.value).then(() => setMood(`Wir lernen ${lang}!`, true, 'bounce')); };
+$('favBtn').onclick = e => {
+  e.stopPropagation(); if (!queue.length) return;
+  const k = keyOf(queue[0].c), on = !store.favs[k];
+  if (on) store.favs[k] = 1; else delete store.favs[k];
+  progVer++; persist(['prog']);
+  const fb = $('favBtn'); fb.textContent = on ? '★' : '☆'; fb.setAttribute('aria-pressed', on);
+  if (on && !reduceMotion && fb.animate) fb.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.35)' }, { transform: 'scale(1)' }], { duration: 300 });
+};
 $('card').onclick = () => flip(true); $('flipBtn').onclick = () => flip(false);
 $('againBtn').onclick = () => answer(false); $('knewBtn').onclick = () => answer(true);
 $('restartBtn').onclick = () => startSession();
 $('endWrongBtn').onclick = () => practice('f', '*');
 $('repWrongBtn').onclick = () => practice('f', '*');
+$('repDueBtn').onclick = () => practice('due', '*');
+$('repFavBtn').onclick = () => practice('fav', '*');
 $('repKnownBtn').onclick = () => practice('k', '*');
 $('repTestBtn').onclick = () => { showTab('play'); games.start('test'); };
 $('weeklyTest').onchange = () => { store.weeklyTest = $('weeklyTest').checked; persist(['user'], 0); $('pushMsg').textContent = store.weeklyTest ? 'Sonntags kommt jetzt dein Wochentest.' : 'Kein Wochentest per Push – testen kannst du dich trotzdem jederzeit.'; };
@@ -1134,7 +1184,7 @@ const games = gamesRef = initGames({
   get lang() { return lang; }, get cards() { return cards; },
   baseCards: () => parse(texts[lang] || '', lang),
   stateOf, mark, figureSvgs, figure, figKey, slotLang,
-  markWrong: c => { store.prog[keyOf(c)] = 'f'; progVer++; updateBadge(); },
+  markWrong: c => { store.prog[keyOf(c)] = 'f'; srsAnswer(keyOf(c), false); progVer++; updateBadge(); },
   liveStreak: () => liveStreak(store.streak, store.lastDay), knownTotal, totalSecs
 });
 

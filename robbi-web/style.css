@@ -441,12 +441,12 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 
 /* Hintergründe der Bühne (ein ruhiges Bild je Sprache) */
 .stage[data-bg]:not([data-bg=""]) { border-radius: 20px; padding: 10px 10px 4px; background-color: var(--sea-soft); background-size: cover; background-position: center bottom; background-repeat: no-repeat; }
-.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=43); }
-.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=43); }
-.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=43); }
-.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=43); }
-.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=43); }
-.stage[data-bg="belgrad"] { background-image: url(bg/belgrad.svg?v=43); }
+.stage[data-bg="aegaeis"] { background-image: url(bg/aegaeis.svg?v=44); }
+.stage[data-bg="teheran"] { background-image: url(bg/teheran.svg?v=44); }
+.stage[data-bg="rom"] { background-image: url(bg/rom.svg?v=44); }
+.stage[data-bg="sevilla"] { background-image: url(bg/sevilla.svg?v=44); }
+.stage[data-bg="paris"] { background-image: url(bg/paris.svg?v=44); }
+.stage[data-bg="belgrad"] { background-image: url(bg/belgrad.svg?v=44); }
 .stage[data-bg]:not([data-bg=""]) .pal .tag { background: color-mix(in srgb, var(--surface) 78%, transparent); border-radius: 10px; padding: 1px 8px; }
 
 /* Prüfung */
@@ -503,3 +503,27 @@ button, .card, .chip { touch-action: manipulation; -webkit-tap-highlight-color: 
 #wardrobeWho { margin-bottom: 6px; }
 .avatar.pet { font-size: 20px; background: var(--sea-soft); }
 @media (max-width: 380px) { .buddy-edit { grid-template-columns: 1fr; } .buddy-preview { position: static; } }
+
+/* Favoriten-Stern auf der Karte */
+.scene { position: relative; }
+.fav-btn { position: absolute; right: 12px; bottom: 12px; z-index: 5; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: #E0A526; font-size: 22px; line-height: 1; cursor: pointer; touch-action: manipulation; }
+.fav-btn[aria-pressed="true"] { background: #FFF4D6; border-color: #E0A526; }
+.due-panel h2 { margin-bottom: 4px; }
+
+/* Dialoge */
+.dlg-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.dlg-head { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+.chat { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.msg { max-width: 86%; padding: 9px 13px; border-radius: 18px; font-size: 16px; line-height: 1.35; overflow-wrap: anywhere; }
+.msg .who { display: block; font-size: 11px; font-weight: 700; opacity: .7; margin-bottom: 2px; }
+.msg .aid { display: block; font-size: 12px; opacity: .75; font-style: italic; }
+.msg small { display: block; font-size: 13px; opacity: .8; margin-top: 3px; }
+.msg.msg-p { color: var(--ink); align-self: flex-start; background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.msg.msg-me { display: block; align-self: flex-end; background: var(--sea); color: #fff; border-bottom-right-radius: 6px; }
+.chat-opts { display: grid; gap: 8px; }
+.chat-opts .opt { text-align: left; font-weight: 600; }
+.dlg-say { display: flex; align-items: center; gap: 10px; }
+.dlg-say .mic.small { width: 54px; height: 54px; font-size: 24px; flex: none; }
+.dlg-say .hint { margin: 0; text-align: left; }
+.dlg-say { flex-wrap: wrap; }
+.dlg-say .engine-note { order: 3; flex-basis: 100%; justify-content: flex-start; margin: 0; }

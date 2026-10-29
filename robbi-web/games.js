@@ -4,6 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
+import { DIALOGS } from './dialoge.js?v=44';
 import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, aiPossible, setSelfMode, last as srLast } from './speech.js?v=42';
 
 export function initGames(api) {
@@ -55,6 +56,7 @@ export function initGames(api) {
   /* ---------- Menü ---------- */
   const GAMES = [
     { id: 'test', icon: '🎓', name: 'Prüfung', desc: 'Test aus deinen gekonnten Wörtern', best: () => { const t = lastTest(); return t ? `Zuletzt: ${t.p} %` : 'Noch kein Test'; } },
+    { id: 'dialog', icon: '💬', name: 'Dialoge', desc: 'Alltagsszenen zum Mitreden', best: () => `${S().dialogs || 0} Gespräche geführt` },
     { id: 'blitz', icon: '⚡', name: 'Blitzrunde', desc: '60 Sekunden, so viele wie möglich', best: () => bestText(S().blitzBest, ' richtig') },
     { id: 'memory', icon: '🧠', name: 'Memory', desc: 'Finde die 6 Paare', best: () => bestText(S().memoryBest, ' s') },
     { id: 'puzzle', icon: '🧩', name: 'Satz-Puzzle', desc: 'Bau den Satz richtig zusammen', best: () => `${S().puzzles || 0} Sätze gebaut` },
@@ -111,7 +113,7 @@ export function initGames(api) {
     $('gameTitle').textContent = gm.icon + ' ' + gm.name;
     $('gameInfo').textContent = '';
     $('gameArea').innerHTML = '';
-    if (!noRun) ({ test, blitz, memory, puzzle, catch: catchGame, speech, duel })[id]();
+    if (!noRun) ({ test, dialog, blitz, memory, puzzle, catch: catchGame, speech, duel })[id]();
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
   function stop() { if (stopFn) { const f = stopFn; stopFn = null; f(); } clearTimers(); }
@@ -218,7 +220,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=43');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=44');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -509,6 +511,87 @@ export function initGames(api) {
     show();
   }
 
+
+
+  /* ---------- 8) Dialoge: kleine Gespräche ---------- */
+  function dialog() {
+    const list = DIALOGS[api.lang] || [], a = $('gameArea');
+    $('gameInfo').textContent = '';
+    if (!list.length) { a.innerHTML = '<p class="hint">Für diese Sprache gibt es noch keine Dialoge.</p>'; return; }
+    a.innerHTML = `<p class="hint">Dein Gegenüber sagt etwas – du wählst die passende Antwort und kannst sie danach laut sagen.</p><div class="dlg-list" id="dlgList"></div>`;
+    list.forEach((sc, i) => {
+      const done = !!S()['dlg:' + api.lang + ':' + i];
+      const b = el('button', 'game-card dlg-card'); b.type = 'button';
+      b.innerHTML = `<span class="gc-icon">${sc.e}</span><b>${esc(sc.t)}</b><small>mit ${esc(sc.who)}</small><span class="gc-best">${done ? '✓ geschafft' : 'neu'}</span>`;
+      b.onclick = () => playDialog(sc, i);
+      $('dlgList').appendChild(b);
+    });
+  }
+  function playDialog(sc, idx) {
+    const a = $('gameArea'), me = api.figure(api.lang), nick = (store.nick || '').trim() || 'Alex';
+    const fill = s => s.replace(/\{name\}/g, nick);
+    let step = 0, turns = 0, firstTry = 0, pts = 0, unhook = null;
+    stopFn = () => { unhook && unhook(); };
+    a.innerHTML = `<div class="dlg-head">${sc.e} <b>${esc(sc.t)}</b> · mit ${esc(sc.who)}</div><div class="chat" id="chat"></div><div class="chat-opts" id="chatOpts"></div>`;
+    const chat = $('chat'), opts = $('chatOpts');
+    const info = () => { $('gameInfo').textContent = `${turns} / ${sc.d.filter(x => x[0] === 'me').length} Antworten`; };
+    function bubble(side, fr, de) {
+      const aid = api.readAid(fr, api.lang);
+      const m = el('div', 'msg msg-' + side, `<span class="who">${side === 'p' ? sc.e + ' ' + esc(sc.who) : me.emoji + ' Du'}</span>${esc(fr)}${aid ? `<span class="aid">lies etwa: ${esc(aid)}</span>` : ''}<small>${esc(de)}</small>`);
+      chat.appendChild(m);
+      try { m.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' }); } catch (e) {}
+    }
+    function next() {
+      info();
+      while (step < sc.d.length && sc.d[step][0] === 'p') { const [, fr, de] = sc.d[step]; bubble('p', fill(fr), fill(de)); step++; }
+      if (step >= sc.d.length) return finish();
+      const choices = shuffle(sc.d[step][1].map(([fr, de, ok]) => ({ fr: fill(fr), de: fill(de), ok: !!ok })));
+      let first = true;
+      opts.innerHTML = '<p class="hint">Was antwortest du?</p>';
+      choices.forEach(ch => {
+        const b = el('button', 'opt'); b.type = 'button'; b.textContent = ch.fr;
+        b.onclick = () => {
+          if (!ch.ok) {
+            first = false; b.classList.add('bad'); b.disabled = true;
+            opts.querySelector('.hint').innerHTML = `Passt nicht ganz: „${esc(ch.fr)}“ heißt <b>${esc(ch.de)}</b>. Versuch es nochmal!`;
+            api.setMood('Fast! Probier eine andere Antwort.', false, 'shake');
+            return;
+          }
+          turns++; if (first) { firstTry++; pts += 3; }
+          bubble('me', ch.fr, ch.de); step++;
+          // laut sagen (freiwillig), dann weiter
+          opts.innerHTML = `<div class="dlg-say"><button class="mic small" id="micBtn" type="button" aria-label="Laut sagen">🎤</button><p class="hint" id="dlgMsg">Sag es jetzt laut – oder tippe auf Weiter.</p></div>
+            <div class="actions"><button class="btn primary" id="dlgNext" type="button">Weiter ▶</button></div>`;
+          const msg = $('dlgMsg');
+          if (speechSupport()) {
+            unhook && unhook();
+            unhook = hookMic($('micBtn'), msg, (alts, kind) => {
+              const best = Math.max(...alts.map(x => similar(x, ch.fr, api.lang)));
+              if (best >= passMark(kind)) { pts += 1; msg.innerHTML = '<b class="ok-text">Super ausgesprochen! +1</b>'; }
+              else msg.innerHTML = `Gehört: „${esc(heardText(alts[0]))}“. Nochmal probieren oder weiter.`;
+            }, () => ch.fr, () => { pts += 1; msg.innerHTML = '<b class="ok-text">Super! +1</b>'; });
+          } else { $('micBtn').remove(); msg.textContent = 'Lies die Antwort einmal laut vor – dann weiter.'; }
+          $('dlgNext').onclick = () => { unhook && unhook(); unhook = null; opts.innerHTML = ''; setTimeout(next, 250); };
+          info();
+        };
+        opts.appendChild(b);
+      });
+    }
+    function finish() {
+      stop();
+      opts.innerHTML = '';
+      S().dialogs = (S().dialogs || 0) + 1; S()['dlg:' + api.lang + ':' + idx] = 1; gain(pts);
+      api.setMood(firstTry === turns ? 'Perfektes Gespräch! 🎉' : api.cheer(), true, 'bounce');
+      const end = el('div', 'end');
+      end.innerHTML = `<span class="label">Gespräch geschafft</span><span class="big">${firstTry} / ${turns}</span><span>beim ersten Versuch richtig · +${pts} Punkte</span>`;
+      const act = el('div', 'actions');
+      const b1 = el('button', 'btn quiet', 'Andere Szene'); b1.onclick = dialog;
+      const b2 = el('button', 'btn primary', 'Nochmal'); b2.onclick = () => playDialog(sc, idx);
+      act.append(b1, b2); end.appendChild(act); a.appendChild(end);
+      try { end.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (e) {}
+    }
+    next();
+  }
 
   /* ---------- 7) Prüfung: Test aus den gekonnten Karten ---------- */
   // Kein Selbstbewerten: Multiple Choice in beide Richtungen und (wenn möglich) laut sprechen.
@@ -831,6 +914,7 @@ export function initGames(api) {
     { id: 'speech10', icon: '🎤', name: 'Gute Aussprache', req: '10× richtig ausgesprochen', ok: () => (S().speechOk || 0) >= 10 },
     { id: 'duel1', icon: '🥊', name: 'Duellant', req: 'Ein Duell gewonnen', ok: () => (S().duelsWon || 0) >= 1 },
     { id: 'test1', icon: '🎓', name: 'Prüfling', req: 'Den ersten Test gemacht', ok: () => (S().testsDone || 0) >= 1 },
+    { id: 'dialog5', icon: '💬', name: 'Plaudertasche', req: '5 Gespräche geführt', ok: () => (S().dialogs || 0) >= 5 },
     { id: 'test90', icon: '🥇', name: 'Mit Auszeichnung', req: 'Einen Test mit 90 % bestanden', ok: () => (S().testBest || 0) >= 90 },
     { id: 'poly', icon: '🌍', name: 'Weltenbummler', req: 'In 2 Sprachen gelernt', ok: () => langsLearned() >= 2 },
     { id: 'xp1000', icon: '💎', name: 'Punkte-König', req: '1000 Punkte', ok: () => (store.xp || 0) >= 1000 }
