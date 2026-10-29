@@ -3,7 +3,8 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=41';
+import { initGames } from './games.js?v=42';
+import { ANIMALS, buddySvg, GOLD_XP } from './buddies.js?v=42';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -13,7 +14,7 @@ const HAS_FIREBASE = !!(CFG && CFG.apiKey && !String(CFG.apiKey).startsWith('DEI
 const KEY = 'robbi.v3';
 const DEFAULTS = { extra: [], prog: {}, lang: '', dir: 'd', nick: '', xp: 0, streak: 0, lastDay: '', pushLang: 'abwechselnd',
   days: {}, goalMin: 30, goalDate: '2026-12-31', doneDay: '', newDay: { d: '', n: 0 },
-  stats: {}, badges: {}, outfit: { hat: '', face: '' }, duelsCounted: {}, testLog: [], weeklyTest: true };
+  stats: {}, badges: {}, outfit: { hat: '', face: '' }, duelsCounted: {}, testLog: [], weeklyTest: true, buddies: {}, outfits: null, figTs: 0 };
 function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 const store = Object.assign({}, DEFAULTS, lsGet(KEY) || {});
@@ -32,6 +33,7 @@ const progSaved = {};
     }
   } catch (e) {}
 })();
+if (!store.outfits) store.outfits = { arzi: Object.assign({}, store.outfit), robbie: Object.assign({}, store.outfit) };   // früher trugen beide dasselbe
 function saveLocal() {
   mark('Speichern im Handy');
   clearTimeout(localTimer); localTimer = null; firstPending = 0;
@@ -215,13 +217,59 @@ const cheer = () => { const l = CHEERS[lang] || ['Super!', 'Toll!', 'Weiter so!'
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* Die Lehrer: Arzi, die persische Äffin (Farsi), und Robbie Robert Robertson die griechische Robbe */
-const ACTORS = {
-  Farsi: { el: $('monkey'), btn: $('monkeyBtn'), act: 'sip', actMs: 1600, praise: 'Āfarin! Arzi ist stolz auf dich.',
+/* ---------- Figuren: Arzi, Robbie und eigene Begleiter ----------
+ * Links steht immer die Farsi-Figur, rechts die Figur der aktuellen Sprache (bei Farsi: die griechische).
+ * Für jede Sprache kann man ein Tier wählen; Arzi und Robbie sind die Standardfiguren und jederzeit wiederherstellbar. */
+const MONKEY = $('monkey'), SEAL = $('seal');
+const DEFAULT_BUDDY = { Farsi: { animal: 'arzi' }, Griechisch: { animal: 'robbie' }, Italienisch: { animal: 'wolf', color: 0, name: 'Lupo' },
+  Spanisch: { animal: 'bull', color: 0, name: 'Toro' }, 'Französisch': { animal: 'rooster', color: 0, name: 'Coco' }, Serbisch: { animal: 'owl', color: 0, name: 'Sova' } };
+const POKES = { Farsi: ['Salām! Man {n} hastam!', 'Bezan berim!', 'Damet garm!', 'Ye kam farsi?'], Griechisch: ['Jia su! Me léne {n}!', 'Ánde, páme!', 'Ópa!', 'Brávo su!'],
+  Italienisch: ['Ciao! Sono {n}!', 'Andiamo!', 'Forza!', 'Che bello!'], Spanisch: ['¡Hola! Soy {n}!', '¡Vamos!', '¡Olé!', '¡Qué bien!'],
+  'Französisch': ['Salut ! Je suis {n} !', 'On y va !', 'Allez !', 'Trop bien !'], Serbisch: ['Zdravo! Ja sam {n}!', 'Ajde, bre!', 'Idemo!', 'Svaka čast!'] };
+const ORIG = {
+  arzi: { el: MONKEY, name: 'Arzi', sub: '', act: 'sip', actMs: 1600, emoji: '🐒', praise: 'Āfarin! Arzi ist stolz auf dich.',
     pokes: ['Salām! Chāy mikhori?', 'Bezan berim!', 'Arzi injāst!', 'Esmam Arzi-e!', 'Vāy, ghelghelakam nakon!', 'Damet garm!', 'Ye chāy-e dāgh, ye kam farsi?'] },
-  Griechisch: { el: $('seal'), btn: $('sealBtn'), act: 'wave', actMs: 900, praise: 'Brávo! Robbie Robert Robertson ist stolz auf dich.',
+  robbie: { el: SEAL, name: 'Robbie', sub: 'Robert Robertson', act: 'wave', actMs: 900, emoji: '🦭', praise: 'Brávo! Robbie Robert Robertson ist stolz auf dich.',
     pokes: ['Jia su! Ti kánis?', 'Ánde, páme!', 'Ópa!', 'Me léne Robbie Robert Robertson!', 'Mi me gharghalás!', 'Brávo su!', 'Éla, mia jíra akóma!'] }
 };
-const actor = () => ACTORS[lang] || ACTORS.Griechisch;
+function figOf(l) {
+  const b = (store.buddies || {})[l] || DEFAULT_BUDDY[l] || { animal: 'robbie' };
+  if (b.animal === 'arzi' && l !== 'Farsi') return { animal: 'robbie' };
+  if (b.animal === 'robbie' && l === 'Farsi') return { animal: 'arzi' };
+  return b;
+}
+const figKey = l => { const b = figOf(l); return b.animal === 'arzi' || b.animal === 'robbie' ? b.animal : 'b:' + l; };
+// Garderobe-Teile aus Arzis Zeichnung – passen auf jedes Tier
+const OUTFIT_HTML = { head: '', body: '', shoes: '' };
+MONKEY.querySelectorAll('.of').forEach(n => { const k = n.closest('.m-head') ? 'head' : /\bof-(runner|black|court)\b/.test(n.getAttribute('class')) ? 'shoes' : 'body'; OUTFIT_HTML[k] += n.outerHTML; });
+const buddyEls = {};
+function buddyEl(l, cfg) {
+  const b = cfg || figOf(l), sig = b.animal + '|' + b.color + '|' + ((store.xp || 0) >= GOLD_XP);
+  let e = cfg ? null : buddyEls[l];
+  if (!e || e.dataset.sig !== sig) {
+    const tmp = document.createElement('div'); tmp.innerHTML = buddySvg(b.animal, b.color ?? 0, OUTFIT_HTML, store.xp || 0);
+    e = tmp.firstElementChild; e.dataset.sig = sig; e.dataset.key = 'b:' + l;
+    if (!cfg) buddyEls[l] = e;
+  }
+  return e;
+}
+function figure(l) {
+  const b = figOf(l);
+  if (b.animal === 'arzi' || b.animal === 'robbie') return Object.assign({ lang: l, key: b.animal }, ORIG[b.animal]);
+  const a = ANIMALS[b.animal] || ANIMALS.owl, n = b.name || a.def;
+  return { lang: l, key: 'b:' + l, el: buddyEl(l), name: n, sub: a.name, act: 'wag', actMs: 1200, emoji: a.emoji,
+    praise: `Bravo! ${n} ist stolz auf dich.`, pokes: (POKES[l] || ['Hallo! Ich bin {n}!']).map(x => x.replace('{n}', n)) };
+}
+const SLOTS = { left: $('monkeyBtn'), right: $('sealBtn') };
+const slotLang = side => side === 'left' ? 'Farsi' : (lang === 'Farsi' ? 'Griechisch' : lang);
+const shown = { left: null, right: null };
+let gamesRef = null;
+const actor = () => shown[lang === 'Farsi' ? 'left' : 'right'] || figure(lang);
+function figureSvgs() {
+  const list = [{ el: MONKEY, key: 'arzi' }, { el: SEAL, key: 'robbie' }];
+  for (const l in buddyEls) list.push({ el: buddyEls[l], key: 'b:' + l });
+  return list;
+}
 let happyTimer = null;
 function anim(el, kind) {
   if (reduceMotion || !el.animate) return;
@@ -234,27 +282,92 @@ function setMood(text, happy, kind, force) {
   const el = actor().el;
   if (bubble.textContent !== text) bubble.textContent = text;
   if (practicing() && !force) return;
-  Object.values(ACTORS).forEach(x => x.el.classList.remove('is-happy'));
+  [shown.left, shown.right].forEach(x => x && x.el.classList.remove('is-happy'));
   clearTimeout(happyTimer);
   if (happy) { el.classList.add('is-happy'); happyTimer = setTimeout(() => el.classList.remove('is-happy'), 1800); }
   if (kind) anim(el, kind);
 }
 function pose(el, c, ms) { el.classList.add(c); setTimeout(() => el.classList.remove(c), ms); }
 /* Beide leben: blinzeln, zwinkern; wer dran ist, winkt bzw. trinkt Tee oder schaut sich um */
-function lifeLoop(a) {
+function lifeLoop(side) {
   setTimeout(() => {
-    if (!document.hidden) {
+    const a = shown[side];
+    if (a && !document.hidden) {
       const el = a.el;
       pose(el, 'blink', 140);
       if (!practicing() && !reduceMotion && a === actor() && Math.random() < 0.15) pose(el, Math.random() < .5 ? 'look' : a.act, Math.random() < .5 ? 1600 : a.actMs);
     }
-    lifeLoop(a);
+    lifeLoop(side);
   }, 9000 + Math.random() * 9000);
 }
 function renderStage() {
-  $('stage').dataset.active = lang === 'Farsi' ? 'fa' : lang === 'Griechisch' ? 'gr' : 'none';
+  $('stage').dataset.active = lang === 'Farsi' ? 'fa' : 'gr';
   $('stage').dataset.bg = { Farsi: 'teheran', Griechisch: 'aegaeis', Italienisch: 'rom', Spanisch: 'sevilla', 'Französisch': 'paris', Serbisch: 'belgrad' }[lang] || '';
-  for (const l in ACTORS) { const on = l === lang; ACTORS[l].btn.classList.toggle('on', on); ACTORS[l].btn.setAttribute('aria-pressed', on); }
+  for (const side of ['left', 'right']) {
+    const f = figure(slotLang(side)), btn = SLOTS[side];
+    const old = btn.querySelector('svg');
+    if (old !== f.el) { if (old) old.remove(); btn.prepend(f.el); }
+    btn.querySelector('.tag').innerHTML = `<b>${esc(f.name)}</b>${f.sub ? `<i>${esc(f.sub)}</i>` : ''}${esc(f.lang)}`;
+    btn.setAttribute('aria-label', `${f.name} – ${f.lang}`);
+    const on = side === (lang === 'Farsi' ? 'left' : 'right');
+    btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on);
+    shown[side] = f;
+  }
+  if (gamesRef) gamesRef.applyOutfit();
+}
+/* ---------- Begleiter-Editor (Tab Spielen) ---------- */
+let editLang = null, nameTimer = null;
+function setBuddy(l, cfg) {
+  store.buddies = Object.assign({}, store.buddies, { [l]: cfg }); store.figTs = Date.now();
+  persist(['user', 'score']); renderStage(); renderBuddyEditor(); if (gamesRef) gamesRef.renderWardrobe();
+}
+function renderBuddyEditor() {
+  const box = $('buddyPanel'); if (!box) return;
+  const langs = allLangs();
+  if (!editLang || !langs.includes(editLang)) editLang = langs.includes(lang) ? lang : langs[0];
+  const lc = $('buddyLangs'); lc.innerHTML = '';
+  langs.forEach(l => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'chip';
+    b.setAttribute('aria-pressed', l === editLang); b.textContent = `${figure(l).emoji} ${l}`;
+    b.onclick = () => { editLang = l; renderBuddyEditor(); }; lc.appendChild(b);
+  });
+  const cur = figOf(editLang), isAnimal = !!ANIMALS[cur.animal];
+  const opts = [editLang === 'Farsi' ? ['arzi', '🐒', 'Arzi', 'Original'] : ['robbie', '🦭', 'Robbie', editLang === 'Griechisch' ? 'Original' : '']];
+  for (const id in ANIMALS) opts.push([id, ANIMALS[id].emoji, ANIMALS[id].name, (DEFAULT_BUDDY[editLang] || {}).animal === id ? 'passt zu ' + editLang : '']);
+  const grid = $('buddyAnimals'); grid.innerHTML = '';
+  opts.forEach(([id, em, nm, note]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'buddy-opt';
+    b.setAttribute('aria-pressed', cur.animal === id);
+    b.innerHTML = `<span>${em}</span><b>${esc(nm)}</b>${note ? `<small>${esc(note)}</small>` : ''}`;
+    b.onclick = () => setBuddy(editLang, ANIMALS[id] ? { animal: id, color: cur.animal === id ? cur.color : 0, name: cur.animal === id ? cur.name : ANIMALS[id].def } : { animal: id });
+    grid.appendChild(b);
+  });
+  const cc = $('buddyColors'); cc.innerHTML = ''; cc.hidden = !isAnimal; $('buddyNameRow').hidden = !isAnimal;
+  if (isAnimal) {
+    const sw = (fur, idx, locked) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'swatch' + (locked ? ' locked' : '');
+      b.style.background = fur; b.setAttribute('aria-pressed', String(cur.color ?? 0) === String(idx));
+      b.setAttribute('aria-label', idx === 'gold' ? 'Goldenes Fell' : 'Farbe ' + (idx + 1));
+      if (locked) { b.disabled = true; b.title = `Goldenes Fell ab ${GOLD_XP} Punkten`; b.textContent = '🔒'; }
+      b.onclick = () => setBuddy(editLang, Object.assign({}, cur, { color: idx }));
+      cc.appendChild(b);
+    };
+    ANIMALS[cur.animal].colors.forEach((c, i) => sw(c[0], i, false));
+    sw('linear-gradient(135deg,#F7E7B5,#E0B23C 55%,#B58A1F)', 'gold', (store.xp || 0) < GOLD_XP);
+    const inp = $('buddyName'); if (document.activeElement !== inp) inp.value = cur.name || ANIMALS[cur.animal].def;
+    inp.oninput = () => { clearTimeout(nameTimer); nameTimer = setTimeout(() => {
+      const n = inp.value.trim().slice(0, 16); if (!n) return;
+      store.buddies = Object.assign({}, store.buddies, { [editLang]: Object.assign({}, figOf(editLang), { name: n }) }); store.figTs = Date.now();
+      persist(['user']); renderStage(); if (gamesRef) gamesRef.renderWardrobe();
+      const cap = $('buddyPreview').querySelector('.bp-name'); if (cap) cap.textContent = n;
+    }, 400); };
+  }
+  // Vorschau: Kopie der echten Figur (mit ihrer Kleidung)
+  const f = figure(editLang); if (gamesRef) gamesRef.applyOutfit();
+  const pv = $('buddyPreview'); pv.innerHTML = '';
+  const clone = f.el.cloneNode(true); clone.removeAttribute('id'); clone.classList.remove('is-happy', 'blink', 'wink', 'look', 'wag', 'sip', 'wave');
+  pv.appendChild(clone);
+  const cap = document.createElement('span'); cap.className = 'bp-name'; cap.textContent = f.name; pv.appendChild(cap);
 }
 function poke(a) {
   a.el.classList.remove('is-happy'); clearTimeout(happyTimer);
@@ -370,10 +483,11 @@ function progBody(l) {
 const userBody = () => ({ extraJson: JSON.stringify(store.extra), lang: store.lang, dir: store.dir, nick: store.nick, pushLang: store.pushLang,
   daysJson: JSON.stringify(trimDays(store.days)), goalMin: store.goalMin, goalDate: store.goalDate, doneDay: store.doneDay, newDayJson: JSON.stringify(store.newDay),
   statsJson: JSON.stringify(store.stats || {}), badgesJson: JSON.stringify(store.badges || {}), outfitJson: JSON.stringify(store.outfit || {}), duelsJson: JSON.stringify(store.duelsCounted || {}),
-  testsJson: JSON.stringify((store.testLog || []).slice(-30)), weeklyTest: store.weeklyTest !== false });
+  testsJson: JSON.stringify((store.testLog || []).slice(-30)), weeklyTest: store.weeklyTest !== false,
+  buddiesJson: JSON.stringify(store.buddies || {}), outfitsJson: JSON.stringify(store.outfits || {}), figTs: store.figTs || 0 });
 const scoreBody = () => ({ nick: store.nick || '', xp: store.xp || 0, streak: store.streak || 0, lastDay: store.lastDay || '', known: knownTotal(), lang: store.lang || '',
   todaySec: secsToday(), day: today(), totalSec: totalSecs(),
-  badges: Object.keys(store.badges || {}).length, blitz: (store.stats || {}).blitzBest || 0 });
+  badges: Object.keys(store.badges || {}).length, blitz: (store.stats || {}).blitzBest || 0, pet: figure(store.lang || lang || 'Farsi').emoji });
 
 /* Sammel-Speichern: Änderungen werden nur vorgemerkt und höchstens alle 20 Sekunden
    gemeinsam in EINER Anfrage ins Konto geschrieben – bei wichtigen Aktionen und beim
@@ -479,6 +593,9 @@ async function onAuth(user) {
         Object.assign(store.badges = store.badges || {}, JSON.parse(d.badgesJson || '{}'));
         Object.assign(store.duelsCounted = store.duelsCounted || {}, JSON.parse(d.duelsJson || '{}'));
         const co = JSON.parse(d.outfitJson || 'null'); if (co && Object.values(co).some(Boolean)) store.outfit = co;
+        if ((d.figTs || 0) > (store.figTs || 0)) {           // Begleiter & Outfits: das zuletzt geänderte Gerät gewinnt
+          store.buddies = JSON.parse(d.buddiesJson || '{}'); store.outfits = JSON.parse(d.outfitsJson || 'null') || store.outfits; store.figTs = d.figTs;
+        }
       } catch (e) {}
       try { const nd = JSON.parse(d.newDayJson || 'null'); if (nd && nd.d === today() && (store.newDay.d !== nd.d || nd.n > store.newDay.n)) store.newDay = nd; } catch (e) {}
     }
@@ -544,7 +661,7 @@ function renderBoard() {
   rows.forEach((r, i) => {
     const li = document.createElement('li'); if (r.id === cloud.uid) li.className = 'mine';
     const rank = document.createElement('span'); rank.className = 'rank'; rank.textContent = i + 1;
-    const av = document.createElement('span'); av.className = 'avatar sm initial'; av.textContent = (r.nick || '?').trim().charAt(0).toUpperCase() || '?';
+    const av = document.createElement('span'); av.className = 'avatar sm initial' + (r.pet ? ' pet' : ''); av.textContent = r.pet || (r.nick || '?').trim().charAt(0).toUpperCase() || '?';
     const who = document.createElement('div'); who.className = 'who';
     const nm = document.createElement('b'); nm.textContent = (r.nick || 'Robbe ohne Namen') + (r.id === cloud.uid ? ' (du)' : '');
     const sub = document.createElement('span'); sub.textContent = `${liveStreak(r.streak, r.lastDay)} Tage Serie · ${r.day === today() ? Math.floor((r.todaySec || 0) / 60) : 0} min heute · ${r.known || 0} gekonnt${r.badges ? ' · 🏅' + r.badges : ''}${r.lang ? ' · ' + r.lang : ''}`;
@@ -886,7 +1003,7 @@ function showTab(t) {
   if (t === 'words') renderWords();
   if (t === 'board') { renderProfile(); renderBoard(); renderGoalPanel(); renderDiag(); startBoard(); } else stopBoard(true);   // Rangliste nur live, solange sie offen ist
   if (t === 'learn') { renderChips(); lastAct = Date.now(); }
-  if (t === 'play') { games.render(); lastAct = Date.now(); } else games.stop();
+  if (t === 'play') { games.render(); renderBuddyEditor(); lastAct = Date.now(); } else games.stop();
 }
 $('tabPlay').onclick = () => showTab('play');
 $('diagPanel').addEventListener('toggle', renderDiag);
@@ -999,23 +1116,24 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) { saveLocal(); flush(); stopBoard(true); }
   else if (!$('viewBoard').hidden) startBoard();
 });
-for (const l in ACTORS) ACTORS[l].btn.onclick = () => {
-  if (lang === l) return poke(ACTORS[l]);                 // angetippt: zwinkern, winken/Tee, Spruch
+for (const side in SLOTS) SLOTS[side].onclick = () => {
+  const l = slotLang(side);
+  if (lang === l) return poke(actor());                   // angetippt: zwinkern, winken/Tee, Spruch
   if (!allLangs().includes(l)) return;
   $('impLang').value = l;
-  loadLang(l).then(() => poke(ACTORS[l]));               // den anderen antippen: Sprache wechseln
+  loadLang(l).then(() => poke(actor()));                 // den anderen antippen: Sprache wechseln
 };
 window.addEventListener('online', () => { if (cloud.ok) setSync('ok'); });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 showInstall();
-Object.values(ACTORS).forEach(lifeLoop);
+['left', 'right'].forEach(lifeLoop);
 function gainXp(n) { store.xp = (store.xp || 0) + n; touchStreak(); persist(['score', 'user']); }
-const games = initGames({
+const games = gamesRef = initGames({
   $, store, esc, shuffle, reduceMotion, readAid, today, persist, setMood, cheer, gainXp, cloud,
   get lang() { return lang; }, get cards() { return cards; },
   baseCards: () => parse(texts[lang] || '', lang),
-  stateOf, mark,
+  stateOf, mark, figureSvgs, figure, figKey, slotLang,
   markWrong: c => { store.prog[keyOf(c)] = 'f'; progVer++; updateBadge(); },
   liveStreak: () => liveStreak(store.streak, store.lastDay), knownTotal, totalSecs
 });

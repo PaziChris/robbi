@@ -4,7 +4,7 @@
  * Bekommt alles, was es braucht, über das "api"-Objekt von app.js.
  */
 
-import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, aiPossible, setSelfMode, last as srLast } from './speech.js?v=40';
+import { createListener, speechSupported, engineFor, preloadWhisper, whisperInfo, aiPossible, setSelfMode, last as srLast } from './speech.js?v=42';
 
 export function initGames(api) {
   const { $, store, esc, shuffle, reduceMotion } = api;
@@ -58,7 +58,7 @@ export function initGames(api) {
     { id: 'blitz', icon: '⚡', name: 'Blitzrunde', desc: '60 Sekunden, so viele wie möglich', best: () => bestText(S().blitzBest, ' richtig') },
     { id: 'memory', icon: '🧠', name: 'Memory', desc: 'Finde die 6 Paare', best: () => bestText(S().memoryBest, ' s') },
     { id: 'puzzle', icon: '🧩', name: 'Satz-Puzzle', desc: 'Bau den Satz richtig zusammen', best: () => `${S().puzzles || 0} Sätze gebaut` },
-    { id: 'catch', icon: '🎣', name: 'Fangspiel', desc: () => isFarsiTeacher() ? 'Arzi fängt Safran' : 'Robbie fängt Fische', best: () => bestText(S().catchBest, ' gefangen') },
+    { id: 'catch', icon: '🎣', name: 'Fangspiel', desc: () => `${api.figure(api.lang).name} fängt ${isFarsiTeacher() ? 'Safran' : 'Fische'}`, best: () => bestText(S().catchBest, ' gefangen') },
     { id: 'speech', icon: '🎤', name: 'Sprech-Challenge', desc: 'Sag das Wort laut', best: () => `${S().speechOk || 0}× richtig gesagt` },
     { id: 'duel', icon: '🥊', name: 'Duell', desc: 'Fordere Freunde heraus', best: () => `${S().duelsWon || 0} Duelle gewonnen` }
   ];
@@ -218,7 +218,7 @@ export function initGames(api) {
   async function loadExtraSentences(lang) {
     if (extraSentences[lang]) return extraSentences[lang];
     try {
-      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=41');
+      const r = await fetch('saetze/' + lang.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue') + '.txt?v=42');
       if (!r.ok) throw 0;
       const list = (await r.text()).split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#') && !l.startsWith('[') && l.includes(';'))
         .map(l => { const i = l.indexOf(';'); return { front: l.slice(0, i).trim(), back: l.slice(i + 1).split(';')[0].trim() }; })
@@ -294,7 +294,7 @@ export function initGames(api) {
     const icon = farsi ? SAFFRON : '<span class="fish">🐟</span>';
     const a = $('gameArea');
     a.innerHTML = `<div class="q-card slim"><span class="lang">Fang die Übersetzung von</span><span class="q-word small" id="ctWord"></span></div>
-      <div class="catch-field" id="ctField"><div class="catcher">${farsi ? '🐒' : '🦭'}</div></div>`;
+      <div class="catch-field" id="ctField"><div class="catcher">${api.figure(api.lang).emoji}</div></div>`;
     const field = $('ctField');
     let q, score = 0, lives = 3, speed = 62, items = [], last = performance.now(), spawnIn = 0, raf = 0, over = false, untilCorrect = 0;
     const H = () => field.clientHeight, W = () => field.clientWidth;
@@ -887,29 +887,42 @@ export function initGames(api) {
     { id: 'court', slot: 'feet', icon: '🏀', name: 'Lila-gold High-Tops', xp: 1500 }
   ];
   const SLOT_NAME = { hat: 'Kopf', face: 'Brille', top: 'Oberteil', feet: 'Schuhe' };
+  // Jede Figur hat ihre eigene Kleidung (store.outfits[figur])
+  const outfitOf = key => ((store.outfits = store.outfits || {})[key] = store.outfits[key] || {});
   function applyOutfit() {
-    const o = store.outfit || {};
-    [$('seal'), $('monkey')].forEach(svg => {
+    api.figureSvgs().forEach(({ el: svg, key }) => {
+      const o = outfitOf(key);
       OUTFITS.forEach(x => svg.classList.toggle('o-' + x.id, o[x.slot] === x.id && (store.xp || 0) >= x.xp));
       svg.classList.toggle('hat-on', ['party', 'crown', 'ny', 'larissa', 'beanie', 'strawhat'].includes(o.hat) && OUTFITS.some(x => x.id === o.hat && (store.xp || 0) >= x.xp));
       svg.classList.toggle('shoes-on', !!o.feet && OUTFITS.some(x => x.id === o.feet && (store.xp || 0) >= x.xp));
     });
   }
+  let wearer = null;
+  function wearers() {                                     // alle Figuren, die gerade in einer Sprache dabei sind
+    const seen = new Map();
+    ['Farsi', 'Griechisch', 'Italienisch', 'Spanisch', 'Französisch', 'Serbisch'].forEach(l => { const f = api.figure(l); if (!seen.has(f.key)) seen.set(f.key, f); });
+    return [...seen.values()];
+  }
   function renderWardrobe() {
     const box = $('wardrobe'); if (!box) return; box.innerHTML = '';
-    const o = store.outfit = store.outfit || {};
+    const list = wearers();
+    if (!wearer || !list.some(f => f.key === wearer)) wearer = api.figKey(api.lang);
+    const who = $('wardrobeWho');
+    if (who) { who.innerHTML = ''; list.forEach(f => { const b = el('button', 'chip'); b.type = 'button'; b.textContent = `${f.emoji} ${f.name}`; b.setAttribute('aria-pressed', f.key === wearer); b.onclick = () => { wearer = f.key; renderWardrobe(); }; who.appendChild(b); }); }
+    const cur = list.find(f => f.key === wearer) || list[0];
+    const o = outfitOf(wearer);
     OUTFITS.forEach(x => {
       const open = (store.xp || 0) >= x.xp, on = o[x.slot] === x.id;
       const b = el('button', 'outfit' + (on ? ' on' : '') + (open ? '' : ' locked')); b.type = 'button';
       b.innerHTML = `<span class="oi">${open ? x.icon : '🔒'}</span><b>${x.name}</b><small>${SLOT_NAME[x.slot]} · ${open ? (on ? 'angezogen ✓' : 'antippen') : `ab ${x.xp} Punkten`}</small>`;
       b.disabled = !open;
-      b.onclick = () => { o[x.slot] = on ? '' : x.id; api.persist(['user']); applyOutfit(); renderWardrobe(); api.setMood(on ? 'Wieder ganz normal!' : `${x.name} steht mir! ${x.icon}`, true, 'bounce'); };
+      b.onclick = () => { o[x.slot] = on ? '' : x.id; store.figTs = Date.now(); api.persist(['user']); applyOutfit(); renderWardrobe(); api.setMood(on ? `${cur.name}: wieder ganz normal!` : `${cur.name}: ${x.name} steht mir! ${x.icon}`, true, 'bounce'); };
       box.appendChild(b);
     });
     const nextUp = OUTFITS.find(x => (store.xp || 0) < x.xp);
-    $('wardrobeHint').textContent = nextUp ? `Noch ${nextUp.xp - (store.xp || 0)} Punkte bis ${nextUp.icon} ${nextUp.name}. Arzi und Robbie tragen, was du anziehst.` : 'Alles freigeschaltet! Arzi und Robbie tragen, was du anziehst.';
+    $('wardrobeHint').textContent = (nextUp ? `Noch ${nextUp.xp - (store.xp || 0)} Punkte bis ${nextUp.icon} ${nextUp.name}. ` : 'Alles freigeschaltet! ') + `Du ziehst gerade ${cur ? cur.name : ''} an – jede Figur hat ihre eigene Kleidung.`;
   }
 
   applyOutfit();
-  return { render, stop, start, applyOutfit, checkBadges, badgeCount, isPlaying: () => !!stopFn };
+  return { render, stop, start, applyOutfit, renderWardrobe, checkBadges, badgeCount, isPlaying: () => !!stopFn };
 }
