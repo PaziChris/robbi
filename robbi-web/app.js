@@ -3,8 +3,8 @@
  * Speicher: Firebase (Anmeldung, Fortschritt, Rangliste, Push) + lokal als Zwischenspeicher.
  */
 
-import { initGames } from './games.js?v=42';
-import { ANIMALS, buddySvg, GOLD_XP } from './buddies.js?v=42';
+import { initGames } from './games.js?v=43';
+import { ANIMALS, buddySvg, GOLD_XP } from './buddies.js?v=43';
 
 const FB = 'https://www.gstatic.com/firebasejs/10.12.2/';
 const CFG = self.FIREBASE_CONFIG;
@@ -222,7 +222,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
  * Für jede Sprache kann man ein Tier wählen; Arzi und Robbie sind die Standardfiguren und jederzeit wiederherstellbar. */
 const MONKEY = $('monkey'), SEAL = $('seal');
 const DEFAULT_BUDDY = { Farsi: { animal: 'arzi' }, Griechisch: { animal: 'robbie' }, Italienisch: { animal: 'wolf', color: 0, name: 'Lupo' },
-  Spanisch: { animal: 'bull', color: 0, name: 'Toro' }, 'Französisch': { animal: 'rooster', color: 0, name: 'Coco' }, Serbisch: { animal: 'owl', color: 0, name: 'Sova' } };
+  Spanisch: { animal: 'bull', color: 0, name: 'Toro' }, 'Französisch': { animal: 'rooster', color: 0, name: 'Coco' }, Serbisch: { animal: 'owl', color: 0, name: 'Orlov' } };
 const POKES = { Farsi: ['Salām! Man {n} hastam!', 'Bezan berim!', 'Damet garm!', 'Ye kam farsi?'], Griechisch: ['Jia su! Me léne {n}!', 'Ánde, páme!', 'Ópa!', 'Brávo su!'],
   Italienisch: ['Ciao! Sono {n}!', 'Andiamo!', 'Forza!', 'Che bello!'], Spanisch: ['¡Hola! Soy {n}!', '¡Vamos!', '¡Olé!', '¡Qué bien!'],
   'Französisch': ['Salut ! Je suis {n} !', 'On y va !', 'Allez !', 'Trop bien !'], Serbisch: ['Zdravo! Ja sam {n}!', 'Ajde, bre!', 'Idemo!', 'Svaka čast!'] };

@@ -3,7 +3,7 @@
  * Körper bei 50/68, Füße bei 41/85 und 59/85). Darum passt die ganze Garderobe auf jedes Tier.
  */
 export const ANIMALS = {
-  owl:     { name: 'Eule',   emoji: '🦉', def: 'Sova',   act: 'wag', colors: [['#8B6B4A', '#F1E2C6', '#6E5236'], ['#EDE9E1', '#FFFFFF', '#B9B2A6'], ['#7D7F86', '#E4E5E8', '#55575D'], ['#B98A4E', '#F6E7CC', '#8C6534']] },
+  owl:     { name: 'Eule',   emoji: '🦉', def: 'Orlov',   act: 'wag', colors: [['#8B6B4A', '#F1E2C6', '#6E5236'], ['#EDE9E1', '#FFFFFF', '#B9B2A6'], ['#7D7F86', '#E4E5E8', '#55575D'], ['#B98A4E', '#F6E7CC', '#8C6534']] },
   wolf:    { name: 'Wolf',   emoji: '🐺', def: 'Lupo',   act: 'wag', colors: [['#8E99A3', '#E9EDF0', '#5E6872'], ['#ECEAE6', '#FFFFFF', '#BDB8B0'], ['#3E3E44', '#9C9CA3', '#26262A'], ['#A58662', '#EFE3D2', '#75593C']] },
   bull:    { name: 'Stier',  emoji: '🐂', def: 'Toro',   act: 'wag', colors: [['#7A4A2E', '#D9B48C', '#4E2E1C'], ['#2E2A28', '#8A7F78', '#1A1716'], ['#B07A4C', '#EBCFAE', '#7E5230'], ['#EDE6DC', '#FFFFFF', '#B5AB9D']] },
   rooster: { name: 'Hahn',   emoji: '🐓', def: 'Coco',   act: 'wag', colors: [['#F7F3EA', '#FFFFFF', '#E0D6C2'], ['#A5552C', '#E8B98E', '#743819'], ['#2F2C2A', '#6F6A66', '#1A1817'], ['#E3B04B', '#F7E2B3', '#B88526']] },
